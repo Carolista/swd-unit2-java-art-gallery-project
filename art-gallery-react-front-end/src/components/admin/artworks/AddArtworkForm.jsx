@@ -36,13 +36,14 @@ let errorMessages = {
 	categoryRequired: 'At least one category must be selected.',
 };
 
+// TODO: Pass in function to re-fetch data after POST
 const AddArtworkForm = ({ artists, categories, refetch }) => {
 	const [artwork, setArtwork] = useState(initialArtwork);
 	const [details, setDetails] = useState(initialDetails);
 	const [checkboxes, setCheckboxes] = useState([]);
 	const [hasErrors, setHasErrors] = useState(false);
 
-	const navigate = useNavigate();
+	// TODO: Create reference to useNavigate() from react-router
 
 	const isValid = newArtwork => {
 		return (
@@ -81,23 +82,7 @@ const AddArtworkForm = ({ artists, categories, refetch }) => {
 		// Will update categoryIds array within artwork object at submission
 	};
 
-	const saveNewArtwork = async artwork => {
-		try {
-			await fetch('http://localhost:8080/api/artworks/add', {
-				method: 'POST',
-				headers: {
-					'Content-Type': 'application/json',
-					'Access-Control-Allow-Origin': '*',
-				},
-				body: JSON.stringify(artwork),
-			});
-			// TODO: Capture response and improve error handling
-		} catch (error) {
-			console.error(error.message);
-		}
-		refetch();
-		navigate('/admin/artworks');
-	};
+	// TODO: Create new async function to make POST to backend with new artwork data, re-fetch data, then navigate to list
 
 	const handleSubmit = event => {
 		event.preventDefault();
@@ -109,7 +94,7 @@ const AddArtworkForm = ({ artists, categories, refetch }) => {
 		if (!isValid(newArtwork)) {
 			setHasErrors(true);
 		} else {
-			saveNewArtwork(newArtwork);
+			// TODO: Call new save function and pass in newArtwork
 		}
 	};
 

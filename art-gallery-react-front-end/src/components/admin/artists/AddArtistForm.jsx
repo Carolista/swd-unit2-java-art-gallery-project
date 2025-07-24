@@ -14,11 +14,12 @@ let errorMessages = {
 	lastNameRequired: 'Last name is required.',
 };
 
-const AddArtistForm = ({ refetch }) => {
+// TODO: Pass in function to re-fetch data after POST
+const AddArtistForm = () => {
 	const [artist, setArtist] = useState(initialArtist);
 	const [hasErrors, setHasErrors] = useState(false);
 
-	const navigate = useNavigate();
+	// TODO: Create reference to useNavigate() from react-router
 
 	const handleChange = event => {
 		let updatedArtist = {
@@ -28,30 +29,14 @@ const AddArtistForm = ({ refetch }) => {
 		setArtist(updatedArtist);
 	};
 
-	const saveNewArtist = async artist => {
-		try {
-			await fetch('http://localhost:8080/api/artists/add', {
-				method: 'POST',
-				headers: {
-					'Content-Type': 'application/json',
-					'Access-Control-Allow-Origin': '*',
-				},
-				body: JSON.stringify(artist),
-			});
-			// TODO: Capture response and improve error handling
-		} catch (error) {
-			console.error(error.message);
-		}
-		refetch();
-		navigate('/admin/artists');
-	};
+	// TODO: Create new async function to make POST to backend with new artist data, re-fetch data, then navigate to list
 
 	const handleSubmit = event => {
 		event.preventDefault();
 		if (artist.firstName === '' || artist.lastName === '') {
 			setHasErrors(true);
 		} else {
-			saveNewArtist(artist);
+			// TODO: Call new save function and pass in artist data
 		}
 	};
 

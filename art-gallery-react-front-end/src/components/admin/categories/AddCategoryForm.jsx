@@ -1,42 +1,25 @@
 import { useState } from 'react';
 import { TextInput, InputErrorMessage } from '../../common/exports';
-import { useNavigate } from 'react-router';
 
-const AddCategoryForm = ({ refetch }) => {
+// TODO: Pass in function to re-fetch data after POST
+const AddCategoryForm = () => {
 	const [category, setCategory] = useState('');
 	const [hasErrors, setHasErrors] = useState(false);
 
-	const navigate = useNavigate();
+    // TODO: Create reference to useNavigate() from react-router
 
 	const handleChange = event => {
 		setCategory(event.target.value);
 	};
 
-	const saveNewCategory = async category => {
-		try {
-			await fetch('http://localhost:8080/api/categories/add', {
-				method: 'POST',
-				headers: {
-					'Content-Type': 'application/json',
-					'Access-Control-Allow-Origin': '*',
-				},
-				body: JSON.stringify(category),
-			});
-			// TODO: Capture response and improve error handling
-		} catch (error) {
-			console.error(error.message);
-		}
-		refetch();
-		navigate('/admin/categories');
-	};
+    // TODO: Create new async function to make POST to backend with new category data, re-fetch data, then navigate to list
 
 	const handleSubmit = event => {
         event.preventDefault();
 		if (category === '') {
 			setHasErrors(true);
 		} else {
-			let newCategory = { title: category };
-			saveNewCategory(newCategory);
+			// TODO: Create new category data and call new save function
 		}
 	};
 
