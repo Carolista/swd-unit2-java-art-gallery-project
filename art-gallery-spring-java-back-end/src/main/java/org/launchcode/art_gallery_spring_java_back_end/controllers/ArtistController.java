@@ -30,7 +30,7 @@ public class ArtistController {
 
     // GET a single artist using its id
     // Corresponds to http://localhost:8080/api/artists/details/3 (for example)
-    @GetMapping(value="/details/{artistId}", produces= MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value="/details/{artistId}", produces=MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> getArtistById(@PathVariable(value="artistId") int artistId) {
         Artist currentArtist = artistRepository.findById(artistId).orElse(null);
         if (currentArtist != null) {
