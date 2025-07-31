@@ -1,4 +1,4 @@
-package org.launchcode.art_gallery_spring_java_back_end;
+package org.launchcode.art_gallery_spring_java_back_end.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
