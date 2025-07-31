@@ -5,6 +5,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
@@ -43,6 +44,17 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
         return ErrorObject.builder()
                 .errorCode("DATA_EXISTS")
                 .statusCode(HttpStatus.CONFLICT.value())
+                .message(ex.getMessage())
+                .timestamp(new Date())
+                .build();
+    }
+
+    @ResponseStatus(HttpStatus.UNAUTHORIZED)
+    @ExceptionHandler(BadCredentialsException.class)
+    public ErrorObject handleBadCredentialsException(Exception ex, WebRequest request) {
+        return ErrorObject.builder()
+                .errorCode("BAD_CREDENTIALS")
+                .statusCode(HttpStatus.UNAUTHORIZED.value())
                 .message(ex.getMessage())
                 .timestamp(new Date())
                 .build();

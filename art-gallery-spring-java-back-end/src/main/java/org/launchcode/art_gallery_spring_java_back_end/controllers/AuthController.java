@@ -72,8 +72,6 @@ public class AuthController {
             authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(authRequest.getEmail(), authRequest.getPassword()));
         } catch (DisabledException ex) {
             throw new Exception("Profile disabled");
-        } catch (BadCredentialsException ex) {
-            throw new Exception("Bad Credentials");
         }
     }
 
