@@ -4,6 +4,7 @@ import org.launchcode.art_gallery_spring_java_back_end.services.CustomUserDetail
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.Customizer;
@@ -25,7 +26,17 @@ public class WebSecurityConfig {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity httpSecurity) throws Exception {
         return httpSecurity.csrf(csrf -> csrf.disable())
-                .authorizeHttpRequests(auth -> auth.requestMatchers("/login", "/register").permitAll().anyRequest().authenticated())
+                .authorizeHttpRequests(authorize -> authorize
+                        // Allow all GET requests
+                        .requestMatchers(HttpMethod.GET, "/**").permitAll()
+
+                        // Allow specific POST requests
+                        .requestMatchers(HttpMethod.POST, "/api/user/login").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/api/user/register").permitAll()
+
+                        // Require authentication for all other requests
+                        .anyRequest().authenticated()
+                )
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .addFilterBefore(authenticationJwtTokenFilter(), UsernamePasswordAuthenticationFilter.class)
                 .httpBasic(Customizer.withDefaults())
