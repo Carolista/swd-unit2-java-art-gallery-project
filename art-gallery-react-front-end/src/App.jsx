@@ -29,6 +29,8 @@ function App() {
 	const [allArtists, setAllArtists] = useState([]);
 	const [allCategories, setAllCategories] = useState([]);
 
+    const 
+
 	const fetchArtworks = async () => {
 		let artworks = [];
 
