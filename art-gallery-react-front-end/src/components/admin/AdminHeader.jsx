@@ -34,8 +34,6 @@ const AdminHeader = () => {
 					<Link className="navlink" to="/admin/categories">
 						Categories
 					</Link>
-					<span className="faux-link">Exhibitions</span>
-					<span className="faux-link">Contact Us</span>
 					<span className="navlink" onClick={handleLogout}>
 						Log Out
 					</span>

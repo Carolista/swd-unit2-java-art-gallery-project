@@ -102,18 +102,6 @@ const Register = () => {
 					<div className="row">
 						<div className="form-item col-4">
 							<TextInput
-								id="name"
-								label="Full Name"
-								value={user.name}
-								handleChange={handleChange}
-							/>
-							<InputErrorMessage
-								hasError={hasErrors && user.name === ''}
-								msg={errorMessages['nameRequired']}
-							/>
-						</div>
-						<div className="form-item col-4">
-							<TextInput
 								id="email"
 								label="Email"
 								value={user.email}
@@ -122,6 +110,18 @@ const Register = () => {
 							<InputErrorMessage
 								hasError={hasErrors && user.email === ''}
 								msg={errorMessages['emailRequired']}
+							/>
+						</div>
+						<div className="form-item col-4">
+							<TextInput
+								id="name"
+								label="Full Name"
+								value={user.name}
+								handleChange={handleChange}
+							/>
+							<InputErrorMessage
+								hasError={hasErrors && user.name === ''}
+								msg={errorMessages['nameRequired']}
 							/>
 						</div>
 					</div>
