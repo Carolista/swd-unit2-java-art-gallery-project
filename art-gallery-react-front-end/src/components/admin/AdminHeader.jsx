@@ -1,12 +1,23 @@
-import { Link } from "react-router";
+import { useContext } from 'react';
+import { Link, useNavigate } from 'react-router';
+import { AuthContext } from '../../context/AuthContext';
+import { removeTokenFromStorage } from '../../services/storage-service';
 
-const AdminHeader = ({setLoggedIn}) => {
+const AdminHeader = () => {
+	const { setAuth } = useContext(AuthContext);
 
-    // TODO: use Navlinks and active link here with routing
-    const handleLogOut = () => {
-        setLoggedIn(false);
-    }
-    
+	const navigate = useNavigate();
+
+	const handleLogout = () => {
+		setAuth({
+			token: null,
+			email: null,
+			isAuthenticated: false,
+		});
+		removeTokenFromStorage();
+		navigate('/');
+	};
+
 	return (
 		<>
 			<header>
@@ -25,7 +36,9 @@ const AdminHeader = ({setLoggedIn}) => {
 					</Link>
 					<span className="faux-link">Exhibitions</span>
 					<span className="faux-link">Contact Us</span>
-                    <span className="navlink" onClick={handleLogOut}>Log Out</span>
+					<span className="navlink" onClick={handleLogout}>
+						Log Out
+					</span>
 				</div>
 			</header>
 		</>

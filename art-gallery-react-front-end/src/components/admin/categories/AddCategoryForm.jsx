@@ -1,12 +1,15 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import { TextInput, InputErrorMessage } from '../../common/exports';
 import { useNavigate } from 'react-router';
+import { AuthContext } from '../../../context/AuthContext';
 
 const AddCategoryForm = ({ refetch }) => {
-	const [category, setCategory] = useState('');
-	const [hasErrors, setHasErrors] = useState(false);
+	const { auth } = useContext(AuthContext);
 
 	const navigate = useNavigate();
+
+	const [category, setCategory] = useState('');
+	const [hasErrors, setHasErrors] = useState(false);
 
 	const handleChange = event => {
 		setCategory(event.target.value);
@@ -18,11 +21,10 @@ const AddCategoryForm = ({ refetch }) => {
 				method: 'POST',
 				headers: {
 					'Content-Type': 'application/json',
-					'Access-Control-Allow-Origin': '*',
+					Authorization: 'Bearer ' + auth.token,
 				},
 				body: JSON.stringify(newCategory),
 			});
-			// TODO: Capture response and improve error handling
 		} catch (error) {
 			console.error(error.message);
 		}
@@ -31,7 +33,7 @@ const AddCategoryForm = ({ refetch }) => {
 	};
 
 	const handleSubmit = event => {
-        event.preventDefault();
+		event.preventDefault();
 		if (category === '') {
 			setHasErrors(true);
 		} else {

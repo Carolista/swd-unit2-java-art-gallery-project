@@ -1,7 +1,8 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import InputErrorMessage from '../../common/InputErrorMsg';
 import TextInput from '../../common/TextInput';
 import { useNavigate } from 'react-router';
+import { AuthContext } from '../../../context/AuthContext';
 
 let initialArtist = {
 	firstName: '',
@@ -15,10 +16,12 @@ let errorMessages = {
 };
 
 const AddArtistForm = ({ refetch }) => {
-	const [artist, setArtist] = useState(initialArtist);
-	const [hasErrors, setHasErrors] = useState(false);
+	const { auth } = useContext(AuthContext);
 
 	const navigate = useNavigate();
+
+	const [artist, setArtist] = useState(initialArtist);
+	const [hasErrors, setHasErrors] = useState(false);
 
 	const handleChange = event => {
 		let updatedArtist = {
@@ -34,11 +37,10 @@ const AddArtistForm = ({ refetch }) => {
 				method: 'POST',
 				headers: {
 					'Content-Type': 'application/json',
-					'Access-Control-Allow-Origin': '*',
+					Authorization: 'Bearer ' + auth.token,
 				},
 				body: JSON.stringify(newArtist),
 			});
-			// TODO: Capture response and improve error handling
 		} catch (error) {
 			console.error(error.message);
 		}

@@ -1,5 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router';
+import Register from './components/auth/Register';
+import Login from './components/auth/Login';
 import {
 	Artworks,
 	Details,
@@ -19,17 +21,17 @@ import {
 	CategoriesList,
 } from './components/admin/exports';
 import { Artist, Artwork, ArtworkDetails, Category } from './classes/exports';
+
 import './App.css';
+import { AuthContext } from './context/AuthContext';
 
 function App() {
 	const [loading, setLoading] = useState(true);
-	const [loggedIn, setLoggedIn] = useState(false); // TEMP until auth is implemented
-
 	const [allArtworks, setAllArtworks] = useState([]);
 	const [allArtists, setAllArtists] = useState([]);
 	const [allCategories, setAllCategories] = useState([]);
 
-    const 
+	const { auth } = useContext(AuthContext);
 
 	const fetchArtworks = async () => {
 		let artworks = [];
@@ -147,14 +149,10 @@ function App() {
 	return (
 		<BrowserRouter>
 			<React.StrictMode>
-				{loggedIn ? (
-					<AdminHeader setLoggedIn={setLoggedIn} />
-				) : (
-					<PublicHeader setLoggedIn={setLoggedIn} />
-				)}
+				{auth.isAuthenticated ? <AdminHeader /> : <PublicHeader />}
 				{loading && <Loading />}
 				{!loading &&
-					(loggedIn ? (
+					(auth.isAuthenticated ? (
 						<Routes>
 							<Route path="/" element={<Navigate to="/admin" />} />
 							<Route path="/admin" element={<AdminHome />} />
@@ -193,6 +191,8 @@ function App() {
 					) : (
 						<Routes>
 							<Route path="/" element={<PublicHome />} />
+							<Route path="/register" element={<Register />} />
+							<Route path="/login" element={<Login />} />
 							<Route
 								path="/artworks"
 								element={<Artworks artworks={allArtworks} />}

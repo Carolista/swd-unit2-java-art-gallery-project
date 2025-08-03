@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import {
 	Checkbox,
 	InputErrorMessage,
@@ -7,6 +7,7 @@ import {
 } from '../../common/exports';
 import TextArea from '../../common/TextArea.jsx';
 import { useNavigate } from 'react-router';
+import { AuthContext } from '../../../context/AuthContext.jsx';
 
 let initialArtwork = {
 	title: '',
@@ -37,12 +38,14 @@ let errorMessages = {
 };
 
 const AddArtworkForm = ({ artists, categories, refetch }) => {
+	const { auth } = useContext(AuthContext);
+
+	const navigate = useNavigate();
+
 	const [artwork, setArtwork] = useState(initialArtwork);
 	const [details, setDetails] = useState(initialDetails);
 	const [checkboxes, setCheckboxes] = useState([]);
 	const [hasErrors, setHasErrors] = useState(false);
-
-	const navigate = useNavigate();
 
 	const isValid = newArtwork => {
 		return (
@@ -87,11 +90,10 @@ const AddArtworkForm = ({ artists, categories, refetch }) => {
 				method: 'POST',
 				headers: {
 					'Content-Type': 'application/json',
-					'Access-Control-Allow-Origin': '*',
+					Authorization: 'Bearer ' + auth.token,
 				},
 				body: JSON.stringify(newArtwork),
 			});
-			// TODO: Capture response and improve error handling
 		} catch (error) {
 			console.error(error.message);
 		}

@@ -10,9 +10,7 @@ const ArtworksList = ({ artworks }) => {
 				<td>{artwork.artist.getFullName()}</td>
 				<td>{artwork.details.yearCreated}</td>
 				<td>
-					<Link to={'/artworks/details/' + artwork.id}>
-						<img src={artwork.details.getImageURL()} width="50px" />
-					</Link>
+					<img src={artwork.details.getImageURL()} width="50px" />
 				</td>
 			</tr>
 		);
@@ -26,23 +24,23 @@ const ArtworksList = ({ artworks }) => {
 		<main>
 			<h2>ARTWORKS</h2>
 			{artworks.length ? (
-                <>
-                    <table className="table table-striped">
-                        <thead>
-                            <tr>
-                                <th>ID</th>
-                                <th>Title</th>
-                                <th>Artist</th>
-                                <th>Year Created</th>
-                                <th>Image</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {artworksJSX}
-                        </tbody>
-                    </table>
-                    <p>Add a <Link to="/admin/artworks/add" >new artwork</Link>.</p>
-                </>
+				<>
+					<table className="table table-striped">
+						<thead>
+							<tr>
+								<th>ID</th>
+								<th>Title</th>
+								<th>Artist</th>
+								<th>Year Created</th>
+								<th>Image</th>
+							</tr>
+						</thead>
+						<tbody>{artworksJSX}</tbody>
+					</table>
+					<p>
+						Add a <Link to="/admin/artworks/add">new artwork</Link>.
+					</p>
+				</>
 			) : (
 				<p>
 					<em>No artworks to display.</em>

@@ -1,12 +1,6 @@
-import { Link } from "react-router";
+import { Link } from 'react-router';
 
-const PublicHeader = ({setLoggedIn}) => {
-
-    // TODO: use Navlinks and active link here with routing
-    const handleLogIn = () => {
-        setLoggedIn(true);
-    }
-    
+const PublicHeader = () => {
 	return (
 		<>
 			<header>
@@ -19,7 +13,9 @@ const PublicHeader = ({setLoggedIn}) => {
 					</Link>
 					<span className="faux-link">Exhibitions</span>
 					<span className="faux-link">Contact Us</span>
-                    <span className="navlink" onClick={handleLogIn}>Admin Login</span>
+					<Link className="navlink" to="/login">
+						Log In
+					</Link>
 				</div>
 			</header>
 		</>
