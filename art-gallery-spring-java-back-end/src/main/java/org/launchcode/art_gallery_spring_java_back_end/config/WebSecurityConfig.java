@@ -26,6 +26,7 @@ public class WebSecurityConfig {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity httpSecurity) throws Exception {
         return httpSecurity.csrf(csrf -> csrf.disable())
+                .cors(Customizer.withDefaults())
                 .authorizeHttpRequests(authorize -> authorize
                         // Allow all GET requests
                         .requestMatchers(HttpMethod.GET, "/**").permitAll()

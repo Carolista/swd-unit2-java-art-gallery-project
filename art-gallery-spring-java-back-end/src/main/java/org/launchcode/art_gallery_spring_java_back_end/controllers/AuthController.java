@@ -3,10 +3,7 @@ package org.launchcode.art_gallery_spring_java_back_end.controllers;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import org.launchcode.art_gallery_spring_java_back_end.io.AuthRequest;
-import org.launchcode.art_gallery_spring_java_back_end.io.AuthResponse;
-import org.launchcode.art_gallery_spring_java_back_end.io.UserProfileRequest;
-import org.launchcode.art_gallery_spring_java_back_end.io.UserProfileResponse;
+import org.launchcode.art_gallery_spring_java_back_end.io.*;
 import org.launchcode.art_gallery_spring_java_back_end.models.dto.UserProfileDTO;
 import org.launchcode.art_gallery_spring_java_back_end.services.CustomUserDetailsService;
 import org.launchcode.art_gallery_spring_java_back_end.services.TokenBlacklistService;
@@ -14,8 +11,8 @@ import org.launchcode.art_gallery_spring_java_back_end.services.UserProfileServi
 import org.launchcode.art_gallery_spring_java_back_end.utils.JwtTokenUtil;
 import org.modelmapper.ModelMapper;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.DisabledException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -56,6 +53,16 @@ public class AuthController {
         String jwtToken = extractJwtTokenFromRequest(request);
         if (jwtToken != null) {
             tokenBlacklistService.addTokenToBlacklist(jwtToken);
+        }
+    }
+
+    @PostMapping("/validate-token")
+    public ResponseEntity<String> checkTokenValidity(@RequestBody TokenValidationRequest tokenValidationRequest) {
+        UserDetails userDetails = userDetailsService.loadUserByUsername(tokenValidationRequest.getEmail());
+        if (jwtTokenUtil.validateToken(tokenValidationRequest.getToken(), userDetails)) {
+            return new ResponseEntity<>("Token is valid", HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>("Invalid token", HttpStatus.UNAUTHORIZED);
         }
     }
 
