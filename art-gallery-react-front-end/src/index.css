@@ -74,7 +74,7 @@ a:active {
 .navlink:hover,
 .navlink:active {
 	text-decoration: underline;
-    cursor: pointer;
+	cursor: pointer;
 }
 
 #mag {
@@ -125,6 +125,26 @@ a:active {
 
 .artwork-card:hover {
 	filter: drop-shadow(0px 5px 5px rgba(0, 0, 0, 0.5));
+}
+
+.input-with-icon {
+	position: relative;
+	display: flex;
+	flex-direction: column;
+}
+
+.input-with-icon i {
+	position: absolute;
+	top: 8px;
+	right: 6px;
+}
+
+.fa-eye {
+	opacity: 0.8;
+}
+
+.fa-eye-slash {
+	opacity: 0.4;
 }
 
 /* From old Java app */
@@ -181,10 +201,4 @@ button.delete {
 
 textarea {
 	min-height: 200px;
-}
-
-/* NEW */
-
-.checkbox-with-label {
-    /* TODO: define this */
 }
