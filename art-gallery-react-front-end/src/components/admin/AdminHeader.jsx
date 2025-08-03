@@ -22,7 +22,7 @@ const AdminHeader = () => {
 		<>
 			<header>
 				<div id="mag">
-					<b>Midtown</b> Art Gallery
+					<Link to="/admin"><b>Midtown</b> Art Gallery</Link>
 				</div>
 				<div className="nav">
 					<Link className="navlink" to="/admin/artists">

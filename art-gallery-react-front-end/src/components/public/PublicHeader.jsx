@@ -5,7 +5,7 @@ const PublicHeader = () => {
 		<>
 			<header>
 				<div id="mag">
-					<b>Midtown</b> Art Gallery
+					<Link to="/"><b>Midtown</b> Art Gallery</Link>
 				</div>
 				<div className="nav">
 					<Link className="navlink" to="/artworks">
@@ -13,6 +13,9 @@ const PublicHeader = () => {
 					</Link>
 					<span className="faux-link">Exhibitions</span>
 					<span className="faux-link">Contact Us</span>
+					<Link className="navlink" to="/register">
+						Register
+					</Link>
 					<Link className="navlink" to="/login">
 						Log In
 					</Link>
