@@ -2,7 +2,7 @@ import { Link } from 'react-router';
 import Card from './Card';
 
 const Artworks = ({ artworks }) => {
-	let artworksJSX = Object.values(artworks).map(artwork => {
+	let artworksJSX = artworks.map(artwork => {
 		return (
 			<Link to={'/artworks/' + artwork.id} key={artwork.id}>
 				<Card artwork={artwork} />

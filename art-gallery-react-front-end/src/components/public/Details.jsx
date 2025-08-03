@@ -3,7 +3,7 @@ import { Link, useParams } from 'react-router';
 const Details = ({ artworks }) => {
 	const { id } = useParams();
 
-	const artwork = artworks[id];
+	const artwork = artworks.find(anArtwork => anArtwork.id == id);
 
 	return (
 		<main>
@@ -33,8 +33,8 @@ const Details = ({ artworks }) => {
 							</>
 						)}
 						<>
-							<h5>{artwork.styles.length === 1 ? 'Style' : 'Styles'}</h5>
-							<p>{artwork.getFormattedStyles()}</p>
+							<h5>{artwork.categories.length === 1 ? 'Category' : 'Categories'}</h5>
+							<p>{artwork.getFormattedCategories()}</p>
 						</>
 						{artwork.details.media != '' && (
 							<>
