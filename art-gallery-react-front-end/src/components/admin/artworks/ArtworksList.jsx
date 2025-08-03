@@ -10,7 +10,7 @@ const ArtworksList = ({ artworks }) => {
 				<td>{artwork.artist.getFullName()}</td>
 				<td>{artwork.details.yearCreated}</td>
 				<td>
-					<img src={artwork.details.getImageURL()} width="50px" />
+                    <img src={artwork.details.getImageURL()} width="50px" />
 				</td>
 			</tr>
 		);

@@ -198,7 +198,7 @@ function App() {
 								element={<Artworks artworks={allArtworks} />}
 							/>
 							<Route
-								path="artworks/:id"
+								path="/artworks/:id"
 								element={<Details artworks={allArtworks} />}
 							/>
 							<Route path="*" element={<Navigate to="/" />} />
