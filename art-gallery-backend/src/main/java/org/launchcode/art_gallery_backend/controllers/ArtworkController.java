@@ -10,7 +10,7 @@ import java.util.Collection;
 @RequestMapping("/api/artworks")
 public class ArtworkController {
 
-    // Corresponds to http://localhost:8080/api/artworks
+    // Corresponds to http://localhost:8080/api/artworks/
     @GetMapping("")
     public Collection<Artwork> getAllArtworks() {
         return ArtworkData.getAll();
@@ -19,7 +19,7 @@ public class ArtworkController {
     // Use a query parameter for dynamic results
     // Corresponds to http://localhost:8080/api/artworks/add?title=The+Starry+Night&artist=Vincent+van+Gogh (for example)
     @PostMapping("/add")
-    public String addNewArtwork(@RequestParam(value="title") String title, @RequestParam(value="artist") String artist) {
+    public String addNewArtwork(@RequestParam String title, String artist) {
         Artwork newArtwork = new Artwork(title, artist);
         ArtworkData.addNew(newArtwork);
         return "Artwork added: " + newArtwork;
@@ -28,7 +28,19 @@ public class ArtworkController {
     // Use a path parameter for dynamic results
     // Corresponds to http://localhost:8080/api/artworks/details/3 (for example)
     @GetMapping("/details/{artworkId}")
-    public Artwork displayArtworkDetails(@PathVariable(value="artworkId") int artworkId) {
+    public Artwork getArtworkById(@PathVariable int artworkId) {
         return ArtworkData.getById(artworkId);
     }
+
+    // Optional HTML response for same data
+    // Corresponds to http://localhost:8080/api/artworks/details/3/html (for example)
+    @GetMapping("/details/{artworkId}/html")
+    public String displayArtworkDetails(@PathVariable int artworkId) {
+        Artwork artwork = ArtworkData.getById(artworkId);
+        return "<h2>ARTWORK</h2>" +
+                "<p><b>ID:</b> " + artwork.getId() + "</p>" +
+                "<p><b>Title:</b> " + artwork.getTitle() + "</p>" +
+                "<p><b>Artist:</b> " + artwork.getArtist() + "</p>";
+    }
+
 }
