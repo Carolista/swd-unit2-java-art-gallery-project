@@ -1,12 +1,13 @@
 package org.launchcode.art_gallery_backend.repositories;
 
+import org.launchcode.art_gallery_backend.models.Artwork;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 // This enables us to perform CRUD ops within the database
 
 @Repository
-public interface ArtworkRepository extends JpaRepository {
+public interface ArtworkRepository extends JpaRepository<Artwork, Integer> {
 
     // See built-in methods at
     // https://docs.spring.io/spring-data/jpa/docs/current/api/org/springframework/data/jpa/repository/JpaRepository.html
