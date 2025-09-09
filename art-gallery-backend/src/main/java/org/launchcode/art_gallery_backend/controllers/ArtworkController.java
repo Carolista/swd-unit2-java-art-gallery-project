@@ -10,6 +10,9 @@ import java.util.Collection;
 @RequestMapping("/api/artworks")
 public class ArtworkController {
 
+    // TODO: Autowire artworkRepository to use JpaRepository methods to interact with database
+
+    // TODO: Refactor to return List<?> of all artworks from database
     // Retrieve all artworks from database
     // GET http://localhost:8080/api/artworks/
     @GetMapping("")
@@ -17,6 +20,7 @@ public class ArtworkController {
         return ArtworkData.getAll();
     }
 
+    // TODO: Refactor to return artwork object from database (or null if not found)
     // Retrieve a specific artwork object using its id
     // GET http://localhost:8080/api/artworks/details/3 (for example)
     @GetMapping("/details/{artworkId}")
@@ -24,6 +28,7 @@ public class ArtworkController {
         return ArtworkData.getById(artworkId);
     }
 
+    // TODO: Remove this method (it served its educational purpose)
     // Optional HTML response for rendering formatted data directly
     // GET http://localhost:8080/api/artworks/details/3/html (for example)
     @GetMapping("/details/{artworkId}/html")
@@ -35,6 +40,7 @@ public class ArtworkController {
                 "<p><b>Artist:</b> " + artwork.getArtist() + "</p>";
     }
 
+    // TODO: Refactor to save to database
     // Save new artwork to database
     // Uses query parameters for dynamic results
     // POST http://localhost:8080/api/artworks/add?title=The+Starry+Night&artist=Vincent+van+Gogh (for example)

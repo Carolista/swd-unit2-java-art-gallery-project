@@ -6,6 +6,10 @@ import java.util.*;
 
 public class ArtworkData {
 
+    // TODO: Create new package alongside controllers and models called repositories
+    //  Add interface called ArtworkRepository to new package and extend JpaRepository
+    //  Then after controller methods have been updated, delete this file and the data package
+
     /* Temporary representation of database */
 
     // Will be replaced by a JPA Repository in Part 2

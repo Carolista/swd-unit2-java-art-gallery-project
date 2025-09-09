@@ -45,6 +45,8 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+		<!-- TODO: Add spring-boot-starter-data-jpa dependency -->
+		<!-- TODO: Add mysql-connector-j dependency -->
 	</dependencies>
 
 	<build>
