@@ -5,5 +5,3 @@ A multi-part project to teach LaunchCode students to build a Java web applicatio
 Unlike some of my other repos, I am building the entire finished project in the `main` branch.
 
 If you wish to code the project from the beginning or from any point along the way, choose from several branches for the starter code. The starter code for most branches is essentially the solution to the previous branch, and `main` is the final solution.
-
-> NOTE: There are still more branches coming and `main` will be updated with both further changes to the back end and a React front end application. Stay tuned!
