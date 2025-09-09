@@ -30,7 +30,7 @@ public class ArtworkController {
 
     // Save new artwork to database
     // Uses query parameters for dynamic results
-    // POST http://localhost:8080/api/artworks/add
+    // POST http://localhost:8080/api/artworks/add?title=The+Starry+Night&artist=Vincent+van+Gogh (for example)
     @PostMapping("/add")
     public String addNewArtwork(@RequestParam String title, String artist) {
         Artwork newArtwork = new Artwork(title, artist);
