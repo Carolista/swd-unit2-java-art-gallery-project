@@ -1,21 +1,26 @@
 package org.launchcode.art_gallery_backend.models;
 
+import jakarta.persistence.*;
+
 import java.util.Objects;
 
+@Entity // Hibernate will use this model to create a table in the database
 public class Artwork {
 
-    // Stored with class to preserve incrementation
-    private static int nextId = 1;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id; // Will be set by database
 
-    private final int id; // will be set in constructor
+    @Column(name="title") // This is optional if the name isn't different
     private String title;
+
     private String artist;
 
+    public Artwork() {}; // Default constructor required for database
+
     public Artwork(String title, String artist) {
-        this.id = nextId;
         this.title = title;
         this.artist = artist;
-        nextId++;
     }
 
     public int getId() {
