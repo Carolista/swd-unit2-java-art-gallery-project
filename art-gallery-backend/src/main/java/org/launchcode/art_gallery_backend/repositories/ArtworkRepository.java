@@ -13,5 +13,5 @@ public interface ArtworkRepository extends JpaRepository<Artwork, Integer> {
     // https://docs.spring.io/spring-data/jpa/docs/current/api/org/springframework/data/jpa/repository/JpaRepository.html
 
     // We will use methods inherited from CrudRepository, etc.
-    // .findAll(), .save(), .findById(), .delete()
+    // .findAll(), .save(), .findById(), .deleteById()
 }
