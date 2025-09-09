@@ -1,46 +1,41 @@
 package org.launchcode.art_gallery_backend.controllers;
 
-import org.launchcode.art_gallery_backend.data.ArtworkData;
 import org.launchcode.art_gallery_backend.models.Artwork;
+import org.launchcode.art_gallery_backend.repositories.ArtworkRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Collection;
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/artworks")
 public class ArtworkController {
 
-    // Corresponds to http://localhost:8080/api/artworks/
+    @Autowired
+    ArtworkRepository artworkRepository; // to interact with database
+
+    // Retrieve all artworks from database
+    // GET http://localhost:8080/api/artworks/
     @GetMapping("")
-    public Collection<Artwork> getAllArtworks() {
-        return ArtworkData.getAll();
+    public List<?> getAllArtworks() {
+        return artworkRepository.findAll();
     }
 
-    // Use a query parameter for dynamic results
-    // Corresponds to http://localhost:8080/api/artworks/add?title=The+Starry+Night&artist=Vincent+van+Gogh (for example)
+    // Retrieve a specific artwork object using its id
+    // GET http://localhost:8080/api/artworks/details/3 (for example)
+    @GetMapping("/details/{artworkId}")
+    public Artwork getArtworkById(@PathVariable int artworkId) {
+        return artworkRepository.findById(artworkId).orElse(null);
+    }
+
+    // Save new artwork to database
+    // Uses query parameters for dynamic results
+    // POST http://localhost:8080/api/artworks/add
     @PostMapping("/add")
     public String addNewArtwork(@RequestParam String title, String artist) {
         Artwork newArtwork = new Artwork(title, artist);
-        ArtworkData.addNew(newArtwork);
+        artworkRepository.save(newArtwork);
         return "Artwork added: " + newArtwork;
-    }
-
-    // Use a path parameter for dynamic results
-    // Corresponds to http://localhost:8080/api/artworks/details/3 (for example)
-    @GetMapping("/details/{artworkId}")
-    public Artwork getArtworkById(@PathVariable int artworkId) {
-        return ArtworkData.getById(artworkId);
-    }
-
-    // Optional HTML response for same data
-    // Corresponds to http://localhost:8080/api/artworks/details/3/html (for example)
-    @GetMapping("/details/{artworkId}/html")
-    public String displayArtworkDetails(@PathVariable int artworkId) {
-        Artwork artwork = ArtworkData.getById(artworkId);
-        return "<h2>ARTWORK</h2>" +
-                "<p><b>ID:</b> " + artwork.getId() + "</p>" +
-                "<p><b>Title:</b> " + artwork.getTitle() + "</p>" +
-                "<p><b>Artist:</b> " + artwork.getArtist() + "</p>";
     }
 
 }
