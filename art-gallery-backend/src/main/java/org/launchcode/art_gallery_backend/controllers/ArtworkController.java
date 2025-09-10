@@ -10,7 +10,7 @@ import java.util.Collection;
 @RequestMapping("/api/artworks")
 public class ArtworkController {
 
-    // Retrieve all artworks from database
+    // Retrieve all artworks from HashMap in temporary data layer
     // GET http://localhost:8080/api/artworks/
     @GetMapping("")
     public Collection<Artwork> getAllArtworks() {
@@ -35,7 +35,7 @@ public class ArtworkController {
                 "<p><b>Artist:</b> " + artwork.getArtist() + "</p>";
     }
 
-    // Save new artwork to database
+    // Save new artwork to HashMap in temporary data layer
     // Uses query parameters for dynamic results
     // POST http://localhost:8080/api/artworks/add?title=The+Starry+Night&artist=Vincent+van+Gogh (for example)
     @PostMapping("/add")
