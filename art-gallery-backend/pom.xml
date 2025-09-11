@@ -54,6 +54,7 @@
 			<artifactId>mysql-connector-j</artifactId>
 			<scope>runtime</scope>
 		</dependency>
+		<!-- TODO: Add spring-boot-starter-validation dependency -->
 	</dependencies>
 
 	<build>
