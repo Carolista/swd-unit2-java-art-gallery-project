@@ -23,17 +23,7 @@ public class ArtworkController {
     @GetMapping("")
     public ResponseEntity<?> getAllArtworks() {
         List<Artwork> allArtworks = artworkRepository.findAll();
-        System.out.println(HttpStatus.values());
         return new ResponseEntity<>(allArtworks, HttpStatus.OK); // 200
-    }
-
-    // Save new artwork to database
-    // UPDATED: Accepts JSON body instead of using query params
-    // POST http://localhost:8080/api/artworks/add
-    @PostMapping(value="/add", consumes=MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<?> addNewArtwork(@RequestBody Artwork artwork) {
-        artworkRepository.save(artwork);
-        return new ResponseEntity<>(artwork, HttpStatus.CREATED); // 201
     }
 
     // Retrieve a specific artwork object using its id
@@ -45,8 +35,17 @@ public class ArtworkController {
             String response = "Artwork with ID of " + artworkId + " not found.";
             return new ResponseEntity<>(Collections.singletonMap("response", response), HttpStatus.NOT_FOUND); // 404
         } else {
-            return new ResponseEntity<>(artwork, HttpStatus.OK);
+            return new ResponseEntity<>(artwork, HttpStatus.OK); // 200
         }
+    }
+
+    // Save new artwork to database
+    // Accepts JSON payload instead of using query params
+    // POST http://localhost:8080/api/artworks/add
+    @PostMapping(value="/add", consumes=MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<?> addNewArtwork(@RequestBody Artwork artwork) {
+        artworkRepository.save(artwork);
+        return new ResponseEntity<>(artwork, HttpStatus.CREATED); // 201
     }
 
     // Delete an existing artwork from the database
