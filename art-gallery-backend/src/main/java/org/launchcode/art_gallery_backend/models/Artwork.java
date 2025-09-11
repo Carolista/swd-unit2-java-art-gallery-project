@@ -2,29 +2,26 @@ package org.launchcode.art_gallery_backend.models;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
 import java.util.Objects;
 
-@Entity // Hibernate will use this model to create a table in the database
+@Entity
 public class Artwork {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id; // Will be set by database
+    private int id;
 
-    @NotNull(message="Title is required.")
     @NotBlank(message="Title is required.")
     @Size(min=2, max=50, message="Title must be 2-50 characters long.")
     private String title;
 
-    @NotNull(message="Artist is required.")
     @NotBlank(message="Artist is required.")
     @Size(min=2, max=50, message="Artist must be 2-30 characters long.")
     private String artist;
 
-    public Artwork() {}; // Default constructor required for database
+    public Artwork() {};
 
     public Artwork(String title, String artist) {
         this.title = title;
