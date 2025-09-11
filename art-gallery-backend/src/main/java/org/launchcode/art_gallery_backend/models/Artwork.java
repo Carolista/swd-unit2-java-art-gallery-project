@@ -11,9 +11,12 @@ public class Artwork {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id; // Will be set by database
 
-    @Column(name="title") // This is optional if the name isn't different
+    // TODO: Add validation so that the value cannot be blank or null
+    //  It also should be limited to 2-50 characters long
     private String title;
 
+    // TODO: Add validation so that the value cannot be blank or null
+    //  It also needs to be limited to 2-30 characters long
     private String artist;
 
     public Artwork() {}; // Default constructor required for database
