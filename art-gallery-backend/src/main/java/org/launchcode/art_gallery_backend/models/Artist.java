@@ -23,6 +23,9 @@ public class Artist {
 
     private String location;
 
+    // TODO: Include a list of Artwork objects called "artworks", mapped by "artist"
+    //  Set the relationship and ensure that when JSON is formed there is no infinite recursion
+
     public Artist() {};
 
     public Artist(String firstName, String lastName, String location) {

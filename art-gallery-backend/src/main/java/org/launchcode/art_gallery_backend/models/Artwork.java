@@ -17,9 +17,14 @@ public class Artwork {
     @Size(min=2, max=50, message="Title must be 2-50 characters long.")
     private String title;
 
+    // TODO: Refactor this to include an Artist object instead of a String
+    //  Set the relationship and ensure that when JSON is formed there is no infinite recursion
     @NotBlank(message="Artist is required.")
     @Size(min=2, max=50, message="Artist must be 2-30 characters long.")
     private String artist;
+
+    // TODO: Include a list of Category objects called "categories"
+    //  Set the relationship and ensure that when JSON is formed there is no infinite recursion
 
     public Artwork() {};
 
