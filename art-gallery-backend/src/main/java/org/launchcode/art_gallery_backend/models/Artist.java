@@ -1,9 +1,12 @@
 package org.launchcode.art_gallery_backend.models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -23,8 +26,9 @@ public class Artist {
 
     private String location;
 
-    // TODO: Include a list of Artwork objects called "artworks", mapped by "artist"
-    //  Set the relationship and ensure that when JSON is formed there is no infinite recursion
+    @OneToMany(mappedBy = "artist")
+    @JsonBackReference
+    private final List<Artwork> artworks = new ArrayList<>();
 
     public Artist() {};
 

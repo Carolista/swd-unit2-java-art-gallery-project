@@ -1,9 +1,12 @@
 package org.launchcode.art_gallery_backend.models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -17,8 +20,9 @@ public class Category {
     @Size(min=1, max=40, message="Category must be 1-40 characters long.")
     private String title;
 
-    // TODO: Include a list of Artwork objects called "artworks", mapped by "categories"
-    //  Set the relationship and ensure that when JSON is formed there is no infinite recursion
+    @ManyToMany(mappedBy = "categories")
+    @JsonBackReference
+    private final List<Artwork> artworks = new ArrayList<>();
 
     public Category(String title) {
         this.title = title;
