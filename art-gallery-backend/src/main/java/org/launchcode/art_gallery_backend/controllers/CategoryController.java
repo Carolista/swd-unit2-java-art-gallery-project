@@ -1,12 +1,15 @@
 package org.launchcode.art_gallery_backend.controllers;
 
+import jakarta.validation.Valid;
 import org.launchcode.art_gallery_backend.models.Category;
 import org.launchcode.art_gallery_backend.repositories.CategoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.resource.NoResourceFoundException;
 
 import java.util.Collections;
 import java.util.List;
@@ -29,19 +32,19 @@ public class CategoryController {
     // Save new category to database
     // POST http://localhost:8080/api/categories/add
     @PostMapping("/add")
-    public ResponseEntity<?> addNewCategory(@RequestBody Category category) {
+    public ResponseEntity<?> addNewCategory(@Valid @RequestBody Category category) {
         categoryRepository.save(category);
         return new ResponseEntity<>(category, HttpStatus.CREATED); // 201
-    }
+    } // @Valid enables enforcement of rules in model
 
     // Delete an existing category from the database
     // DELETE http://localhost:8080/api/categories/delete/2 (for example)
     @DeleteMapping(value="/delete/{categoryId}", produces= MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<?> deleteCategory(@PathVariable int categoryId) {
+    public ResponseEntity<?> deleteCategory(@PathVariable int categoryId) throws NoResourceFoundException {
         Category category = categoryRepository.findById(categoryId).orElse(null);
         if (category == null) {
-            String response = "Artist with ID of " + categoryId + " not found.";
-            return new ResponseEntity<>(Collections.singletonMap("response", response), HttpStatus.NOT_FOUND); // 404
+            String path = "/api/artworks/delete/" + categoryId;
+            throw new NoResourceFoundException(HttpMethod.GET, path); // 404
         } else {
             categoryRepository.deleteById(categoryId);
             return new ResponseEntity<>(HttpStatus.NO_CONTENT); // 204

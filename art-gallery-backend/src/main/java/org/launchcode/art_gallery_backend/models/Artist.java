@@ -14,11 +14,11 @@ public class Artist {
     private int id;
 
     @NotBlank(message="First name is required.")
-    @Size(min=1, max=40, message="Title must be 2-50 characters long.")
+    @Size(min=1, max=40, message="First name must be 2-50 characters long.")
     private String firstName;
 
     @NotBlank(message="Last name is required.")
-    @Size(min=1, max=40, message="Title must be 2-50 characters long.")
+    @Size(min=1, max=40, message="Last name must be 2-50 characters long.")
     private String lastName;
 
     private String location;

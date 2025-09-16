@@ -1,12 +1,15 @@
 package org.launchcode.art_gallery_backend.controllers;
 
+import jakarta.validation.Valid;
 import org.launchcode.art_gallery_backend.models.Artist;
 import org.launchcode.art_gallery_backend.repositories.ArtistRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.resource.NoResourceFoundException;
 
 import java.util.Collections;
 import java.util.List;
@@ -29,11 +32,11 @@ public class ArtistController {
     // Retrieve a specific artist object using its id
     // GET http://localhost:8080/api/artists/details/3 (for example)
     @GetMapping(value="/details/{artistId}", produces= MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<?> getArtistById(@PathVariable int artistId) {
+    public ResponseEntity<?> getArtistById(@PathVariable int artistId) throws NoResourceFoundException {
         Artist artist = artistRepository.findById(artistId).orElse(null);
         if (artist == null) {
-            String response = "Artist with ID of " + artistId + " not found.";
-            return new ResponseEntity<>(Collections.singletonMap("response", response), HttpStatus.NOT_FOUND); // 404
+            String path = "/api/artists/details/" + artistId;
+            throw new NoResourceFoundException(HttpMethod.GET, path); // 404
         } else {
             return new ResponseEntity<>(artist, HttpStatus.OK); // 200
         }
@@ -42,19 +45,19 @@ public class ArtistController {
     // Save new artist to database
     // POST http://localhost:8080/api/artists/add
     @PostMapping(value="/add", consumes=MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<?> addNewArtist(@RequestBody Artist artist) {
+    public ResponseEntity<?> addNewArtist(@Valid @RequestBody Artist artist) {
         artistRepository.save(artist);
         return new ResponseEntity<>(artist, HttpStatus.CREATED); // 201
-    }
+    } // @Valid enables enforcement of rules in model
 
     // Delete an existing artist from the database
     // DELETE http://localhost:8080/api/artists/delete/6 (for example)
     @DeleteMapping(value="/delete/{artistId}", produces=MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<?> deleteArtist(@PathVariable int artistId) {
+    public ResponseEntity<?> deleteArtist(@PathVariable int artistId) throws NoResourceFoundException {
         Artist artist = artistRepository.findById(artistId).orElse(null);
         if (artist == null) {
-            String response = "Artist with ID of " + artistId + " not found.";
-            return new ResponseEntity<>(Collections.singletonMap("response", response), HttpStatus.NOT_FOUND); // 404
+            String path = "/api/artists/delete/" + artistId;
+            throw new NoResourceFoundException(HttpMethod.GET, path); // 404
         } else {
             artistRepository.deleteById(artistId);
             return new ResponseEntity<>(HttpStatus.NO_CONTENT); // 204
