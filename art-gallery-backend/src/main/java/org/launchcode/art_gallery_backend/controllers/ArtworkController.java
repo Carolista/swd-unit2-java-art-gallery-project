@@ -27,7 +27,7 @@ public class ArtworkController {
     // TODO: Refactor to return a ResponseEntity object with an HttpStatus
     //  of 200 OK if found or 404 NOT FOUND if not found
     //  Ensure the mapping is configured to produce JSON
-    //  The response body (payload) should include the artwork object if found or a message if not found
+    //  The response body (payload) should include the artwork object if found or throw an error if not found
     // Retrieve a specific artwork object using its id
     // GET http://localhost:8080/api/artworks/details/3 (for example)
     @GetMapping("/details/{artworkId}")
@@ -40,6 +40,7 @@ public class ArtworkController {
     //  Ensure the mapping is configured to consume JSON instead of using query params
     //  Let the method accept a full Artwork object as the sole ResponseBody parameter
     //  The response body (payload) should include the new artwork object
+    // TODO: Ensure validation is enabled so rules in model are enforced
     // Save new artwork to database
     // POST http://localhost:8080/api/artworks/add
     @PostMapping("/add")
@@ -53,6 +54,6 @@ public class ArtworkController {
     //  The method should return a ResponseEntity object with an HttpStatus
     //  of 204 NO CONTENT if found or 404 NOT FOUND if not found
     //  Ensure the mapping is configured to produce JSON
-    //  No response body
+    //  No response body unless an error is thrown
 
 }

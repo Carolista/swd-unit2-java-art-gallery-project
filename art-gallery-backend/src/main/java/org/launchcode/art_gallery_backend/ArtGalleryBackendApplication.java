@@ -12,6 +12,8 @@ public class ArtGalleryBackendApplication {
 
 }
 
+// TODO: Create Global Exception handler with custom error handling
+
 // AFTER ARTWORK FILES HAVE BEEN MODIFIED...
 
 // ARTIST
