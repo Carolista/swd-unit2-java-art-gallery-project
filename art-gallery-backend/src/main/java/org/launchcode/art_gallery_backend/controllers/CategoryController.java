@@ -39,12 +39,12 @@ public class CategoryController {
 
     // Delete an existing category from the database
     // DELETE http://localhost:8080/api/categories/delete/2 (for example)
-    @DeleteMapping(value="/delete/{categoryId}", produces= MediaType.APPLICATION_JSON_VALUE)
+    @DeleteMapping(value="/delete/{categoryId}")
     public ResponseEntity<?> deleteCategory(@PathVariable int categoryId) throws NoResourceFoundException {
         Category category = categoryRepository.findById(categoryId).orElse(null);
         if (category == null) {
             String path = "/api/artworks/delete/" + categoryId;
-            throw new NoResourceFoundException(HttpMethod.GET, path); // 404
+            throw new NoResourceFoundException(HttpMethod.DELETE, path); // 404
         } else {
             categoryRepository.deleteById(categoryId);
             return new ResponseEntity<>(HttpStatus.NO_CONTENT); // 204

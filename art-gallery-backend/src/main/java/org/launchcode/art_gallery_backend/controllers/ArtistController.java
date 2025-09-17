@@ -52,12 +52,12 @@ public class ArtistController {
 
     // Delete an existing artist from the database
     // DELETE http://localhost:8080/api/artists/delete/6 (for example)
-    @DeleteMapping(value="/delete/{artistId}", produces=MediaType.APPLICATION_JSON_VALUE)
+    @DeleteMapping(value="/delete/{artistId}")
     public ResponseEntity<?> deleteArtist(@PathVariable int artistId) throws NoResourceFoundException {
         Artist artist = artistRepository.findById(artistId).orElse(null);
         if (artist == null) {
             String path = "/api/artists/delete/" + artistId;
-            throw new NoResourceFoundException(HttpMethod.GET, path); // 404
+            throw new NoResourceFoundException(HttpMethod.DELETE, path); // 404
         } else {
             artistRepository.deleteById(artistId);
             return new ResponseEntity<>(HttpStatus.NO_CONTENT); // 204

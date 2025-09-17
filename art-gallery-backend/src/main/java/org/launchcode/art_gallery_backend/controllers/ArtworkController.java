@@ -54,12 +54,12 @@ public class ArtworkController {
 
     // Delete an existing artwork from the database
     // DELETE http://localhost:8080/api/artworks/delete/6 (for example)
-    @DeleteMapping(value="/delete/{artworkId}", produces=MediaType.APPLICATION_JSON_VALUE)
+    @DeleteMapping(value="/delete/{artworkId}")
     public ResponseEntity<?> deleteArtwork(@PathVariable int artworkId) throws NoResourceFoundException {
         Artwork artwork = artworkRepository.findById(artworkId).orElse(null);
         if (artwork == null) {
             String path = "/api/artworks/delete/" + artworkId;
-            throw new NoResourceFoundException(HttpMethod.GET, path); // 404
+            throw new NoResourceFoundException(HttpMethod.DELETE, path); // 404
         } else {
             artworkRepository.deleteById(artworkId);
             return new ResponseEntity<>(HttpStatus.NO_CONTENT); // 204
