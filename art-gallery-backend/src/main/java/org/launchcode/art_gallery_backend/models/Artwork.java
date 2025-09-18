@@ -1,5 +1,6 @@
 package org.launchcode.art_gallery_backend.models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import jakarta.validation.Valid;
@@ -17,30 +18,25 @@ public class Artwork {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @NotBlank(message="Title is required.")
-    @Size(min=2, max=50, message="Title must be 2-50 characters long.")
+    @NotBlank(message = "Title is required.")
+    @Size(min = 2, max = 50, message = "Title must be 2-50 characters long.")
     private String title;
 
     @ManyToOne
     @NotNull(message = "Artist is required.")
-    @JsonManagedReference
+    @JsonBackReference
     private Artist artist;
 
-    @ManyToMany
-    @JsonManagedReference
+    @ManyToMany(mappedBy = "artworks")
+    @JsonBackReference
     private List<Category> categories;
-
-    @OneToOne(cascade = CascadeType.ALL)
-    @Valid // Passes down the enablement of validation when it cascades
-    private Details details;
 
     public Artwork() {};
 
-    public Artwork(String title, Artist artist, List<Category> categories, Details details) {
+    public Artwork(String title, Artist artist, List<Category> categories) {
         this.title = title;
         this.artist = artist;
         this.categories = categories;
-        this.details = details;
     }
 
     public int getId() {
@@ -69,14 +65,6 @@ public class Artwork {
 
     public void setCategories(List<Category> categories) {
         this.categories = categories;
-    }
-
-    public Details getDetails() {
-        return details;
-    }
-
-    public void setDetails(Details details) {
-        this.details = details;
     }
 
     @Override

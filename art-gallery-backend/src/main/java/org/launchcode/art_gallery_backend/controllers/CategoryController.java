@@ -7,6 +7,7 @@ import org.launchcode.art_gallery_backend.repositories.CategoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.resource.NoResourceFoundException;
@@ -30,7 +31,7 @@ public class CategoryController {
 
     // Save new category to database
     // POST http://localhost:8080/api/categories/add
-    @PostMapping("/add")
+    @PostMapping(value="/add", consumes= MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> addNewCategory(@Valid @RequestBody Category category) {
         categoryRepository.save(category);
         return new ResponseEntity<>(category, HttpStatus.CREATED); // 201

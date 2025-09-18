@@ -1,6 +1,7 @@
 package org.launchcode.art_gallery_backend.models;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
@@ -16,18 +17,17 @@ public class Artist {
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private int id;
 
-    @NotBlank(message="First name is required.")
-    @Size(min=1, max=40, message="Title must be 2-50 characters long.")
+    @NotBlank(message = "First name is required.")
+    @Size(min = 1, max = 40, message = "Title must be 1-40 characters long.")
     private String firstName;
 
-    @NotBlank(message="Last name is required.")
-    @Size(min=1, max=40, message="Title must be 2-50 characters long.")
+    @NotBlank(message = "Last name is required.")
+    @Size(min = 1, max = 40, message="Title must be 2-40 characters long.")
     private String lastName;
 
     private String location;
 
     @OneToMany(mappedBy = "artist")
-    @JsonBackReference
     private final List<Artwork> artworks = new ArrayList<>();
 
     public Artist() {};

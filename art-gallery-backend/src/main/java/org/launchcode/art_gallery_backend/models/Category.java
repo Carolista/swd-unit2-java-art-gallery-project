@@ -16,12 +16,11 @@ public class Category {
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private int id;
 
-    @NotBlank(message="Category is required.")
-    @Size(min=1, max=40, message="Category must be 1-40 characters long.")
+    @NotBlank(message = "Category is required.")
+    @Size(min = 1, max = 40, message="Category must be 1-40 characters long.")
     private String title;
 
     @ManyToMany(mappedBy = "categories")
-    @JsonBackReference
     private final List<Artwork> artworks = new ArrayList<>();
 
     public Category(String title) {
