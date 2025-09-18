@@ -2,6 +2,7 @@ package org.launchcode.art_gallery_backend.models;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
+import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
@@ -25,9 +26,9 @@ public class Artwork {
     @JsonManagedReference
     private Artist artist;
 
-    // TODO: Add Details... update TODO in starter code as well...
-    // TODO: Update TODOs in starter code to include constructor and getters/setters
-    // TODO: Update Postman collection for this phase (orm pre-auth)
+    @OneToOne(cascade = CascadeType.ALL)
+    @Valid // Passes down the enablement of validation when it cascades
+    private Details details;
 
     @ManyToMany
     @JsonManagedReference
