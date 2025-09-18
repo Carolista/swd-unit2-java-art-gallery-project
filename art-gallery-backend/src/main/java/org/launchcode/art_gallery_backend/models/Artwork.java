@@ -18,13 +18,19 @@ public class Artwork {
     private String title;
 
     // TODO: Refactor this to include an Artist object instead of a String
-    //  Set the relationship and ensure that when JSON is formed there is no infinite recursion
+    //  Set the many-to-one relationship and ensure
+    //  that when JSON is formed there is no infinite recursion
     @NotBlank(message="Artist is required.")
     @Size(min=2, max=50, message="Artist must be 2-30 characters long.")
     private String artist;
 
-    // TODO: Include a list of Category objects called "categories"
-    //  Set the relationship and ensure that when JSON is formed there is no infinite recursion
+    // TODO: Add a list of Category objects called "categories"
+    //  Set the many-to-many relationship and ensure
+    //  that when JSON is formed there is no infinite recursion
+
+    // TODO: Add a Details object called "details"
+    //  Set the one-to-one relationship so that it cascades
+    //  and also passes down validation being enabled
 
     public Artwork() {};
 
@@ -53,6 +59,9 @@ public class Artwork {
         this.artist = artist;
     }
 
+    // TODO: Add getters and setters for categories and details
+
+    // TODO: Update toString() to also mention the year created between the parentheses
     @Override
     public String toString() {
         return title + " (" + artist + ")";

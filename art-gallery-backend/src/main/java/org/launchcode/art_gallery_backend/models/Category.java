@@ -17,7 +17,7 @@ public class Category {
     @Size(min=1, max=40, message="Category must be 1-40 characters long.")
     private String title;
 
-    // TODO: Include a list of Artwork objects called "artworks", mapped by "categories"
+    // TODO: Add a list of Artwork objects called "artworks", mapped by "categories"
     //  Set the relationship and ensure that when JSON is formed there is no infinite recursion
 
     public Category(String title) {
