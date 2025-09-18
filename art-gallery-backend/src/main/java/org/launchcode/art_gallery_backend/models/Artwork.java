@@ -1,9 +1,7 @@
 package org.launchcode.art_gallery_backend.models;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
-import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
@@ -27,7 +25,7 @@ public class Artwork {
     @JsonBackReference
     private Artist artist;
 
-    @ManyToMany(mappedBy = "artworks")
+    @ManyToMany
     @JsonBackReference
     private List<Category> categories;
 
