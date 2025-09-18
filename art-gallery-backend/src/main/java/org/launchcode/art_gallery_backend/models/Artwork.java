@@ -26,20 +26,21 @@ public class Artwork {
     @JsonManagedReference
     private Artist artist;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @Valid // Passes down the enablement of validation when it cascades
-    private Details details;
-
     @ManyToMany
     @JsonManagedReference
     private List<Category> categories;
 
+    @OneToOne(cascade = CascadeType.ALL)
+    @Valid // Passes down the enablement of validation when it cascades
+    private Details details;
+
     public Artwork() {};
 
-    public Artwork(String title, Artist artist, List<Category> categories) {
+    public Artwork(String title, Artist artist, List<Category> categories, Details details) {
         this.title = title;
         this.artist = artist;
         this.categories = categories;
+        this.details = details;
     }
 
     public int getId() {
@@ -60,6 +61,22 @@ public class Artwork {
 
     public void setArtist(Artist artist) {
         this.artist = artist;
+    }
+
+    public List<Category> getCategories() {
+        return categories;
+    }
+
+    public void setCategories(List<Category> categories) {
+        this.categories = categories;
+    }
+
+    public Details getDetails() {
+        return details;
+    }
+
+    public void setDetails(Details details) {
+        this.details = details;
     }
 
     @Override

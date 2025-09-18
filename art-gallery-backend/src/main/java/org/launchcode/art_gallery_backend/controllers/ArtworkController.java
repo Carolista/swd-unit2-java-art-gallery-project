@@ -42,12 +42,10 @@ public class ArtworkController {
     }
 
     // Save new artwork to database
-    // Accepts JSON payload instead of using query params
-    // With @RequestBody, Spring automatically converts incoming JSON to an Artwork object
     // POST http://localhost:8080/api/artworks/add
     @PostMapping(value="/add", consumes=MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> addNewArtwork(@Valid @RequestBody Artwork artwork) {
-        artworkRepository.save(artwork); // Hibernate updates artwork object with id after saving
+        artworkRepository.save(artwork);
         return new ResponseEntity<>(artwork, HttpStatus.CREATED); // 201
     }
 
