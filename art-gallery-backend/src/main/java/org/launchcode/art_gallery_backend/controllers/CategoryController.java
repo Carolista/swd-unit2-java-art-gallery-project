@@ -2,6 +2,7 @@
 package org.launchcode.art_gallery_backend.controllers;
 
 import jakarta.validation.Valid;
+import org.launchcode.art_gallery_backend.dto.CategoryDTO;
 import org.launchcode.art_gallery_backend.models.Category;
 import org.launchcode.art_gallery_backend.repositories.CategoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,8 +32,9 @@ public class CategoryController {
 
     // Save new category to database
     // POST http://localhost:8080/api/categories/add
-    @PostMapping(value="/add", consumes= MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<?> addNewCategory(@Valid @RequestBody Category category) {
+    @PostMapping(value="/add", consumes= MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<?> addNewCategory(@Valid @RequestBody CategoryDTO categoryData) {
+        Category category = new Category(categoryData.getTitle());
         categoryRepository.save(category);
         return new ResponseEntity<>(category, HttpStatus.CREATED); // 201
     }

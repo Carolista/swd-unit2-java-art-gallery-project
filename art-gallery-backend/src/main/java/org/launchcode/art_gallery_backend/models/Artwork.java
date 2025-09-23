@@ -1,6 +1,7 @@
 package org.launchcode.art_gallery_backend.models;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -16,17 +17,15 @@ public class Artwork {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @NotBlank(message = "Title is required.")
-    @Size(min = 2, max = 50, message = "Title must be 2-50 characters long.")
+    // Validation of title and artist now takes place in ArtworkDTO
     private String title;
 
     @ManyToOne
-    @NotNull(message = "Artist is required.")
-    @JsonBackReference
+    @JsonManagedReference
     private Artist artist;
 
     @ManyToMany
-    @JsonBackReference
+    @JsonManagedReference
     private List<Category> categories;
 
     public Artwork() {};

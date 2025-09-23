@@ -1,6 +1,7 @@
 package org.launchcode.art_gallery_backend.controllers;
 
 import jakarta.validation.Valid;
+import org.launchcode.art_gallery_backend.dto.ArtistDTO;
 import org.launchcode.art_gallery_backend.models.Artist;
 import org.launchcode.art_gallery_backend.repositories.ArtistRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,7 +45,8 @@ public class ArtistController {
     // Save new artist to database
     // POST http://localhost:8080/api/artists/add
     @PostMapping(value="/add", consumes=MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<?> addNewArtist(@Valid @RequestBody Artist artist) {
+    public ResponseEntity<?> addNewArtist(@Valid @RequestBody ArtistDTO artistData) {
+        Artist artist = new Artist(artistData.getFirstName(), artistData.getLastName(), artistData.getLocation());
         artistRepository.save(artist);
         return new ResponseEntity<>(artist, HttpStatus.CREATED); // 201
     }

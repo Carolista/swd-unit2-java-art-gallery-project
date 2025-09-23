@@ -1,8 +1,13 @@
 package org.launchcode.art_gallery_backend.controllers;
 
 import jakarta.validation.Valid;
+import org.launchcode.art_gallery_backend.dto.ArtworkDTO;
+import org.launchcode.art_gallery_backend.models.Artist;
 import org.launchcode.art_gallery_backend.models.Artwork;
+import org.launchcode.art_gallery_backend.models.Category;
+import org.launchcode.art_gallery_backend.repositories.ArtistRepository;
 import org.launchcode.art_gallery_backend.repositories.ArtworkRepository;
+import org.launchcode.art_gallery_backend.repositories.CategoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
@@ -11,6 +16,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.resource.NoResourceFoundException;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -18,7 +24,14 @@ import java.util.List;
 public class ArtworkController {
 
     @Autowired
-    ArtworkRepository artworkRepository; // to interact with database
+    ArtworkRepository artworkRepository;
+
+    @Autowired
+    ArtistRepository artistRepository;
+
+    @Autowired
+    CategoryRepository categoryRepository;
+
 
     // Retrieve all artworks from database
     // GET http://localhost:8080/api/artworks/
@@ -43,8 +56,17 @@ public class ArtworkController {
 
     // Save new artwork to database
     // POST http://localhost:8080/api/artworks/add
-    @PostMapping(value="/add", consumes=MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<?> addNewArtwork(@Valid @RequestBody Artwork artwork) {
+    @PostMapping(value="/add", consumes=MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<?> addNewArtwork(@Valid @RequestBody ArtworkDTO artworkData) {
+        Artist artist = artistRepository.findById(artworkData.getArtistId()).orElse(null);
+        List<Category> categories = new ArrayList<>();
+        for (int categoryId : artworkData.getCategoryIds()) {
+            Category category = categoryRepository.findById(categoryId).orElse(null);
+            if (category != null) {
+                categories.add(category);
+            }
+        }
+        Artwork artwork = new Artwork(artworkData.getTitle(), artist, categories);
         artworkRepository.save(artwork);
         return new ResponseEntity<>(artwork, HttpStatus.CREATED); // 201
     }
