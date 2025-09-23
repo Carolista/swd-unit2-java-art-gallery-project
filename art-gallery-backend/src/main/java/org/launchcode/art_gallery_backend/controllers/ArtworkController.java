@@ -32,7 +32,6 @@ public class ArtworkController {
     @Autowired
     CategoryRepository categoryRepository;
 
-
     // Retrieve all artworks from database
     // GET http://localhost:8080/api/artworks/
     @GetMapping("")
@@ -52,6 +51,15 @@ public class ArtworkController {
         } else {
             return new ResponseEntity<>(artwork, HttpStatus.OK); // 200
         }
+    }
+  
+    // Save new artwork to database
+    // UPDATED: Accepts JSON body instead of using query params
+    // POST http://localhost:8080/api/artworks/add
+    @PostMapping(value="/add", consumes=MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<?> addNewArtwork(@RequestBody Artwork artwork) {
+        artworkRepository.save(artwork);
+        return new ResponseEntity<>(artwork, HttpStatus.CREATED); // 201
     }
 
     // Save new artwork to database
