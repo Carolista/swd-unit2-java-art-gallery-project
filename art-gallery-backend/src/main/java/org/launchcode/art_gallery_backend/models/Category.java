@@ -13,18 +13,22 @@ public class Category {
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private int id;
 
+    // TODO: Once CategoryDTO is created, transfer validation annotations for title
+
     @NotBlank(message="Category is required.")
     @Size(min=1, max=40, message="Category must be 1-40 characters long.")
     private String title;
 
     // TODO: Add a list of Artwork objects called "artworks", mapped by "categories"
-    //  Set the relationship and ensure that when JSON is formed there is no infinite recursion
+    //  Set the one-to-one relationship and ensure that when
+    //  JSON is formed there is no infinite recursion
+    //  No need to add artworks to constructor or create getter/setter
+
+    public Category() {};
 
     public Category(String title) {
         this.title = title;
     }
-
-    public Category() {};
 
     public int getId() {
         return id;

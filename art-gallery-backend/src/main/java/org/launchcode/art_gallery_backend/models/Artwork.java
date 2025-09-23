@@ -13,6 +13,8 @@ public class Artwork {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
+    // TODO: Once ArtworkDTO is created, transfer validation annotations for title and artist
+
     @NotBlank(message="Title is required.")
     @Size(min=2, max=50, message="Title must be 2-50 characters long.")
     private String title;
@@ -30,10 +32,10 @@ public class Artwork {
 
     // TODO: Add a Details object called "details"
     //  Set the one-to-one relationship so that it cascades
-    //  and also passes down validation being enabled
 
     public Artwork() {};
 
+    // TODO: update constructor with categories and details
     public Artwork(String title, String artist) {
         this.title = title;
         this.artist = artist;

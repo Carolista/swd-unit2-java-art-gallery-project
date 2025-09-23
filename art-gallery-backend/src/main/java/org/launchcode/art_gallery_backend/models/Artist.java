@@ -13,18 +13,22 @@ public class Artist {
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private int id;
 
+    // TODO: Once ArtistDTO is created, transfer validation annotations for firstName and lastName
+
     @NotBlank(message="First name is required.")
-    @Size(min=1, max=40, message="Title must be 2-50 characters long.")
+    @Size(min=1, max=40, message="First name must be 1-40 characters long.")
     private String firstName;
 
     @NotBlank(message="Last name is required.")
-    @Size(min=1, max=40, message="Title must be 2-50 characters long.")
+    @Size(min=1, max=40, message="Last name must be 1-40 characters long.")
     private String lastName;
 
     private String location;
 
     // TODO: Add a list of Artwork objects called "artworks", mapped by "artist"
-    //  Set the relationship and ensure that when JSON is formed there is no infinite recursion
+    //  Set the one-to-many relationship and ensure that when
+    //  JSON is formed there is no infinite recursion
+    //  No need to add artworks to constructor or create getter/setter
 
     public Artist() {};
 

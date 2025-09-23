@@ -6,6 +6,7 @@ import org.launchcode.art_gallery_backend.repositories.CategoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.resource.NoResourceFoundException;
@@ -27,9 +28,14 @@ public class CategoryController {
         return new ResponseEntity<>(allCategories, HttpStatus.OK); // 200
     }
 
+    // TODO: Create a CategoryDTO model for binding with incoming JSON
+    //  that is not structured the same way as the Category model is (no artworks field);
+    //  then update the method below to use CategoryDTO and piece together
+    //  an actual Category object to save to the database
+
     // Save new category to database
     // POST http://localhost:8080/api/categories/add
-    @PostMapping("/add")
+    @PostMapping(value="/add", consumes=MediaType.APPLICATION_JSON_VALUE, produces=MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> addNewCategory(@Valid @RequestBody Category category) {
         categoryRepository.save(category);
         return new ResponseEntity<>(category, HttpStatus.CREATED); // 201

@@ -18,7 +18,10 @@ import java.util.List;
 public class ArtworkController {
 
     @Autowired
-    ArtworkRepository artworkRepository; // to interact with database
+    ArtworkRepository artworkRepository;
+
+    // TODO: Inject ArtistRepository and CategoryRepository so that
+    //  objects can be looked up by id before being placed into a new artwork
 
     // Retrieve all artworks from database
     // GET http://localhost:8080/api/artworks/
@@ -41,11 +44,16 @@ public class ArtworkController {
         }
     }
 
+    // TODO: Create an ArtworkDTO model for binding with incoming JSON
+    //  that is not structured the same way as the Artwork model is;
+    //  then update the method below to use ArtworkDTO and piece together
+    //  an actual Artwork object to save to the database
+
     // Save new artwork to database
     // Accepts JSON payload instead of using query params
     // With @RequestBody, Spring automatically converts incoming JSON to an Artwork object
     // POST http://localhost:8080/api/artworks/add
-    @PostMapping(value="/add", consumes=MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(value="/add", consumes=MediaType.APPLICATION_JSON_VALUE, produces=MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> addNewArtwork(@Valid @RequestBody Artwork artwork) {
         artworkRepository.save(artwork); // Hibernate updates artwork object with id after saving
         return new ResponseEntity<>(artwork, HttpStatus.CREATED); // 201

@@ -30,7 +30,7 @@ public class ArtistController {
 
     // Retrieve a specific artist object using its id
     // GET http://localhost:8080/api/artists/details/3 (for example)
-    @GetMapping(value="/details/{artistId}", produces= MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value="/details/{artistId}", produces=MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> getArtistById(@PathVariable int artistId) throws NoResourceFoundException {
         Artist artist = artistRepository.findById(artistId).orElse(null);
         if (artist == null) {
@@ -41,9 +41,14 @@ public class ArtistController {
         }
     }
 
+    // TODO: Create an ArtistDTO model for binding with incoming JSON
+    //  that is not structured the same way as the Artist model is (no artworks field);
+    //  then update the method below to use ArtistDTO and piece together
+    //  an actual Artist object to save to the database
+
     // Save new artist to database
     // POST http://localhost:8080/api/artists/add
-    @PostMapping(value="/add", consumes=MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(value="/add", consumes=MediaType.APPLICATION_JSON_VALUE, produces=MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> addNewArtist(@Valid @RequestBody Artist artist) {
         artistRepository.save(artist);
         return new ResponseEntity<>(artist, HttpStatus.CREATED); // 201
