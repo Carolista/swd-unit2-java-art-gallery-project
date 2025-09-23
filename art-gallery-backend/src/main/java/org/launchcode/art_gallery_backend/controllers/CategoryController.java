@@ -32,7 +32,7 @@ public class CategoryController {
 
     // Save new category to database
     // POST http://localhost:8080/api/categories/add
-    @PostMapping(value="/add", consumes= MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(value="/add", consumes=MediaType.APPLICATION_JSON_VALUE, produces=MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> addNewCategory(@Valid @RequestBody CategoryDTO categoryData) {
         Category category = new Category(categoryData.getTitle());
         categoryRepository.save(category);

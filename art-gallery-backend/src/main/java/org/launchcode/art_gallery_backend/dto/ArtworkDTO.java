@@ -3,6 +3,7 @@ package org.launchcode.art_gallery_backend.dto;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
+import org.launchcode.art_gallery_backend.models.Details;
 
 public class ArtworkDTO {
 
@@ -15,10 +16,13 @@ public class ArtworkDTO {
 
     int[] categoryIds;
 
-    public ArtworkDTO(String title, int artistId, int[] categoryIds) {
+    private Details details;
+
+    public ArtworkDTO(String title, int artistId, int[] categoryIds, Details details) {
         this.title = title;
         this.artistId = artistId;
         this.categoryIds = categoryIds;
+        this.details = details;
     }
 
     public String getTitle() {
@@ -43,5 +47,13 @@ public class ArtworkDTO {
 
     public void setCategoryIds(int[] categoryIds) {
         this.categoryIds = categoryIds;
+    }
+
+    public Details getDetails() {
+        return details;
+    }
+
+    public void setDetails(Details details) {
+        this.details = details;
     }
 }

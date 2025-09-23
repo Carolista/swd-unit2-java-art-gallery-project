@@ -28,12 +28,17 @@ public class Artwork {
     @JsonManagedReference
     private List<Category> categories;
 
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "details_id", referencedColumnName = "id")
+    private Details details;
+
     public Artwork() {};
 
-    public Artwork(String title, Artist artist, List<Category> categories) {
+    public Artwork(String title, Artist artist, List<Category> categories, Details details) {
         this.title = title;
         this.artist = artist;
         this.categories = categories;
+        this.details = details;
     }
 
     public int getId() {
@@ -62,6 +67,14 @@ public class Artwork {
 
     public void setCategories(List<Category> categories) {
         this.categories = categories;
+    }
+
+    public Details getDetails() {
+        return details;
+    }
+
+    public void setDetails(Details details) {
+        this.details = details;
     }
 
     @Override

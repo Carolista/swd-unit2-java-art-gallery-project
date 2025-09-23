@@ -56,7 +56,7 @@ public class ArtworkController {
 
     // Save new artwork to database
     // POST http://localhost:8080/api/artworks/add
-    @PostMapping(value="/add", consumes=MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(value="/add", consumes=MediaType.APPLICATION_JSON_VALUE, produces=MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> addNewArtwork(@Valid @RequestBody ArtworkDTO artworkData) {
         Artist artist = artistRepository.findById(artworkData.getArtistId()).orElse(null);
         List<Category> categories = new ArrayList<>();
@@ -66,7 +66,7 @@ public class ArtworkController {
                 categories.add(category);
             }
         }
-        Artwork artwork = new Artwork(artworkData.getTitle(), artist, categories);
+        Artwork artwork = new Artwork(artworkData.getTitle(), artist, categories, artworkData.getDetails());
         artworkRepository.save(artwork);
         return new ResponseEntity<>(artwork, HttpStatus.CREATED); // 201
     }

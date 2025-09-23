@@ -44,7 +44,7 @@ public class ArtistController {
 
     // Save new artist to database
     // POST http://localhost:8080/api/artists/add
-    @PostMapping(value="/add", consumes=MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(value="/add", consumes=MediaType.APPLICATION_JSON_VALUE, produces=MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> addNewArtist(@Valid @RequestBody ArtistDTO artistData) {
         Artist artist = new Artist(artistData.getFirstName(), artistData.getLastName(), artistData.getLocation());
         artistRepository.save(artist);
