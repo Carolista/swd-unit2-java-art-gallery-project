@@ -1,26 +1,44 @@
 package org.launchcode.art_gallery_backend.models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 
+import java.util.List;
 import java.util.Objects;
 
-@Entity // Hibernate will use this model to create a table in the database
+@Entity
 public class Artwork {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id; // Will be set by database
+    private int id;
 
-    @Column(name="title") // This is optional if the name isn't different
+    // Validation of title and artist now takes place in ArtworkDTO
     private String title;
 
-    private String artist;
+    @ManyToOne
+    @JsonManagedReference
+    private Artist artist;
 
-    public Artwork() {}; // Default constructor required for database
+    @ManyToMany
+    @JsonManagedReference
+    private List<Category> categories;
 
-    public Artwork(String title, String artist) {
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "details_id", referencedColumnName = "id")
+    private Details details;
+
+    public Artwork() {};
+
+    public Artwork(String title, Artist artist, List<Category> categories, Details details) {
         this.title = title;
         this.artist = artist;
+        this.categories = categories;
+        this.details = details;
     }
 
     public int getId() {
@@ -35,12 +53,28 @@ public class Artwork {
         this.title = title;
     }
 
-    public String getArtist() {
+    public Artist getArtist() {
         return artist;
     }
 
-    public void setArtist(String artist) {
+    public void setArtist(Artist artist) {
         this.artist = artist;
+    }
+
+    public List<Category> getCategories() {
+        return categories;
+    }
+
+    public void setCategories(List<Category> categories) {
+        this.categories = categories;
+    }
+
+    public Details getDetails() {
+        return details;
+    }
+
+    public void setDetails(Details details) {
+        this.details = details;
     }
 
     @Override
