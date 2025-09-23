@@ -12,7 +12,8 @@ public class ArtGalleryBackendApplication {
 
 	// TODO: Add a Details entity model that contains the following fields:
 	//  - int id,
-	//  - Strings media, yearCreated, & description,
+	//  - Strings media and yearCreated
+	//  - String description (annotated for TEXT instead of VARCHAR),
 	//  - doubles width, height, depth, and
 	//  - String imageId (not blank)
 	//  Add a no-arg constructor and a full-arg constructor (except id).
