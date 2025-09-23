@@ -1,18 +1,26 @@
 id,title
-1,Baroque
-2,Renaissance
+1,Renaissance
+2,Portraiture
 3,Post-Impressionism
-4,Surrealism
-5,"Art Nouveau"
-6,Expressionism
-7,Rococo
-8,Landscape
-9,Photography
-10,Cubism
-11,Impressionism
-12,Portraiture
-13,Fresco
-14,Mythology
-15,Realism
-16,Symbolism
-17,Romanticism
+4,Fresco
+5,Religious
+6,Baroque
+7,Expressionism
+8,Cubism
+9,Mural
+10,Surrealism
+11,Mythology
+12,Impressionism
+13,Regionalism
+14,"Dutch Golden Age"
+15,Triptych
+16,Romanticism
+17,Realism
+18,"Early Netherlandish"
+19,"Still Life"
+20,Symbolism
+21,"Art Nouveau"
+22,"Hellenistic Greek"
+23,"Art Deco"
+24,Painting
+25,Sculpture
