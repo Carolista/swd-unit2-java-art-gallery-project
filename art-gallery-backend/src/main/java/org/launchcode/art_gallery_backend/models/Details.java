@@ -11,7 +11,10 @@ public class Details {
 
     private String yearCreated;
     private String media;
+
+    @Lob
     private String description;
+
     private double width;
     private double height;
     private double depth;
