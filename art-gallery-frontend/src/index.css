@@ -1,0 +1,215 @@
+/* TODO: reorganize this and move anything component-specific out of this file */
+/* TODO: Double-check that everything is being used and there are no conflicts */
+/* TODO: Check responsiveness on all views */
+
+body {
+    color: #1e323c;
+	font-family: 'Assistant', sans-serif;
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+#root {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    box-sizing: border-box;
+}
+
+main {
+    min-height: calc(100vh - 130px);
+}
+
+.main-content {
+    padding: 30px 100px;
+}
+
+header, footer {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	background-color: #1e323c;
+	color: white;
+    width: 100%;
+	padding: 10px 30px;
+}
+
+header {
+    align-items: flex-end;
+    height: 80px;
+}
+
+footer {
+    align-items: center;
+    min-height: 50px;
+}
+
+#mag {
+    font-family: 'Kodchasan', sans-serif;
+    font-size: 30px;
+    font-weight: 200; /* was 400 in Java app */
+    text-transform: uppercase;
+    margin: 0;
+    padding: 0;
+}
+
+h1,
+h2,
+h3 {
+	font-family: 'Kodchasan', sans-serif;
+	text-transform: uppercase;
+}
+
+h1 {
+	color: #da8034;
+	font-weight: 700;
+}
+
+h2 {
+	color: white;
+	background-color: #da8034; /* was #1e323c in Java app */
+	font-size: 20px;
+	font-weight: 200;
+	letter-spacing: 6px;
+	width: auto;
+	border-radius: 2px;
+	padding: 5px 8px;
+	margin-bottom: 20px;
+}
+
+h3 {
+	color: #1e323c;
+	font-size: 24px;
+	font-weight: 700;
+}
+
+h5 {
+	font-weight: bold;
+}
+
+a {
+	color: #da8034;
+	font-weight: bold;
+	text-decoration: none;
+}
+
+a:hover,
+a:active {
+    color: #b95a0a;
+}
+
+.white-link {
+    color: white;
+    font-weight: normal;
+}
+
+.navlink:link,
+.navlink:visited {
+	color: white;
+	font-weight: 400;
+}
+.navlink:hover,
+.navlink:active {
+	text-decoration: underline;
+    cursor: pointer;
+}
+
+
+.nav {
+	display: flex;
+	flex-direction: row;
+	align-items: flex-end;
+	gap: 15px;
+}
+
+.non-link {
+	opacity: 0.6;
+}
+
+.bold {
+	font-weight: bold;
+}
+
+.card-container {
+    /* masonry layout */
+	columns: 4;
+	column-gap: 15px;
+    margin-top: 30px;
+}
+
+.artwork-card {
+	display: inline-block;
+	vertical-align: top;
+	width: 100%;
+	padding: 12px;
+	margin-bottom: 15px; /* matches column-gap of container */
+	filter: drop-shadow(0px 2px 2px rgba(0, 0, 0, 0.3));
+	transition: filter 0.3s ease-in-out;
+	box-sizing: border-box;
+}
+
+.card-image {
+	width: 100%;
+	margin-bottom: 8px;
+}
+
+.artwork-card:hover {
+	filter: drop-shadow(0px 5px 5px rgba(0, 0, 0, 0.5));
+}
+
+#admin-bar {
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-start;
+	align-items: flex-end;
+	background-color: #da8034;
+	color: white;
+	font-size: 0.9rem;
+	height: 30px;
+	padding: 6px 30px;
+}
+
+#admin-portal > a {
+	color: inherit;
+	font-family: inherit;
+	text-decoration: none;
+}
+
+.form-item {
+	display: flex;
+	flex-direction: column;
+	gap: 6px;
+	margin-bottom: 20px;
+}
+
+button {
+	color: white;
+	background-color: #da8034;
+	margin-top: 20px;
+	padding: 5px;
+	outline: none;
+	border: none;
+	border-radius: 4px;
+}
+
+button.delete {
+	background-color: #b03a2e;
+}
+
+.error {
+	color: #b03a2e;
+	font-size: 0.9rem;
+	margin: 0;
+}
+
+textarea {
+	min-height: 200px;
+}
+
+
+.checkbox-with-label {
+    display: flex;
+    flex-direction: row;
+    gap: 8px;
+}
