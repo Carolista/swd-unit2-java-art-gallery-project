@@ -1,6 +1,4 @@
-/* TODO IMPORTANT: reorganize this and move anything component-specific out of this file */
-/* TODO: Double-check that everything is being used and there are no conflicts */
-/* TODO: Check responsiveness on all views */
+/* FUTURE: Improve responsiveness across site and keep some media queries localized */
 /* FIXME: Fix L/R padding of 12px on form inputs (see AddArtworkForm for example) - 
 probably has to do with Bootstrap grid classes */
 
@@ -151,31 +149,13 @@ a:active {
 	box-sizing: border-box;
 }
 
-.card-image {
-	width: 100%;
-	margin-bottom: 8px;
-}
-
 .artwork-card:hover {
 	filter: drop-shadow(0px 5px 5px rgba(0, 0, 0, 0.5));
 }
 
-#admin-bar {
-	display: flex;
-	flex-direction: row;
-	justify-content: flex-start;
-	align-items: flex-end;
-	background-color: #da8034;
-	color: white;
-	font-size: 0.9rem;
-	height: 30px;
-	padding: 6px 30px;
-}
-
-#admin-portal > a {
-	color: inherit;
-	font-family: inherit;
-	text-decoration: none;
+.card-image {
+	width: 100%;
+	margin-bottom: 8px;
 }
 
 .form-item {
@@ -195,10 +175,6 @@ button {
 	border-radius: 4px;
 }
 
-button.delete {
-	background-color: #b03a2e;
-}
-
 .error {
 	color: #b03a2e;
 	font-size: 0.9rem;
@@ -215,6 +191,19 @@ textarea {
 	gap: 8px;
 }
 
+.delete-icon {
+	width: 30px;
+}
+.delete-icon i {
+	color: #333;
+	opacity: 0.4;
+	cursor: pointer;
+}
+.delete-icon i:hover {
+	color: #b03a2e;
+	opacity: 0.8;
+}
+
 #spinner-container {
 	width: 100%;
 	height: 40vh;
@@ -227,17 +216,4 @@ textarea {
 	display: block;
 	color: #da8034;
 	margin: 0;
-}
-
-.delete-icon {
-    width: 30px;
-}
-.delete-icon i {
-    color: #333;
-    opacity: 0.4;
-    cursor: pointer;
-}
-.delete-icon i:hover {
-    color: #b03a2e;
-    opacity: 0.8;
 }
