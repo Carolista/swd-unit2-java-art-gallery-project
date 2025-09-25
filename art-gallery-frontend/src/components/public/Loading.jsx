@@ -1,14 +1,13 @@
-import Spinner from "../common/Spinner";
+import Spinner from '../common/Spinner';
 
 const Loading = ({ dataName }) => {
-
-    let data = dataName || "data";
+	let data = dataName || 'data';
 
 	return (
 		<main className="main-content">
-            <h1>Loading</h1>
+			<h1>Loading</h1>
 			<div>Retrieving {data} from server...</div>
-            <Spinner />
+			<Spinner />
 		</main>
 	);
 };

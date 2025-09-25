@@ -8,6 +8,6 @@ export default class Artwork {
 	}
 
 	getFormattedCategories() {
-        return this.categories.map(category => category.title).join(", ");
+		return this.categories.map(category => category.title).join(', ');
 	}
 }

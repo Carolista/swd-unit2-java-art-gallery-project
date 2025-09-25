@@ -12,7 +12,7 @@ export {
 	Card,
 	DetailsPage,
 	ErrorPage,
-    Footer,
+	Footer,
 	Loading,
 	PublicHeader,
 	PublicHome,

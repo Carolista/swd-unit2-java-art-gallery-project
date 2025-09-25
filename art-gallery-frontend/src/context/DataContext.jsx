@@ -24,7 +24,7 @@ export const DataProvider = ({ children }) => {
 			data = await response.json();
 		} catch (error) {
 			console.error('Unable to fetch artworks...', error.message);
-		} 
+		}
 
 		data.forEach(artwork => {
 			let artist = new Artist(
@@ -97,7 +97,7 @@ export const DataProvider = ({ children }) => {
 			data = await response.json();
 		} catch (error) {
 			console.error('Unable to fetch categories...', error.message);
-		} 
+		}
 
 		data.forEach(category => {
 			let newCategory = new Category(category.id, category.title);

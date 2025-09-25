@@ -8,7 +8,7 @@ const AddCategoryForm = () => {
 	const [hasErrors, setHasErrors] = useState(false);
 
 	const navigate = useNavigate();
-    const { fetchArtists } = use(DataContext);
+	const { fetchArtists } = use(DataContext);
 
 	const handleChange = event => {
 		setCategory(event.target.value);
@@ -33,7 +33,7 @@ const AddCategoryForm = () => {
 	};
 
 	const handleSubmit = event => {
-        event.preventDefault();
+		event.preventDefault();
 		if (category === '') {
 			setHasErrors(true);
 		} else {
@@ -42,7 +42,7 @@ const AddCategoryForm = () => {
 		}
 	};
 
-    // FUTURE: Alter width of fields at full page size and check responsive behavior
+	// FUTURE: Alter width of fields at full page size and check responsive behavior
 
 	return (
 		<main className="main-content">

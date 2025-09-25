@@ -4,7 +4,7 @@
 /* FIXME: Remove L/R padding on form inputs (see AddArtworkForm for example) */
 
 body {
-    color: #1e323c;
+	color: #1e323c;
 	font-family: 'Assistant', sans-serif;
 	margin: 0;
 	padding: 0;
@@ -12,47 +12,48 @@ body {
 }
 
 #root {
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-    box-sizing: border-box;
+	display: flex;
+	flex-direction: column;
+	min-height: 100vh;
+	box-sizing: border-box;
 }
 
 main {
-    min-height: calc(100vh - 130px);
+	min-height: calc(100vh - 130px);
 }
 
 .main-content {
-    padding: 30px 100px;
+	padding: 30px 100px;
 }
 
-header, footer {
+header,
+footer {
 	display: flex;
 	flex-direction: row;
 	justify-content: space-between;
 	background-color: #1e323c;
 	color: white;
-    width: 100%;
+	width: 100%;
 	padding: 10px 30px;
 }
 
 header {
-    align-items: flex-end;
-    height: 80px;
+	align-items: flex-end;
+	height: 80px;
 }
 
 footer {
-    align-items: center;
-    min-height: 50px;
+	align-items: center;
+	min-height: 50px;
 }
 
 #mag {
-    font-family: 'Kodchasan', sans-serif;
-    font-size: 30px;
-    font-weight: 200; /* was 400 in Java app */
-    text-transform: uppercase;
-    margin: 0;
-    padding: 0;
+	font-family: 'Kodchasan', sans-serif;
+	font-size: 30px;
+	font-weight: 200; /* was 400 in Java app */
+	text-transform: uppercase;
+	margin: 0;
+	padding: 0;
 }
 
 h1,
@@ -97,12 +98,12 @@ a {
 
 a:hover,
 a:active {
-    color: #b95a0a;
+	color: #b95a0a;
 }
 
 .white-link {
-    color: white;
-    font-weight: normal;
+	color: white;
+	font-weight: normal;
 }
 
 .navlink:link,
@@ -113,9 +114,8 @@ a:active {
 .navlink:hover,
 .navlink:active {
 	text-decoration: underline;
-    cursor: pointer;
+	cursor: pointer;
 }
-
 
 .nav {
 	display: flex;
@@ -133,10 +133,10 @@ a:active {
 }
 
 .card-container {
-    /* masonry layout */
+	/* masonry layout */
 	columns: 4;
 	column-gap: 15px;
-    margin-top: 30px;
+	margin-top: 30px;
 }
 
 .artwork-card {
@@ -208,11 +208,10 @@ textarea {
 	min-height: 200px;
 }
 
-
 .checkbox-with-label {
-    display: flex;
-    flex-direction: row;
-    gap: 8px;
+	display: flex;
+	flex-direction: row;
+	gap: 8px;
 }
 
 #spinner-container {

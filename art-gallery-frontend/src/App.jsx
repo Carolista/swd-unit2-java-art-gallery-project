@@ -38,14 +38,8 @@ function App() {
 								<Route path="/login" element={<Login />} />
 								{/* FUTURE: AboutPage */}
 								{/* FUTURE: ContactPage */}
-								<Route
-									path="/artworks"
-									element={<ArtworksPage />}
-								/>
-                                <Route
-									path="artworks/details/:id"
-									element={<DetailsPage />}
-								/>
+								<Route path="/artworks" element={<ArtworksPage />} />
+								<Route path="artworks/details/:id" element={<DetailsPage />} />
 								<Route path="*" element={<Navigate to="/" />} />
 							</Routes>
 						</>
@@ -56,30 +50,16 @@ function App() {
 								<Route path="/" element={<Navigate to="/admin" />} />
 								<Route path="/admin" element={<AdminHome />} />
 								<Route path="*" element={<Navigate to="/" />} />
-								<Route
-									path="/admin/artworks"
-									element={<ArtworksList />}
-								/>
+								<Route path="/admin/artworks" element={<ArtworksList />} />
 								<Route
 									path="/admin/artworks/add"
-									element={
-										<AddArtworkForm />
-									}
+									element={<AddArtworkForm />}
 								/>
 								{/* FUTURE: EditArtworkForm maybe */}
-								<Route
-									path="/admin/artists"
-									element={<ArtistsList />}
-								/>
-								<Route
-									path="/admin/artists/add"
-									element={<AddArtistForm />}
-								/>
+								<Route path="/admin/artists" element={<ArtistsList />} />
+								<Route path="/admin/artists/add" element={<AddArtistForm />} />
 								{/* FUTURE: EditArtistForm maybe */}
-								<Route
-									path="/admin/categories"
-									element={<CategoriesList />}
-								/>
+								<Route path="/admin/categories" element={<CategoriesList />} />
 								<Route
 									path="/admin/categories/add"
 									element={<AddCategoryForm />}

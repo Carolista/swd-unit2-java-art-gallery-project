@@ -10,7 +10,7 @@ import { default as Login } from './auth/Login';
 import { default as Register } from './auth/Register';
 
 export {
-    AdminHeader,
+	AdminHeader,
 	AdminHome,
 	AddArtistForm,
 	ArtistsList,
@@ -18,6 +18,6 @@ export {
 	ArtworksList,
 	AddCategoryForm,
 	CategoriesList,
-    Login,
-    Register
+	Login,
+	Register,
 };

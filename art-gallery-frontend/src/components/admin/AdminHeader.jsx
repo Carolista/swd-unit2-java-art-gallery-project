@@ -1,21 +1,21 @@
-import { Link } from "react-router";
+import { Link } from 'react-router';
 
-const AdminHeader = ({setLoggedIn}) => {
+const AdminHeader = ({ setLoggedIn }) => {
+	const handleLogOut = () => {
+		setLoggedIn(false);
+	};
 
-    
-    const handleLogOut = () => {
-        setLoggedIn(false);
-    }
-    
-    // FUTURE: use Navlinks and active link here with routing
-    // FUTURE: Create secondary header with links for add, delete like old Java app
-    // TODO: Improve responsive styling
-    
+	// FUTURE: use Navlinks and active link here with routing
+	// FUTURE: Create secondary header with links for add, delete like old Java app
+	// TODO: Improve responsive styling
+
 	return (
 		<>
 			<header>
 				<div id="mag">
-					<Link className="white-link" to="/"><b>Midtown</b> Art Gallery</Link>
+					<Link className="white-link" to="/">
+						<b>Midtown</b> Art Gallery
+					</Link>
 				</div>
 				<div className="nav">
 					<Link className="navlink" to="/admin/artists">
@@ -29,7 +29,9 @@ const AdminHeader = ({setLoggedIn}) => {
 					</Link>
 					<span className="non-link">Exhibitions</span>
 					<span className="non-link">Contact Us</span>
-                    <span className="navlink" onClick={handleLogOut}>Log Out</span>
+					<span className="navlink" onClick={handleLogOut}>
+						Log Out
+					</span>
 				</div>
 			</header>
 		</>

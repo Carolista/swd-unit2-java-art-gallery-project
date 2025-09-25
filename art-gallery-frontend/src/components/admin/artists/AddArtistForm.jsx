@@ -22,7 +22,7 @@ const AddArtistForm = () => {
 	const [hasErrors, setHasErrors] = useState(false);
 
 	const navigate = useNavigate();
-    const { fetchArtists } = use(DataContext);
+	const { fetchArtists } = use(DataContext);
 
 	const handleChange = event => {
 		let updatedArtist = {
