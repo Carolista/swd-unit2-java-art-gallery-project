@@ -1,6 +1,4 @@
-import { useState, use } from 'react';
-import { useNavigate } from 'react-router';
-import { DataContext } from '../../../context/DataContext';
+import { useState } from 'react';
 import InputErrorMessage from '../../common/InputErrorMsg';
 import TextInput from '../../common/TextInput';
 
@@ -21,9 +19,6 @@ const AddArtistForm = () => {
 	const [artist, setArtist] = useState(initialArtist);
 	const [hasErrors, setHasErrors] = useState(false);
 
-	const navigate = useNavigate();
-	const { fetchArtists } = use(DataContext);
-
 	const handleChange = event => {
 		let updatedArtist = {
 			...artist,
@@ -32,37 +27,12 @@ const AddArtistForm = () => {
 		setArtist(updatedArtist);
 	};
 
-	const saveNewArtist = async artist => {
-		try {
-			const response = await fetch('http://localhost:8080/api/artists/add', {
-				method: 'POST',
-				headers: {
-					'Content-Type': 'application/json',
-					'Access-Control-Allow-Origin': '*',
-				},
-				body: JSON.stringify(artist),
-			});
-
-            if (!response.ok) {
-                const errorData = await response.json();
-                throw new Error(errorData.message || `ERROR - Status ${response.status}`);
-            } else {
-                fetchArtists(); // update state before returning to list
-		        navigate('/admin/artists');
-            }
-		} catch (error) {
-			console.error(error.message);
-            
-            // FUTURE: Use toast or banner to notify user that save was unsuccessful 
-		}
-	};
-
 	const handleSubmit = event => {
 		event.preventDefault();
 		if (artist.firstName === '' || artist.lastName === '') {
 			setHasErrors(true);
 		} else {
-			saveNewArtist(artist);
+			// PART 5B TODO: Save artist and use ArtistDTO to form object for transfer
 		}
 	};
 

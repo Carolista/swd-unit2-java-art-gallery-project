@@ -14,97 +14,115 @@ export const DataProvider = ({ children }) => {
 	const [allCategories, setAllCategories] = useState(null);
 
 	const fetchArtworks = async () => {
-		let artworks = [];
-		let response;
-		let data;
+        const artworks = [];
 
 		try {
-			// response = await fetch('./test-data/artworks.json');
-			response = await fetch('http://localhost:8080/api/artworks');
-			data = await response.json();
+			// const response = await fetch('./test-data/artworks.json');
+			const response = await fetch('http://localhost:8080/api/artworks');
+
+			if (!response.ok) {
+				const errorData = await response.json();
+				throw new Error(
+					errorData.message || `ERROR - Status ${response.status}`
+				);
+			} else {				
+				const data = await response.json();
+
+				data.forEach(artwork => {
+					let artist = new Artist(
+						artwork.artist.id,
+						artwork.artist.firstName,
+						artwork.artist.lastName,
+						artwork.artist.location
+					);
+					let categories = [];
+					artwork.categories.forEach(category => {
+						categories.push(new Category(category.id, category.title));
+					});
+					let details = new Details(
+						artwork.details.id,
+						artwork.details.media,
+						artwork.details.yearCreated,
+						artwork.details.description,
+						artwork.details.height,
+						artwork.details.width,
+						artwork.details.depth,
+						artwork.details.imageId
+					);
+					let newArtwork = new Artwork(
+						artwork.id,
+						artwork.title,
+						artist,
+						categories,
+						details
+					);
+					artworks.push(newArtwork);
+				});
+			}
 		} catch (error) {
-			console.error('Unable to fetch artworks...', error.message);
-		}
-
-		data.forEach(artwork => {
-			let artist = new Artist(
-				artwork.artist.id,
-				artwork.artist.firstName,
-				artwork.artist.lastName,
-				artwork.artist.location
-			);
-			let categories = [];
-			artwork.categories.forEach(category => {
-				categories.push(new Category(category.id, category.title));
-			});
-			let details = new Details(
-				artwork.details.id,
-				artwork.details.media,
-				artwork.details.yearCreated,
-				artwork.details.description,
-				artwork.details.height,
-				artwork.details.width,
-				artwork.details.depth,
-				artwork.details.imageId
-			);
-			let newArtwork = new Artwork(
-				artwork.id,
-				artwork.title,
-				artist,
-				categories,
-				details
-			);
-			artworks.push(newArtwork);
-		});
-
-		setAllArtworks(artworks);
+			console.error(error.message);
+		} finally {
+            setAllArtworks(artworks);
+        }
 	};
 
 	const fetchArtists = async () => {
-		let artists = [];
-		let response;
-		let data;
+        const artists = [];
 
 		try {
-			response = await fetch('http://localhost:8080/api/artists');
-			// response = await fetch('./test-data/artists.json');
-			data = await response.json();
+			// const response = await fetch('./test-data/artists.json');
+			const response = await fetch('http://localhost:8080/api/artists');
+
+			if (!response.ok) {
+				const errorData = await response.json();
+				throw new Error(
+					errorData.message || `ERROR - Status ${response.status}`
+				);
+			} else {
+				const data = await response.json();
+
+				data.forEach(artist => {
+					let newArtist = new Artist(
+						artist.id,
+						artist.firstName,
+						artist.lastName,
+						artist.location
+					);
+					artists.push(newArtist);
+				});
+			}
 		} catch (error) {
-			console.error('Unable to fetch artists...', error.message);
-		}
-
-		data.forEach(artist => {
-			let newArtist = new Artist(
-				artist.id,
-				artist.firstName,
-				artist.lastName,
-				artist.location
-			);
-			artists.push(newArtist);
-		});
-
-		setAllArtists(artists);
+			console.error(error.message);
+		} finally {
+            setAllArtists(artists);
+        }
 	};
 
 	const fetchCategories = async () => {
-		let categories = [];
-		let response;
-		let data;
+        const categories = [];
 
 		try {
-			response = await fetch('http://localhost:8080/api/categories');
-			// response = await fetch('./test-data/categories.json');
-			data = await response.json();
+			// const response = await fetch('./test-data/categories.json');
+			const response = await fetch('http://localhost:8080/api/categories');
+
+			if (!response.ok) {
+				const errorData = await response.json();
+				throw new Error(
+					errorData.message || `ERROR - Status ${response.status}`
+				);
+			} else {		
+				const data = await response.json();
+
+				data.forEach(category => {
+					let newCategory = new Category(category.id, category.title);
+					categories.push(newCategory);
+				});
+			}
 		} catch (error) {
-			console.error('Unable to fetch categories...', error.message);
-		}
-
-		data.forEach(category => {
-			let newCategory = new Category(category.id, category.title);
-			categories.push(newCategory);
-		});
-
-		setAllCategories(categories);
+			console.error(error.message);
+		} finally {
+            setAllCategories(categories);
+        }
 	};
 
 	useEffect(() => {

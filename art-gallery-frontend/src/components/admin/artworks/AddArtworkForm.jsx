@@ -1,5 +1,4 @@
 import { useState, use } from 'react';
-import { useNavigate } from 'react-router';
 import { DataContext } from '../../../context/DataContext.jsx';
 import {
 	Checkbox,
@@ -45,7 +44,7 @@ const AddArtworkForm = () => {
 	if (isLoading) {
 		return <Loading dataName="artists and categories" />;
 	} else {
-		const { allArtists, allCategories, fetchArtworks } = use(DataContext);
+		const { allArtists, allCategories } = use(DataContext);
 
 		const [artwork, setArtwork] = useState(initialArtwork);
 		const [details, setDetails] = useState(initialDetails);
@@ -54,8 +53,6 @@ const AddArtworkForm = () => {
 
 		const sortedArtists = sortObjByString([...allArtists], 'lastName');
 		const sortedCategories = sortObjByString([...allCategories], 'title');
-
-		const navigate = useNavigate();
 
 		const isValid = newArtwork => {
 			return (
@@ -95,32 +92,6 @@ const AddArtworkForm = () => {
             // The actual categoryIds array within the artwork object will be filled later
 		};
 
-		const saveNewArtwork = async artwork => {
-			try {
-				const response = await fetch('http://localhost:8080/api/artworks/add', {
-					method: 'POST',
-					headers: {
-						'Content-Type': 'application/json',
-						'Access-Control-Allow-Origin': '*',
-					},
-					body: JSON.stringify(artwork),
-				});
-
-                if (!response.ok) {
-                    const errorData = await response.json();
-                    throw new Error(errorData.message || `ERROR - Status ${response.status}`);
-                } else {
-                    fetchArtworks(); // update state before returning to list
-                    navigate('/admin/artworks');               
-                }
-	
-			} catch (error) {
-				console.error(error.message);
-
-                // FUTURE: Use toast or banner to notify user that save was unsuccessful 
-			}
-		};
-
 		const handleSubmit = event => {
 			event.preventDefault();
 			let newArtwork = { ...artwork };
@@ -131,7 +102,7 @@ const AddArtworkForm = () => {
 			if (!isValid(newArtwork)) {
 				setHasErrors(true);
 			} else {
-				saveNewArtwork(newArtwork);
+				// PART 5B TODO: Save artwork and use ArtworkDTO to form object for transfer
 			}
 		};
 
@@ -155,18 +126,6 @@ const AddArtworkForm = () => {
 				/>
 			);
 		});
-
-		// FUTURE: Arrange categories in columns to reduce length of page
-		/*
-            Might require rearranging whole form using new grid layout
-            Which would help providing for a responsive layout
-            title       category1 category2
-            artist
-            year media
-            H W D
-            Desc
-            Image Id
-        */
 
 		return (
 			<main className="main-content">
