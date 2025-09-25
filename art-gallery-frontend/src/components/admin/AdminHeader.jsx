@@ -27,8 +27,7 @@ const AdminHeader = ({ setLoggedIn }) => {
 					<Link className="navlink" to="/admin/categories">
 						Categories
 					</Link>
-					<span className="non-link">Exhibitions</span>
-					<span className="non-link">Contact Us</span>
+                    |
 					<span className="navlink" onClick={handleLogOut}>
 						Log Out
 					</span>

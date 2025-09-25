@@ -33,9 +33,10 @@ function App() {
 							<Routes>
 								<Route path="/" element={<PublicHome />} />
 								{/* FUTURE: AboutPage */}
-								{/* FUTURE: Register */}
-								{/* FUTURE: Login */}
+								{/* FUTURE: ExhibitionsPage */}
 								{/* FUTURE: ContactPage */}
+								{/* FUTURE: RegisterPage */}
+								{/* FUTURE: LoginPage */}
 								<Route path="/artworks" element={<ArtworksPage />} />
 								<Route path="artworks/details/:id" element={<DetailsPage />} />
 								<Route path="*" element={<Navigate to="/" />} />
@@ -53,16 +54,16 @@ function App() {
 									path="/admin/artworks/add"
 									element={<AddArtworkForm />}
 								/>
-								{/* FUTURE: EditArtworkForm maybe */}
+								{/* FUTURE: EditArtworkForm, maybe */}
 								<Route path="/admin/artists" element={<ArtistsList />} />
 								<Route path="/admin/artists/add" element={<AddArtistForm />} />
-								{/* FUTURE: EditArtistForm maybe */}
+								{/* FUTURE: EditArtistForm, maybe */}
 								<Route path="/admin/categories" element={<CategoriesList />} />
 								<Route
 									path="/admin/categories/add"
 									element={<AddCategoryForm />}
 								/>
-								{/* FUTURE: EditCategoryForm maybe */}
+								{/* FUTURE: EditCategoryForm, maybe */}
 							</Routes>
 						</>
 					)}
