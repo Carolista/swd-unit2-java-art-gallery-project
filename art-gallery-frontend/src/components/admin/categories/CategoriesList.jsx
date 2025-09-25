@@ -9,14 +9,47 @@ const CategoriesList = () => {
 	if (isLoading) {
 		return <Loading dataName="categories" />;
 	} else {
-		const { allCategories } = use(DataContext);
+		const { allCategories, fetchCategories } = use(DataContext);
+
+        const deleteCategory = async id => {
+			try {
+				const response = await fetch(
+					`http://localhost:8080/api/categories/delete/${id}`,
+					{
+						method: 'DELETE',
+						headers: {
+							'Access-Control-Allow-Origin': '*',
+						},
+					}
+				);
+				if (!response.ok) {
+					const errorData = await response.json();
+					throw new Error(
+						errorData.message || `ERROR - Status ${response.status}`
+					);
+				} else {
+					fetchCategories(); // update state so list will update
+					// FUTURE: Confirm with toast or banner after successful delete
+				}
+			} catch (error) {
+				console.error(error.message);
+
+				// FUTURE: Use toast or banner to notify user that deletion was unsuccessful
+			}
+		};
 
         const handleDelete = id => {
-            // TODO: Use alert (or modal) to confirm deletion before allowing fetch request
-            // TODO: Make DELETE call
-            // TODO: Notify with toast or banner if unsuccessful
-            // TODO: Confirm with toast or banner after successful delete 
-            console.log("This will eventually delete the category with id " + id)
+            // FUTURE: Use modal instead of alert
+			let confirmed = confirm(`
+                Are you sure you want to delete this record?
+                
+                Category: ${allCategories
+									.find(category => category.id == id)
+									.title}
+                `);
+			if (confirmed) {
+				deleteCategory(id);
+			}
         }
 
 		let categoriesJSX = allCategories.map(category => {
@@ -34,7 +67,7 @@ const CategoriesList = () => {
 
 		return (
 			<main className="main-content">
-				<h2>STYLES</h2>
+				<h2>CATEGORIES</h2>
 				{allCategories.length ? (
 					<>
 						{allCategories.length > 10 && (

@@ -9,15 +9,48 @@ const ArtistsList = () => {
 	if (isLoading) {
 		return <Loading dataName="artists" />;
 	} else {
-		const { allArtists } = use(DataContext);
+		const { allArtists, fetchArtists } = use(DataContext);
 
-        const handleDelete = id => {
-            // TODO: Use alert (or modal) to confirm deletion before allowing fetch request
-            // TODO: Make DELETE call
-            // TODO: Notify with toast or banner if unsuccessful
-            // TODO: Confirm with toast or banner after successful delete 
-            console.log("This will eventually delete the artist with id " + id)
-        }
+		const deleteArtist = async id => {
+			try {
+				const response = await fetch(
+					`http://localhost:8080/api/artists/delete/${id}`,
+					{
+						method: 'DELETE',
+						headers: {
+							'Access-Control-Allow-Origin': '*',
+						},
+					}
+				);
+				if (!response.ok) {
+					const errorData = await response.json();
+					throw new Error(
+						errorData.message || `ERROR - Status ${response.status}`
+					);
+				} else {
+					fetchArtists(); // update state so list will update
+					// FUTURE: Confirm with toast or banner after successful delete
+				}
+			} catch (error) {
+				console.error(error.message);
+
+				// FUTURE: Use toast or banner to notify user that deletion was unsuccessful
+			}
+		};
+
+		const handleDelete = id => {
+			// FUTURE: Use modal instead of alert
+			let confirmed = confirm(`
+                Are you sure you want to delete this record?
+                
+                Artist: ${allArtists
+									.find(artist => artist.id == id)
+									.getFullName()}
+                `);
+			if (confirmed) {
+				deleteArtist(id);
+			}
+		};
 
 		let artistRowsJSX = allArtists.map(artist => {
 			return (
@@ -26,7 +59,13 @@ const ArtistsList = () => {
 					<td>{artist.firstName}</td>
 					<td>{artist.lastName}</td>
 					<td>{artist.location}</td>
-                    <td className="delete-icon"><span onClick={() => handleDelete(artist.id)}><i className="fa-solid fa-trash-can" title={`Delete ${artist.getFullName()}`}></i></span></td>
+					<td className="delete-icon">
+						<span onClick={() => handleDelete(artist.id)}>
+							<i
+								className="fa-solid fa-trash-can"
+								title={`Delete ${artist.getFullName()}`}></i>
+						</span>
+					</td>
 				</tr>
 			);
 		});
