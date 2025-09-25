@@ -1,7 +1,8 @@
 /* TODO: reorganize this and move anything component-specific out of this file */
 /* TODO: Double-check that everything is being used and there are no conflicts */
 /* TODO: Check responsiveness on all views */
-/* FIXME: Remove L/R padding on form inputs (see AddArtworkForm for example) */
+/* FIXME: Fix L/R padding of 12px on form inputs (see AddArtworkForm for example) - 
+probably has to do with Bootstrap grid classes */
 
 body {
 	color: #1e323c;
@@ -226,4 +227,17 @@ textarea {
 	display: block;
 	color: #da8034;
 	margin: 0;
+}
+
+.delete-icon {
+    width: 30px;
+}
+.delete-icon i {
+    color: #333;
+    opacity: 0.4;
+    cursor: pointer;
+}
+.delete-icon i:hover {
+    color: #b03a2e;
+    opacity: 0.8;
 }

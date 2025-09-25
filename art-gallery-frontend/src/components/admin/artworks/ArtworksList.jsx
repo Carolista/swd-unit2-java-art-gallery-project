@@ -11,6 +11,14 @@ const ArtworksList = () => {
 	} else {
 		const { allArtworks } = use(DataContext);
 
+        const handleDelete = id => {
+            // TODO: Use alert (or modal) to confirm deletion before allowing fetch request
+            // TODO: Make DELETE call
+            // TODO: Notify with toast or banner if unsuccessful
+            // TODO: Confirm with toast or banner after successful delete 
+            console.log("This will eventually delete the artwork with id " + id)
+        }
+
 		// Subcomponent for local use
 		const ArtworkRow = ({ artwork }) => {
 			return (
@@ -22,6 +30,7 @@ const ArtworksList = () => {
 					<td>
 						<img src={artwork.details.getImageURL()} width="50px" />
 					</td>
+                    <td className="delete-icon"><span onClick={() => handleDelete(artwork.id)}><i className="fa-solid fa-trash-can" title={`Delete ${artwork.title}`}></i></span></td>
 				</tr>
 			);
 		};

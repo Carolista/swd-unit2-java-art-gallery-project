@@ -11,11 +11,20 @@ const CategoriesList = () => {
 	} else {
 		const { allCategories } = use(DataContext);
 
+        const handleDelete = id => {
+            // TODO: Use alert (or modal) to confirm deletion before allowing fetch request
+            // TODO: Make DELETE call
+            // TODO: Notify with toast or banner if unsuccessful
+            // TODO: Confirm with toast or banner after successful delete 
+            console.log("This will eventually delete the category with id " + id)
+        }
+
 		let categoriesJSX = allCategories.map(category => {
 			return (
 				<tr key={category.id}>
 					<td>{category.id}</td>
 					<td>{category.title}</td>
+					<td className="delete-icon"><span onClick={() => handleDelete(category.id)}><i className="fa-solid fa-trash-can" title={`Delete ${category.title}`}></i></span></td>
 				</tr>
 			);
 		});
@@ -38,6 +47,7 @@ const CategoriesList = () => {
 								<tr>
 									<th>ID</th>
 									<th>Title</th>
+									<th></th>
 								</tr>
 							</thead>
 							<tbody>{categoriesJSX}</tbody>

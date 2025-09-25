@@ -11,6 +11,14 @@ const ArtistsList = () => {
 	} else {
 		const { allArtists } = use(DataContext);
 
+        const handleDelete = id => {
+            // TODO: Use alert (or modal) to confirm deletion before allowing fetch request
+            // TODO: Make DELETE call
+            // TODO: Notify with toast or banner if unsuccessful
+            // TODO: Confirm with toast or banner after successful delete 
+            console.log("This will eventually delete the artist with id " + id)
+        }
+
 		let artistRowsJSX = allArtists.map(artist => {
 			return (
 				<tr key={artist.id}>
@@ -18,6 +26,7 @@ const ArtistsList = () => {
 					<td>{artist.firstName}</td>
 					<td>{artist.lastName}</td>
 					<td>{artist.location}</td>
+                    <td className="delete-icon"><span onClick={() => handleDelete(artist.id)}><i className="fa-solid fa-trash-can" title={`Delete ${artist.getFullName()}`}></i></span></td>
 				</tr>
 			);
 		});
@@ -42,6 +51,7 @@ const ArtistsList = () => {
 									<th>First Name</th>
 									<th>Last Name</th>
 									<th>Location</th>
+									<th></th>
 								</tr>
 							</thead>
 							<tbody>{artistRowsJSX}</tbody>

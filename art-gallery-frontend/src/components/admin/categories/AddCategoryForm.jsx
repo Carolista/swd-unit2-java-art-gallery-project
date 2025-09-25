@@ -34,6 +34,8 @@ const AddCategoryForm = () => {
             }
 		} catch (error) {
 			console.error(error.message);
+
+            // FUTURE: Use toast or banner to notify user that save was unsuccessful 
 		}
 	};
 
