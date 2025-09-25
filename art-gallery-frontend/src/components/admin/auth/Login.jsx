@@ -8,6 +8,8 @@ const errorMessages = {
 	passwordRequired: 'Password is required.',
 };
 
+// TODO: Remove /auth files to desktop until part 6b
+
 const Login = () => {
 	const [username, setUsername] = useState('');
 	const [password, setPassword] = useState('');
