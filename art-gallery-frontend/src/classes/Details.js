@@ -48,8 +48,8 @@ export default class Details {
 		return formatted.join(" x ");
 	}
 
-    // TODO: update this once photos are hosted elsewhere
+    // FIXME: update this once photos are hosted elsewhere
 	getImageURL() {
-		return 'https://drive.google.com/thumbnail?sz=w1000&id=' + this.imageId;
+		return 'https://i.ibb.co/' + this.imageId;
 	}
 }
