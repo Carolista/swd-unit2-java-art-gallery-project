@@ -26,7 +26,7 @@ const DetailsPage = () => {
 				<ErrorPage>
 					<p>Sorry, that artwork does not exist!</p>
 					<span onClick={handleGoBack}>
-						<i class="fa-solid fa-circle-arrow-left"></i> Go Back
+						<i className="fa-solid fa-circle-arrow-left"></i> Go Back
 					</span>
 				</ErrorPage>
 			);
@@ -35,7 +35,7 @@ const DetailsPage = () => {
 				<main className="main-content">
 					<p>
 						<Link to="/artworks">
-							<i class="fa-solid fa-circle-arrow-left"></i>
+							<i className="fa-solid fa-circle-arrow-left"></i>
 						</Link>
 						Back to <Link to="/artworks">Artworks Gallery View</Link>
 					</p>
