@@ -8,7 +8,7 @@ const AddCategoryForm = () => {
 	const [hasErrors, setHasErrors] = useState(false);
 
 	const navigate = useNavigate();
-	const { fetchArtists } = use(DataContext);
+	const { fetchCategories } = use(DataContext);
 
 	const handleChange = event => {
 		setCategory(event.target.value);
@@ -16,7 +16,7 @@ const AddCategoryForm = () => {
 
 	const saveNewCategory = async category => {
 		try {
-			await fetch('http://localhost:8080/api/categories/add', {
+			const response = await fetch('http://localhost:8080/api/categories/add', {
 				method: 'POST',
 				headers: {
 					'Content-Type': 'application/json',
@@ -24,12 +24,17 @@ const AddCategoryForm = () => {
 				},
 				body: JSON.stringify(category),
 			});
-			// TODO: Capture response and improve error handling
+			
+            if (!response.ok) {
+                const errorData = await response.json();
+                throw new Error(errorData.message || `ERROR - Status ${response.status}`);
+            } else {
+                fetchCategories(); // update state before returning to list
+		        navigate('/admin/categories');
+            }
 		} catch (error) {
 			console.error(error.message);
 		}
-		fetchArtists(); // update state before returning to list
-		navigate('/admin/categories');
 	};
 
 	const handleSubmit = event => {

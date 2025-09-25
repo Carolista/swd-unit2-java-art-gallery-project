@@ -91,12 +91,13 @@ const AddArtworkForm = () => {
 			let updatedCheckboxes = [...checkboxes];
 			updatedCheckboxes[event.target.value] = event.target.checked;
 			setCheckboxes(updatedCheckboxes);
-			// Will update categoryIds array within artwork object at submission
+			// This is just to keep track of the user's selections before submission
+            // The actual categoryIds array within the artwork object will be filled later
 		};
 
 		const saveNewArtwork = async artwork => {
 			try {
-				await fetch('http://localhost:8080/api/artworks/add', {
+				const response = await fetch('http://localhost:8080/api/artworks/add', {
 					method: 'POST',
 					headers: {
 						'Content-Type': 'application/json',
@@ -104,12 +105,18 @@ const AddArtworkForm = () => {
 					},
 					body: JSON.stringify(artwork),
 				});
-				// DEMO TODO: Capture response and improve error handling
+
+                if (!response.ok) {
+                    const errorData = await response.json();
+                    throw new Error(errorData.message || `ERROR - Status ${response.status}`);
+                } else {
+                    fetchArtworks(); // update state before returning to list
+                    navigate('/admin/artworks');               
+                }
+	
 			} catch (error) {
 				console.error(error.message);
 			}
-			fetchArtworks(); // update state before returning to list
-			navigate('/admin/artworks');
 		};
 
 		const handleSubmit = event => {

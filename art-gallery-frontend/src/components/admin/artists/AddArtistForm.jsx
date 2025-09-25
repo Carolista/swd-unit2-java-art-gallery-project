@@ -34,7 +34,7 @@ const AddArtistForm = () => {
 
 	const saveNewArtist = async artist => {
 		try {
-			await fetch('http://localhost:8080/api/artists/add', {
+			const response = await fetch('http://localhost:8080/api/artists/add', {
 				method: 'POST',
 				headers: {
 					'Content-Type': 'application/json',
@@ -42,12 +42,19 @@ const AddArtistForm = () => {
 				},
 				body: JSON.stringify(artist),
 			});
-			// DEMO TODO: Capture response and improve error handling
+
+            if (!response.ok) {
+                const errorData = await response.json();
+                throw new Error(errorData.message || `ERROR - Status ${response.status}`);
+            } else {
+                fetchArtists(); // update state before returning to list
+		        navigate('/admin/artists');
+            }
 		} catch (error) {
 			console.error(error.message);
+            
+            // FUTURE: Use toast or banner to notify user that save was unsuccessful 
 		}
-		fetchArtists(); // update state before returning to list
-		navigate('/admin/artists');
 	};
 
 	const handleSubmit = event => {
