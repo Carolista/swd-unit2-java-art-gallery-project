@@ -6,8 +6,8 @@ const PublicHeader = ({setLoggedIn}) => {
         setLoggedIn(true);
     }
     
-    // TODO: use Navlinks and active link here with routing
-    // TODO: Add responsive styling
+    // FUTURE: use Navlinks and active link here with routing
+    // TODO: Improve responsive styling
 
 	return (
 		<>

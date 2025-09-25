@@ -7,9 +7,9 @@ const AdminHeader = ({setLoggedIn}) => {
         setLoggedIn(false);
     }
     
-    // TODO: use Navlinks and active link here with routing
-    // TODO: Add responsive styling
-    // TODO: Create secondary header with links for add, delete like old Java app
+    // FUTURE: use Navlinks and active link here with routing
+    // FUTURE: Create secondary header with links for add, delete like old Java app
+    // TODO: Improve responsive styling
     
 	return (
 		<>
