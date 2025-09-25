@@ -37,7 +37,7 @@ const DetailsPage = () => {
 						<Link to="/artworks">
 							<i className="fa-solid fa-circle-arrow-left"></i>
 						</Link>
-						Back to <Link to="/artworks">Artworks Gallery View</Link>
+						&nbsp; Back to <Link to="/artworks">Artworks Gallery View</Link>
 					</p>
 					<h2>ARTWORK DETAILS</h2>
 					<div className="container">
