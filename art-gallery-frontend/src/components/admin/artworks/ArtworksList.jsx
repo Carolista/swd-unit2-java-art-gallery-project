@@ -16,8 +16,6 @@ const ArtworksList = () => {
         // Subcomponent for local use
         const ArtworkRow = ({ artwork }) => {
 
-            // FIXME: Details component is rerouting to home
-
             return (
                 <tr>
                     <td>{artwork.id}</td>

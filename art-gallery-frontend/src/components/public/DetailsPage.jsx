@@ -23,19 +23,17 @@ const DetailsPage = () => {
                 navigate(-1);
             };
 
-            // TODO: replace &larr; with fontawesome icon
-
             return (
                 <ErrorPage>
                     <p>Sorry, that artwork does not exist!</p>
-                    <span onClick={handleGoBack}>&larr; Go Back</span>
+                    <span onClick={handleGoBack}><i class="fa-solid fa-circle-arrow-left"></i> Go Back</span>
                 </ErrorPage>
             );
         } else {
             return (
                 <main className="main-content">
                     <p>
-                        &larr; Back to <Link to="/artworks">Artworks Gallery View</Link>
+                        <Link to="/artworks"><i class="fa-solid fa-circle-arrow-left"></i></Link> Back to <Link to="/artworks">Artworks Gallery View</Link>
                     </p>
                     <h2>ARTWORK DETAILS</h2>
                     <div className="container">

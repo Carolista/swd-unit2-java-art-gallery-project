@@ -48,7 +48,6 @@ export default class Details {
 		return formatted.join(" x ");
 	}
 
-    // FIXME: update this once photos are hosted elsewhere
 	getImageURL() {
 		return 'https://i.ibb.co/' + this.imageId;
 	}
