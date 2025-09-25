@@ -6,8 +6,8 @@ export default class Details {
 		media,
 		yearCreated,
 		description,
-		width,
 		height,
+		width,
 		depth,
 		imageId
 	) {
@@ -15,8 +15,8 @@ export default class Details {
 		this.media = media;
 		this.yearCreated = yearCreated;
 		this.description = description;
-		this.width = width;
 		this.height = height;
+		this.width = width;
 		this.depth = depth;
 		this.imageId = imageId;
 	}
