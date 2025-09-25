@@ -1,7 +1,8 @@
-import { useState } from 'react';
+import { useState, use } from 'react';
+import { useNavigate } from 'react-router';
+import { DataContext } from '../../../context/DataContext';
 import InputErrorMessage from '../../common/InputErrorMsg';
 import TextInput from '../../common/TextInput';
-import { useNavigate } from 'react-router';
 
 let initialArtist = {
 	firstName: '',
@@ -14,13 +15,14 @@ let errorMessages = {
 	lastNameRequired: 'Last name is required.',
 };
 
-// TODO: Alter width of fields at full page size
+// FUTURE: Alter width of fields at full page size and check responsive behavior
 
-const AddArtistForm = ({ refetch }) => {
+const AddArtistForm = () => {
 	const [artist, setArtist] = useState(initialArtist);
 	const [hasErrors, setHasErrors] = useState(false);
 
 	const navigate = useNavigate();
+    const { fetchArtists } = use(DataContext);
 
 	const handleChange = event => {
 		let updatedArtist = {
@@ -44,7 +46,7 @@ const AddArtistForm = ({ refetch }) => {
 		} catch (error) {
 			console.error(error.message);
 		}
-		refetch();
+		fetchArtists(); // update state before returning to list
 		navigate('/admin/artists');
 	};
 

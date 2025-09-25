@@ -2,8 +2,6 @@ import Spinner from "../common/Spinner";
 
 const Loading = ({ dataName }) => {
 
-    // TODO: Add spinner similar to Garden Planning Tool idea
-
     let data = dataName || "data";
 
 	return (

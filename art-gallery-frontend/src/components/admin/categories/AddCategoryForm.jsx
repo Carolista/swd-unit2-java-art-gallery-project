@@ -1,12 +1,14 @@
-import { useState } from 'react';
-import { TextInput, InputErrorMessage } from '../../common/_exports';
+import { useState, use } from 'react';
 import { useNavigate } from 'react-router';
+import { DataContext } from '../../../context/DataContext';
+import { TextInput, InputErrorMessage } from '../../common/_exports';
 
-const AddCategoryForm = ({ refetch }) => {
+const AddCategoryForm = () => {
 	const [category, setCategory] = useState('');
 	const [hasErrors, setHasErrors] = useState(false);
 
 	const navigate = useNavigate();
+    const { fetchArtists } = use(DataContext);
 
 	const handleChange = event => {
 		setCategory(event.target.value);
@@ -26,7 +28,7 @@ const AddCategoryForm = ({ refetch }) => {
 		} catch (error) {
 			console.error(error.message);
 		}
-		refetch();
+		fetchArtists(); // update state before returning to list
 		navigate('/admin/categories');
 	};
 
@@ -40,14 +42,13 @@ const AddCategoryForm = ({ refetch }) => {
 		}
 	};
 
-    // TODO: Alter width of field at full page size
+    // FUTURE: Alter width of fields at full page size and check responsive behavior
 
 	return (
 		<main className="main-content">
 			<h3>Add Category</h3>
 			<form>
 				<div className="form-item">
-					<label htmlFor="name">Name of Category</label>
 					<TextInput
 						id="title"
 						label="Title"
