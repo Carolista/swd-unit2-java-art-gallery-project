@@ -1,5 +1,5 @@
 import { Link } from 'react-router';
-import { InputErrorMessage, TextInput } from '../../common/exports.js';
+import { InputErrorMessage, TextInput } from '../../common/_exports.js';
 import PasswordInput from './PasswordInput';
 
 const errorMessages = {
@@ -32,7 +32,8 @@ const Register = () => {
 		} else {
 			// DEMO TODO: POST to /register endpoint
 			console.log('Validation passed and form submitted.');
-			// Components should rerender to show logged in view of home
+            // TODO: Make sure user is also logged in
+			// TODO: Reroute to home
 		}
 	};
 

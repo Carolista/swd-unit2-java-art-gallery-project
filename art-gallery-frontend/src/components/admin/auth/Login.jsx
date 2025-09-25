@@ -1,6 +1,5 @@
 import { Link } from 'react-router';
-import InputErrorMessage from '../../common/InputErrorMsg';
-import TextInput from '../../common/TextInput';
+import { InputErrorMessage, TextInput } from '../../common/_exports.js';
 import PasswordInput from './PasswordInput';
 
 const errorMessages = {
@@ -30,7 +29,7 @@ const Login = () => {
 		} else {
 			// DEMO TODO: POST to /login endpoint
 			console.log('Validation passed and form submitted.');
-			// Components should rerender to show logged in view of home
+			// Reroute to home
 		}
 	};
 

@@ -3,7 +3,6 @@ import { BrowserRouter, Routes, Route, Navigate } from 'react-router';
 import {
 	ArtworksPage,
 	DetailsPage,
-	ErrorPage,
 	Footer,
 	Loading,
 	PublicHeader,
@@ -18,6 +17,8 @@ import {
 	ArtworksList,
 	AddCategoryForm,
 	CategoriesList,
+	Login,
+	Register,
 } from './components/admin/_exports';
 import { Artist, Artwork, Details, Category } from './classes/_exports';
 import './App.css';
@@ -46,26 +47,12 @@ function App() {
 		}
 
 		data.forEach(artwork => {
-			let artist = new Artist(
-				artwork.artist.id,
-				artwork.artist.firstName,
-				artwork.artist.lastName,
-				artwork.artist.location
-			);
+			let artist = new Artist(...artwork.artist);
 			let categories = [];
 			artwork.categories.forEach(category => {
-				categories.push(new Category(category.id, category.title));
+				categories.push(new Category(...category));
 			});
-			let details = new Details(
-				artwork.details.id,
-				artwork.details.media,
-				artwork.details.yearCreated,
-				artwork.details.description,
-				artwork.details.width,
-				artwork.details.height,
-				artwork.details.depth,
-				artwork.details.imageId
-			);
+			let details = new Details(...artwork.details);
 			let newArtwork = new Artwork(
 				artwork.id,
 				artwork.title,
@@ -137,43 +124,59 @@ function App() {
 	}, []);
 
 	useEffect(() => {
-		if (
-			allArtworks.length &&
-			allArtists.length &&
-			allCategories.length
-		) {
+		if (allArtworks.length && allArtists.length && allCategories.length) {
 			setLoading(false);
 		}
 	}, [allArtworks, allArtists, allCategories]);
 
-    // FIXME TODO: Make sure routing makes sense for all logical combinations, especially pages used for both public and admin
-    // TODO: Create delete pages for artist, category, and artwork
-
 	return (
 		<BrowserRouter>
 			<React.StrictMode>
-				{loggedIn ? (
-					<AdminHeader setLoggedIn={setLoggedIn} />
+				{!loggedIn ? (
+					<>
+						<PublicHeader setLoggedIn={setLoggedIn} />
+						<Routes>
+							<Route path="/" element={<PublicHome />} />
+							<Route path="/register" element={<Register />} />
+							<Route path="/login" element={<Login />} />
+							{/* AboutPage */}
+							{/* ContactPage */}
+							<Route
+								path="/artworks"
+								element={
+									<ArtworksPage artworks={allArtworks} loading={loading} />
+								}
+							/>
+							<Route
+								path="artworks/:id"
+								element={
+									<DetailsPage artworks={allArtworks} loading={loading} />
+								}
+							/>
+							<Route path="*" element={<Navigate to="/" />} />
+						</Routes>
+					</>
 				) : (
-					<PublicHeader setLoggedIn={setLoggedIn} />
-				)}
-				{loading && <Loading />}
-				{!loading &&
-					(loggedIn ? (
+					<>
+						<AdminHeader setLoggedIn={setLoggedIn} />
 						<Routes>
 							<Route path="/" element={<Navigate to="/admin" />} />
 							<Route path="/admin" element={<AdminHome />} />
+							<Route path="*" element={<Navigate to="/" />} />
 							<Route
 								path="/admin/artists"
-								element={<ArtistsList artists={allArtists} />}
+								element={<ArtistsList artists={allArtists} loading={loading} />}
 							/>
 							<Route
 								path="/admin/artists/add"
 								element={<AddArtistForm refetch={fetchArtists} />}
 							/>
+							{/* EditArtistForm maybe */}
 							<Route
 								path="/admin/artworks"
-								element={<ArtworksList artworks={allArtworks} />}
+								element={
+									<ArtworksList artworks={allArtworks} loading={loading} />
+								}
 							/>
 							<Route
 								path="/admin/artworks/add"
@@ -185,37 +188,25 @@ function App() {
 									/>
 								}
 							/>
+							{/* EditArtworkForm maybe */}
 							<Route
 								path="/admin/categories"
-								element={<CategoriesList categories={allCategories} />}
+								element={
+									<CategoriesList
+										categories={allCategories}
+										loading={loading}
+									/>
+								}
 							/>
 							<Route
 								path="/admin/categories/add"
 								element={<AddCategoryForm refetch={fetchCategories} />}
 							/>
-							<Route path="*" element={<Navigate to="/admin" />} />
+							{/* EditCategoryForm maybe */}
 						</Routes>
-					) : (
-						<Routes>
-							<Route path="/" element={<PublicHome />} />
-							<Route
-								path="/artworks"
-								element={<ArtworksPage artworks={allArtworks} />}
-							/>
-							<Route
-								path="artworks/:id"
-								element={<DetailsPage artworks={allArtworks} />}
-							/>
-							<Route path="*" element={<Navigate to="/" />} />
-						</Routes>
-					))}
-				{/* {!loading && !allArtworks.length && (
-					<ErrorPage>
-						Sorry, our collection of artwork is unavailable at this time. We're
-						on it!
-					</ErrorPage>
-				)} */}
-                <Footer />
+					</>
+				)}
+				<Footer />
 			</React.StrictMode>
 		</BrowserRouter>
 	);
