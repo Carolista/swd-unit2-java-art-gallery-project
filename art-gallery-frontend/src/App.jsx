@@ -6,7 +6,7 @@ import {
 	Footer,
 	PublicHeader,
 	PublicHome,
-} from './components/public/_exports';
+} from './components/public/exports';
 import {
 	AdminHeader,
 	AdminHome,
@@ -16,9 +16,7 @@ import {
 	ArtworksList,
 	AddCategoryForm,
 	CategoriesList,
-	Login,
-	Register,
-} from './components/admin/_exports';
+} from './components/admin/exports';
 import './App.css';
 import { DataProvider } from './context/DataContext';
 
@@ -34,9 +32,9 @@ function App() {
 							<PublicHeader setLoggedIn={setLoggedIn} />
 							<Routes>
 								<Route path="/" element={<PublicHome />} />
-								<Route path="/register" element={<Register />} />
-								<Route path="/login" element={<Login />} />
 								{/* FUTURE: AboutPage */}
+								{/* FUTURE: Register */}
+								{/* FUTURE: Login */}
 								{/* FUTURE: ContactPage */}
 								<Route path="/artworks" element={<ArtworksPage />} />
 								<Route path="artworks/details/:id" element={<DetailsPage />} />

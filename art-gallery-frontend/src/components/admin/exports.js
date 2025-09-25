@@ -6,8 +6,6 @@ import { default as AddArtworkForm } from './artworks/AddArtworkForm';
 import { default as ArtworksList } from './artworks/ArtworksList';
 import { default as AddCategoryForm } from './categories/AddCategoryForm';
 import { default as CategoriesList } from './categories/CategoriesList';
-import { default as Login } from './auth/Login';
-import { default as Register } from './auth/Register';
 
 export {
 	AdminHeader,
@@ -18,6 +16,4 @@ export {
 	ArtworksList,
 	AddCategoryForm,
 	CategoriesList,
-	Login,
-	Register,
 };

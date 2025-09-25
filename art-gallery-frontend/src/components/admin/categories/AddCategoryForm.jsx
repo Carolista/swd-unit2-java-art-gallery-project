@@ -1,7 +1,7 @@
 import { useState, use } from 'react';
 import { useNavigate } from 'react-router';
 import { DataContext } from '../../../context/DataContext';
-import { TextInput, InputErrorMessage } from '../../common/_exports';
+import { TextInput, InputErrorMessage } from '../../common/exports';
 
 const AddCategoryForm = () => {
 	const [category, setCategory] = useState('');

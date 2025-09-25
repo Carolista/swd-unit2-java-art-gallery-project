@@ -6,7 +6,7 @@ import {
 	InputErrorMessage,
 	Select,
 	TextInput,
-} from '../../common/_exports';
+} from '../../common/exports.js';
 import TextArea from '../../common/TextArea.jsx';
 import { sortObjByString } from '../../../shared/utils.js';
 import Loading from '../../public/Loading.jsx';
