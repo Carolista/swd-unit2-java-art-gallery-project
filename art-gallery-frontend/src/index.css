@@ -1,6 +1,7 @@
 /* TODO: reorganize this and move anything component-specific out of this file */
 /* TODO: Double-check that everything is being used and there are no conflicts */
 /* TODO: Check responsiveness on all views */
+/* FIXME: Remove L/R padding on form inputs (see AddArtworkForm for example) */
 
 body {
     color: #1e323c;
