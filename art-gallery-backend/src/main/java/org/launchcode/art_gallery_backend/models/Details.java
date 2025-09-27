@@ -15,8 +15,8 @@ public class Details {
     @Lob
     private String description;
 
-    private double width;
     private double height;
+    private double width;
     private double depth;
     private String imageId;
 
@@ -25,12 +25,12 @@ public class Details {
 
     public Details() {}
 
-    public Details(String yearCreated, String media, String description, double width, double height, double depth, String imageId) {
+    public Details(String yearCreated, String media, String description, double height, double width, double depth, String imageId) {
         this.yearCreated = yearCreated;
         this.media = media;
         this.description = description;
-        this.width = width;
         this.height = height;
+        this.width = width;
         this.depth = depth;
         this.imageId = imageId;
     }
@@ -59,20 +59,20 @@ public class Details {
         this.description = description;
     }
 
-    public double getWidth() {
-        return width;
-    }
-
-    public void setWidth(double width) {
-        this.width = width;
-    }
-
     public double getHeight() {
         return height;
     }
 
     public void setHeight(double height) {
         this.height = height;
+    }
+
+    public double getWidth() {
+        return width;
+    }
+
+    public void setWidth(double width) {
+        this.width = width;
     }
 
     public double getDepth() {

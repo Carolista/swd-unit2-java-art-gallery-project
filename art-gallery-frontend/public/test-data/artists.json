@@ -1,0 +1,152 @@
+[
+	{
+		"id": 1,
+		"firstName": "Leonardo",
+		"lastName": "da Vinci",
+		"location": "Italy"
+	},
+	{
+		"id": 2,
+		"firstName": "Vincent",
+		"lastName": "van Gogh",
+		"location": "Netherlands"
+	},
+	{
+		"id": 3,
+		"firstName": "Johannes",
+		"lastName": "Vermeer",
+		"location": "Netherlands"
+	},
+	{
+		"id": 4,
+		"firstName": "Edvard",
+		"lastName": "Munch",
+		"location": "Norway"
+	},
+	{
+		"id": 5,
+		"firstName": "Pablo",
+		"lastName": "Picasso",
+		"location": "Spain"
+	},
+	{
+		"id": 6,
+		"firstName": "Salvador",
+		"lastName": "Dali",
+		"location": "Spain"
+	},
+	{
+		"id": 7,
+		"firstName": "Sandro",
+		"lastName": "Botticelli",
+		"location": "Italy"
+	},
+	{
+		"id": 8,
+		"firstName": "Claude",
+		"lastName": "Monet",
+		"location": "France"
+	},
+	{
+		"id": 9,
+		"firstName": "Grant",
+		"lastName": "Wood",
+		"location": "United States"
+	},
+	{
+		"id": 10,
+		"firstName": "Rembrandt",
+		"lastName": "von Rijn",
+		"location": "Netherlands"
+	},
+	{
+		"id": 11,
+		"firstName": "Hieronymus",
+		"lastName": "Bosch",
+		"location": "Netherlands"
+	},
+	{
+		"id": 12,
+		"firstName": "James McNeill",
+		"lastName": "Whistler",
+		"location": "United States"
+	},
+	{
+		"id": 13,
+		"firstName": "Eugene",
+		"lastName": "Delacroix",
+		"location": "France"
+	},
+	{
+		"id": 14,
+		"firstName": "Edward",
+		"lastName": "Hopper",
+		"location": "United States"
+	},
+	{
+		"id": 15,
+		"firstName": "Diego",
+		"lastName": "Velazquez",
+		"location": "Spain"
+	},
+	{
+		"id": 16,
+		"firstName": "Gustav",
+		"lastName": "Klimt",
+		"location": "Austria"
+	},
+	{
+		"id": 17,
+		"firstName": "Michelangelo",
+		"lastName": "Buonarroti",
+		"location": "Italy"
+	},
+	{
+		"id": 18,
+		"firstName": "Alexandros",
+		"lastName": "Son of Menides",
+		"location": "Ancient Greece"
+	},
+	{
+		"id": 19,
+		"firstName": "August",
+		"lastName": "Rodin",
+		"location": "France"
+	},
+	{
+		"id": 20,
+		"firstName": "Gian Lorenzo",
+		"lastName": "Bernini",
+		"location": "Italy"
+	},
+	{
+		"id": 21,
+		"firstName": "Paul",
+		"lastName": "Landowski",
+		"location": "Brazil"
+	},
+	{
+		"id": 22,
+		"firstName": "Paul",
+		"lastName": "Cezanne",
+		"location": "France"
+	},
+	{
+		"id": 23,
+		"firstName": "Jackson",
+		"lastName": "Pollock",
+		"location": "United States"
+	},
+	{
+		"id": 24,
+		"firstName": "Frida",
+		"lastName": "Kahlo",
+		"location": "Mexico"
+	},
+	{
+		"id": 25,
+		"firstName": "Georgia",
+		"lastName": "O'Keeffe",
+		"location": "United States"
+	}
+]
