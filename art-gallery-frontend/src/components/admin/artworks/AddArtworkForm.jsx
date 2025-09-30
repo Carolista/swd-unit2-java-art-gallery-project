@@ -102,7 +102,7 @@ const AddArtworkForm = () => {
 			if (!isValid(newArtwork)) {
 				setHasErrors(true);
 			} else {
-				// PART 5B TODO: Save artwork and use ArtworkDTO to form object for transfer
+				// TODO: Save artwork and use ArtworkDTO to form object for transfer
 			}
 		};
 

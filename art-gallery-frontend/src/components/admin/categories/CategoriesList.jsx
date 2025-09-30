@@ -11,6 +11,18 @@ const CategoriesList = () => {
 	} else {
 		const { allCategories } = use(DataContext);
 
+        // TODO: Write a function to make a DELETE call to remove a category by id
+        // Include try/catch to handle error objects in response (similar to GET requests in DataContext)
+        // If response is OK, re-fetch artists so that state variable will hold updated list
+        // (at which point the page will re-render automatically)
+
+
+        // TODO: Write a handler function that confirms the user's intent to delete the record
+        // and, if so, passes the id to the function above to make the DELETE request
+
+
+        // TODO: Add a trash can icon in a third column tied to a click handler for deleting that record
+
 		let categoriesJSX = allCategories.map(category => {
 			return (
 				<tr key={category.id}>
@@ -38,6 +50,7 @@ const CategoriesList = () => {
 								<tr>
 									<th>ID</th>
 									<th>Title</th>
+                                    {/* TODO: Add a third column header for consistency; it can be blank */}
 								</tr>
 							</thead>
 							<tbody>{categoriesJSX}</tbody>

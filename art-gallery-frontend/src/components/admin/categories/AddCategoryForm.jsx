@@ -14,7 +14,7 @@ const AddCategoryForm = () => {
 		if (category === '') {
 			setHasErrors(true);
 		} else {
-			// PART 5B TODO: Save artist and use CategoryDTO to form object for transfer
+			// TODO: Save artist and use CategoryDTO to form object for transfer
 		}
 	};
 

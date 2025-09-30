@@ -32,7 +32,7 @@ const AddArtistForm = () => {
 		if (artist.firstName === '' || artist.lastName === '') {
 			setHasErrors(true);
 		} else {
-			// PART 5B TODO: Save artist and use ArtistDTO to form object for transfer
+			// TODO: Save artist and use ArtistDTO to form object for transfer
 		}
 	};
 

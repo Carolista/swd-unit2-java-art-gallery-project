@@ -9,8 +9,20 @@ const ArtistsList = () => {
 	if (isLoading) {
 		return <Loading dataName="artists" />;
 	} else {
+
 		const { allArtists } = use(DataContext);
 
+        // TODO: Write a function to make a DELETE call to remove an artist by id
+        // Include try/catch to handle error objects in response (similar to GET requests in DataContext)
+        // If response is OK, re-fetch artists so that state variable will hold updated list
+        // (at which point the page will re-render automatically)
+
+
+        // TODO: Write a handler function that confirms the user's intent to delete the record
+        // and, if so, passes the id to the function above to make the DELETE request
+
+
+        // TODO: Add a trash can icon in a fifth column tied to a click handler for deleting that record
 		let artistRowsJSX = allArtists.map(artist => {
 			return (
 				<tr key={artist.id}>
@@ -42,6 +54,7 @@ const ArtistsList = () => {
 									<th>First Name</th>
 									<th>Last Name</th>
 									<th>Location</th>
+                                    {/* TODO: Add a fifth column header for consistency; it can be blank */}
 								</tr>
 							</thead>
 							<tbody>{artistRowsJSX}</tbody>
