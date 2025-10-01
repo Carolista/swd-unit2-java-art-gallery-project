@@ -1,5 +1,5 @@
-import { use } from 'react';
-import { Link } from 'react-router';
+import { use, useEffect, useState } from 'react';
+import { Link, useLocation } from 'react-router';
 import { DataContext } from '../../../context/DataContext';
 import { Loading } from '../../public/exports.js';
 
@@ -10,6 +10,19 @@ const ArtworksList = () => {
 		return <Loading dataName="artworks" />;
 	} else {
 		const { allArtworks, fetchArtworks } = use(DataContext);
+		const [currentArtworks, setCurrentArtworks] = useState([...allArtworks]);
+
+		const location = useLocation();
+		const { currentArtist } = location.state || {};
+
+		useEffect(() => {
+			if (currentArtist) {
+				const filteredArtworks = allArtworks.filter(
+					artwork => artwork.artist.id == currentArtist.id
+				);
+				setCurrentArtworks(filteredArtworks);
+			}
+		}, [currentArtist]);
 
 		const deleteArtwork = async id => {
 			try {
@@ -46,7 +59,7 @@ const ArtworksList = () => {
 			}
 		};
 
-		let artworksJSX = allArtworks.map(artwork => {
+		let artworksJSX = currentArtworks.map(artwork => {
 			return (
 				<tr key={artwork.id}>
 					<td>{artwork.id}</td>
@@ -72,10 +85,14 @@ const ArtworksList = () => {
 
 		return (
 			<main className="main-content">
-				<h2>ARTWORKS</h2>
-				{allArtworks.length ? (
+				<h2>
+					ARTWORKS
+					{currentArtist &&
+						` by ${currentArtist.firstName[0]}. ${currentArtist.lastName}`}
+				</h2>
+				{currentArtworks.length ? (
 					<>
-						{allArtworks.length > 10 && (
+						{currentArtworks.length > 10 && (
 							<p>
 								Add a <Link to="/admin/artworks/add">new artwork</Link>.
 							</p>

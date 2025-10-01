@@ -9,7 +9,12 @@ const ArtistsList = () => {
 	if (isLoading) {
 		return <Loading dataName="artists" />;
 	} else {
-		const { allArtists, fetchArtists } = use(DataContext);
+		const { allArtworks, allArtists, fetchArtists } = use(DataContext);
+
+		const getNumberOfArtworksByArtist = artistId => {
+			return [...allArtworks].filter(artwork => artwork.artist.id == artistId)
+				.length;
+		};
 
 		const deleteArtist = async id => {
 			try {
@@ -50,12 +55,20 @@ const ArtistsList = () => {
 		};
 
 		let artistRowsJSX = allArtists.map(artist => {
+			let numArtworks = getNumberOfArtworksByArtist(artist.id);
 			return (
 				<tr key={artist.id}>
 					<td>{artist.id}</td>
 					<td>{artist.firstName}</td>
 					<td>{artist.lastName}</td>
 					<td>{artist.location}</td>
+					<td>
+						View{' '}
+						<Link to="/admin/artworks" state={{ currentArtist: artist }}>
+							{numArtworks}
+						</Link>{' '}
+						Artworks
+					</td>
 					<td className="delete-icon">
 						<span onClick={() => handleDelete(artist.id)}>
 							<i
@@ -87,6 +100,7 @@ const ArtistsList = () => {
 									<th>First Name</th>
 									<th>Last Name</th>
 									<th>Location</th>
+									<th>Artworks</th>
 									<th></th>
 								</tr>
 							</thead>
