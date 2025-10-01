@@ -1,7 +1,7 @@
 import { use } from 'react';
 import { Link } from 'react-router';
 import { DataContext } from '../../../context/DataContext';
-import { Loading } from '../../public/exports.com';
+import { Loading } from '../../public/exports.js';
 
 const CategoriesList = () => {
 	const { isLoading } = use(DataContext);

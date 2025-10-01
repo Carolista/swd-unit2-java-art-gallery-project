@@ -1,12 +1,43 @@
-import { useState } from 'react';
+import { use, useState } from 'react';
+import { useNavigate } from 'react-router';
 import { InputErrorMessage, TextInput } from '../../common/exports';
+import { DataContext } from '../../../context/DataContext';
 
 const AddCategoryForm = () => {
 	const [category, setCategory] = useState('');
 	const [hasErrors, setHasErrors] = useState(false);
 
+	const navigate = useNavigate();
+	const { fetchCategories } = use(DataContext);
+
 	const handleChange = event => {
 		setCategory(event.target.value);
+	};
+
+	const saveNewCategory = async category => {
+		try {
+			const response = await fetch('http://localhost:8080/api/categories/add', {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json',
+				},
+				body: JSON.stringify(category),
+			});
+
+			if (!response.ok) {
+				const errorData = await response.json();
+				throw new Error(
+					errorData.message || `ERROR - Status ${response.status}`
+				);
+			} else {
+				fetchCategories();
+				navigate('/admin/categories');
+			}
+		} catch (error) {
+			console.error(error.message);
+		} finally {
+			// FUTURE: Use toast or banner to notify user of success or failure
+		}
 	};
 
 	const handleSubmit = event => {
@@ -14,7 +45,8 @@ const AddCategoryForm = () => {
 		if (category === '') {
 			setHasErrors(true);
 		} else {
-			// TODO: Save artist and use CategoryDTO to form object for transfer
+			let newCategory = { title: category };
+			saveNewCategory(newCategory);
 		}
 	};
 
