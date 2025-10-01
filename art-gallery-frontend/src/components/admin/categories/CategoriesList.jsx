@@ -1,7 +1,7 @@
 import { use } from 'react';
 import { Link } from 'react-router';
 import { DataContext } from '../../../context/DataContext';
-import Loading from '../../public/Loading';
+import { Loading } from '../../public/exports.js';
 
 const CategoriesList = () => {
 	const { isLoading } = use(DataContext);
@@ -9,19 +9,59 @@ const CategoriesList = () => {
 	if (isLoading) {
 		return <Loading dataName="categories" />;
 	} else {
-		const { allCategories } = use(DataContext);
+		const { allCategories, fetchCategories } = use(DataContext);
 
+		const deleteCategory = async id => {
+			try {
+				const response = await fetch(
+					`http://localhost:8080/api/categories/delete/${id}`,
+					{
+						method: 'DELETE',
+					}
+				);
+				if (!response.ok) {
+					const errorData = await response.json();
+					throw new Error(
+						errorData.message || `ERROR - Status ${response.status}`
+					);
+				} else {
+					fetchCategories(); // update state so list will update
+				}
+			} catch (error) {
+				console.error(error.message);
+			} finally {
+				// Use toast or banner to notify user of success or failure
+                // Could have various specific outcomes depending on type of error
+            }
+		};
+
+		const handleDelete = id => {
+			let confirmed = confirm(`
+                Are you sure you want to delete this record?
+                
+                Category: ${
+									allCategories.find(category => category.id == id).title
+								}
+                `);
+			if (confirmed) {
+				deleteCategory(id);
+			}
+		};
 		let categoriesJSX = allCategories.map(category => {
-			return (
-				<tr key={category.id}>
+            return (
+                <tr key={category.id}>
 					<td>{category.id}</td>
 					<td>{category.title}</td>
+                    <td className="delete-icon">
+						<span onClick={() => handleDelete(category.id)}>
+							<i
+								className="fa-solid fa-trash-can"
+								title={`Delete ${category.title}`}></i>
+						</span>
+					</td>
 				</tr>
 			);
 		});
-
-		// FUTURE: Add sort by column
-		// FUTURE: Add links to view artworks by category
 
 		return (
 			<main className="main-content">
@@ -38,6 +78,7 @@ const CategoriesList = () => {
 								<tr>
 									<th>ID</th>
 									<th>Title</th>
+									<th></th>
 								</tr>
 							</thead>
 							<tbody>{categoriesJSX}</tbody>

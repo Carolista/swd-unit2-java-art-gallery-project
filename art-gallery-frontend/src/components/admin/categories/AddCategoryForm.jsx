@@ -1,24 +1,55 @@
-import { useState } from 'react';
-import { TextInput, InputErrorMessage } from '../../common/exports';
+import { use, useState } from 'react';
+import { useNavigate } from 'react-router';
+import { InputErrorMessage, TextInput } from '../../common/exports';
+import { DataContext } from '../../../context/DataContext';
+import { CategoryDTO } from '../../../classes/exports.js';
 
 const AddCategoryForm = () => {
-	const [category, setCategory] = useState('');
+	const [title, setTitle] = useState('');
 	const [hasErrors, setHasErrors] = useState(false);
 
+	const navigate = useNavigate();
+	const { fetchCategories } = use(DataContext);
+
+	const saveNewCategory = async newCategoryDTO => {
+		try {
+			const response = await fetch('http://localhost:8080/api/categories/add', {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json',
+				},
+				body: JSON.stringify(newCategoryDTO),
+			});
+
+			if (!response.ok) {
+				const errorData = await response.json();
+				throw new Error(
+					errorData.message || `ERROR - Status ${response.status}`
+				);
+			} else {
+				fetchCategories();
+				navigate('/admin/categories');
+			}
+		} catch (error) {
+			console.error(error.message);
+		} finally {
+			// Use toast or banner to notify user of success or failure
+		}
+	};
+
 	const handleChange = event => {
-		setCategory(event.target.value);
+		setTitle(event.target.value);
 	};
 
 	const handleSubmit = event => {
 		event.preventDefault();
-		if (category === '') {
+		const categoryDTO = new CategoryDTO(title);
+		if (!categoryDTO.isValid()) {
 			setHasErrors(true);
 		} else {
-			// PART 5B TODO: Save artist and use CategoryDTO to form object for transfer
+			saveNewCategory(categoryDTO);
 		}
 	};
-
-	// FUTURE: Alter width of fields at full page size and check responsive behavior
 
 	return (
 		<main className="main-content">
@@ -28,11 +59,11 @@ const AddCategoryForm = () => {
 					<TextInput
 						id="title"
 						label="Title"
-						value={category}
+						value={title}
 						handleChange={handleChange}
 					/>
 					<InputErrorMessage
-						hasError={hasErrors && category === ''}
+						hasError={hasErrors && title === ''}
 						msg="Category name is required."
 					/>
 				</div>

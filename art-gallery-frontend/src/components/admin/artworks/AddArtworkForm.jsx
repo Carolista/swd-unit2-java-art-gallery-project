@@ -1,22 +1,24 @@
 import { useState, use } from 'react';
+import { useNavigate } from 'react-router';
 import { DataContext } from '../../../context/DataContext.jsx';
 import {
 	Checkbox,
 	InputErrorMessage,
 	Select,
+	TextArea,
 	TextInput,
 } from '../../common/exports.js';
-import TextArea from '../../common/TextArea.jsx';
 import { sortObjByString } from '../../../shared/utils.js';
-import Loading from '../../public/Loading.jsx';
+import { Loading } from '../../public/exports.js';
+import { ArtworkDTO, DetailsDTO } from '../../../classes/exports.js';
 
-let initialArtwork = {
+let initialArtworkData = {
 	title: '',
 	artistId: '',
 	categoryIds: [],
 };
 
-let initialDetails = {
+let initialDetailsData = {
 	description: '',
 	yearCreated: '',
 	media: '',
@@ -44,44 +46,58 @@ const AddArtworkForm = () => {
 	if (isLoading) {
 		return <Loading dataName="artists and categories" />;
 	} else {
-		const { allArtists, allCategories } = use(DataContext);
+		const { allArtists, allCategories, fetchArtworks } = use(DataContext);
 
-		const [artwork, setArtwork] = useState(initialArtwork);
-		const [details, setDetails] = useState(initialDetails);
+		const [artworkData, setArtworkData] = useState(initialArtworkData);
+		const [detailsData, setDetailsData] = useState(initialDetailsData);
 		const [checkboxes, setCheckboxes] = useState([]);
 		const [hasErrors, setHasErrors] = useState(false);
 
 		const sortedArtists = sortObjByString([...allArtists], 'lastName');
 		const sortedCategories = sortObjByString([...allCategories], 'title');
 
-		const isValid = newArtwork => {
-			return (
-				newArtwork.title &&
-				newArtwork.details.description &&
-				newArtwork.details.yearCreated &&
-				newArtwork.details.media &&
-				newArtwork.details.height &&
-				newArtwork.details.width &&
-				newArtwork.details.imageId &&
-				newArtwork.artistId &&
-				newArtwork.categoryIds.length
-			);
+		const navigate = useNavigate();
+
+		const saveNewArtwork = async newArtworkDTO => {
+			try {
+				const response = await fetch('http://localhost:8080/api/artworks/add', {
+					method: 'POST',
+					headers: {
+						'Content-Type': 'application/json',
+					},
+					body: JSON.stringify(newArtworkDTO),
+				});
+
+				if (!response.ok) {
+					const errorData = await response.json();
+					throw new Error(
+						errorData.message || `ERROR - Status ${response.status}`
+					);
+				} else {
+					fetchArtworks(); // update state before returning to list
+					navigate('/admin/artworks');
+				}
+			} catch (error) {
+				console.error(error.message);
+			} finally {
+				// Use toast or banner to notify user of success or failure
+			}
 		};
 
 		const handleArtworkChange = event => {
-			let updatedArtwork = {
-				...artwork,
+			let updatedArtworkData = {
+				...artworkData,
 				[event.target.id]: event.target.value,
 			};
-			setArtwork(updatedArtwork);
+			setArtworkData(updatedArtworkData);
 		};
 
 		const handleDetailsChange = event => {
-			let updatedDetails = {
-				...details,
+			let updatedDetailsData = {
+				...detailsData,
 				[event.target.id]: event.target.value,
 			};
-			setDetails(updatedDetails);
+			setDetailsData(updatedDetailsData);
 		};
 
 		const handleCategoryChange = event => {
@@ -89,20 +105,33 @@ const AddArtworkForm = () => {
 			updatedCheckboxes[event.target.value] = event.target.checked;
 			setCheckboxes(updatedCheckboxes);
 			// This is just to keep track of the user's selections before submission
-            // The actual categoryIds array within the artwork object will be filled later
+			// The actual categoryIds array within the artwork object will be filled later
 		};
 
 		const handleSubmit = event => {
 			event.preventDefault();
-			let newArtwork = { ...artwork };
-			newArtwork.details = { ...details };
 			checkboxes.forEach((checkbox, i) => {
-				if (checkbox) newArtwork.categoryIds.push(i);
+				if (checkbox) artworkData.categoryIds.push(i);
 			});
-			if (!isValid(newArtwork)) {
+			let detailsDTO = new DetailsDTO(
+				detailsData.yearCreated,
+				detailsData.media,
+				detailsData.description,
+				detailsData.height,
+				detailsData.width,
+				detailsData.depth,
+				detailsData.imageId
+			);
+			let artworkDTO = new ArtworkDTO(
+				artworkData.title,
+				artworkData.artistId,
+				artworkData.categoryIds,
+				detailsDTO
+			);
+			if (!detailsDTO.isValid() || !artworkDTO.isValid()) {
 				setHasErrors(true);
 			} else {
-				// PART 5B TODO: Save artwork and use ArtworkDTO to form object for transfer
+				saveNewArtwork(artworkDTO);
 			}
 		};
 
@@ -137,11 +166,11 @@ const AddArtworkForm = () => {
 								<TextInput
 									id="title"
 									label="Title"
-									value={artwork.title}
+									value={artworkData.title}
 									handleChange={handleArtworkChange}
 								/>
 								<InputErrorMessage
-									hasError={hasErrors && artwork.title === ''}
+									hasError={hasErrors && artworkData.title === ''}
 									msg={errorMessages['titleRequired']}
 								/>
 							</div>
@@ -154,7 +183,7 @@ const AddArtworkForm = () => {
 									{artistOptionsJSX}
 								</Select>
 								<InputErrorMessage
-									hasError={hasErrors && artwork.artistId === 0}
+									hasError={hasErrors && artworkData.artistId === 0}
 									msg={errorMessages['artistRequired']}
 								/>
 							</div>
@@ -164,11 +193,11 @@ const AddArtworkForm = () => {
 								<TextInput
 									id="yearCreated"
 									label="Year Created"
-									value={details.yearCreated}
+									value={detailsData.yearCreated}
 									handleChange={handleDetailsChange}
 								/>
 								<InputErrorMessage
-									hasError={hasErrors && details.yearCreated === ''}
+									hasError={hasErrors && detailsData.yearCreated === ''}
 									msg={errorMessages['yearCreatedRequired']}
 								/>
 							</div>
@@ -176,11 +205,11 @@ const AddArtworkForm = () => {
 								<TextInput
 									id="media"
 									label="Media"
-									value={details.media}
+									value={detailsData.media}
 									handleChange={handleDetailsChange}
 								/>
 								<InputErrorMessage
-									hasError={hasErrors && details.media === ''}
+									hasError={hasErrors && detailsData.media === ''}
 									msg={errorMessages['mediaRequired']}
 								/>
 							</div>
@@ -188,11 +217,11 @@ const AddArtworkForm = () => {
 								<TextInput
 									id="height"
 									label="Height (in.)"
-									value={details.height}
+									value={detailsData.height}
 									handleChange={handleDetailsChange}
 								/>
 								<InputErrorMessage
-									hasError={hasErrors && details.height === 0}
+									hasError={hasErrors && detailsData.height === 0}
 									msg={errorMessages['heightRequired']}
 								/>
 							</div>
@@ -200,11 +229,11 @@ const AddArtworkForm = () => {
 								<TextInput
 									id="width"
 									label="Width (in.)"
-									value={details.width}
+									value={detailsData.width}
 									handleChange={handleDetailsChange}
 								/>
 								<InputErrorMessage
-									hasError={hasErrors && details.width === 0}
+									hasError={hasErrors && detailsData.width === 0}
 									msg={errorMessages['widthRequired']}
 								/>
 							</div>
@@ -212,7 +241,7 @@ const AddArtworkForm = () => {
 								<TextInput
 									id="depth"
 									label="Depth (in.)"
-									value={details.depth}
+									value={detailsData.depth}
 									handleChange={handleDetailsChange}
 								/>
 							</div>
@@ -222,11 +251,11 @@ const AddArtworkForm = () => {
 								<TextArea
 									id="description"
 									label="Description"
-									value={details.description}
+									value={detailsData.description}
 									handleChange={handleDetailsChange}
 								/>
 								<InputErrorMessage
-									hasError={hasErrors && details.description === ''}
+									hasError={hasErrors && detailsData.description === ''}
 									msg={errorMessages['descriptionRequired']}
 								/>
 							</div>
@@ -236,11 +265,11 @@ const AddArtworkForm = () => {
 										<TextInput
 											id="imageId"
 											label="Image ID"
-											value={details.imageId}
+											value={detailsData.imageId}
 											handleChange={handleDetailsChange}
 										/>
 										<InputErrorMessage
-											hasError={hasErrors && details.imageId === ''}
+											hasError={hasErrors && detailsData.imageId === ''}
 											msg={errorMessages['imageIdRequired']}
 										/>
 									</div>

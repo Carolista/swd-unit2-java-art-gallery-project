@@ -3,8 +3,8 @@ import { round } from '../shared/utils';
 export default class Details {
 	constructor(
 		id,
-		media,
 		yearCreated,
+		media,
 		description,
 		height,
 		width,
@@ -12,8 +12,8 @@ export default class Details {
 		imageId
 	) {
 		this.id = id;
-		this.media = media;
 		this.yearCreated = yearCreated;
+		this.media = media;
 		this.description = description;
 		this.height = height;
 		this.width = width;

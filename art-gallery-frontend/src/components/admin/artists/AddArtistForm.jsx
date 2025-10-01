@@ -1,8 +1,10 @@
-import { useState } from 'react';
-import InputErrorMessage from '../../common/InputErrorMsg';
-import TextInput from '../../common/TextInput';
+import { use, useState } from 'react';
+import { useNavigate } from 'react-router';
+import { InputErrorMessage, TextInput } from '../../common/exports.js';
+import { DataContext } from '../../../context/DataContext.jsx';
+import ArtistDTO from '../../../classes/ArtistDTO.js';
 
-let initialArtist = {
+let initialArtistData = {
 	firstName: '',
 	lastName: '',
 	location: '',
@@ -13,26 +15,54 @@ let errorMessages = {
 	lastNameRequired: 'Last name is required.',
 };
 
-// FUTURE: Alter width of fields at full page size and check responsive behavior
-
 const AddArtistForm = () => {
-	const [artist, setArtist] = useState(initialArtist);
+	const [artistData, setArtistData] = useState(initialArtistData);
 	const [hasErrors, setHasErrors] = useState(false);
 
+	const navigate = useNavigate();
+	const { fetchArtists } = use(DataContext);
+
+	const saveNewArtist = async newArtistDTO => {
+		try {
+			const response = await fetch('http://localhost:8080/api/artists/add', {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json',
+				},
+				body: JSON.stringify(newArtistDTO),
+			});
+
+			if (!response.ok) {
+				const errorData = await response.json();
+				throw new Error(
+					errorData.message || `ERROR - Status ${response.status}`
+				);
+			} else {
+				fetchArtists(); // update state before returning to list
+				navigate('/admin/artists');
+			}
+		} catch (error) {
+			console.error(error.message);
+		} finally {
+			// Use toast or banner to notify user of success or failure
+		}
+	};
+
 	const handleChange = event => {
-		let updatedArtist = {
-			...artist,
+		let updatedArtistData = {
+			...artistData,
 			[event.target.id]: event.target.value,
 		};
-		setArtist(updatedArtist);
+		setArtistData(updatedArtistData);
 	};
 
 	const handleSubmit = event => {
 		event.preventDefault();
-		if (artist.firstName === '' || artist.lastName === '') {
+        const artistDTO = new ArtistDTO(artistData.firstName, artistData.lastName, artistData.location);
+		if (!artistDTO.isValid()) {
 			setHasErrors(true);
 		} else {
-			// PART 5B TODO: Save artist and use ArtistDTO to form object for transfer
+			saveNewArtist(artistDTO);
 		}
 	};
 
@@ -44,11 +74,11 @@ const AddArtistForm = () => {
 					<TextInput
 						id="firstName"
 						label="First Name"
-						value={artist.firstName}
+						value={artistData.firstName}
 						handleChange={handleChange}
 					/>
 					<InputErrorMessage
-						hasError={hasErrors && artist.firstName === ''}
+						hasError={hasErrors && artistData.firstName === ''}
 						msg={errorMessages['firstNameRequired']}
 					/>
 				</div>
@@ -56,11 +86,11 @@ const AddArtistForm = () => {
 					<TextInput
 						id="lastName"
 						label="Last Name"
-						value={artist.lastName}
+						value={artistData.lastName}
 						handleChange={handleChange}
 					/>
 					<InputErrorMessage
-						hasError={hasErrors && artist.firstName === ''}
+						hasError={hasErrors && artistData.firstName === ''}
 						msg={errorMessages['lastNameRequired']}
 					/>
 				</div>
@@ -68,7 +98,7 @@ const AddArtistForm = () => {
 					<TextInput
 						id="location"
 						label="Location"
-						value={artist.location}
+						value={artistData.location}
 						handleChange={handleChange}
 					/>
 				</div>

@@ -17,7 +17,6 @@ export const DataProvider = ({ children }) => {
         const artworks = [];
 
 		try {
-			// const response = await fetch('./test-data/artworks.json');
 			const response = await fetch('http://localhost:8080/api/artworks');
 
 			if (!response.ok) {
@@ -41,8 +40,8 @@ export const DataProvider = ({ children }) => {
 					});
 					let details = new Details(
 						artwork.details.id,
-						artwork.details.media,
 						artwork.details.yearCreated,
+						artwork.details.media,
 						artwork.details.description,
 						artwork.details.height,
 						artwork.details.width,
@@ -70,7 +69,6 @@ export const DataProvider = ({ children }) => {
         const artists = [];
 
 		try {
-			// const response = await fetch('./test-data/artists.json');
 			const response = await fetch('http://localhost:8080/api/artists');
 
 			if (!response.ok) {
@@ -102,7 +100,6 @@ export const DataProvider = ({ children }) => {
         const categories = [];
 
 		try {
-			// const response = await fetch('./test-data/categories.json');
 			const response = await fetch('http://localhost:8080/api/categories');
 
 			if (!response.ok) {

@@ -4,4 +4,8 @@ export default class ArtistDTO {
 		this.lastName = lastName;
 		this.location = location;
 	}
+
+	isValid() {
+		return this.firstName.trim() !== '' && this.lastName.trim() !== '';
+	}
 }

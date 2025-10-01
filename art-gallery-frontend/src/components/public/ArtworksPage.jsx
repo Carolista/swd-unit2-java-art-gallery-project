@@ -20,7 +20,13 @@ const ArtworksPage = () => {
 		return (
 			<main className="main-content">
 				<h1>Artworks</h1>
-				<div className="card-container">{artworksJSX}</div>
+				{allArtworks.length ? (
+					<div className="card-container">{artworksJSX}</div>
+				) : (
+					<p>
+						<em>We're sorry, there are no artworks to display at this time.</em>
+					</p>
+				)}
 			</main>
 		);
 	}
