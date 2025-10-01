@@ -22,19 +22,11 @@ const ArtistsList = () => {
 			);
 		});
 
-		// FUTURE: Add sort by column
-		// FUTURE: Add links to view artworks by artist
-
 		return (
 			<main className="main-content">
 				<h2>ARTISTS</h2>
 				{allArtists.length ? (
 					<>
-						{allArtists.length > 10 && (
-							<p>
-								Add a <Link to="/admin/artists/add">new artist</Link>.
-							</p>
-						)}
 						<table className="table table-striped">
 							<thead>
 								<tr>
@@ -46,9 +38,6 @@ const ArtistsList = () => {
 							</thead>
 							<tbody>{artistRowsJSX}</tbody>
 						</table>
-						<p>
-							Add a <Link to="/admin/artists/add">new artist</Link>.
-						</p>
 					</>
 				) : (
 					<p>

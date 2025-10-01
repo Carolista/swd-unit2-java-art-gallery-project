@@ -20,19 +20,11 @@ const CategoriesList = () => {
 			);
 		});
 
-		// FUTURE: Add sort by column
-		// FUTURE: Add links to view artworks by category
-
 		return (
 			<main className="main-content">
 				<h2>CATEGORIES</h2>
 				{allCategories.length ? (
 					<>
-						{allCategories.length > 10 && (
-							<p>
-								Add a <Link to="/admin/categories/add">new category</Link>.
-							</p>
-						)}
 						<table className="table table-striped">
 							<thead>
 								<tr>
@@ -42,9 +34,6 @@ const CategoriesList = () => {
 							</thead>
 							<tbody>{categoriesJSX}</tbody>
 						</table>
-						<p>
-							Add a <Link to="/admin/categories/add">new category</Link>.
-						</p>
 					</>
 				) : (
 					<p>

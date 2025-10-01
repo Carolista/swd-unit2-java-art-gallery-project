@@ -25,19 +25,11 @@ const ArtworksList = () => {
 			);
 		});
 
-		// FUTURE: Add sort by column
-		// FUTURE: Add filter by artist and filter by category
-
 		return (
 			<main className="main-content">
 				<h2>ARTWORKS</h2>
 				{allArtworks.length ? (
 					<>
-						{allArtworks.length > 10 && (
-							<p>
-								Add a <Link to="/admin/artworks/add">new artwork</Link>.
-							</p>
-						)}
 						<table className="table table-striped">
 							<thead>
 								<tr>
@@ -50,9 +42,6 @@ const ArtworksList = () => {
 							</thead>
 							<tbody>{artworksJSX}</tbody>
 						</table>
-						<p>
-							Add a <Link to="/admin/artworks/add">new artwork</Link>.
-						</p>
 					</>
 				) : (
 					<p>
