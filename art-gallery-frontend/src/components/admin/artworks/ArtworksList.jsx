@@ -4,12 +4,16 @@ import { DataContext } from '../../../context/DataContext';
 import Loading from '../../public/Loading';
 
 const ArtworksList = () => {
-	const { isLoading } = use(DataContext);
+
+	// TODO: Get isLoading from DataContext and replace the temporary variable below
+	const isLoading = false;
 
 	if (isLoading) {
 		return <Loading dataName="artworks" />;
 	} else {
-		const { allArtworks } = use(DataContext);
+		
+        // TODO: Get allArtworks from DataContext and replace the temporary variable below
+		const allArtworks = [];
 
 		let artworksJSX = allArtworks.map(artwork => {
 			return (

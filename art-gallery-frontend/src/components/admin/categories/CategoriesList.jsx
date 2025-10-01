@@ -4,12 +4,16 @@ import { DataContext } from '../../../context/DataContext';
 import Loading from '../../public/Loading';
 
 const CategoriesList = () => {
-	const { isLoading } = use(DataContext);
+	
+    // TODO: Get isLoading from DataContext and replace the temporary variable below
+	const isLoading = false;
 
 	if (isLoading) {
 		return <Loading dataName="categories" />;
 	} else {
-		const { allCategories } = use(DataContext);
+		
+        // TODO: Get allCategories from DataContext and replace the temporary variable below
+		const allCategories = [];
 
 		let categoriesJSX = allCategories.map(category => {
 			return (

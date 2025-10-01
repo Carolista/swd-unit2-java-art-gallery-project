@@ -1,153 +1,33 @@
-import { createContext, useEffect, useState } from 'react';
-import Artist from '../classes/Artist';
-import Category from '../classes/Category';
-import Details from '../classes/Details';
-import Artwork from '../classes/Artwork';
+import { createContext } from 'react';
 
 export const DataContext = createContext();
 
 export const DataProvider = ({ children }) => {
-	const [isLoading, setIsLoading] = useState(true);
+	
+    // TODO: Create a state variable to track whether the data is still loading or not
+	// Set the initial state to true
 
-	const [allArtworks, setAllArtworks] = useState(null);
-	const [allArtists, setAllArtists] = useState(null);
-	const [allCategories, setAllCategories] = useState(null);
+	// TODO: Create three state variables to hold the data for all artworks, all artists, and all categories
+	// Set the initial state to null for all three
 
-	const fetchArtworks = async () => {
-        const artworks = [];
+	// TODO: Define three async functions that make the calls to the API endpoints
+	// for retrieving all artworks, artists, and categories
+	// Use try/catch to handle the possibility of a response other than 'ok'
+	// After structuring the data using the appropriate classes, update the state variable for that data
+	// You can use the relative path from the public folder to fetch from the test JSON first,
+	// then switch to the actual endpoints defined in your Spring Boot application
 
-		try {
-			// const response = await fetch('./test-data/artworks.json');
-			const response = await fetch('http://localhost:8080/api/artworks');
+	// TODO: Utilize the useEffect() hook to ensure all three fetching functions are called when the component first loads
 
-			if (!response.ok) {
-				const errorData = await response.json();
-				throw new Error(
-					errorData.message || `ERROR - Status ${response.status}`
-				);
-			} else {				
-				const data = await response.json();
+	// TODO: Utilize the useEffect() hook once more, this time to check that all three of the state variables
+	// for holding the data are no longer null. If that is true, they should either be empty arrays or have data in them.
+	// Make sure this hook executes anytime a change to one of those three state variables is detected.
 
-				data.forEach(artwork => {
-					let artist = new Artist(
-						artwork.artist.id,
-						artwork.artist.firstName,
-						artwork.artist.lastName,
-						artwork.artist.location
-					);
-					let categories = [];
-					artwork.categories.forEach(category => {
-						categories.push(new Category(category.id, category.title));
-					});
-					let details = new Details(
-						artwork.details.id,
-						artwork.details.media,
-						artwork.details.yearCreated,
-						artwork.details.description,
-						artwork.details.height,
-						artwork.details.width,
-						artwork.details.depth,
-						artwork.details.imageId
-					);
-					let newArtwork = new Artwork(
-						artwork.id,
-						artwork.title,
-						artist,
-						categories,
-						details
-					);
-					artworks.push(newArtwork);
-				});
-			}
-		} catch (error) {
-			console.error(error.message);
-		} finally {
-            setAllArtworks(artworks);
-        }
-	};
-
-	const fetchArtists = async () => {
-        const artists = [];
-
-		try {
-			// const response = await fetch('./test-data/artists.json');
-			const response = await fetch('http://localhost:8080/api/artists');
-
-			if (!response.ok) {
-				const errorData = await response.json();
-				throw new Error(
-					errorData.message || `ERROR - Status ${response.status}`
-				);
-			} else {
-				const data = await response.json();
-
-				data.forEach(artist => {
-					let newArtist = new Artist(
-						artist.id,
-						artist.firstName,
-						artist.lastName,
-						artist.location
-					);
-					artists.push(newArtist);
-				});
-			}
-		} catch (error) {
-			console.error(error.message);
-		} finally {
-            setAllArtists(artists);
-        }
-	};
-
-	const fetchCategories = async () => {
-        const categories = [];
-
-		try {
-			// const response = await fetch('./test-data/categories.json');
-			const response = await fetch('http://localhost:8080/api/categories');
-
-			if (!response.ok) {
-				const errorData = await response.json();
-				throw new Error(
-					errorData.message || `ERROR - Status ${response.status}`
-				);
-			} else {		
-				const data = await response.json();
-
-				data.forEach(category => {
-					let newCategory = new Category(category.id, category.title);
-					categories.push(newCategory);
-				});
-			}
-		} catch (error) {
-			console.error(error.message);
-		} finally {
-            setAllCategories(categories);
-        }
-	};
-
-	useEffect(() => {
-		fetchArtworks();
-		fetchArtists();
-		fetchCategories();
-	}, []);
-
-	useEffect(() => {
-		if (allArtworks !== null && allArtists !== null && allCategories !== null) {
-			setIsLoading(false);
-		}
-	}, [allArtworks, allArtists, allCategories]);
+	// TODO: Update the value object to include isLoading, all three state variables holding data, and all three fetch functions
 
 	return (
 		<DataContext.Provider
-			value={{
-				isLoading,
-				allArtworks,
-				allArtists,
-				allCategories,
-				fetchArtworks,
-				fetchArtists,
-				fetchCategories,
-			}}>
+			value={{}}>
 			{children}
 		</DataContext.Provider>
 	);

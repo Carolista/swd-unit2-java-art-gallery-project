@@ -1,15 +1,16 @@
-import { use } from 'react';
-import { Link } from 'react-router';
-import { DataContext } from '../../../context/DataContext';
 import Loading from '../../public/Loading';
 
 const ArtistsList = () => {
-	const { isLoading } = use(DataContext);
+
+	// TODO: Get isLoading from DataContext and replace the temporary variable below
+	const isLoading = false;
 
 	if (isLoading) {
 		return <Loading dataName="artists" />;
 	} else {
-		const { allArtists } = use(DataContext);
+
+		// TODO: Get allArtists from DataContext and replace the temporary variable below
+		const allArtists = [];
 
 		let artistRowsJSX = allArtists.map(artist => {
 			return (

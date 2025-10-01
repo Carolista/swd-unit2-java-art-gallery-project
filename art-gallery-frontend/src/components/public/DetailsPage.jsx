@@ -1,18 +1,19 @@
-import { use } from 'react';
 import { Link, useNavigate, useParams } from 'react-router';
-import { DataContext } from '../../context/DataContext';
 import ErrorPage from './ErrorPage';
 import Loading from './Loading';
 
 const DetailsPage = () => {
 	const { id } = useParams();
 
-	const { isLoading } = use(DataContext);
+	// TODO: Get isLoading from DataContext and replace the temporary variable below
+	const isLoading = false;
 
 	if (isLoading) {
 		return <Loading dataName="artwork" />;
 	} else {
-		const { allArtworks } = use(DataContext);
+        
+		// TODO: Get allArtworks from DataContext and replace the temporary variable below
+	    const allArtworks = [];
 
 		const artwork = allArtworks.find(artwork => String(artwork.id) === id);
 
