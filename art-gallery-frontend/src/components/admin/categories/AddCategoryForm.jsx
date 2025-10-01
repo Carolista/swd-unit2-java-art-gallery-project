@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { TextInput, InputErrorMessage } from '../../common/exports';
+import { InputErrorMessage, TextInput } from '../../common/exports';
 
 const AddCategoryForm = () => {
 	const [category, setCategory] = useState('');

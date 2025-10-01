@@ -1,6 +1,5 @@
 import { useState } from 'react';
-import InputErrorMessage from '../../common/InputErrorMsg';
-import TextInput from '../../common/TextInput';
+import { InputErrorMessage, TextInput } from '../../common/exports.js';
 
 let initialArtist = {
 	firstName: '',

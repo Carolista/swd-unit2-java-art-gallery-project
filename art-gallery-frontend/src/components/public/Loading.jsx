@@ -1,4 +1,4 @@
-import Spinner from '../common/Spinner';
+import { Spinner } from '../common/exports.js';
 
 const Loading = ({ dataName }) => {
 	let data = dataName || 'data';

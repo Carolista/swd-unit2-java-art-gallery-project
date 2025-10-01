@@ -4,11 +4,11 @@ import {
 	Checkbox,
 	InputErrorMessage,
 	Select,
+	TextArea,
 	TextInput,
 } from '../../common/exports.js';
-import TextArea from '../../common/TextArea.jsx';
 import { sortObjByString } from '../../../shared/utils.js';
-import Loading from '../../public/Loading.jsx';
+import { Loading } from '../../public/exports.js';
 
 let initialArtwork = {
 	title: '',
@@ -89,7 +89,7 @@ const AddArtworkForm = () => {
 			updatedCheckboxes[event.target.value] = event.target.checked;
 			setCheckboxes(updatedCheckboxes);
 			// This is just to keep track of the user's selections before submission
-            // The actual categoryIds array within the artwork object will be filled later
+			// The actual categoryIds array within the artwork object will be filled later
 		};
 
 		const handleSubmit = event => {

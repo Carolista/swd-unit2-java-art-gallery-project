@@ -40,8 +40,8 @@ export const DataProvider = ({ children }) => {
 					});
 					let details = new Details(
 						artwork.details.id,
-						artwork.details.media,
 						artwork.details.yearCreated,
+						artwork.details.media,
 						artwork.details.description,
 						artwork.details.height,
 						artwork.details.width,
