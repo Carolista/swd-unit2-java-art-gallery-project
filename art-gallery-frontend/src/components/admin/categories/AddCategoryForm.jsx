@@ -1,41 +1,19 @@
-import { use, useState } from 'react';
-import { useNavigate } from 'react-router';
+import { useState } from 'react';
 import { InputErrorMessage, TextInput } from '../../common/exports';
-import { DataContext } from '../../../context/DataContext';
-import CategoryDTO from '../../../classes/CategoryDTO';
 
 const AddCategoryForm = () => {
 	const [title, setTitle] = useState('');
 	const [hasErrors, setHasErrors] = useState(false);
 
-	const navigate = useNavigate();
-	const { fetchCategories } = use(DataContext);
+	// TODO: Access the fetchCategories function from context
+	// TODO: Access the useNavigate() hook
 
-	const saveNewCategory = async newCategoryDTO => {
-		try {
-			const response = await fetch('http://localhost:8080/api/categories/add', {
-				method: 'POST',
-				headers: {
-					'Content-Type': 'application/json',
-				},
-				body: JSON.stringify(newCategoryDTO),
-			});
-
-			if (!response.ok) {
-				const errorData = await response.json();
-				throw new Error(
-					errorData.message || `ERROR - Status ${response.status}`
-				);
-			} else {
-				fetchCategories();
-				navigate('/admin/categories');
-			}
-		} catch (error) {
-			console.error(error.message);
-		} finally {
-			// FUTURE: Use toast or banner to notify user of success or failure
-		}
-	};
+    /*
+        TODO: 
+        Write a function to handle the fetch request for posting a new category
+        Handle errors
+        After a successful POST, update allCategories in context and navigate back to CategoriesList
+    */
 
 	const handleChange = event => {
 		setTitle(event.target.value);
@@ -43,15 +21,13 @@ const AddCategoryForm = () => {
 
 	const handleSubmit = event => {
 		event.preventDefault();
-        const categoryDTO = new CategoryDTO(title); 
-		if (!categoryDTO.isValid()) {
-			setHasErrors(true);
-		} else {
-			saveNewCategory(categoryDTO);
-		}
+		/* 
+            TODO: 
+            Create instance of CategoryDTO using title
+            Run isValid() from DTO class to determine if errors should be activated
+            If valid, pass CategoryDTO object to the function that makes the POST call
+        */
 	};
-
-	// FUTURE: Alter width of fields at full page size and check responsive behavior
 
 	return (
 		<main className="main-content">

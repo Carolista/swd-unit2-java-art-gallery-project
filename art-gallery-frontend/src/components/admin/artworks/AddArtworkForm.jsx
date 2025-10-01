@@ -9,9 +9,7 @@ import {
 } from '../../common/exports.js';
 import { sortObjByString } from '../../../shared/utils.js';
 import { Loading } from '../../public/exports.js';
-import { useNavigate } from 'react-router';
-import ArtworkDTO from '../../../classes/ArtworkDTO.js';
-import { DetailsDTO } from '../../../classes/exports.js';
+import { ArtworkDTO, DetailsDTO } from '../../../classes/exports.js';
 
 let initialArtworkData = {
 	title: '',
@@ -47,7 +45,9 @@ const AddArtworkForm = () => {
 	if (isLoading) {
 		return <Loading dataName="artists and categories" />;
 	} else {
-		const { allArtists, allCategories, fetchArtworks } = use(DataContext);
+
+		// TODO: Access the fetchArtists function from context
+		const { allArtists, allCategories } = use(DataContext);
 
 		const [artworkData, setArtworkData] = useState(initialArtworkData);
 		const [detailsData, setDetailsData] = useState(initialDetailsData);
@@ -57,7 +57,13 @@ const AddArtworkForm = () => {
 		const sortedArtists = sortObjByString([...allArtists], 'lastName');
 		const sortedCategories = sortObjByString([...allCategories], 'title');
 
-		const navigate = useNavigate();
+		// TODO: Access the useNavigate() hook
+
+        /*
+            TODO: Write a function to handle the fetch request for posting a new artwork
+            Handle errors
+            After a successful POST, update allArtworks in context and navigate back to ArtworksList
+        */
 
 		const handleArtworkChange = event => {
 			let updatedArtworkData = {
@@ -83,39 +89,34 @@ const AddArtworkForm = () => {
 			// The actual categoryIds array within the artwork object will be filled later
 		};
 
-		const saveNewArtwork = async newArtworkDTO => {
-			try {
-				const response = await fetch('http://localhost:8080/api/artworks/add', {
-					method: 'POST',
-					headers: {
-						'Content-Type': 'application/json',
-					},
-					body: JSON.stringify(newArtworkDTO),
-				});
-
-				if (!response.ok) {
-					const errorData = await response.json();
-					throw new Error(
-						errorData.message || `ERROR - Status ${response.status}`
-					);
-				} else {
-					fetchArtworks(); // update state before returning to list
-					navigate('/admin/artworks');
-				}
-			} catch (error) {
-				console.error(error.message);
-			} finally {
-				// FUTURE: Use toast or banner to notify user of success or failure
-			}
-		};
-
 		const handleSubmit = event => {
 			event.preventDefault();
+            /* 
+                TODO: 
+                Loop over the checkboxes array and add the index to artworkData.categoryIds for any checked boxes
+                Create an instance of DetailsDTO using detailsData
+                Create instance of ArtistDTO using artistData
+                Run isValid() from both DTO classes to determine if errors should be activated
+                If valid, pass ArtworkDTO object to the function that makes the POST call
+            */
 			checkboxes.forEach((checkbox, i) => {
 				if (checkbox) artworkData.categoryIds.push(i);
 			});
-            let detailsDTO = new DetailsDTO(detailsData.yearCreated, detailsData.media, detailsData.description, detailsData.height, detailsData.width, detailsData.depth, detailsData.imageId);
-			let artworkDTO = new ArtworkDTO(artworkData.title, artworkData.artistId, artworkData.categoryIds, detailsDTO);
+			let detailsDTO = new DetailsDTO(
+				detailsData.yearCreated,
+				detailsData.media,
+				detailsData.description,
+				detailsData.height,
+				detailsData.width,
+				detailsData.depth,
+				detailsData.imageId
+			);
+			let artworkDTO = new ArtworkDTO(
+				artworkData.title,
+				artworkData.artistId,
+				artworkData.categoryIds,
+				detailsDTO
+			);
 			if (!detailsDTO.isValid() || !artworkDTO.isValid()) {
 				setHasErrors(true);
 			} else {

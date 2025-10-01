@@ -1,8 +1,5 @@
-import { use, useState } from 'react';
-import { useNavigate } from 'react-router';
+import { useState } from 'react';
 import { InputErrorMessage, TextInput } from '../../common/exports.js';
-import { DataContext } from '../../../context/DataContext.jsx';
-import ArtistDTO from '../../../classes/ArtistDTO.js';
 
 let initialArtistData = {
 	firstName: '',
@@ -15,41 +12,19 @@ let errorMessages = {
 	lastNameRequired: 'Last name is required.',
 };
 
-// FUTURE: Alter width of fields at full page size and check responsive behavior
-
 const AddArtistForm = () => {
 	const [artistData, setArtistData] = useState(initialArtistData);
 	const [hasErrors, setHasErrors] = useState(false);
 
-	const navigate = useNavigate();
-	const { fetchArtists } = use(DataContext);
+	// TODO: Access the fetchArtists function from context
+	// TODO: Access the useNavigate() hook
 
-	const saveNewArtist = async newArtistDTO => {
-		try {
-			const response = await fetch('http://localhost:8080/api/artists/add', {
-				method: 'POST',
-				headers: {
-					'Content-Type': 'application/json',
-				},
-				body: JSON.stringify(newArtistDTO),
-			});
-
-			if (!response.ok) {
-				const errorData = await response.json();
-				throw new Error(
-					errorData.message || `ERROR - Status ${response.status}`
-				);
-			} else {
-				fetchArtists(); // update state before returning to list
-				navigate('/admin/artists');
-			}
-		} catch (error) {
-			console.error(error.message);
-		} finally {
-			// FUTURE: Use toast or banner to notify user of success or failure
-		}
-	};
-
+    /*
+        TODO: Write a function to handle the fetch request for posting a new artist
+        Handle errors
+        After a successful POST, update allArtists in context and navigate back to ArtistsList
+    */
+   
 	const handleChange = event => {
 		let updatedArtistData = {
 			...artistData,
@@ -60,12 +35,12 @@ const AddArtistForm = () => {
 
 	const handleSubmit = event => {
 		event.preventDefault();
-        const artistDTO = new ArtistDTO(artistData.firstName, artistData.lastName, artistData.location);
-		if (!artistDTO.isValid()) {
-			setHasErrors(true);
-		} else {
-			saveNewArtist(artistDTO);
-		}
+		/* 
+            TODO: 
+            Create instance of ArtistDTO using artistData
+            Run isValid() from DTO class to determine if errors should be activated
+            If valid, pass ArtistDTO object to the function that makes the POST call
+        */
 	};
 
 	return (
