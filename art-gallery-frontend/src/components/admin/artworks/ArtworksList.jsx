@@ -30,12 +30,11 @@ const ArtworksList = () => {
 			} catch (error) {
 				console.error(error.message);
 			} finally {
-				// FUTURE: Use toast or banner to notify user of success or failure
+				// Use toast or banner to notify user of success or failure
 				// Could have various specific outcomes depending on type of error
 			}
 		};
 		const handleDelete = id => {
-			// FUTURE: Use modal instead of alert
 			let confirmed = confirm(`
                 Are you sure you want to delete this record?
                 
@@ -66,9 +65,6 @@ const ArtworksList = () => {
 				</tr>
 			);
 		});
-
-		// FUTURE: Add sort by column
-		// FUTURE: Add filter by artist and filter by category
 
 		return (
 			<main className="main-content">

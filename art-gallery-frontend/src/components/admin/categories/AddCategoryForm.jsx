@@ -2,7 +2,7 @@ import { use, useState } from 'react';
 import { useNavigate } from 'react-router';
 import { InputErrorMessage, TextInput } from '../../common/exports';
 import { DataContext } from '../../../context/DataContext';
-import CategoryDTO from '../../../classes/CategoryDTO';
+import { CategoryDTO } from '../../../classes/exports.js';
 
 const AddCategoryForm = () => {
 	const [title, setTitle] = useState('');
@@ -33,7 +33,7 @@ const AddCategoryForm = () => {
 		} catch (error) {
 			console.error(error.message);
 		} finally {
-			// FUTURE: Use toast or banner to notify user of success or failure
+			// Use toast or banner to notify user of success or failure
 		}
 	};
 
@@ -43,15 +43,13 @@ const AddCategoryForm = () => {
 
 	const handleSubmit = event => {
 		event.preventDefault();
-        const categoryDTO = new CategoryDTO(title); 
+		const categoryDTO = new CategoryDTO(title);
 		if (!categoryDTO.isValid()) {
 			setHasErrors(true);
 		} else {
 			saveNewCategory(categoryDTO);
 		}
 	};
-
-	// FUTURE: Alter width of fields at full page size and check responsive behavior
 
 	return (
 		<main className="main-content">

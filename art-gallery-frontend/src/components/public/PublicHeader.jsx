@@ -5,8 +5,6 @@ const PublicHeader = ({ setLoggedIn }) => {
 		setLoggedIn(true);
 	};
 
-	// FUTURE: use Navlinks and active link here with routing
-
 	return (
 		<>
 			<header>
