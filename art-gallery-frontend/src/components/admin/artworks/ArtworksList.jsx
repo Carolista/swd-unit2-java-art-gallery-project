@@ -9,41 +9,22 @@ const ArtworksList = () => {
 	if (isLoading) {
 		return <Loading dataName="artworks" />;
 	} else {
-		const { allArtworks, fetchArtworks } = use(DataContext);
+        
+		// TODO: Access fetchArtworks function from context
+		const { allArtworks } = use(DataContext);
 
-		const deleteArtwork = async id => {
-			try {
-				const response = await fetch(
-					`http://localhost:8080/api/artworks/delete/${id}`,
-					{
-						method: 'DELETE',
-					}
-				);
-				if (!response.ok) {
-					const errorData = await response.json();
-					throw new Error(
-						errorData.message || `ERROR - Status ${response.status}`
-					);
-				} else {
-					fetchArtworks(); // update state so list will update
-				}
-			} catch (error) {
-				console.error(error.message);
-			} finally {
-				// FUTURE: Use toast or banner to notify user of success or failure
-				// Could have various specific outcomes depending on type of error
-			}
-		};
+		/*
+            TODO: Write a function to handle the fetch request for deleting an artwork
+            Handle errors
+            After a successful DELETE, update allArtworks in context
+        */
+
 		const handleDelete = id => {
-			// FUTURE: Use modal instead of alert
-			let confirmed = confirm(`
-                Are you sure you want to delete this record?
-                
-                Artwork: ${allArtworks.find(artwork => artwork.id == id).title}
-                `);
-			if (confirmed) {
-				deleteArtwork(id);
-			}
+			/*
+                TODO: Use browser's confirm popup to ask if user is sure they want to delete
+                // Include artwork title in message
+                // If confirmed, call function to delete artwork and pass the id
+            */
 		};
 
 		let artworksJSX = allArtworks.map(artwork => {
@@ -57,7 +38,8 @@ const ArtworksList = () => {
 						<img src={artwork.details.getImageURL()} width="50px" />
 					</td>
 					<td className="delete-icon">
-						<span onClick={() => handleDelete(artwork.id)}>
+						{/* Add anonymous function that will call click handler and pass in id */}
+						<span>
 							<i
 								className="fa-solid fa-trash-can"
 								title={`Delete ${artwork.title}`}></i>
@@ -66,9 +48,6 @@ const ArtworksList = () => {
 				</tr>
 			);
 		});
-
-		// FUTURE: Add sort by column
-		// FUTURE: Add filter by artist and filter by category
 
 		return (
 			<main className="main-content">

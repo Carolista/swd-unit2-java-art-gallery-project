@@ -19,12 +19,12 @@ const AddArtistForm = () => {
 	// TODO: Access the fetchArtists function from context
 	// TODO: Access the useNavigate() hook
 
-    /*
+	/*
         TODO: Write a function to handle the fetch request for posting a new artist
         Handle errors
         After a successful POST, update allArtists in context and navigate back to ArtistsList
     */
-   
+
 	const handleChange = event => {
 		let updatedArtistData = {
 			...artistData,

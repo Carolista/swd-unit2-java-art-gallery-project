@@ -9,52 +9,32 @@ const CategoriesList = () => {
 	if (isLoading) {
 		return <Loading dataName="categories" />;
 	} else {
-		const { allCategories, fetchCategories } = use(DataContext);
+        
+		// TODO: Access fetchCategories function from context
+		const { allCategories } = use(DataContext);
 
-		const deleteCategory = async id => {
-			try {
-				const response = await fetch(
-					`http://localhost:8080/api/categories/delete/${id}`,
-					{
-						method: 'DELETE',
-					}
-				);
-				if (!response.ok) {
-					const errorData = await response.json();
-					throw new Error(
-						errorData.message || `ERROR - Status ${response.status}`
-					);
-				} else {
-					fetchCategories(); // update state so list will update
-				}
-			} catch (error) {
-				console.error(error.message);
-			} finally {
-				// FUTURE: Use toast or banner to notify user of success or failure
-                // Could have various specific outcomes depending on type of error
-            }
-		};
+		/*
+            TODO: Write a function to handle the fetch request for deleting a category
+            Handle errors
+            After a successful DELETE, update allCategories in context
+        */
 
 		const handleDelete = id => {
-			// FUTURE: Use modal instead of alert
-			let confirmed = confirm(`
-                Are you sure you want to delete this record?
-                
-                Category: ${
-									allCategories.find(category => category.id == id).title
-								}
-                `);
-			if (confirmed) {
-				deleteCategory(id);
-			}
+			/*
+                TODO: Use browser's confirm popup to ask if user is sure they want to delete
+                // Include category title in message
+                // If confirmed, call function to delete category and pass the id
+            */
 		};
+
 		let categoriesJSX = allCategories.map(category => {
-            return (
-                <tr key={category.id}>
+			return (
+				<tr key={category.id}>
 					<td>{category.id}</td>
 					<td>{category.title}</td>
-                    <td className="delete-icon">
-						<span onClick={() => handleDelete(category.id)}>
+					<td className="delete-icon">
+						{/* Add anonymous function that will call click handler and pass in id */}
+						<span>
 							<i
 								className="fa-solid fa-trash-can"
 								title={`Delete ${category.title}`}></i>
@@ -63,9 +43,6 @@ const CategoriesList = () => {
 				</tr>
 			);
 		});
-
-		// FUTURE: Add sort by column
-		// FUTURE: Add links to view artworks by category
 
 		return (
 			<main className="main-content">

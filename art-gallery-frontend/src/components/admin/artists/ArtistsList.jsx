@@ -9,44 +9,22 @@ const ArtistsList = () => {
 	if (isLoading) {
 		return <Loading dataName="artists" />;
 	} else {
-		const { allArtists, fetchArtists } = use(DataContext);
+        
+		// TODO: Access fetchArtists function from context
+		const { allArtists } = use(DataContext);
 
-		const deleteArtist = async id => {
-			try {
-				const response = await fetch(
-					`http://localhost:8080/api/artists/delete/${id}`,
-					{
-						method: 'DELETE',
-					}
-				);
-				if (!response.ok) {
-					const errorData = await response.json();
-					throw new Error(
-						errorData.message || `ERROR - Status ${response.status}`
-					);
-				} else {
-					fetchArtists(); // update state so list will re-render
-				}
-			} catch (error) {
-				console.error(error.message);
-			} finally {
-				// FUTURE: Use toast or banner to notify user of success or failure
-				// Could have various specific outcomes depending on type of error
-			}
-		};
+		/*
+            TODO: Write a function to handle the fetch request for deleting an artist
+            Handle errors
+            After a successful DELETE, update allArtists in context
+        */
 
 		const handleDelete = id => {
-			// FUTURE: Use modal instead of alert
-			let confirmed = confirm(`
-                Are you sure you want to delete this record?
-                
-                Artist: ${allArtists
-									.find(artist => artist.id == id)
-									.getFullName()}
-                `);
-			if (confirmed) {
-				deleteArtist(id);
-			}
+			/*
+                TODO: Use browser's confirm popup to ask if user is sure they want to delete
+                // Include full name of artist in message
+                // If confirmed, call function to delete artist and pass the id
+            */
 		};
 
 		let artistRowsJSX = allArtists.map(artist => {
@@ -57,7 +35,8 @@ const ArtistsList = () => {
 					<td>{artist.lastName}</td>
 					<td>{artist.location}</td>
 					<td className="delete-icon">
-						<span onClick={() => handleDelete(artist.id)}>
+						{/* Add anonymous function that will call click handler and pass in id */}
+						<span>
 							<i
 								className="fa-solid fa-trash-can"
 								title={`Delete ${artist.getFullName()}`}></i>
@@ -66,9 +45,6 @@ const ArtistsList = () => {
 				</tr>
 			);
 		});
-
-		// FUTURE: Add sort by column
-		// FUTURE: Add links to view artworks by artist
 
 		return (
 			<main className="main-content">
