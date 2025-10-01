@@ -10,6 +10,8 @@ import {
 import { sortObjByString } from '../../../shared/utils.js';
 import { Loading } from '../../public/exports.js';
 import { useNavigate } from 'react-router';
+import ArtworkDTO from '../../../classes/ArtworkDTO.js';
+import { DetailsDTO } from '../../../classes/exports.js';
 
 let initialArtworkData = {
 	title: '',
@@ -57,20 +59,6 @@ const AddArtworkForm = () => {
 
 		const navigate = useNavigate();
 
-		const isValid = newArtwork => {
-			return (
-				newArtwork.title &&
-				newArtwork.details.description &&
-				newArtwork.details.yearCreated &&
-				newArtwork.details.media &&
-				newArtwork.details.height &&
-				newArtwork.details.width &&
-				newArtwork.details.imageId &&
-				newArtwork.artistId &&
-				newArtwork.categoryIds.length
-			);
-		};
-
 		const handleArtworkChange = event => {
 			let updatedArtworkData = {
 				...artworkData,
@@ -95,14 +83,14 @@ const AddArtworkForm = () => {
 			// The actual categoryIds array within the artwork object will be filled later
 		};
 
-		const saveNewArtwork = async newArtwork => {
+		const saveNewArtwork = async newArtworkDTO => {
 			try {
 				const response = await fetch('http://localhost:8080/api/artworks/add', {
 					method: 'POST',
 					headers: {
 						'Content-Type': 'application/json',
 					},
-					body: JSON.stringify(newArtwork),
+					body: JSON.stringify(newArtworkDTO),
 				});
 
 				if (!response.ok) {
@@ -123,15 +111,15 @@ const AddArtworkForm = () => {
 
 		const handleSubmit = event => {
 			event.preventDefault();
-			let newArtwork = { ...artworkData };
-			newArtwork.details = { ...detailsData };
 			checkboxes.forEach((checkbox, i) => {
-				if (checkbox) newArtwork.categoryIds.push(i);
+				if (checkbox) artworkData.categoryIds.push(i);
 			});
-			if (!isValid(newArtwork)) {
+            let detailsDTO = new DetailsDTO(detailsData.yearCreated, detailsData.media, detailsData.description, detailsData.height, detailsData.width, detailsData.depth, detailsData.imageId);
+			let artworkDTO = new ArtworkDTO(artworkData.title, artworkData.artistId, artworkData.categoryIds, detailsDTO);
+			if (!detailsDTO.isValid() || !artworkDTO.isValid()) {
 				setHasErrors(true);
 			} else {
-				saveNewArtwork(newArtwork);
+				saveNewArtwork(artworkDTO);
 			}
 		};
 

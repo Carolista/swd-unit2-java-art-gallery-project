@@ -2,26 +2,23 @@ import { use, useState } from 'react';
 import { useNavigate } from 'react-router';
 import { InputErrorMessage, TextInput } from '../../common/exports';
 import { DataContext } from '../../../context/DataContext';
+import CategoryDTO from '../../../classes/CategoryDTO';
 
 const AddCategoryForm = () => {
-	const [categoryData, setCategoryData] = useState('');
+	const [title, setTitle] = useState('');
 	const [hasErrors, setHasErrors] = useState(false);
 
 	const navigate = useNavigate();
 	const { fetchCategories } = use(DataContext);
 
-	const handleChange = event => {
-		setCategoryData(event.target.value);
-	};
-
-	const saveNewCategory = async category => {
+	const saveNewCategory = async newCategoryDTO => {
 		try {
 			const response = await fetch('http://localhost:8080/api/categories/add', {
 				method: 'POST',
 				headers: {
 					'Content-Type': 'application/json',
 				},
-				body: JSON.stringify(category),
+				body: JSON.stringify(newCategoryDTO),
 			});
 
 			if (!response.ok) {
@@ -40,13 +37,17 @@ const AddCategoryForm = () => {
 		}
 	};
 
+	const handleChange = event => {
+		setTitle(event.target.value);
+	};
+
 	const handleSubmit = event => {
 		event.preventDefault();
-		if (categoryData === '') {
+        const categoryDTO = new CategoryDTO(title); 
+		if (!categoryDTO.isValid()) {
 			setHasErrors(true);
 		} else {
-			let newCategory = { title: categoryData };
-			saveNewCategory(newCategory);
+			saveNewCategory(categoryDTO);
 		}
 	};
 
@@ -60,11 +61,11 @@ const AddCategoryForm = () => {
 					<TextInput
 						id="title"
 						label="Title"
-						value={categoryData}
+						value={title}
 						handleChange={handleChange}
 					/>
 					<InputErrorMessage
-						hasError={hasErrors && categoryData === ''}
+						hasError={hasErrors && title === ''}
 						msg="Category name is required."
 					/>
 				</div>
