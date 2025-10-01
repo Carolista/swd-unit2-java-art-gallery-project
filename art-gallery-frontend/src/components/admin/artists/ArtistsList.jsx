@@ -56,19 +56,23 @@ const ArtistsList = () => {
 
 		let artistRowsJSX = allArtists.map(artist => {
 			let numArtworks = getNumberOfArtworksByArtist(artist.id);
+
+			const getViewArtworksJSX = () => {
+				return numArtworks ? (
+					<Link to="/admin/artworks" state={{ currentArtist: artist }}>
+						View {numArtworks} artworks
+					</Link>
+				) : (
+					''
+				);
+			};
 			return (
 				<tr key={artist.id}>
 					<td>{artist.id}</td>
 					<td>{artist.firstName}</td>
 					<td>{artist.lastName}</td>
 					<td>{artist.location}</td>
-					<td>
-						View{' '}
-						<Link to="/admin/artworks" state={{ currentArtist: artist }}>
-							{numArtworks}
-						</Link>{' '}
-						Artworks
-					</td>
+					<td>{getViewArtworksJSX()}</td>
 					<td className="delete-icon">
 						<span onClick={() => handleDelete(artist.id)}>
 							<i

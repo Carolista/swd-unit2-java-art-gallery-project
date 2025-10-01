@@ -9,7 +9,15 @@ const CategoriesList = () => {
 	if (isLoading) {
 		return <Loading dataName="categories" />;
 	} else {
-		const { allCategories, fetchCategories } = use(DataContext);
+		const { allArtworks, allCategories, fetchCategories } = use(DataContext);
+
+		const getNumberOfArtworksByCategory = categoryId => {
+			return [...allArtworks].filter(artwork => {
+				return artwork.categories
+					.map(category => category.id)
+					.includes(categoryId);
+			}).length;
+		};
 
 		const deleteCategory = async id => {
 			try {
@@ -31,8 +39,8 @@ const CategoriesList = () => {
 				console.error(error.message);
 			} finally {
 				// FUTURE: Use toast or banner to notify user of success or failure
-                // Could have various specific outcomes depending on type of error
-            }
+				// Could have various specific outcomes depending on type of error
+			}
 		};
 
 		const handleDelete = id => {
@@ -49,11 +57,22 @@ const CategoriesList = () => {
 			}
 		};
 		let categoriesJSX = allCategories.map(category => {
-            return (
-                <tr key={category.id}>
+			let numArtworks = getNumberOfArtworksByCategory(category.id);
+			const getViewArtworksJSX = () => {
+				return numArtworks ? (
+					<Link to="/admin/artworks" state={{ currentCategory: category }}>
+						View {numArtworks} artworks
+					</Link>
+				) : (
+					''
+				);
+			};
+			return (
+				<tr key={category.id}>
 					<td>{category.id}</td>
 					<td>{category.title}</td>
-                    <td className="delete-icon">
+					<td>{getViewArtworksJSX()}</td>
+					<td className="delete-icon">
 						<span onClick={() => handleDelete(category.id)}>
 							<i
 								className="fa-solid fa-trash-can"
@@ -82,6 +101,7 @@ const CategoriesList = () => {
 								<tr>
 									<th>ID</th>
 									<th>Title</th>
+									<th>Artworks</th>
 									<th></th>
 								</tr>
 							</thead>

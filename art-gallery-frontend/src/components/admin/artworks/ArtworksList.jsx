@@ -13,7 +13,7 @@ const ArtworksList = () => {
 		const [currentArtworks, setCurrentArtworks] = useState([...allArtworks]);
 
 		const location = useLocation();
-		const { currentArtist } = location.state || {};
+		const { currentArtist, currentCategory } = location.state || {};
 
 		useEffect(() => {
 			if (currentArtist) {
@@ -22,7 +22,15 @@ const ArtworksList = () => {
 				);
 				setCurrentArtworks(filteredArtworks);
 			}
-		}, [currentArtist]);
+			if (currentCategory) {
+				const filteredArtworks = allArtworks.filter(artwork =>
+					artwork.categories
+						.map(category => category.id)
+						.includes(currentCategory.id)
+				);
+				setCurrentArtworks(filteredArtworks);
+			}
+		}, [currentArtist, currentCategory]);
 
 		const deleteArtwork = async id => {
 			try {
@@ -89,6 +97,7 @@ const ArtworksList = () => {
 					ARTWORKS
 					{currentArtist &&
 						` by ${currentArtist.firstName[0]}. ${currentArtist.lastName}`}
+					{currentCategory && ` by ${currentCategory.title}`}
 				</h2>
 				{currentArtworks.length ? (
 					<>
