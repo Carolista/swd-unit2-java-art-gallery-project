@@ -6,6 +6,10 @@ export default class ArtworkDTO {
 		this.title = title;
 		this.artistId = artistId; // artist's id
 		this.categoryIds = categoryIds; // array of category ids
-		this.details = details; // Details object
+		this.details = details; // DetailsDTO object
 	}
+
+    isValid() {
+        return this.title.trim() && this.artistId && this.categoryIds.length;
+    }
 }
