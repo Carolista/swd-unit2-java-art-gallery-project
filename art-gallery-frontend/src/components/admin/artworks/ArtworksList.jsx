@@ -1,7 +1,7 @@
 import { use } from 'react';
 import { Link } from 'react-router';
 import { DataContext } from '../../../context/DataContext';
-import Loading from '../../public/Loading';
+import { Loading } from '../../public/exports.js';
 
 const ArtworksList = () => {
 	const { isLoading } = use(DataContext);
@@ -9,19 +9,42 @@ const ArtworksList = () => {
 	if (isLoading) {
 		return <Loading dataName="artworks" />;
 	} else {
-		const { allArtworks } = use(DataContext);
+		const { allArtworks, fetchArtworks } = use(DataContext);
 
-        // TODO: Write a function to make a DELETE call to remove an artwork by id
-        // Include try/catch to handle error objects in response (similar to GET requests in DataContext)
-        // If response is OK, re-fetch artists so that state variable will hold updated list
-        // (at which point the page will re-render automatically)
-
-
-        // TODO: Write a handler function that confirms the user's intent to delete the record
-        // and, if so, passes the id to the function above to make the DELETE request
-
-
-        // TODO: Add a trash can icon in a sixth column tied to a click handler for deleting that record
+		const deleteArtwork = async id => {
+			try {
+				const response = await fetch(
+					`http://localhost:8080/api/artworks/delete/${id}`,
+					{
+						method: 'DELETE',
+					}
+				);
+				if (!response.ok) {
+					const errorData = await response.json();
+					throw new Error(
+						errorData.message || `ERROR - Status ${response.status}`
+					);
+				} else {
+					fetchArtworks(); // update state so list will update
+				}
+			} catch (error) {
+				console.error(error.message);
+			} finally {
+				// FUTURE: Use toast or banner to notify user of success or failure
+				// Could have various specific outcomes depending on type of error
+			}
+		};
+		const handleDelete = id => {
+			// FUTURE: Use modal instead of alert
+			let confirmed = confirm(`
+                Are you sure you want to delete this record?
+                
+                Artwork: ${allArtworks.find(artwork => artwork.id == id).title}
+                `);
+			if (confirmed) {
+				deleteArtwork(id);
+			}
+		};
 
 		let artworksJSX = allArtworks.map(artwork => {
 			return (
@@ -32,6 +55,13 @@ const ArtworksList = () => {
 					<td>{artwork.details.yearCreated}</td>
 					<td>
 						<img src={artwork.details.getImageURL()} width="50px" />
+					</td>
+					<td className="delete-icon">
+						<span onClick={() => handleDelete(artwork.id)}>
+							<i
+								className="fa-solid fa-trash-can"
+								title={`Delete ${artwork.title}`}></i>
+						</span>
 					</td>
 				</tr>
 			);
@@ -58,7 +88,7 @@ const ArtworksList = () => {
 									<th>Artist</th>
 									<th>Year Created</th>
 									<th>Image</th>
-                                    {/* TODO: Add a sixth column header for consistency; it can be blank */}
+									<th></th>
 								</tr>
 							</thead>
 							<tbody>{artworksJSX}</tbody>
