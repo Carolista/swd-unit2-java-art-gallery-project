@@ -59,30 +59,6 @@ const AddArtworkForm = () => {
 
 		const navigate = useNavigate();
 
-		const handleArtworkChange = event => {
-			let updatedArtworkData = {
-				...artworkData,
-				[event.target.id]: event.target.value,
-			};
-			setArtworkData(updatedArtworkData);
-		};
-
-		const handleDetailsChange = event => {
-			let updatedDetailsData = {
-				...detailsData,
-				[event.target.id]: event.target.value,
-			};
-			setDetailsData(updatedDetailsData);
-		};
-
-		const handleCategoryChange = event => {
-			let updatedCheckboxes = [...checkboxes];
-			updatedCheckboxes[event.target.value] = event.target.checked;
-			setCheckboxes(updatedCheckboxes);
-			// This is just to keep track of the user's selections before submission
-			// The actual categoryIds array within the artwork object will be filled later
-		};
-
 		const saveNewArtwork = async newArtworkDTO => {
 			try {
 				const response = await fetch('http://localhost:8080/api/artworks/add', {
@@ -109,13 +85,50 @@ const AddArtworkForm = () => {
 			}
 		};
 
+		const handleArtworkChange = event => {
+			let updatedArtworkData = {
+				...artworkData,
+				[event.target.id]: event.target.value,
+			};
+			setArtworkData(updatedArtworkData);
+		};
+
+		const handleDetailsChange = event => {
+			let updatedDetailsData = {
+				...detailsData,
+				[event.target.id]: event.target.value,
+			};
+			setDetailsData(updatedDetailsData);
+		};
+
+		const handleCategoryChange = event => {
+			let updatedCheckboxes = [...checkboxes];
+			updatedCheckboxes[event.target.value] = event.target.checked;
+			setCheckboxes(updatedCheckboxes);
+			// This is just to keep track of the user's selections before submission
+			// The actual categoryIds array within the artwork object will be filled later
+		};
+
 		const handleSubmit = event => {
 			event.preventDefault();
 			checkboxes.forEach((checkbox, i) => {
 				if (checkbox) artworkData.categoryIds.push(i);
 			});
-            let detailsDTO = new DetailsDTO(detailsData.yearCreated, detailsData.media, detailsData.description, detailsData.height, detailsData.width, detailsData.depth, detailsData.imageId);
-			let artworkDTO = new ArtworkDTO(artworkData.title, artworkData.artistId, artworkData.categoryIds, detailsDTO);
+			let detailsDTO = new DetailsDTO(
+				detailsData.yearCreated,
+				detailsData.media,
+				detailsData.description,
+				detailsData.height,
+				detailsData.width,
+				detailsData.depth,
+				detailsData.imageId
+			);
+			let artworkDTO = new ArtworkDTO(
+				artworkData.title,
+				artworkData.artistId,
+				artworkData.categoryIds,
+				detailsDTO
+			);
 			if (!detailsDTO.isValid() || !artworkDTO.isValid()) {
 				setHasErrors(true);
 			} else {
