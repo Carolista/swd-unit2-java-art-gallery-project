@@ -4,14 +4,14 @@ import { InputErrorMessage, TextInput } from '../../common/exports';
 import { DataContext } from '../../../context/DataContext';
 
 const AddCategoryForm = () => {
-	const [category, setCategory] = useState('');
+	const [categoryData, setCategoryData] = useState('');
 	const [hasErrors, setHasErrors] = useState(false);
 
 	const navigate = useNavigate();
 	const { fetchCategories } = use(DataContext);
 
 	const handleChange = event => {
-		setCategory(event.target.value);
+		setCategoryData(event.target.value);
 	};
 
 	const saveNewCategory = async category => {
@@ -42,10 +42,10 @@ const AddCategoryForm = () => {
 
 	const handleSubmit = event => {
 		event.preventDefault();
-		if (category === '') {
+		if (categoryData === '') {
 			setHasErrors(true);
 		} else {
-			let newCategory = { title: category };
+			let newCategory = { title: categoryData };
 			saveNewCategory(newCategory);
 		}
 	};
@@ -60,11 +60,11 @@ const AddCategoryForm = () => {
 					<TextInput
 						id="title"
 						label="Title"
-						value={category}
+						value={categoryData}
 						handleChange={handleChange}
 					/>
 					<InputErrorMessage
-						hasError={hasErrors && category === ''}
+						hasError={hasErrors && categoryData === ''}
 						msg="Category name is required."
 					/>
 				</div>

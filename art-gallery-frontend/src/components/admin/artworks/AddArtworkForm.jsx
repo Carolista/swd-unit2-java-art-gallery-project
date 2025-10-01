@@ -11,13 +11,13 @@ import { sortObjByString } from '../../../shared/utils.js';
 import { Loading } from '../../public/exports.js';
 import { useNavigate } from 'react-router';
 
-let initialArtwork = {
+let initialArtworkData = {
 	title: '',
 	artistId: '',
 	categoryIds: [],
 };
 
-let initialDetails = {
+let initialDetailsData = {
 	description: '',
 	yearCreated: '',
 	media: '',
@@ -47,8 +47,8 @@ const AddArtworkForm = () => {
 	} else {
 		const { allArtists, allCategories, fetchArtworks } = use(DataContext);
 
-		const [artwork, setArtwork] = useState(initialArtwork);
-		const [details, setDetails] = useState(initialDetails);
+		const [artworkData, setArtworkData] = useState(initialArtworkData);
+		const [detailsData, setDetailsData] = useState(initialDetailsData);
 		const [checkboxes, setCheckboxes] = useState([]);
 		const [hasErrors, setHasErrors] = useState(false);
 
@@ -72,19 +72,19 @@ const AddArtworkForm = () => {
 		};
 
 		const handleArtworkChange = event => {
-			let updatedArtwork = {
-				...artwork,
+			let updatedArtworkData = {
+				...artworkData,
 				[event.target.id]: event.target.value,
 			};
-			setArtwork(updatedArtwork);
+			setArtworkData(updatedArtworkData);
 		};
 
 		const handleDetailsChange = event => {
-			let updatedDetails = {
-				...details,
+			let updatedDetailsData = {
+				...detailsData,
 				[event.target.id]: event.target.value,
 			};
-			setDetails(updatedDetails);
+			setDetailsData(updatedDetailsData);
 		};
 
 		const handleCategoryChange = event => {
@@ -123,8 +123,8 @@ const AddArtworkForm = () => {
 
 		const handleSubmit = event => {
 			event.preventDefault();
-			let newArtwork = { ...artwork };
-			newArtwork.details = { ...details };
+			let newArtwork = { ...artworkData };
+			newArtwork.details = { ...detailsData };
 			checkboxes.forEach((checkbox, i) => {
 				if (checkbox) newArtwork.categoryIds.push(i);
 			});
@@ -166,11 +166,11 @@ const AddArtworkForm = () => {
 								<TextInput
 									id="title"
 									label="Title"
-									value={artwork.title}
+									value={artworkData.title}
 									handleChange={handleArtworkChange}
 								/>
 								<InputErrorMessage
-									hasError={hasErrors && artwork.title === ''}
+									hasError={hasErrors && artworkData.title === ''}
 									msg={errorMessages['titleRequired']}
 								/>
 							</div>
@@ -183,7 +183,7 @@ const AddArtworkForm = () => {
 									{artistOptionsJSX}
 								</Select>
 								<InputErrorMessage
-									hasError={hasErrors && artwork.artistId === 0}
+									hasError={hasErrors && artworkData.artistId === 0}
 									msg={errorMessages['artistRequired']}
 								/>
 							</div>
@@ -193,11 +193,11 @@ const AddArtworkForm = () => {
 								<TextInput
 									id="yearCreated"
 									label="Year Created"
-									value={details.yearCreated}
+									value={detailsData.yearCreated}
 									handleChange={handleDetailsChange}
 								/>
 								<InputErrorMessage
-									hasError={hasErrors && details.yearCreated === ''}
+									hasError={hasErrors && detailsData.yearCreated === ''}
 									msg={errorMessages['yearCreatedRequired']}
 								/>
 							</div>
@@ -205,11 +205,11 @@ const AddArtworkForm = () => {
 								<TextInput
 									id="media"
 									label="Media"
-									value={details.media}
+									value={detailsData.media}
 									handleChange={handleDetailsChange}
 								/>
 								<InputErrorMessage
-									hasError={hasErrors && details.media === ''}
+									hasError={hasErrors && detailsData.media === ''}
 									msg={errorMessages['mediaRequired']}
 								/>
 							</div>
@@ -217,11 +217,11 @@ const AddArtworkForm = () => {
 								<TextInput
 									id="height"
 									label="Height (in.)"
-									value={details.height}
+									value={detailsData.height}
 									handleChange={handleDetailsChange}
 								/>
 								<InputErrorMessage
-									hasError={hasErrors && details.height === 0}
+									hasError={hasErrors && detailsData.height === 0}
 									msg={errorMessages['heightRequired']}
 								/>
 							</div>
@@ -229,11 +229,11 @@ const AddArtworkForm = () => {
 								<TextInput
 									id="width"
 									label="Width (in.)"
-									value={details.width}
+									value={detailsData.width}
 									handleChange={handleDetailsChange}
 								/>
 								<InputErrorMessage
-									hasError={hasErrors && details.width === 0}
+									hasError={hasErrors && detailsData.width === 0}
 									msg={errorMessages['widthRequired']}
 								/>
 							</div>
@@ -241,7 +241,7 @@ const AddArtworkForm = () => {
 								<TextInput
 									id="depth"
 									label="Depth (in.)"
-									value={details.depth}
+									value={detailsData.depth}
 									handleChange={handleDetailsChange}
 								/>
 							</div>
@@ -251,11 +251,11 @@ const AddArtworkForm = () => {
 								<TextArea
 									id="description"
 									label="Description"
-									value={details.description}
+									value={detailsData.description}
 									handleChange={handleDetailsChange}
 								/>
 								<InputErrorMessage
-									hasError={hasErrors && details.description === ''}
+									hasError={hasErrors && detailsData.description === ''}
 									msg={errorMessages['descriptionRequired']}
 								/>
 							</div>
@@ -265,11 +265,11 @@ const AddArtworkForm = () => {
 										<TextInput
 											id="imageId"
 											label="Image ID"
-											value={details.imageId}
+											value={detailsData.imageId}
 											handleChange={handleDetailsChange}
 										/>
 										<InputErrorMessage
-											hasError={hasErrors && details.imageId === ''}
+											hasError={hasErrors && detailsData.imageId === ''}
 											msg={errorMessages['imageIdRequired']}
 										/>
 									</div>

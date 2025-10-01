@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router';
 import { InputErrorMessage, TextInput } from '../../common/exports.js';
 import { DataContext } from '../../../context/DataContext.jsx';
 
-let initialArtist = {
+let initialArtistData = {
 	firstName: '',
 	lastName: '',
 	location: '',
@@ -17,7 +17,7 @@ let errorMessages = {
 // FUTURE: Alter width of fields at full page size and check responsive behavior
 
 const AddArtistForm = () => {
-	const [artist, setArtist] = useState(initialArtist);
+	const [artistData, setArtistData] = useState(initialArtistData);
 	const [hasErrors, setHasErrors] = useState(false);
 
 	const navigate = useNavigate();
@@ -50,19 +50,19 @@ const AddArtistForm = () => {
 	};
 
 	const handleChange = event => {
-		let updatedArtist = {
-			...artist,
+		let updatedArtistData = {
+			...artistData,
 			[event.target.id]: event.target.value,
 		};
-		setArtist(updatedArtist);
+		setArtistData(updatedArtistData);
 	};
 
 	const handleSubmit = event => {
 		event.preventDefault();
-		if (artist.firstName === '' || artist.lastName === '') {
+		if (artistData.firstName === '' || artistData.lastName === '') {
 			setHasErrors(true);
 		} else {
-			saveNewArtist(artist);
+			saveNewArtist(artistData);
 		}
 	};
 
@@ -74,11 +74,11 @@ const AddArtistForm = () => {
 					<TextInput
 						id="firstName"
 						label="First Name"
-						value={artist.firstName}
+						value={artistData.firstName}
 						handleChange={handleChange}
 					/>
 					<InputErrorMessage
-						hasError={hasErrors && artist.firstName === ''}
+						hasError={hasErrors && artistData.firstName === ''}
 						msg={errorMessages['firstNameRequired']}
 					/>
 				</div>
@@ -86,11 +86,11 @@ const AddArtistForm = () => {
 					<TextInput
 						id="lastName"
 						label="Last Name"
-						value={artist.lastName}
+						value={artistData.lastName}
 						handleChange={handleChange}
 					/>
 					<InputErrorMessage
-						hasError={hasErrors && artist.firstName === ''}
+						hasError={hasErrors && artistData.firstName === ''}
 						msg={errorMessages['lastNameRequired']}
 					/>
 				</div>
@@ -98,7 +98,7 @@ const AddArtistForm = () => {
 					<TextInput
 						id="location"
 						label="Location"
-						value={artist.location}
+						value={artistData.location}
 						handleChange={handleChange}
 					/>
 				</div>
