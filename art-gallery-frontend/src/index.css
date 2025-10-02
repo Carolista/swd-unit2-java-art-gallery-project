@@ -86,7 +86,7 @@ h3 {
 }
 
 h5 {
-    color: #c66311;
+	color: #c66311;
 	font-weight: bold;
 }
 
@@ -160,7 +160,7 @@ a:active {
 }
 
 .card-artist-text {
-    color: #1e323c;
+	color: #1e323c;
 }
 
 .form-item {
@@ -221,4 +221,28 @@ textarea {
 	display: block;
 	color: #c66311;
 	margin: 0;
+}
+
+.input-with-icon {
+	position: relative;
+	display: flex;
+	flex-direction: column;
+}
+
+.input-with-icon i {
+	position: absolute;
+	top: 8px;
+	right: 6px;
+}
+
+.fa-eye {
+	opacity: 0.8;
+}
+
+.fa-eye-slash {
+	opacity: 0.4;
+}
+
+.sortable {
+	cursor: pointer;
 }

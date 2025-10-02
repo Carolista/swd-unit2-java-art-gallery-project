@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router';
 import { InputErrorMessage, TextInput } from '../../common/exports.js';
 import { DataContext } from '../../../context/DataContext.jsx';
 import ArtistDTO from '../../../classes/ArtistDTO.js';
+import { AuthContext } from '../../../context/AuthContext.jsx';
 
 let initialArtistData = {
 	firstName: '',
@@ -22,6 +23,8 @@ const AddArtistForm = () => {
 	const [hasErrors, setHasErrors] = useState(false);
 
 	const navigate = useNavigate();
+
+	const { auth } = use(AuthContext);
 	const { fetchArtists } = use(DataContext);
 
 	const saveNewArtist = async newArtistDTO => {
@@ -30,6 +33,7 @@ const AddArtistForm = () => {
 				method: 'POST',
 				headers: {
 					'Content-Type': 'application/json',
+					Authorization: 'Bearer ' + auth.token,
 				},
 				body: JSON.stringify(newArtistDTO),
 			});
@@ -60,7 +64,11 @@ const AddArtistForm = () => {
 
 	const handleSubmit = event => {
 		event.preventDefault();
-        const artistDTO = new ArtistDTO(artistData.firstName, artistData.lastName, artistData.location);
+		const artistDTO = new ArtistDTO(
+			artistData.firstName,
+			artistData.lastName,
+			artistData.location
+		);
 		if (!artistDTO.isValid()) {
 			setHasErrors(true);
 		} else {

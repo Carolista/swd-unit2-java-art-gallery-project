@@ -1,7 +1,9 @@
-import { use } from 'react';
+import { use, useEffect, useState } from 'react';
 import { Link } from 'react-router';
 import { DataContext } from '../../../context/DataContext';
 import { Loading } from '../../public/exports.js';
+import { AuthContext } from '../../../context/AuthContext.jsx';
+import { sortObjById, sortObjByString } from '../../../shared/utils.js';
 
 const ArtistsList = () => {
 	const { isLoading } = use(DataContext);
@@ -9,12 +11,27 @@ const ArtistsList = () => {
 	if (isLoading) {
 		return <Loading dataName="artists" />;
 	} else {
+		const { auth } = use(AuthContext);
 		const { allArtworks, allArtists, fetchArtists } = use(DataContext);
+
+		const [currentArtists, setCurrentArtists] = useState([...allArtists]);
+		const [currentSortColumn, setCurrentSortColumn] = useState('lastName');
 
 		const getNumberOfArtworksByArtist = artistId => {
 			return [...allArtworks].filter(artwork => artwork.artist.id == artistId)
 				.length;
 		};
+
+		useEffect(() => {
+			let sortFunction =
+				currentSortColumn === 'id' ? sortObjById : sortObjByString;
+			let updatedArtists = sortFunction([...allArtists], currentSortColumn);
+			setCurrentArtists(updatedArtists);
+		}, [currentSortColumn]);
+
+		useEffect(() => {
+			setCurrentArtists([...allArtists]);
+		}, [allArtists]);
 
 		const deleteArtist = async id => {
 			try {
@@ -22,6 +39,9 @@ const ArtistsList = () => {
 					`http://localhost:8080/api/artists/delete/${id}`,
 					{
 						method: 'DELETE',
+						headers: {
+							Authorization: 'Bearer ' + auth.token,
+						},
 					}
 				);
 				if (!response.ok) {
@@ -45,7 +65,7 @@ const ArtistsList = () => {
 			let confirmed = confirm(`
                 Are you sure you want to delete this record?
                 
-                Artist: ${allArtists
+                Artist: ${currentArtists
 									.find(artist => artist.id == id)
 									.getFullName()}
                 `);
@@ -54,7 +74,7 @@ const ArtistsList = () => {
 			}
 		};
 
-		let artistRowsJSX = allArtists.map(artist => {
+		let artistRowsJSX = currentArtists.map(artist => {
 			let numArtworks = getNumberOfArtworksByArtist(artist.id);
 
 			const getViewArtworksJSX = () => {
@@ -89,9 +109,9 @@ const ArtistsList = () => {
 		return (
 			<main className="main-content">
 				<h2>ARTISTS</h2>
-				{allArtists.length ? (
+				{currentArtists.length ? (
 					<>
-						{allArtists.length > 10 && (
+						{currentArtists.length > 10 && (
 							<p>
 								Add a <Link to="/admin/artists/add">new artist</Link>.
 							</p>
@@ -99,10 +119,34 @@ const ArtistsList = () => {
 						<table className="table table-striped">
 							<thead>
 								<tr>
-									<th>ID</th>
-									<th>First Name</th>
-									<th>Last Name</th>
-									<th>Location</th>
+									<th>
+										<span
+											className="sortable"
+											onClick={() => setCurrentSortColumn('id')}>
+											ID
+										</span>
+									</th>
+									<th>
+										<span
+											className="sortable"
+											onClick={() => setCurrentSortColumn('firstName')}>
+											First Name
+										</span>
+									</th>
+									<th>
+										<span
+											className="sortable"
+											onClick={() => setCurrentSortColumn('lastName')}>
+											Last Name
+										</span>
+									</th>
+									<th>
+										<span
+											className="sortable"
+											onClick={() => setCurrentSortColumn('location')}>
+											Location
+										</span>
+									</th>
 									<th>Artworks</th>
 									<th></th>
 								</tr>

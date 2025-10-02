@@ -3,12 +3,15 @@ import { useNavigate } from 'react-router';
 import { InputErrorMessage, TextInput } from '../../common/exports';
 import { DataContext } from '../../../context/DataContext';
 import CategoryDTO from '../../../classes/CategoryDTO';
+import { AuthContext } from '../../../context/AuthContext';
 
 const AddCategoryForm = () => {
 	const [title, setTitle] = useState('');
 	const [hasErrors, setHasErrors] = useState(false);
 
 	const navigate = useNavigate();
+
+	const { auth } = use(AuthContext);
 	const { fetchCategories } = use(DataContext);
 
 	const saveNewCategory = async newCategoryDTO => {
@@ -17,6 +20,7 @@ const AddCategoryForm = () => {
 				method: 'POST',
 				headers: {
 					'Content-Type': 'application/json',
+					Authorization: 'Bearer ' + auth.token,
 				},
 				body: JSON.stringify(newCategoryDTO),
 			});
@@ -43,7 +47,7 @@ const AddCategoryForm = () => {
 
 	const handleSubmit = event => {
 		event.preventDefault();
-        const categoryDTO = new CategoryDTO(title); 
+		const categoryDTO = new CategoryDTO(title);
 		if (!categoryDTO.isValid()) {
 			setHasErrors(true);
 		} else {

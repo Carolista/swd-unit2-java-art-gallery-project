@@ -12,6 +12,7 @@ import { Loading } from '../../public/exports.js';
 import { useNavigate } from 'react-router';
 import ArtworkDTO from '../../../classes/ArtworkDTO.js';
 import { DetailsDTO } from '../../../classes/exports.js';
+import { AuthContext } from '../../../context/AuthContext.jsx';
 
 let initialArtworkData = {
 	title: '',
@@ -57,6 +58,8 @@ const AddArtworkForm = () => {
 		const sortedArtists = sortObjByString([...allArtists], 'lastName');
 		const sortedCategories = sortObjByString([...allCategories], 'title');
 
+		const { auth } = use(AuthContext);
+
 		const navigate = useNavigate();
 
 		const saveNewArtwork = async newArtworkDTO => {
@@ -65,6 +68,7 @@ const AddArtworkForm = () => {
 					method: 'POST',
 					headers: {
 						'Content-Type': 'application/json',
+						Authorization: 'Bearer ' + auth.token,
 					},
 					body: JSON.stringify(newArtworkDTO),
 				});
