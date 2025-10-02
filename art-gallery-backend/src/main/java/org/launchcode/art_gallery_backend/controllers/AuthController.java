@@ -33,13 +33,13 @@ public class AuthController {
     private final CustomUserDetailsService userDetailsService;
     private final TokenBlacklistService tokenBlacklistService;
 
-    public AuthController(ModelMapper modelMapper, UserProfileService userProfileService, AuthenticationManager authenticationManager, JwtTokenUtil jwtTokenUtil, CustomUserDetailsService userDetailsService, TokenBlacklistService tokenBlacklistService) {
-        this.modelMapper = modelMapper;
+    public AuthController(UserProfileService userProfileService, AuthenticationManager authenticationManager, JwtTokenUtil jwtTokenUtil, CustomUserDetailsService userDetailsService, TokenBlacklistService tokenBlacklistService, ModelMapper modelMapper) {
         this.userProfileService = userProfileService;
         this.authenticationManager = authenticationManager;
         this.jwtTokenUtil = jwtTokenUtil;
         this.userDetailsService = userDetailsService;
         this.tokenBlacklistService = tokenBlacklistService;
+        this.modelMapper = modelMapper;
     }
 
     @ResponseStatus(HttpStatus.CREATED)
