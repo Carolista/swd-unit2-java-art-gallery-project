@@ -1,4 +1,4 @@
-package org.launchcode.art_gallery_backend.dto;
+package org.launchcode.art_gallery_backend.dto.request;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
@@ -10,7 +10,7 @@ public class ArtistDTO {
     private String firstName;
 
     @NotBlank(message = "Last name is required.")
-    @Size(min = 1, max = 40, message="Last name must be 1-40 characters long.")
+    @Size(min = 1, max = 40, message = "Last name must be 1-40 characters long.")
     private String lastName;
 
     private String location;
