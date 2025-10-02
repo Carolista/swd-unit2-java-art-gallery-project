@@ -84,7 +84,6 @@ const CategoriesList = () => {
 		});
 
 		// FUTURE: Add sort by column
-		// FUTURE: Add links to view artworks by category
 
 		return (
 			<main className="main-content">

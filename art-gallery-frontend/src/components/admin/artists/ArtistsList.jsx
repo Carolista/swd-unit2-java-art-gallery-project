@@ -85,7 +85,6 @@ const ArtistsList = () => {
 		});
 
 		// FUTURE: Add sort by column
-		// FUTURE: Add links to view artworks by artist
 
 		return (
 			<main className="main-content">
