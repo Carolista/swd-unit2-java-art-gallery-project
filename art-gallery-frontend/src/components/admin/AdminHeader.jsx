@@ -1,8 +1,21 @@
-import { Link } from 'react-router';
+import { use } from 'react';
+import { Link, useNavigate } from 'react-router';
+import { AuthContext } from '../../context/AuthContext';
+import { removeTokenFromStorage } from '../../services/storageService';
 
-const AdminHeader = ({ setLoggedIn }) => {
+const AdminHeader = () => {
+	const { setAuth } = use(AuthContext);
+
+	const navigate = useNavigate();
+
 	const handleLogOut = () => {
-		setLoggedIn(false);
+		setAuth({
+			token: null,
+			email: null,
+			isAuthenticated: false,
+		});
+		removeTokenFromStorage();
+		navigate('/');
 	};
 
 	// FUTURE: use Navlinks and active link here with routing
@@ -26,7 +39,7 @@ const AdminHeader = ({ setLoggedIn }) => {
 					<Link className="navlink" to="/admin/categories">
 						Categories
 					</Link>
-                    |
+					|
 					<span className="navlink" onClick={handleLogOut}>
 						Log Out
 					</span>
