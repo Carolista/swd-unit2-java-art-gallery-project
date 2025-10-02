@@ -69,7 +69,6 @@ const CategoriesList = () => {
 		};
 
 		const handleDelete = id => {
-			// FUTURE: Use modal instead of alert
 			let confirmed = confirm(`
                 Are you sure you want to delete this record?
                 

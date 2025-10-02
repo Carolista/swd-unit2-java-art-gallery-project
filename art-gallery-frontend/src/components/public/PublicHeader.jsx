@@ -1,8 +1,7 @@
 import { Link } from 'react-router';
 
 const PublicHeader = () => {
-	// FUTURE: use Navlinks and active link here with routing
-
+    
 	return (
 		<>
 			<header>

@@ -81,7 +81,6 @@ const ArtworksList = () => {
 			}
 		};
 		const handleDelete = id => {
-			// FUTURE: Use modal instead of alert
 			let confirmed = confirm(`
                 Are you sure you want to delete this record?
                 
@@ -112,9 +111,6 @@ const ArtworksList = () => {
 				</tr>
 			);
 		});
-
-		// FUTURE: Add sort by column
-		// FUTURE: Add filter by artist and filter by category
 
 		return (
 			<main className="main-content">

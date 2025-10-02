@@ -16,8 +16,6 @@ let errorMessages = {
 	lastNameRequired: 'Last name is required.',
 };
 
-// FUTURE: Alter width of fields at full page size and check responsive behavior
-
 const AddArtistForm = () => {
 	const [artistData, setArtistData] = useState(initialArtistData);
 	const [hasErrors, setHasErrors] = useState(false);

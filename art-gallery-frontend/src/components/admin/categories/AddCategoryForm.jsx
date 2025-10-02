@@ -55,8 +55,6 @@ const AddCategoryForm = () => {
 		}
 	};
 
-	// FUTURE: Alter width of fields at full page size and check responsive behavior
-
 	return (
 		<main className="main-content">
 			<h3>Add Category</h3>

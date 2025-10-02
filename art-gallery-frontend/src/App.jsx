@@ -31,9 +31,6 @@ function App() {
 					<PublicHeader />
 					<Routes>
 						<Route path="/" element={<PublicHome />} />
-						{/* FUTURE: AboutPage */}
-						{/* FUTURE: ExhibitionsPage */}
-						{/* FUTURE: ContactPage */}
 						<Route path="/register" element={<RegisterPage />} />
 						<Route path="/login" element={<LoginPage />} />
 						<Route path="/artworks" element={<ArtworksPage />} />
