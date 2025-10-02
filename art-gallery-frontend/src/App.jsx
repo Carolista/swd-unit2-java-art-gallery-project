@@ -1,4 +1,3 @@
-import { use } from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router';
 import {
 	ArtworksPage,
@@ -17,25 +16,23 @@ import {
 	AddCategoryForm,
 	CategoriesList,
 } from './components/admin/exports';
-import { LoginPage, RegisterPage } from './components/auth/exports.js';
 import './App.css';
-import { AuthContext } from './context/AuthContext.jsx';
+import { useState } from 'react';
+
+// TODO #7 - Access auth from context and replace loggedIn with auth.isAuthenticated
 
 function App() {
-	const { auth } = use(AuthContext);
+    const [loggedIn, setLoggedIn] = useState(false); // TEMP until auth is implemented
 
 	return (
 		<BrowserRouter>
-			{!auth.isAuthenticated ? (
+			{!loggedIn ? (
 				<>
-					<PublicHeader />
+                    {/* TODO #7 - remove prop on PublicHeader */}
+					<PublicHeader setLoggedIn={setLoggedIn} />
 					<Routes>
 						<Route path="/" element={<PublicHome />} />
-						{/* FUTURE: AboutPage */}
-						{/* FUTURE: ExhibitionsPage */}
-						{/* FUTURE: ContactPage */}
-						<Route path="/register" element={<RegisterPage />} />
-						<Route path="/login" element={<LoginPage />} />
+                        {/* TODO #7 - Add routes for /login and /register */}
 						<Route path="/artworks" element={<ArtworksPage />} />
 						<Route path="/artworks/details/:id" element={<DetailsPage />} />
 						<Route path="*" element={<Navigate to="/" />} />
@@ -43,7 +40,8 @@ function App() {
 				</>
 			) : (
 				<>
-					<AdminHeader />
+                    {/* TODO #7 - remove prop on AdminHeader */}
+					<AdminHeader setLoggedIn={setLoggedIn} />
 					<Routes>
 						<Route path="/" element={<Navigate to="/admin" />} />
 						<Route path="/admin" element={<AdminHome />} />

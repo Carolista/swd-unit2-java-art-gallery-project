@@ -2,7 +2,6 @@ import { use, useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router';
 import { DataContext } from '../../../context/DataContext';
 import { Loading } from '../../public/exports.js';
-import { AuthContext } from '../../../context/AuthContext.jsx';
 import { sortObjById, sortObjByString } from '../../../shared/utils.js';
 
 const ArtworksList = () => {
@@ -11,11 +10,12 @@ const ArtworksList = () => {
 	if (isLoading) {
 		return <Loading dataName="artworks" />;
 	} else {
-		const { auth } = use(AuthContext);
 		const { allArtworks, fetchArtworks } = use(DataContext);
 
 		const [currentArtworks, setCurrentArtworks] = useState([...allArtworks]);
 		const [currentSortColumn, setCurrentSortColumn] = useState('title');
+
+        // TODO #14 - Access auth from context and add Authorization header with bearer token
 
 		const location = useLocation();
 		const { currentArtist, currentCategory } = location.state || {};
@@ -60,9 +60,6 @@ const ArtworksList = () => {
 					`http://localhost:8080/api/artworks/delete/${id}`,
 					{
 						method: 'DELETE',
-						headers: {
-							Authorization: 'Bearer ' + auth.token,
-						},
 					}
 				);
 				if (!response.ok) {
@@ -81,7 +78,6 @@ const ArtworksList = () => {
 			}
 		};
 		const handleDelete = id => {
-			// FUTURE: Use modal instead of alert
 			let confirmed = confirm(`
                 Are you sure you want to delete this record?
                 
@@ -112,9 +108,6 @@ const ArtworksList = () => {
 				</tr>
 			);
 		});
-
-		// FUTURE: Add sort by column
-		// FUTURE: Add filter by artist and filter by category
 
 		return (
 			<main className="main-content">

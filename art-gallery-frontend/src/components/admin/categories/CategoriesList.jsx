@@ -3,7 +3,6 @@ import { Link } from 'react-router';
 import { DataContext } from '../../../context/DataContext';
 import { Loading } from '../../public/exports.js';
 import { sortObjById, sortObjByString } from '../../../shared/utils.js';
-import { AuthContext } from '../../../context/AuthContext.jsx';
 
 const CategoriesList = () => {
 	const { isLoading } = use(DataContext);
@@ -11,13 +10,14 @@ const CategoriesList = () => {
 	if (isLoading) {
 		return <Loading dataName="categories" />;
 	} else {
-		const { auth } = use(AuthContext);
 		const { allArtworks, allCategories, fetchCategories } = use(DataContext);
 
 		const [currentCategories, setCurrentCategories] = useState([
 			...allCategories,
 		]);
 		const [currentSortColumn, setCurrentSortColumn] = useState('title');
+
+        // TODO #15 - Access auth from context and add Authorization header with bearer token
 
 		const getNumberOfArtworksByCategory = categoryId => {
 			return [...allArtworks].filter(artwork => {
@@ -47,9 +47,6 @@ const CategoriesList = () => {
 					`http://localhost:8080/api/categories/delete/${id}`,
 					{
 						method: 'DELETE',
-						headers: {
-							Authorization: 'Bearer ' + auth.token,
-						},
 					}
 				);
 				if (!response.ok) {
@@ -69,7 +66,6 @@ const CategoriesList = () => {
 		};
 
 		const handleDelete = id => {
-			// FUTURE: Use modal instead of alert
 			let confirmed = confirm(`
                 Are you sure you want to delete this record?
                 

@@ -1,7 +1,10 @@
 import { Link } from 'react-router';
 
-const PublicHeader = () => {
-	// FUTURE: use Navlinks and active link here with routing
+const PublicHeader = ({ setLoggedIn }) => {
+    // TODO #9 - Remove prop and handleLogin()
+    const handleLogIn = () => {
+		setLoggedIn(true);
+	};
 
 	return (
 		<>
@@ -18,12 +21,10 @@ const PublicHeader = () => {
 					</Link>
 					<span className="non-link">Exhibitions</span>
 					<span className="non-link">Contact Us</span>|
-					<Link className="navlink" to="/register">
-						Register
-					</Link>
-					<Link className="navlink" to="/login">
+                    {/* TODO #9 - Replace fake Log In link with links to register and login components */}
+					<span className="navlink" onClick={handleLogIn}>
 						Log In
-					</Link>
+					</span>
 				</div>
 			</header>
 		</>

@@ -4,7 +4,6 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
@@ -19,7 +18,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-// TODO #0 - Look over new errors and handlers
+// TODO #1.5 - Look over new errors and handlers, add Bad_Credentials handler
 
 @RestControllerAdvice
 public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
@@ -49,19 +48,6 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
                 "DATA_ALREADY_EXISTS"
         );
         return new ResponseEntity<>(errorObject, HttpStatus.CONFLICT);
-    }
-
-    @ResponseStatus(HttpStatus.UNAUTHORIZED)
-    @ExceptionHandler(BadCredentialsException.class)
-    protected ResponseEntity<Object> handleBadCredentialsException(Exception ex,
-                                                                   WebRequest request) {
-        ErrorObject errorObject = new ErrorObject(
-                HttpStatus.UNAUTHORIZED.value(),
-                ex.getMessage(),
-                new Date(),
-                "BAD_CREDENTIALS"
-        );
-        return new ResponseEntity<>(errorObject, HttpStatus.UNAUTHORIZED);
     }
 
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)

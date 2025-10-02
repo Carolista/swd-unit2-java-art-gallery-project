@@ -3,15 +3,15 @@ import { useNavigate } from 'react-router';
 import { InputErrorMessage, TextInput } from '../../common/exports';
 import { DataContext } from '../../../context/DataContext';
 import CategoryDTO from '../../../classes/CategoryDTO';
-import { AuthContext } from '../../../context/AuthContext';
 
 const AddCategoryForm = () => {
 	const [title, setTitle] = useState('');
 	const [hasErrors, setHasErrors] = useState(false);
 
+    // TODO #12 - Access auth from context and add Authorization header with bearer token
+
 	const navigate = useNavigate();
 
-	const { auth } = use(AuthContext);
 	const { fetchCategories } = use(DataContext);
 
 	const saveNewCategory = async newCategoryDTO => {
@@ -20,7 +20,6 @@ const AddCategoryForm = () => {
 				method: 'POST',
 				headers: {
 					'Content-Type': 'application/json',
-					Authorization: 'Bearer ' + auth.token,
 				},
 				body: JSON.stringify(newCategoryDTO),
 			});
@@ -54,8 +53,6 @@ const AddCategoryForm = () => {
 			saveNewCategory(categoryDTO);
 		}
 	};
-
-	// FUTURE: Alter width of fields at full page size and check responsive behavior
 
 	return (
 		<main className="main-content">

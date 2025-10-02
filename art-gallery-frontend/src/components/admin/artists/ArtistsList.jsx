@@ -2,7 +2,6 @@ import { use, useEffect, useState } from 'react';
 import { Link } from 'react-router';
 import { DataContext } from '../../../context/DataContext';
 import { Loading } from '../../public/exports.js';
-import { AuthContext } from '../../../context/AuthContext.jsx';
 import { sortObjById, sortObjByString } from '../../../shared/utils.js';
 
 const ArtistsList = () => {
@@ -11,8 +10,9 @@ const ArtistsList = () => {
 	if (isLoading) {
 		return <Loading dataName="artists" />;
 	} else {
-		const { auth } = use(AuthContext);
 		const { allArtworks, allArtists, fetchArtists } = use(DataContext);
+
+        // TODO #13 - Access auth from context and add Authorization header with bearer token
 
 		const [currentArtists, setCurrentArtists] = useState([...allArtists]);
 		const [currentSortColumn, setCurrentSortColumn] = useState('lastName');
@@ -39,9 +39,6 @@ const ArtistsList = () => {
 					`http://localhost:8080/api/artists/delete/${id}`,
 					{
 						method: 'DELETE',
-						headers: {
-							Authorization: 'Bearer ' + auth.token,
-						},
 					}
 				);
 				if (!response.ok) {
@@ -61,7 +58,6 @@ const ArtistsList = () => {
 		};
 
 		const handleDelete = id => {
-			// FUTURE: Use modal instead of alert
 			let confirmed = confirm(`
                 Are you sure you want to delete this record?
                 
@@ -104,7 +100,6 @@ const ArtistsList = () => {
 			);
 		});
 
-		// FUTURE: Add sort by column
 
 		return (
 			<main className="main-content">

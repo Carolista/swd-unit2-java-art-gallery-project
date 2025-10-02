@@ -1,25 +1,15 @@
-import { use } from 'react';
-import { Link, useNavigate } from 'react-router';
-import { AuthContext } from '../../context/AuthContext';
-import { removeTokenFromStorage } from '../../services/storageService';
+import { Link } from 'react-router';
 
-const AdminHeader = () => {
-	const { setAuth } = use(AuthContext);
+const AdminHeader = ({ setLoggedIn }) => {
 
-	const navigate = useNavigate();
+    // TODO #8 - Remove prop, access setAuth from context and add useNavigate()
 
 	const handleLogOut = () => {
-		setAuth({
-			token: null,
-			email: null,
-			isAuthenticated: false,
-		});
-		removeTokenFromStorage();
-		navigate('/');
+        // TODO #8 - use setAuth to reset auth to null/null/false instead of setting loggedIn
+        // Remove token from storage
+        // Navigate to home
+		setLoggedIn(false);
 	};
-
-	// FUTURE: use Navlinks and active link here with routing
-	// FUTURE: Create secondary header with links for add, delete like old Java app
 
 	return (
 		<>
