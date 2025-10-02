@@ -6,7 +6,7 @@ import Artwork from '../classes/Artwork';
 
 export const DataContext = createContext();
 
-export const DataProvider = ({ children }) => {
+export const DataContextProvider = ({ children }) => {
 	const [isLoading, setIsLoading] = useState(true);
 
 	const [allArtworks, setAllArtworks] = useState(null);
@@ -14,7 +14,7 @@ export const DataProvider = ({ children }) => {
 	const [allCategories, setAllCategories] = useState(null);
 
 	const fetchArtworks = async () => {
-        const artworks = [];
+		const artworks = [];
 
 		try {
 			const response = await fetch('http://localhost:8080/api/artworks');
@@ -24,7 +24,7 @@ export const DataProvider = ({ children }) => {
 				throw new Error(
 					errorData.message || `ERROR - Status ${response.status}`
 				);
-			} else {				
+			} else {
 				const data = await response.json();
 
 				data.forEach(artwork => {
@@ -61,12 +61,12 @@ export const DataProvider = ({ children }) => {
 		} catch (error) {
 			console.error(error.message);
 		} finally {
-            setAllArtworks(artworks);
-        }
+			setAllArtworks(artworks);
+		}
 	};
 
 	const fetchArtists = async () => {
-        const artists = [];
+		const artists = [];
 
 		try {
 			const response = await fetch('http://localhost:8080/api/artists');
@@ -92,12 +92,12 @@ export const DataProvider = ({ children }) => {
 		} catch (error) {
 			console.error(error.message);
 		} finally {
-            setAllArtists(artists);
-        }
+			setAllArtists(artists);
+		}
 	};
 
 	const fetchCategories = async () => {
-        const categories = [];
+		const categories = [];
 
 		try {
 			const response = await fetch('http://localhost:8080/api/categories');
@@ -107,7 +107,7 @@ export const DataProvider = ({ children }) => {
 				throw new Error(
 					errorData.message || `ERROR - Status ${response.status}`
 				);
-			} else {		
+			} else {
 				const data = await response.json();
 
 				data.forEach(category => {
@@ -118,8 +118,8 @@ export const DataProvider = ({ children }) => {
 		} catch (error) {
 			console.error(error.message);
 		} finally {
-            setAllCategories(categories);
-        }
+			setAllCategories(categories);
+		}
 	};
 
 	useEffect(() => {
