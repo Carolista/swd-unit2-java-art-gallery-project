@@ -1,7 +1,7 @@
 package org.launchcode.art_gallery_backend.controllers;
 
 import jakarta.validation.Valid;
-import org.launchcode.art_gallery_backend.dto.ArtistDTO;
+import org.launchcode.art_gallery_backend.dto.request.ArtistDTO;
 import org.launchcode.art_gallery_backend.models.Artist;
 import org.launchcode.art_gallery_backend.repositories.ArtistRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,7 +31,7 @@ public class ArtistController {
 
     // Retrieve a specific artist object using its id
     // GET http://localhost:8080/api/artists/details/3 (for example)
-    @GetMapping(value="/details/{artistId}", produces=MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value = "/details/{artistId}", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> getArtistById(@PathVariable int artistId) throws NoResourceFoundException {
         Artist artist = artistRepository.findById(artistId).orElse(null);
         if (artist == null) {
@@ -44,7 +44,7 @@ public class ArtistController {
 
     // Save new artist to database
     // POST http://localhost:8080/api/artists/add
-    @PostMapping(value="/add", consumes=MediaType.APPLICATION_JSON_VALUE, produces=MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(value = "/add", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> addNewArtist(@Valid @RequestBody ArtistDTO artistData) {
         Artist artist = new Artist(artistData.getFirstName(), artistData.getLastName(), artistData.getLocation());
         artistRepository.save(artist);
@@ -53,7 +53,7 @@ public class ArtistController {
 
     // Delete an existing artist from the database
     // DELETE http://localhost:8080/api/artists/delete/6 (for example)
-    @DeleteMapping(value="/delete/{artistId}")
+    @DeleteMapping(value = "/delete/{artistId}")
     public ResponseEntity<?> deleteArtist(@PathVariable int artistId) throws NoResourceFoundException {
         Artist artist = artistRepository.findById(artistId).orElse(null);
         if (artist == null) {

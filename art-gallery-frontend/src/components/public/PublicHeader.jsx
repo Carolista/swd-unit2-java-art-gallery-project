@@ -1,9 +1,6 @@
 import { Link } from 'react-router';
 
-const PublicHeader = ({ setLoggedIn }) => {
-	const handleLogIn = () => {
-		setLoggedIn(true);
-	};
+const PublicHeader = () => {
 
 	return (
 		<>
@@ -19,11 +16,13 @@ const PublicHeader = ({ setLoggedIn }) => {
 						Artworks
 					</Link>
 					<span className="non-link">Exhibitions</span>
-					<span className="non-link">Contact Us</span>
-                    |
-					<span className="navlink" onClick={handleLogIn}>
+					<span className="non-link">Contact Us</span>|
+					<Link className="navlink" to="/register">
+						Register
+					</Link>
+					<Link className="navlink" to="/login">
 						Log In
-					</span>
+					</Link>
 				</div>
 			</header>
 		</>

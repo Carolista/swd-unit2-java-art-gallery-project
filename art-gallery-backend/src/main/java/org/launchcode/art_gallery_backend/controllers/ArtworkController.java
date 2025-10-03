@@ -1,7 +1,7 @@
 package org.launchcode.art_gallery_backend.controllers;
 
 import jakarta.validation.Valid;
-import org.launchcode.art_gallery_backend.dto.ArtworkDTO;
+import org.launchcode.art_gallery_backend.dto.request.ArtworkDTO;
 import org.launchcode.art_gallery_backend.models.Artist;
 import org.launchcode.art_gallery_backend.models.Artwork;
 import org.launchcode.art_gallery_backend.models.Category;
@@ -42,7 +42,7 @@ public class ArtworkController {
 
     // Retrieve a specific artwork object using its id
     // GET http://localhost:8080/api/artworks/details/3 (for example)
-    @GetMapping(value="/details/{artworkId}", produces=MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value = "/details/{artworkId}", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> getArtworkById(@PathVariable int artworkId) throws NoResourceFoundException {
         Artwork artwork = artworkRepository.findById(artworkId).orElse(null);
         if (artwork == null) {
@@ -55,7 +55,7 @@ public class ArtworkController {
 
     // Save new artwork to database
     // POST http://localhost:8080/api/artworks/add
-    @PostMapping(value="/add", consumes=MediaType.APPLICATION_JSON_VALUE, produces=MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(value = "/add", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> addNewArtwork(@Valid @RequestBody ArtworkDTO artworkData) {
         Artist artist = artistRepository.findById(artworkData.getArtistId()).orElse(null);
         List<Category> categories = new ArrayList<>();
@@ -72,7 +72,7 @@ public class ArtworkController {
 
     // Delete an existing artwork from the database
     // DELETE http://localhost:8080/api/artworks/delete/6 (for example)
-    @DeleteMapping(value="/delete/{artworkId}")
+    @DeleteMapping(value = "/delete/{artworkId}")
     public ResponseEntity<?> deleteArtwork(@PathVariable int artworkId) throws NoResourceFoundException {
         Artwork artwork = artworkRepository.findById(artworkId).orElse(null);
         if (artwork == null) {

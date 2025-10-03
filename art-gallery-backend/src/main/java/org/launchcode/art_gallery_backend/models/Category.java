@@ -11,7 +11,7 @@ import java.util.Objects;
 public class Category {
 
     @Id
-    @GeneratedValue(strategy= GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
     private String title;
@@ -24,7 +24,8 @@ public class Category {
         this.title = title;
     }
 
-    public Category() {};
+    public Category() {
+    }
 
     public int getId() {
         return id;

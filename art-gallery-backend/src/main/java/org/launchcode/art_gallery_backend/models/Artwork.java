@@ -28,7 +28,8 @@ public class Artwork {
     @JoinColumn(name = "details_id", referencedColumnName = "id")
     private Details details;
 
-    public Artwork() {};
+    public Artwork() {
+    }
 
     public Artwork(String title, Artist artist, List<Category> categories, Details details) {
         this.title = title;

@@ -6,7 +6,7 @@ import jakarta.persistence.*;
 public class Details {
 
     @Id
-    @GeneratedValue(strategy= GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
     private String yearCreated;
@@ -23,7 +23,8 @@ public class Details {
     @OneToOne(mappedBy = "details")
     private Artwork artwork;
 
-    public Details() {}
+    public Details() {
+    }
 
     public Details(String yearCreated, String media, String description, double height, double width, double depth, String imageId) {
         this.yearCreated = yearCreated;

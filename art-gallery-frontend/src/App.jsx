@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { use } from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router';
 import {
 	ArtworksPage,
@@ -17,51 +17,44 @@ import {
 	AddCategoryForm,
 	CategoriesList,
 } from './components/admin/exports';
+import { LoginPage, RegisterPage } from './components/auth/exports.js';
 import './App.css';
-import { DataProvider } from './context/DataContext';
+import { AuthContext } from './context/AuthContext.jsx';
 
 function App() {
-	const [loggedIn, setLoggedIn] = useState(false); // TEMP until auth is implemented
+	const { auth } = use(AuthContext);
 
 	return (
 		<BrowserRouter>
-			<DataProvider>
-				<React.StrictMode>
-					{!loggedIn ? (
-						<>
-							<PublicHeader setLoggedIn={setLoggedIn} />
-							<Routes>
-								<Route path="/" element={<PublicHome />} />
-								<Route path="/artworks" element={<ArtworksPage />} />
-								<Route path="artworks/details/:id" element={<DetailsPage />} />
-								<Route path="*" element={<Navigate to="/" />} />
-							</Routes>
-						</>
-					) : (
-						<>
-							<AdminHeader setLoggedIn={setLoggedIn} />
-							<Routes>
-								<Route path="/" element={<Navigate to="/admin" />} />
-								<Route path="/admin" element={<AdminHome />} />
-								<Route path="*" element={<Navigate to="/" />} />
-								<Route path="/admin/artworks" element={<ArtworksList />} />
-								<Route
-									path="/admin/artworks/add"
-									element={<AddArtworkForm />}
-								/>
-								<Route path="/admin/artists" element={<ArtistsList />} />
-								<Route path="/admin/artists/add" element={<AddArtistForm />} />
-								<Route path="/admin/categories" element={<CategoriesList />} />
-								<Route
-									path="/admin/categories/add"
-									element={<AddCategoryForm />}
-								/>
-							</Routes>
-						</>
-					)}
-					<Footer />
-				</React.StrictMode>
-			</DataProvider>
+			{!auth.isAuthenticated ? (
+				<>
+					<PublicHeader />
+					<Routes>
+						<Route path="/" element={<PublicHome />} />
+						<Route path="/register" element={<RegisterPage />} />
+						<Route path="/login" element={<LoginPage />} />
+						<Route path="/artworks" element={<ArtworksPage />} />
+						<Route path="/artworks/details/:id" element={<DetailsPage />} />
+						<Route path="*" element={<Navigate to="/" />} />
+					</Routes>
+				</>
+			) : (
+				<>
+					<AdminHeader />
+					<Routes>
+						<Route path="/" element={<Navigate to="/admin" />} />
+						<Route path="/admin" element={<AdminHome />} />
+						<Route path="/admin/artworks" element={<ArtworksList />} />
+						<Route path="/admin/artworks/add" element={<AddArtworkForm />} />
+						<Route path="/admin/artists" element={<ArtistsList />} />
+						<Route path="/admin/artists/add" element={<AddArtistForm />} />
+						<Route path="/admin/categories" element={<CategoriesList />} />
+						<Route path="/admin/categories/add" element={<AddCategoryForm />} />
+						<Route path="*" element={<Navigate to="/" />} />
+					</Routes>
+				</>
+			)}
+			<Footer />
 		</BrowserRouter>
 	);
 }

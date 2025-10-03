@@ -11,7 +11,7 @@ import java.util.Objects;
 public class Artist {
 
     @Id
-    @GeneratedValue(strategy= GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
     // Validation of firstName and lastName now takes place in ArtistDTO
@@ -23,7 +23,8 @@ public class Artist {
     @JsonBackReference
     private final List<Artwork> artworks = new ArrayList<>();
 
-    public Artist() {};
+    public Artist() {
+    }
 
     public Artist(String firstName, String lastName, String location) {
         this.firstName = firstName;
