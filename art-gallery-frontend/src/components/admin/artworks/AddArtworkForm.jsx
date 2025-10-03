@@ -1,4 +1,5 @@
 import { useState, use } from 'react';
+import { useNavigate } from 'react-router';
 import { DataContext } from '../../../context/DataContext.jsx';
 import {
 	Checkbox,
@@ -9,10 +10,8 @@ import {
 } from '../../common/exports.js';
 import { sortObjByString } from '../../../shared/utils.js';
 import { Loading } from '../../public/exports.js';
-import { useNavigate } from 'react-router';
-import ArtworkDTO from '../../../classes/ArtworkDTO.js';
-import { DetailsDTO } from '../../../classes/exports.js';
 import { AuthContext } from '../../../context/AuthContext.jsx';
+import { ArtworkDTO, DetailsDTO } from '../../../classes/exports.js';
 
 let initialArtworkData = {
 	title: '',
@@ -85,7 +84,7 @@ const AddArtworkForm = () => {
 			} catch (error) {
 				console.error(error.message);
 			} finally {
-				// FUTURE: Use toast or banner to notify user of success or failure
+				// Use toast or banner to notify user of success or failure
 			}
 		};
 
