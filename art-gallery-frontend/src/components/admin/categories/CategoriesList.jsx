@@ -1,7 +1,9 @@
-import { use } from 'react';
+import { use, useEffect, useState } from 'react';
 import { Link } from 'react-router';
 import { DataContext } from '../../../context/DataContext';
 import { Loading } from '../../public/exports.js';
+import { sortObjById, sortObjByString } from '../../../shared/utils.js';
+import { AuthContext } from '../../../context/AuthContext.jsx';
 
 const CategoriesList = () => {
 	const { isLoading } = use(DataContext);
@@ -9,7 +11,35 @@ const CategoriesList = () => {
 	if (isLoading) {
 		return <Loading dataName="categories" />;
 	} else {
-		const { allCategories, fetchCategories } = use(DataContext);
+		const { auth } = use(AuthContext);
+		const { allArtworks, allCategories, fetchCategories } = use(DataContext);
+
+		const [currentCategories, setCurrentCategories] = useState([
+			...allCategories,
+		]);
+		const [currentSortColumn, setCurrentSortColumn] = useState('title');
+
+		const getNumberOfArtworksByCategory = categoryId => {
+			return [...allArtworks].filter(artwork => {
+				return artwork.categories
+					.map(category => category.id)
+					.includes(categoryId);
+			}).length;
+		};
+
+		useEffect(() => {
+			let sortFunction =
+				currentSortColumn === 'id' ? sortObjById : sortObjByString;
+			let updatedCategories = sortFunction(
+				[...allCategories],
+				currentSortColumn
+			);
+			setCurrentCategories(updatedCategories);
+		}, [currentSortColumn]);
+
+		useEffect(() => {
+			setCurrentCategories([...allCategories]);
+		}, [allCategories]);
 
 		const deleteCategory = async id => {
 			try {
@@ -17,6 +47,9 @@ const CategoriesList = () => {
 					`http://localhost:8080/api/categories/delete/${id}`,
 					{
 						method: 'DELETE',
+						headers: {
+							Authorization: 'Bearer ' + auth.token,
+						},
 					}
 				);
 				if (!response.ok) {
@@ -30,9 +63,9 @@ const CategoriesList = () => {
 			} catch (error) {
 				console.error(error.message);
 			} finally {
-				// Use toast or banner to notify user of success or failure
-                // Could have various specific outcomes depending on type of error
-            }
+				// FUTURE: Use toast or banner to notify user of success or failure
+				// Could have various specific outcomes depending on type of error
+			}
 		};
 
 		const handleDelete = id => {
@@ -40,19 +73,30 @@ const CategoriesList = () => {
                 Are you sure you want to delete this record?
                 
                 Category: ${
-									allCategories.find(category => category.id == id).title
+									currentCategories.find(category => category.id == id).title
 								}
                 `);
 			if (confirmed) {
 				deleteCategory(id);
 			}
 		};
-		let categoriesJSX = allCategories.map(category => {
-            return (
-                <tr key={category.id}>
+		let categoriesJSX = currentCategories.map(category => {
+			let numArtworks = getNumberOfArtworksByCategory(category.id);
+			const getViewArtworksJSX = () => {
+				return numArtworks ? (
+					<Link to="/admin/artworks" state={{ currentCategory: category }}>
+						View {numArtworks} artworks
+					</Link>
+				) : (
+					''
+				);
+			};
+			return (
+				<tr key={category.id}>
 					<td>{category.id}</td>
 					<td>{category.title}</td>
-                    <td className="delete-icon">
+					<td>{getViewArtworksJSX()}</td>
+					<td className="delete-icon">
 						<span onClick={() => handleDelete(category.id)}>
 							<i
 								className="fa-solid fa-trash-can"
@@ -66,9 +110,9 @@ const CategoriesList = () => {
 		return (
 			<main className="main-content">
 				<h2>CATEGORIES</h2>
-				{allCategories.length ? (
+				{currentCategories.length ? (
 					<>
-						{allCategories.length > 10 && (
+						{currentCategories.length > 10 && (
 							<p>
 								Add a <Link to="/admin/categories/add">new category</Link>.
 							</p>
@@ -76,8 +120,21 @@ const CategoriesList = () => {
 						<table className="table table-striped">
 							<thead>
 								<tr>
-									<th>ID</th>
-									<th>Title</th>
+									<th>
+										<span
+											className="sortable"
+											onClick={() => setCurrentSortColumn('id')}>
+											ID
+										</span>
+									</th>
+									<th>
+										<span
+											className="sortable"
+											onClick={() => setCurrentSortColumn('title')}>
+											Title
+										</span>
+									</th>
+									<th>Artworks</th>
 									<th></th>
 								</tr>
 							</thead>

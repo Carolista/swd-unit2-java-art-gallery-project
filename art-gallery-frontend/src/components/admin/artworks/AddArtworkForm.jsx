@@ -10,6 +10,7 @@ import {
 } from '../../common/exports.js';
 import { sortObjByString } from '../../../shared/utils.js';
 import { Loading } from '../../public/exports.js';
+import { AuthContext } from '../../../context/AuthContext.jsx';
 import { ArtworkDTO, DetailsDTO } from '../../../classes/exports.js';
 
 let initialArtworkData = {
@@ -56,6 +57,8 @@ const AddArtworkForm = () => {
 		const sortedArtists = sortObjByString([...allArtists], 'lastName');
 		const sortedCategories = sortObjByString([...allCategories], 'title');
 
+		const { auth } = use(AuthContext);
+
 		const navigate = useNavigate();
 
 		const saveNewArtwork = async newArtworkDTO => {
@@ -64,6 +67,7 @@ const AddArtworkForm = () => {
 					method: 'POST',
 					headers: {
 						'Content-Type': 'application/json',
+						Authorization: 'Bearer ' + auth.token,
 					},
 					body: JSON.stringify(newArtworkDTO),
 				});

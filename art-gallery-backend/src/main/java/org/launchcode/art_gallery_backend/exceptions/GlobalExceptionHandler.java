@@ -4,7 +4,10 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
+import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
@@ -24,12 +27,52 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
                                                                     HttpHeaders headers,
                                                                     HttpStatusCode status,
                                                                     WebRequest request) {
-        Map<String, Object> errorResponse = new HashMap<>();
-        errorResponse.put("statusCode", HttpStatus.NOT_FOUND.value());
-        errorResponse.put("message", "No data found for " + ex.getResourcePath());
-        errorResponse.put("timestamp", new Date());
-        errorResponse.put("errorCode", "NOT_FOUND");
-        return new ResponseEntity<>(errorResponse, HttpStatus.NOT_FOUND);
+        ErrorObject errorObject = new ErrorObject(
+                HttpStatus.NOT_FOUND.value(),
+                "No data found for " + ex.getResourcePath(),
+                new Date(),
+                "NOT_FOUND"
+        );
+        return new ResponseEntity<>(errorObject, HttpStatus.NOT_FOUND);
+    }
+
+    @ResponseStatus(HttpStatus.CONFLICT)
+    @ExceptionHandler(ItemAlreadyExistsException.class)
+    protected ResponseEntity<Object> handleItemAlreadyExistsException(ItemAlreadyExistsException ex,
+                                                                      WebRequest request) {
+        ErrorObject errorObject = new ErrorObject(
+                HttpStatus.CONFLICT.value(),
+                ex.getMessage(),
+                new Date(),
+                "DATA_ALREADY_EXISTS"
+        );
+        return new ResponseEntity<>(errorObject, HttpStatus.CONFLICT);
+    }
+
+    @ResponseStatus(HttpStatus.UNAUTHORIZED)
+    @ExceptionHandler(BadCredentialsException.class)
+    protected ResponseEntity<Object> handleBadCredentialsException(Exception ex,
+                                                                   WebRequest request) {
+        ErrorObject errorObject = new ErrorObject(
+                HttpStatus.UNAUTHORIZED.value(),
+                ex.getMessage(),
+                new Date(),
+                "BAD_CREDENTIALS"
+        );
+        return new ResponseEntity<>(errorObject, HttpStatus.UNAUTHORIZED);
+    }
+
+    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+    @ExceptionHandler(Exception.class)
+    protected ResponseEntity<Object> handleGeneralException(Exception ex,
+                                                            WebRequest request) {
+        ErrorObject errorObject = new ErrorObject(
+                HttpStatus.INTERNAL_SERVER_ERROR.value(),
+                ex.getMessage(),
+                new Date(),
+                "UNEXPECTED_ERROR"
+        );
+        return new ResponseEntity<>(errorObject, HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
     @Override

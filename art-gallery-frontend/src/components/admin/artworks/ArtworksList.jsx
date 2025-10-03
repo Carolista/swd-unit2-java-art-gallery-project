@@ -1,7 +1,9 @@
-import { use } from 'react';
-import { Link } from 'react-router';
+import { use, useEffect, useState } from 'react';
+import { Link, useLocation } from 'react-router';
 import { DataContext } from '../../../context/DataContext';
 import { Loading } from '../../public/exports.js';
+import { AuthContext } from '../../../context/AuthContext.jsx';
+import { sortObjById, sortObjByString } from '../../../shared/utils.js';
 
 const ArtworksList = () => {
 	const { isLoading } = use(DataContext);
@@ -9,7 +11,48 @@ const ArtworksList = () => {
 	if (isLoading) {
 		return <Loading dataName="artworks" />;
 	} else {
+		const { auth } = use(AuthContext);
 		const { allArtworks, fetchArtworks } = use(DataContext);
+
+		const [currentArtworks, setCurrentArtworks] = useState([...allArtworks]);
+		const [currentSortColumn, setCurrentSortColumn] = useState('title');
+
+		const location = useLocation();
+		const { currentArtist, currentCategory } = location.state || {};
+
+		const filterArtworks = () => {
+			if (currentArtist) {
+				const filteredArtworks = allArtworks.filter(
+					artwork => artwork.artist.id == currentArtist.id
+				);
+				setCurrentArtworks(filteredArtworks);
+			}
+			if (currentCategory) {
+				const filteredArtworks = allArtworks.filter(artwork =>
+					artwork.categories
+						.map(category => category.id)
+						.includes(currentCategory.id)
+				);
+				setCurrentArtworks(filteredArtworks);
+			}
+		};
+
+		useEffect(() => {
+			let sortFunction =
+				currentSortColumn === 'id' ? sortObjById : sortObjByString;
+			// FIXME: Not working for currentArtworks
+			let updatedArtworks = sortFunction([...allArtworks], currentSortColumn);
+			setCurrentArtworks(updatedArtworks);
+		}, [currentSortColumn]);
+
+		useEffect(() => {
+			setCurrentArtworks(allArtworks);
+			filterArtworks();
+		}, [allArtworks]);
+
+		useEffect(() => {
+			filterArtworks();
+		}, [currentArtist, currentCategory]);
 
 		const deleteArtwork = async id => {
 			try {
@@ -17,6 +60,9 @@ const ArtworksList = () => {
 					`http://localhost:8080/api/artworks/delete/${id}`,
 					{
 						method: 'DELETE',
+						headers: {
+							Authorization: 'Bearer ' + auth.token,
+						},
 					}
 				);
 				if (!response.ok) {
@@ -45,7 +91,7 @@ const ArtworksList = () => {
 			}
 		};
 
-		let artworksJSX = allArtworks.map(artwork => {
+		let artworksJSX = currentArtworks.map(artwork => {
 			return (
 				<tr key={artwork.id}>
 					<td>{artwork.id}</td>
@@ -68,10 +114,15 @@ const ArtworksList = () => {
 
 		return (
 			<main className="main-content">
-				<h2>ARTWORKS</h2>
-				{allArtworks.length ? (
+				<h2>
+					{currentCategory && `${currentCategory.title} `}
+					ARTWORKS
+					{currentArtist &&
+						` by ${currentArtist.firstName[0]}. ${currentArtist.lastName}`}
+				</h2>
+				{currentArtworks.length ? (
 					<>
-						{allArtworks.length > 10 && (
+						{currentArtworks.length > 10 && (
 							<p>
 								Add a <Link to="/admin/artworks/add">new artwork</Link>.
 							</p>
@@ -79,10 +130,22 @@ const ArtworksList = () => {
 						<table className="table table-striped">
 							<thead>
 								<tr>
-									<th>ID</th>
-									<th>Title</th>
+									<th>
+										<span
+											className="sortable"
+											onClick={() => setCurrentSortColumn('id')}>
+											ID
+										</span>
+									</th>
+									<th>
+										<span
+											className="sortable"
+											onClick={() => setCurrentSortColumn('title')}>
+											Title
+										</span>
+									</th>
 									<th>Artist</th>
-									<th>Year Created</th>
+									<th>Created</th>
 									<th>Image</th>
 									<th></th>
 								</tr>
