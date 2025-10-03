@@ -1,28 +1,32 @@
-id,title,artist_id,details_id
-1,"Mona Lisa",1,1
-2,"The Starry Night",2,2
-3,"The Last Supper",1,3
-4,"Girl with a Pearl Earring",3,4
-5,"The Scream",4,5
-6,Guernica,5,6
-7,"The Persistence of Memory",6,7
-8,"The Birth of Venus",7,8
-9,"Impression, Sunrise",8,9
-10,"American Gothic",9,10
-11,"The Night Watch",10,11
-12,"The Garden of Earthly Delights",11,12
-13,"Whistler's Mother",12,13
-14,"Liberty Leading the People",13,14
-15,Sunflowers,2,15
-16,"Water Lilies",8,16
-17,Nighthawks,14,17
-18,"Las Meninas",15,18
-19,"The Kiss",16,19
-20,"The Creation of Adam",17,20
-21,David,17,21
-22,"Venus de Milo",18,22
-23,"The Thinker",19,23
-24,Pieta,17,24
-25,"The Ecstasy of Saint Teresa",20,25
-26,"The Gates of Hell",19,26
-27,"Christ the Redeemer",21,27
+artist_id,details_id,id,title
+1,1,1,"Mona Lisa"
+2,2,2,"The Starry Night"
+1,3,3,"The Last Supper"
+3,4,4,"Girl with a Pearl Earring"
+4,5,5,"The Scream"
+5,6,6,Guernica
+6,7,7,"The Persistence of Memory"
+7,8,8,"The Birth of Venus"
+8,9,9,"Impression, Sunrise"
+9,10,10,"American Gothic"
+10,11,11,"The Night Watch"
+11,12,12,"The Garden of Earthly Delights"
+12,13,13,"Whistler's Mother"
+13,14,14,"Liberty Leading the People"
+2,15,15,Sunflowers
+8,16,16,"Water Lilies"
+14,17,17,Nighthawks
+15,18,18,"Las Meninas"
+16,19,19,"The Kiss"
+17,20,20,"The Creation of Adam"
+17,21,21,David
+18,22,22,"Venus de Milo"
+19,23,23,"The Thinker"
+17,24,24,Pieta
+20,25,25,"The Ecstasy of Saint Teresa"
+19,26,26,"The Gates of Hell"
+21,27,27,"Christ the Redeemer"
+25,28,28,"Jimson Weed"
+25,29,29,"Ram's Head, White Hollyhock, and Little Hills"
+24,30,30,"The Two Fridas"
+24,31,31,"Self-Portrait with Thorn Necklace and Hummingbird"

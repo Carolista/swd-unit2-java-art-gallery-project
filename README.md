@@ -44,4 +44,4 @@ There is no starter branch for Part 1 because part of the process is creating th
 #### Test Endpoints with Postman
 1. Create a collection in Postman that tests all four of the endpoints defined in your controller. Make sure they are returning/receiving data as expected.
 
-You're off to a good start! Part 2 will entail connecting to a MySQL database.
+You're off to a good start! Continue with the `TODO`s in the `part2-starter-connect-database` branch.
