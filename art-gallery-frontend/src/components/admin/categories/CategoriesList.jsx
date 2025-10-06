@@ -60,7 +60,7 @@ const CategoriesList = () => {
 			} catch (error) {
 				console.error(error.message);
 			} finally {
-				// FUTURE: Use toast or banner to notify user of success or failure
+				// Use toast or banner to notify user of success or failure
 				// Could have various specific outcomes depending on type of error
 			}
 		};

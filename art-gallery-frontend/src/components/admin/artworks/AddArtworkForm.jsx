@@ -10,8 +10,7 @@ import {
 import { sortObjByString } from '../../../shared/utils.js';
 import { Loading } from '../../public/exports.js';
 import { useNavigate } from 'react-router';
-import ArtworkDTO from '../../../classes/ArtworkDTO.js';
-import { DetailsDTO } from '../../../classes/exports.js';
+import { ArtworkDTO, DetailsDTO } from '../../../classes/exports.js';
 
 let initialArtworkData = {
 	title: '',
@@ -82,7 +81,7 @@ const AddArtworkForm = () => {
 			} catch (error) {
 				console.error(error.message);
 			} finally {
-				// FUTURE: Use toast or banner to notify user of success or failure
+				// Use toast or banner to notify user of success or failure
 			}
 		};
 
