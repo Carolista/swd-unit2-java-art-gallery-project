@@ -2,8 +2,9 @@ import { use, useState } from 'react';
 import { useNavigate } from 'react-router';
 import { InputErrorMessage, TextInput } from '../../common/exports';
 import { DataContext } from '../../../context/DataContext';
-import CategoryDTO from '../../../classes/CategoryDTO';
 import { AuthContext } from '../../../context/AuthContext';
+import { CategoryDTO } from '../../../classes/exports.js';
+
 
 const AddCategoryForm = () => {
 	const [title, setTitle] = useState('');
@@ -37,7 +38,7 @@ const AddCategoryForm = () => {
 		} catch (error) {
 			console.error(error.message);
 		} finally {
-			// FUTURE: Use toast or banner to notify user of success or failure
+			// Use toast or banner to notify user of success or failure
 		}
 	};
 

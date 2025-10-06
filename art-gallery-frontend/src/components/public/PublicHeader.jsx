@@ -1,7 +1,7 @@
 import { Link } from 'react-router';
 
 const PublicHeader = () => {
-    
+
 	return (
 		<>
 			<header>
