@@ -1,8 +1,8 @@
 # Art Gallery Demo Project
-A multi-part project to teach LaunchCode students to build a Java web application with Spring Boot in conjunction with an SQL database and then fetch data from a React front end application.
+This is a multi-part project to teach LaunchCode students to build a Java web application with Spring Boot in conjunction with an SQL database and then set up a React front end application to fetch data from the back end API.
 
 ### HOW TO USE THIS REPO
-Unlike some of my other repos, I am merging the completed project to the `main` branch.
+Unlike some of my other repos, I merged the completed project to the `main` branch.
 
 If you wish to code the project from the beginning, use this README for instructions. If you wish to code from another point, choose from several branches for the starter code. You may also view the solution branches for each part throughout the project, and of course `main` is the final solution for all parts.
 
