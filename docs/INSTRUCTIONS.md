@@ -1,17 +1,10 @@
 <img width="1029" height="72" alt="Midtown Art Gallery banner" src="https://github.com/user-attachments/assets/3ce29796-5eef-4d19-b2ae-b827fba5519f" />
 
-# Art Gallery Demo Project — Student Instructions
-
-<div align="right">
-    <a href="http://www.codewithcarrie.com" target="_blank">
-        <img src="https://img.shields.io/badge/by-CodeWithCarrie.com-blue?style=for-the-badge" alt="badge linking to CodeWithCarrie website" />
-    </a>
+<div align="center">
+  <h1>Full-Stack Web Application — Student Instructions</h1>
+    <a href="http://www.codewithcarrie.com"><img src="https://img.shields.io/badge/by-CodeWithCarrie.com-blue?style=for-the-badge" alt="badge linking to CodeWithCarrie's website" /></a>
+    <a href="https://www.launchcode.org"><img src="https://img.shields.io/badge/for-LaunchCode_St._Louis-cornflowerblue?style=for-the-badge" alt="badge linking to LaunchCode's website" /></a>
 </div>
-
-> [!NOTE]
-> LaunchCode students! This project will teach you to build a Java web application with Spring Boot in conjunction with an SQL database and then set up a React front end application to fetch data from the back end API.
->
-> *It is best used in conjunction with live code demos or recordings of past live demos in 2025 (available internally in LaunchCode).*
 
 <div align="center">
   <img src="https://img.shields.io/badge/JavaScript-F0DB4F?style=for-the-badge&logo=javascript&logoColor=323330" alt="JavaScript" />
@@ -28,6 +21,11 @@
   <img src="https://img.shields.io/badge/React_Router-CA4245?style=for-the-badge&logo=reactrouter&logoColor=white" alt="React Router" />
   <img src="https://img.shields.io/badge/Spring_Security-6DB33F?style=for-the-badge&logo=springsecurity&logoColor=white" alt="Spring Security" />
 </div>
+
+> [!NOTE]
+> LaunchCode students! This project will teach you to build a Java web application with Spring Boot in conjunction with an SQL database and then set up a React front end application to fetch data from the back end API.
+>
+> *It is best used in conjunction with live code demos or recordings of past live demos in 2025 (available internally in LaunchCode).*
 
 ## HOW TO USE THIS REPO
 Unlike some of my other repos, I merged the completed project to the `main` branch, and I am continuing to build it out far past the scope of LaunchCode's course as my own portfolio piece. As a result, the primary [README](README.md) has a much broader audience.
