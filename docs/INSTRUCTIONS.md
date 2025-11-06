@@ -1,3 +1,5 @@
+<img src="../preview/mag-logo.png" alt="Midtown Art Gallery logo" width="100%" />
+
 <div align="center">
   <h1>Full-Stack Web Application — Student Instructions</h1>
     <a href="http://www.codewithcarrie.com"><img src="https://img.shields.io/badge/by-CodeWithCarrie.com-32A5A9?style=for-the-badge" alt="badge linking to CodeWithCarrie's website" /></a>
@@ -33,7 +35,7 @@
 > *It is best used in conjunction with live code demos or recordings of past live demos in 2025 (available internally in LaunchCode).*
 
 ## HOW TO USE THIS REPO
-Unlike some of my other repos, I merged the completed project to the `main` branch, and I am continuing to build it out far past the scope of LaunchCode's course as my own portfolio piece. As a result, the primary [README](README.md) has a much broader audience.
+Unlike some of my other repos, I merged the completed project to the `main` branch, and I am continuing to build it out far past the scope of LaunchCode's course as my own portfolio piece. As a result, the primary [README](../README.md) has a much broader audience.
 
 **If you wish to code the project from the beginning, use the instructions below.** If you wish to code from another point, choose from several branches for the starter code. You may also view the solution branches for each part throughout the project, and of course `main` is the final solution for all parts.
 
