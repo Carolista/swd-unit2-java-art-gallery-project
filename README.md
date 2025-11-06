@@ -138,8 +138,9 @@ This full-stack project leverages a modern, decoupled MVC architecture with mult
 |       ---: | :---        |
 | ![Java](https://img.shields.io/badge/Java-ED8B00?style=for-the-badge) | Core programming language for robust and scalable web applications |
 | ![SpringBoot](https://img.shields.io/badge/SpringBoot-6DB33F?style=for-the-badge&logo=springboot&logoColor=white) | Rapid creation of standalone application with a RESTful API |
+| ![Maven](https://img.shields.io/badge/Maven-C71A36?style=for-the-badge&logo=apachemaven&logoColor=white) | Comprehensive, convention-over-configuration approach that simplifies dependency management |
 | ![Hibernate](https://img.shields.io/badge/Hibernate-59666C?style=for-the-badge&logo=hibernate&logoColor=white) | Object-Relational Mapping (ORM) tool for database interactions |
-| ![MySQL](https://img.shields.io/badge/MySQL-00758F?style=for-the-badge&logo=mysql&logoColor=white) | Relational database with structured data storage |
+| ![MySQL](https://img.shields.io/badge/MySQL-00758F?style=for-the-badge) | Relational database with structured data storage |
 | ![Spring Security](https://img.shields.io/badge/Spring_Security-6DB33F?style=for-the-badge&logo=springsecurity&logoColor=white) | Out-of-the-box user authentication and authorization using JWT (JSON Web Tokens) |
 
 ---
