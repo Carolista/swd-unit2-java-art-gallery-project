@@ -1,26 +1,33 @@
-<img width="1029" height="72" alt="Midtown Art Gallery banner" src="https://github.com/user-attachments/assets/3ce29796-5eef-4d19-b2ae-b827fba5519f" />
+<img src="../preview/mag-logo.png" alt="Midtown Art Gallery logo" width="100%" />
 
 <div align="center">
   <h1>Full-Stack Web Application — Student Instructions</h1>
-    <a href="http://www.codewithcarrie.com"><img src="https://img.shields.io/badge/by-CodeWithCarrie.com-blue?style=for-the-badge" alt="badge linking to CodeWithCarrie's website" /></a>
-    <a href="https://www.launchcode.org"><img src="https://img.shields.io/badge/for-LaunchCode_St._Louis-cornflowerblue?style=for-the-badge" alt="badge linking to LaunchCode's website" /></a>
+    <a href="http://www.codewithcarrie.com"><img src="https://img.shields.io/badge/by-CodeWithCarrie.com-32A5A9?style=for-the-badge" alt="badge linking to CodeWithCarrie's website" /></a>
+    <a href="https://www.launchcode.org"><img src="https://img.shields.io/badge/for-LaunchCode_St._Louis-5C93CE?style=for-the-badge" alt="badge linking to LaunchCode's website" /></a>
 </div>
 
+<br />
+
 <div align="center">
-  <img src="https://img.shields.io/badge/JavaScript-F0DB4F?style=for-the-badge&logo=javascript&logoColor=323330" alt="JavaScript" />
   <img src="https://img.shields.io/badge/React-61DBFB?style=for-the-badge&logo=react&logoColor=20232A" alt="React" />
+  <img src="https://img.shields.io/badge/JavaScript-F0DB4F?style=for-the-badge&logo=javascript&logoColor=323330" alt="JavaScript" />
   <img src="https://img.shields.io/badge/Vite-646CFF?style=for-the-badge&logo=vite&logoColor=white" alt="Vite" />
+  <img src="https://img.shields.io/badge/Spring_Boot-6DB33F?style=for-the-badge&logo=springboot&logoColor=white" alt="Spring Boot" />
+  <img src="https://img.shields.io/badge/Maven-C71A36?style=for-the-badge&logo=apachemaven&logoColor=white" alt="Maven" />
   <img src="https://img.shields.io/badge/Java-ED8B00?style=for-the-badge" alt="Java" />
-  <img src="https://img.shields.io/badge/SpringBoot-6DB33F?style=for-the-badge&logo=springboot&logoColor=white" alt="Spring Boot" />
   <img src="https://img.shields.io/badge/MySQL-00758F?style=for-the-badge" alt="MySQL" />
 </div>
 
 <div align="center">
-  <img src="https://img.shields.io/badge/CSS-rebeccapurple?style=for-the-badge&logo=css&logoColor=white" alt="CSS" />
-  <img src="https://img.shields.io/badge/Bootstrap-7952B3?style=for-the-badge&logo=bootstrap&logoColor=white" alt="Bootstrap" />
   <img src="https://img.shields.io/badge/React_Router-CA4245?style=for-the-badge&logo=reactrouter&logoColor=white" alt="React Router" />
+  <img src="https://img.shields.io/badge/CSS-rebeccapurple?style=for-the-badge&logo=css&logoColor=white" alt="CSS" />
+  <img src="https://img.shields.io/badge/FontAwesome-0A6EB4?style=for-the-badge&logo=fontawesome&logoColor=white" alt="FontAwesome" />
+  <img src="https://img.shields.io/badge/Google_Fonts-EA4335?style=for-the-badge&logo=googlefonts&logoColor=white" alt="Google Fonts" />
+  <img src="https://img.shields.io/badge/Hibernate-59666C?style=for-the-badge&logo=hibernate&logoColor=white" alt="Hibernate" />
   <img src="https://img.shields.io/badge/Spring_Security-6DB33F?style=for-the-badge&logo=springsecurity&logoColor=white" alt="Spring Security" />
 </div>
+
+<br />
 
 > [!NOTE]
 > LaunchCode students! This project will teach you to build a Java web application with Spring Boot in conjunction with an SQL database and then set up a React front end application to fetch data from the back end API.
@@ -28,7 +35,7 @@
 > *It is best used in conjunction with live code demos or recordings of past live demos in 2025 (available internally in LaunchCode).*
 
 ## HOW TO USE THIS REPO
-Unlike some of my other repos, I merged the completed project to the `main` branch, and I am continuing to build it out far past the scope of LaunchCode's course as my own portfolio piece. As a result, the primary [README](README.md) has a much broader audience.
+Unlike some of my other repos, I merged the completed project to the `main` branch, and I am continuing to build it out far past the scope of LaunchCode's course as my own portfolio piece. As a result, the primary [README](../README.md) has a much broader audience.
 
 **If you wish to code the project from the beginning, use the instructions below.** If you wish to code from another point, choose from several branches for the starter code. You may also view the solution branches for each part throughout the project, and of course `main` is the final solution for all parts.
 
