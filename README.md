@@ -69,16 +69,19 @@ The `main` branch contains a more advanced version of the project that I am buil
 - **Authorization:** Admin has access to entire website
 - **CRUD Operations:** Admin can view, add, and delete database records (artworks, artists, and categories)
 
-### Wireframes w/Site Map
-<details>
-  <summary>Click here to view wireframes.</summary>
-  <em>Coming soon!</em>
-</details>
-
 ---
 
 <a name="visuals"></a>
-### 📸 Key Visuals
+## 📸 Key Visuals
+
+### Wireframes w/Site Map
+
+<details>
+  <summary>Click here to toggle view of wireframes.</summary><br />
+  <em>Coming soon!</em>
+</details>
+
+### Preview of UI
 
 > Click on any of the items below to expand or collapse them.
 
@@ -215,7 +218,11 @@ This project utilizes a MySQL database structured around four core entities, man
 3.  **Artwork** ↔️ **Category**: Many-to-Many
 
 ### Entity Relationship Diagram (ERD)
+<details open>
+  <summary>Click here to toggle view of ERD</summary><br />
+<em>Click on image to view in Figma.</em><br />
 <a href="https://www.figma.com/board/o34g5TcvORPtVTM2M2ONtk/ERD---Art-Gallery--Spring-"><img src="preview/erd.png" alt="Entity Relationship Diagram" /></a>
+</details>
 
 ---
 
