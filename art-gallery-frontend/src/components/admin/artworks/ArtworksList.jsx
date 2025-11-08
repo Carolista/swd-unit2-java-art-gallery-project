@@ -4,6 +4,7 @@ import { DataContext } from '../../../context/DataContext';
 import { Loading } from '../../public/exports.js';
 import { AuthContext } from '../../../context/AuthContext.jsx';
 import { sortObjById, sortObjByString } from '../../../shared/utils.js';
+import ColumnHeading from '../../common/ColumnHeading.jsx';
 
 const ArtworksList = () => {
 	const { isLoading } = use(DataContext);
@@ -159,41 +160,37 @@ const ArtworksList = () => {
 						<table className="table table-striped">
 							<thead>
 								<tr>
-									<th>
-										<span
-											className={`sortable ${
-												currentSortColumn === 'id' ? 'sorted-by' : ''
-											}`}
-											onClick={() => handleSortByColumn('id')}>
-											ID
-										</span>
+									<th width="100px">
+										<ColumnHeading
+											label="ID"
+											property="id"
+											current={currentSortColumn}
+											setCurrent={handleSortByColumn}
+										/>
 									</th>
 									<th>
-										<span
-											className={`sortable ${
-												currentSortColumn === 'title' ? 'sorted-by' : ''
-											}`}
-											onClick={() => handleSortByColumn('title')}>
-											Title
-										</span>
+										<ColumnHeading
+											label="Title"
+											property="title"
+											current={currentSortColumn}
+											setCurrent={handleSortByColumn}
+										/>
 									</th>
 									<th>
-										<span
-											className={`sortable ${
-												currentSortColumn === 'artist' ? 'sorted-by' : ''
-											}`}
-											onClick={() => handleSortByColumn('artist')}>
-											Artist
-										</span>
+										<ColumnHeading
+											label="Artist"
+											property="artist"
+											current={currentSortColumn}
+											setCurrent={handleSortByColumn}
+										/>
 									</th>
 									<th>
-										<span
-											className={`sortable ${
-												currentSortColumn === 'year' ? 'sorted-by' : ''
-											}`}
-											onClick={() => handleSortByColumn('year')}>
-											Created
-										</span>
+										<ColumnHeading
+											label="Created"
+											property="year"
+											current={currentSortColumn}
+											setCurrent={handleSortByColumn}
+										/>
 									</th>
 									<th>Image</th>
 									<th></th>
