@@ -4,6 +4,7 @@ import { DataContext } from '../../../context/DataContext';
 import { Loading } from '../../public/exports.js';
 import { AuthContext } from '../../../context/AuthContext.jsx';
 import { sortObjById, sortObjByString } from '../../../shared/utils.js';
+import ColumnHeading from '../../common/ColumnHeading.jsx';
 
 const ArtistsList = () => {
 	const { isLoading } = use(DataContext);
@@ -15,7 +16,7 @@ const ArtistsList = () => {
 		const { allArtworks, allArtists, fetchArtists } = use(DataContext);
 
 		const [currentArtists, setCurrentArtists] = useState([...allArtists]);
-		const [currentSortColumn, setCurrentSortColumn] = useState('lastName');
+		const [currentSortColumn, setCurrentSortColumn] = useState('id');
 
 		const getNumberOfArtworksByArtist = artistId => {
 			return [...allArtworks].filter(artwork => artwork.artist.id == artistId)
@@ -116,33 +117,37 @@ const ArtistsList = () => {
 						<table className="table table-striped">
 							<thead>
 								<tr>
-									<th>
-										<span
-											className="sortable"
-											onClick={() => setCurrentSortColumn('id')}>
-											ID
-										</span>
+									<th width="100px">
+										<ColumnHeading
+											label="ID"
+											property="id"
+											current={currentSortColumn}
+											setCurrent={setCurrentSortColumn}
+										/>
 									</th>
 									<th>
-										<span
-											className="sortable"
-											onClick={() => setCurrentSortColumn('firstName')}>
-											First Name
-										</span>
+										<ColumnHeading
+											label="First Name"
+											property="firstName"
+											current={currentSortColumn}
+											setCurrent={setCurrentSortColumn}
+										/>
 									</th>
 									<th>
-										<span
-											className="sortable"
-											onClick={() => setCurrentSortColumn('lastName')}>
-											Last Name
-										</span>
+										<ColumnHeading
+											label="Last Name"
+											property="lastName"
+											current={currentSortColumn}
+											setCurrent={setCurrentSortColumn}
+										/>
 									</th>
 									<th>
-										<span
-											className="sortable"
-											onClick={() => setCurrentSortColumn('location')}>
-											Location
-										</span>
+										<ColumnHeading
+											label="Location"
+											property="location"
+											current={currentSortColumn}
+											setCurrent={setCurrentSortColumn}
+										/>
 									</th>
 									<th>Artworks</th>
 									<th></th>

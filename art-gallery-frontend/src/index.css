@@ -242,6 +242,21 @@ textarea {
 	opacity: 0.4;
 }
 
+/* NEW UNTIL I REVAMP CSS */
+
 .sortable {
 	cursor: pointer;
+}
+.sortable:hover {
+	color: #d57424;
+}
+.sortable i {
+	visibility: hidden;
+}
+.sortable:hover i {
+	visibility: visible;
+}
+
+.sorted-by {
+	color: #b95a0a;
 }

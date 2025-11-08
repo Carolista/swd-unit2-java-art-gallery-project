@@ -2,9 +2,11 @@ import { use } from 'react';
 import { Link, useNavigate } from 'react-router';
 import { AuthContext } from '../../context/AuthContext';
 import { removeTokenFromStorage } from '../../services/storageService';
+import { DataContext } from '../../context/DataContext';
 
 const AdminHeader = () => {
 	const { setAuth } = use(AuthContext);
+	const { allArtworks, setCurrentArtworks } = use(DataContext);
 
 	const navigate = useNavigate();
 
@@ -30,7 +32,10 @@ const AdminHeader = () => {
 					<Link className="navlink" to="/admin/artists">
 						Artists
 					</Link>
-					<Link className="navlink" to="/admin/artworks">
+					<Link
+						className="navlink"
+						to="/admin/artworks"
+						onClick={() => setCurrentArtworks(allArtworks)}>
 						Artworks
 					</Link>
 					<Link className="navlink" to="/admin/categories">
