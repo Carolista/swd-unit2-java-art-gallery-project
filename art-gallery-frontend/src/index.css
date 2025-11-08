@@ -245,3 +245,9 @@ textarea {
 .sortable {
 	cursor: pointer;
 }
+
+/* NEW UNTIL I REVAMP CSS */
+
+.sorted-by {
+	color: #b95a0a;
+}

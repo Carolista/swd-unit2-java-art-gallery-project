@@ -12,13 +12,13 @@ const ArtworksList = () => {
 		return <Loading dataName="artworks" />;
 	} else {
 		const { auth } = use(AuthContext);
-		const { allArtworks, fetchArtworks } = use(DataContext);
-
-		const [currentArtworks, setCurrentArtworks] = useState([...allArtworks]);
-		const [currentSortColumn, setCurrentSortColumn] = useState('title');
+		const { allArtworks, currentArtworks, setCurrentArtworks, fetchArtworks } =
+			use(DataContext);
 
 		const location = useLocation();
 		const { currentArtist, currentCategory } = location.state || {};
+
+		const [currentSortColumn, setCurrentSortColumn] = useState('id');
 
 		const filterArtworks = () => {
 			if (currentArtist) {
@@ -38,14 +38,6 @@ const ArtworksList = () => {
 		};
 
 		useEffect(() => {
-			let sortFunction =
-				currentSortColumn === 'id' ? sortObjById : sortObjByString;
-			// FIXME: Not working for currentArtworks
-			let updatedArtworks = sortFunction([...allArtworks], currentSortColumn);
-			setCurrentArtworks(updatedArtworks);
-		}, [currentSortColumn]);
-
-		useEffect(() => {
 			setCurrentArtworks(allArtworks);
 			filterArtworks();
 		}, [allArtworks]);
@@ -53,6 +45,37 @@ const ArtworksList = () => {
 		useEffect(() => {
 			filterArtworks();
 		}, [currentArtist, currentCategory]);
+
+		const handleSortByColumn = column => {
+			let updatedArtworks;
+			switch (column) {
+				case 'id':
+					updatedArtworks = sortObjById([...currentArtworks], 'id');
+					break;
+				case 'title':
+					updatedArtworks = sortObjByString([...currentArtworks], 'title');
+					break;
+				case 'artist':
+					updatedArtworks = sortObjByString(
+						[...currentArtworks],
+						'artist',
+						'lastName'
+					);
+					break;
+				case 'year':
+					updatedArtworks = sortObjByString(
+						[...currentArtworks],
+						'details',
+						'yearCreated'
+					);
+			}
+			setCurrentSortColumn(column);
+			setCurrentArtworks(updatedArtworks);
+		};
+
+		const handleResetArtworks = () => {
+			setCurrentArtworks(allArtworks);
+		};
 
 		const deleteArtwork = async id => {
 			try {
@@ -71,7 +94,7 @@ const ArtworksList = () => {
 						errorData.message || `ERROR - Status ${response.status}`
 					);
 				} else {
-					fetchArtworks(); // update state so list will update
+					fetchArtworks();
 				}
 			} catch (error) {
 				console.error(error.message);
@@ -115,16 +138,22 @@ const ArtworksList = () => {
 		return (
 			<main className="main-content">
 				<h2>
-					{currentCategory && `${currentCategory.title} `}
 					ARTWORKS
+					{currentCategory && ` (${currentCategory.title})`}
 					{currentArtist &&
-						` by ${currentArtist.firstName[0]}. ${currentArtist.lastName}`}
+						` (${currentArtist.firstName[0]}. ${currentArtist.lastName})`}
 				</h2>
 				{currentArtworks.length ? (
 					<>
-						{currentArtworks.length > 10 && (
+						{currentArtworks.length < allArtworks.length && (
 							<p>
-								Add a <Link to="/admin/artworks/add">new artwork</Link>.
+								<em>
+									Displaying {currentArtworks.length} of {allArtworks.length}{' '}
+									artworks.
+								</em>{' '}
+								<Link to="/admin/artworks" onClick={handleResetArtworks}>
+									View All
+								</Link>
 							</p>
 						)}
 						<table className="table table-striped">
@@ -132,20 +161,40 @@ const ArtworksList = () => {
 								<tr>
 									<th>
 										<span
-											className="sortable"
-											onClick={() => setCurrentSortColumn('id')}>
+											className={`sortable ${
+												currentSortColumn === 'id' ? 'sorted-by' : ''
+											}`}
+											onClick={() => handleSortByColumn('id')}>
 											ID
 										</span>
 									</th>
 									<th>
 										<span
-											className="sortable"
-											onClick={() => setCurrentSortColumn('title')}>
+											className={`sortable ${
+												currentSortColumn === 'title' ? 'sorted-by' : ''
+											}`}
+											onClick={() => handleSortByColumn('title')}>
 											Title
 										</span>
 									</th>
-									<th>Artist</th>
-									<th>Created</th>
+									<th>
+										<span
+											className={`sortable ${
+												currentSortColumn === 'artist' ? 'sorted-by' : ''
+											}`}
+											onClick={() => handleSortByColumn('artist')}>
+											Artist
+										</span>
+									</th>
+									<th>
+										<span
+											className={`sortable ${
+												currentSortColumn === 'year' ? 'sorted-by' : ''
+											}`}
+											onClick={() => handleSortByColumn('year')}>
+											Created
+										</span>
+									</th>
 									<th>Image</th>
 									<th></th>
 								</tr>
