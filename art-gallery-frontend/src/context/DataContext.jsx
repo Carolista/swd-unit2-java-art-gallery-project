@@ -10,6 +10,7 @@ export const DataContextProvider = ({ children }) => {
 	const [isLoading, setIsLoading] = useState(true);
 
 	const [allArtworks, setAllArtworks] = useState(null);
+	const [currentArtworks, setCurrentArtworks] = useState(null);
 	const [allArtists, setAllArtists] = useState(null);
 	const [allCategories, setAllCategories] = useState(null);
 
@@ -62,6 +63,7 @@ export const DataContextProvider = ({ children }) => {
 			console.error(error.message);
 		} finally {
 			setAllArtworks(artworks);
+            setCurrentArtworks(artworks);
 		}
 	};
 
@@ -141,6 +143,8 @@ export const DataContextProvider = ({ children }) => {
 				allArtworks,
 				allArtists,
 				allCategories,
+                currentArtworks,
+                setCurrentArtworks,
 				fetchArtworks,
 				fetchArtists,
 				fetchCategories,

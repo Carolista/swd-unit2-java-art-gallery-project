@@ -4,6 +4,7 @@ import { DataContext } from '../../../context/DataContext';
 import { Loading } from '../../public/exports.js';
 import { sortObjById, sortObjByString } from '../../../shared/utils.js';
 import { AuthContext } from '../../../context/AuthContext.jsx';
+import ColumnHeading from '../../common/ColumnHeading.jsx';
 
 const CategoriesList = () => {
 	const { isLoading } = use(DataContext);
@@ -17,7 +18,7 @@ const CategoriesList = () => {
 		const [currentCategories, setCurrentCategories] = useState([
 			...allCategories,
 		]);
-		const [currentSortColumn, setCurrentSortColumn] = useState('title');
+		const [currentSortColumn, setCurrentSortColumn] = useState('id');
 
 		const getNumberOfArtworksByCategory = categoryId => {
 			return [...allArtworks].filter(artwork => {
@@ -120,19 +121,21 @@ const CategoriesList = () => {
 						<table className="table table-striped">
 							<thead>
 								<tr>
-									<th>
-										<span
-											className="sortable"
-											onClick={() => setCurrentSortColumn('id')}>
-											ID
-										</span>
+									<th width="100px">
+										<ColumnHeading
+											label="ID"
+											property="id"
+											current={currentSortColumn}
+											setCurrent={setCurrentSortColumn}
+										/>
 									</th>
 									<th>
-										<span
-											className="sortable"
-											onClick={() => setCurrentSortColumn('title')}>
-											Title
-										</span>
+										<ColumnHeading
+											label="Title"
+											property="title"
+											current={currentSortColumn}
+											setCurrent={setCurrentSortColumn}
+										/>
 									</th>
 									<th>Artworks</th>
 									<th></th>
