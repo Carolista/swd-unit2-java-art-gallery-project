@@ -10,7 +10,7 @@ const ArtistsList = () => {
 	const { isLoading } = use(DataContext);
 
 	if (isLoading) {
-		return <Loading dataName="artists" />;
+		return <Loading dataName='artists' />;
 	} else {
 		const { auth } = use(AuthContext);
 		const { allArtworks, allArtists, fetchArtists } = use(DataContext);
@@ -19,16 +19,20 @@ const ArtistsList = () => {
 		const [currentSortColumn, setCurrentSortColumn] = useState('id');
 
 		const getNumberOfArtworksByArtist = artistId => {
-			return [...allArtworks].filter(artwork => artwork.artist.id == artistId)
-				.length;
+			return [...allArtworks].filter(
+				artwork => artwork.artist.id == artistId,
+			).length;
 		};
 
 		useEffect(() => {
 			let sortFunction =
 				currentSortColumn === 'id' ? sortObjById : sortObjByString;
-			let updatedArtists = sortFunction([...allArtists], currentSortColumn);
+			let updatedArtists = sortFunction(
+				[...allArtists],
+				currentSortColumn,
+			);
 			setCurrentArtists(updatedArtists);
-		}, [currentSortColumn]);
+		}, [currentSortColumn, allArtists]);
 
 		useEffect(() => {
 			setCurrentArtists([...allArtists]);
@@ -40,15 +44,14 @@ const ArtistsList = () => {
 					`http://localhost:8080/api/artists/delete/${id}`,
 					{
 						method: 'DELETE',
-						headers: {
-							Authorization: 'Bearer ' + auth.token,
-						},
-					}
+						headers: { Authorization: 'Bearer ' + auth.token },
+					},
 				);
 				if (!response.ok) {
 					const errorData = await response.json();
 					throw new Error(
-						errorData.message || `ERROR - Status ${response.status}`
+						errorData.message ||
+							`ERROR - Status ${response.status}`,
 					);
 				} else {
 					fetchArtists(); // update state so list will re-render
@@ -66,8 +69,8 @@ const ArtistsList = () => {
                 Are you sure you want to delete this record?
                 
                 Artist: ${currentArtists
-									.find(artist => artist.id == id)
-									.getFullName()}
+					.find(artist => artist.id == id)
+					.getFullName()}
                 `);
 			if (confirmed) {
 				deleteArtist(id);
@@ -79,7 +82,9 @@ const ArtistsList = () => {
 
 			const getViewArtworksJSX = () => {
 				return numArtworks ? (
-					<Link to="/admin/artworks" state={{ currentArtist: artist }}>
+					<Link
+						to='/admin/artworks'
+						state={{ currentArtist: artist }}>
 						View {numArtworks} artworks
 					</Link>
 				) : (
@@ -93,10 +98,10 @@ const ArtistsList = () => {
 					<td>{artist.lastName}</td>
 					<td>{artist.location}</td>
 					<td>{getViewArtworksJSX()}</td>
-					<td className="delete-icon">
+					<td className='delete-icon'>
 						<span onClick={() => handleDelete(artist.id)}>
 							<i
-								className="fa-solid fa-trash-can"
+								className='fa-solid fa-trash-can'
 								title={`Delete ${artist.getFullName()}`}></i>
 						</span>
 					</td>
@@ -105,46 +110,47 @@ const ArtistsList = () => {
 		});
 
 		return (
-			<main className="main-content">
+			<main className='main-content'>
 				<h2>ARTISTS</h2>
 				{currentArtists.length ? (
 					<>
 						{currentArtists.length > 10 && (
 							<p>
-								Add a <Link to="/admin/artists/add">new artist</Link>.
+								Add a{' '}
+								<Link to='/admin/artists/add'>new artist</Link>.
 							</p>
 						)}
-						<table className="table table-striped">
+						<table className='table table-striped'>
 							<thead>
 								<tr>
-									<th width="100px">
+									<th width='100px'>
 										<ColumnHeading
-											label="ID"
-											property="id"
+											label='ID'
+											property='id'
 											current={currentSortColumn}
 											setCurrent={setCurrentSortColumn}
 										/>
 									</th>
 									<th>
 										<ColumnHeading
-											label="First Name"
-											property="firstName"
+											label='First Name'
+											property='firstName'
 											current={currentSortColumn}
 											setCurrent={setCurrentSortColumn}
 										/>
 									</th>
 									<th>
 										<ColumnHeading
-											label="Last Name"
-											property="lastName"
+											label='Last Name'
+											property='lastName'
 											current={currentSortColumn}
 											setCurrent={setCurrentSortColumn}
 										/>
 									</th>
 									<th>
 										<ColumnHeading
-											label="Location"
-											property="location"
+											label='Location'
+											property='location'
 											current={currentSortColumn}
 											setCurrent={setCurrentSortColumn}
 										/>
@@ -156,7 +162,8 @@ const ArtistsList = () => {
 							<tbody>{artistRowsJSX}</tbody>
 						</table>
 						<p>
-							Add a <Link to="/admin/artists/add">new artist</Link>.
+							Add a{' '}
+							<Link to='/admin/artists/add'>new artist</Link>.
 						</p>
 					</>
 				) : (

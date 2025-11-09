@@ -9,7 +9,7 @@ export default class Details {
 		height,
 		width,
 		depth,
-		imageId
+		imageId,
 	) {
 		this.id = id;
 		this.yearCreated = yearCreated;
@@ -24,11 +24,7 @@ export default class Details {
 	getDimensions() {
 		let useFeet = this.height > 48 || this.width > 48;
 
-		let dims = {
-			H: this.height,
-			W: this.width,
-			D: this.depth,
-		};
+		let dims = { H: this.height, W: this.width, D: this.depth };
 
 		let formatted = [];
 

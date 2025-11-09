@@ -62,16 +62,16 @@ const LoginPage = () => {
 	};
 
 	return (
-		<main className="main-content">
+		<main className='main-content'>
 			<h1>Log In</h1>
 
 			<form onSubmit={handleSubmit}>
-				<div className="container">
-					<div className="row">
-						<div className="form-item col-4">
+				<div className='container'>
+					<div className='row'>
+						<div className='form-item col-4'>
 							<TextInput
-								id="email"
-								label="Email"
+								id='email'
+								label='Email'
 								value={email}
 								setValue={setEmail}
 								handleChange={handleEmailChange}
@@ -83,12 +83,12 @@ const LoginPage = () => {
 						</div>
 					</div>
 				</div>
-				<div className="container">
-					<div className="row">
-						<div className="form-item col-4">
+				<div className='container'>
+					<div className='row'>
+						<div className='form-item col-4'>
 							<PasswordInput
-								id="password"
-								label="Password"
+								id='password'
+								label='Password'
 								value={password}
 								handleChange={handlePasswordChange}
 							/>
@@ -100,12 +100,13 @@ const LoginPage = () => {
 					</div>
 				</div>
 
-				<button type="submit" disabled={submitting}>
+				<button type='submit' disabled={submitting}>
 					Log In
 				</button>
 			</form>
-			<p className="mt-5">
-				Don't have an account? <Link to="/register">Register here.</Link>
+			<p className='mt-5'>
+				Don't have an account?{' '}
+				<Link to='/register'>Register here.</Link>
 			</p>
 		</main>
 	);

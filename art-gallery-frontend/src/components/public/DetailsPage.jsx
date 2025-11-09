@@ -10,7 +10,7 @@ const DetailsPage = () => {
 	const { isLoading } = use(DataContext);
 
 	if (isLoading) {
-		return <Loading dataName="artwork" />;
+		return <Loading dataName='artwork' />;
 	} else {
 		const { allArtworks } = use(DataContext);
 
@@ -26,32 +26,41 @@ const DetailsPage = () => {
 				<ErrorPage>
 					<p>Sorry, that artwork does not exist!</p>
 					<span onClick={handleGoBack}>
-						<i className="fa-solid fa-circle-arrow-left"></i> Go Back
+						<i className='fa-solid fa-circle-arrow-left'></i> Go
+						Back
 					</span>
 				</ErrorPage>
 			);
 		} else {
 			return (
-				<main className="main-content">
+				<main className='main-content'>
 					<p>
-						<Link to="/artworks">
-							<i className="fa-solid fa-circle-arrow-left"></i>
+						<Link to='/artworks'>
+							<i className='fa-solid fa-circle-arrow-left'></i>
 						</Link>
-						&nbsp; Back to <Link to="/artworks">Artworks Gallery View</Link>
+						&nbsp; Back to{' '}
+						<Link to='/artworks'>Artworks Gallery View</Link>
 					</p>
 					<h2>ARTWORK DETAILS</h2>
-					<div className="container">
-						<div className="row">
-							<div className="col-6">
+					<div className='container'>
+						<div className='row'>
+							<div className='col-6'>
 								<img
-									className="card-image"
+									className='card-image'
 									src={artwork.details.getImageURL()}
-                                    alt={artwork.title + " by " + artwork.artist.getFullName()}
+									alt={
+										artwork.title +
+										' by ' +
+										artwork.artist.getFullName()
+									}
 								/>
 							</div>
-							<div className="col-6">
-								<h4 className="mb-4 mt-2 font-bold">
-									{artwork.title + ' (' + artwork.details.yearCreated + ')'}
+							<div className='col-6'>
+								<h4 className='mb-4 mt-2 font-bold'>
+									{artwork.title +
+										' (' +
+										artwork.details.yearCreated +
+										')'}
 								</h4>
 								<>
 									<h5>Artist</h5>

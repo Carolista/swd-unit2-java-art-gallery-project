@@ -27,6 +27,7 @@ export const AuthContextProvider = ({ children }) => {
 					isAuthenticated: true,
 				});
 			} catch (error) {
+				console.error(error.message);
 				removeTokenFromStorage();
 				setAuth(initialAuth);
 			}

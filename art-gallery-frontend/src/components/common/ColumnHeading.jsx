@@ -5,7 +5,7 @@ const ColumnHeading = ({ label, property, current, setCurrent }) => {
 			onClick={() => setCurrent(property)}>
 			{label}{' '}
 			{current !== property && (
-				<i className="fa-solid fa-arrow-down-a-z fa-lg"></i>
+				<i className='fa-solid fa-arrow-down-a-z fa-lg'></i>
 			)}
 		</span>
 	);

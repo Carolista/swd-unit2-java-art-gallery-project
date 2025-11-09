@@ -10,11 +10,15 @@ const ArtworksList = () => {
 	const { isLoading } = use(DataContext);
 
 	if (isLoading) {
-		return <Loading dataName="artworks" />;
+		return <Loading dataName='artworks' />;
 	} else {
 		const { auth } = use(AuthContext);
-		const { allArtworks, currentArtworks, setCurrentArtworks, fetchArtworks } =
-			use(DataContext);
+		const {
+			allArtworks,
+			currentArtworks,
+			setCurrentArtworks,
+			fetchArtworks,
+		} = use(DataContext);
 
 		const location = useLocation();
 		const { currentArtist, currentCategory } = location.state || {};
@@ -24,7 +28,7 @@ const ArtworksList = () => {
 		const filterArtworks = () => {
 			if (currentArtist) {
 				const filteredArtworks = allArtworks.filter(
-					artwork => artwork.artist.id == currentArtist.id
+					artwork => artwork.artist.id == currentArtist.id,
 				);
 				setCurrentArtworks(filteredArtworks);
 			}
@@ -32,7 +36,7 @@ const ArtworksList = () => {
 				const filteredArtworks = allArtworks.filter(artwork =>
 					artwork.categories
 						.map(category => category.id)
-						.includes(currentCategory.id)
+						.includes(currentCategory.id),
 				);
 				setCurrentArtworks(filteredArtworks);
 			}
@@ -54,20 +58,23 @@ const ArtworksList = () => {
 					updatedArtworks = sortObjById([...currentArtworks], 'id');
 					break;
 				case 'title':
-					updatedArtworks = sortObjByString([...currentArtworks], 'title');
+					updatedArtworks = sortObjByString(
+						[...currentArtworks],
+						'title',
+					);
 					break;
 				case 'artist':
 					updatedArtworks = sortObjByString(
 						[...currentArtworks],
 						'artist',
-						'lastName'
+						'lastName',
 					);
 					break;
 				case 'year':
 					updatedArtworks = sortObjByString(
 						[...currentArtworks],
 						'details',
-						'yearCreated'
+						'yearCreated',
 					);
 			}
 			setCurrentSortColumn(column);
@@ -84,15 +91,14 @@ const ArtworksList = () => {
 					`http://localhost:8080/api/artworks/delete/${id}`,
 					{
 						method: 'DELETE',
-						headers: {
-							Authorization: 'Bearer ' + auth.token,
-						},
-					}
+						headers: { Authorization: 'Bearer ' + auth.token },
+					},
 				);
 				if (!response.ok) {
 					const errorData = await response.json();
 					throw new Error(
-						errorData.message || `ERROR - Status ${response.status}`
+						errorData.message ||
+							`ERROR - Status ${response.status}`,
 					);
 				} else {
 					fetchArtworks();
@@ -123,12 +129,20 @@ const ArtworksList = () => {
 					<td>{artwork.artist.getFullName()}</td>
 					<td>{artwork.details.yearCreated}</td>
 					<td>
-						<img src={artwork.details.getImageURL()} width="50px" alt={artwork.title + " by " + artwork.artist.getFullName()} />
+						<img
+							src={artwork.details.getImageURL()}
+							width='50px'
+							alt={
+								artwork.title +
+								' by ' +
+								artwork.artist.getFullName()
+							}
+						/>
 					</td>
-					<td className="delete-icon">
+					<td className='delete-icon'>
 						<span onClick={() => handleDelete(artwork.id)}>
 							<i
-								className="fa-solid fa-trash-can"
+								className='fa-solid fa-trash-can'
 								title={`Delete ${artwork.title}`}></i>
 						</span>
 					</td>
@@ -137,7 +151,7 @@ const ArtworksList = () => {
 		});
 
 		return (
-			<main className="main-content">
+			<main className='main-content'>
 				<h2>
 					ARTWORKS
 					{currentCategory && ` (${currentCategory.title})`}
@@ -149,45 +163,47 @@ const ArtworksList = () => {
 						{currentArtworks.length < allArtworks.length && (
 							<p>
 								<em>
-									Displaying {currentArtworks.length} of {allArtworks.length}{' '}
-									artworks.
+									Displaying {currentArtworks.length} of{' '}
+									{allArtworks.length} artworks.
 								</em>{' '}
-								<Link to="/admin/artworks" onClick={handleResetArtworks}>
+								<Link
+									to='/admin/artworks'
+									onClick={handleResetArtworks}>
 									View All
 								</Link>
 							</p>
 						)}
-						<table className="table table-striped">
+						<table className='table table-striped'>
 							<thead>
 								<tr>
-									<th width="100px">
+									<th width='100px'>
 										<ColumnHeading
-											label="ID"
-											property="id"
+											label='ID'
+											property='id'
 											current={currentSortColumn}
 											setCurrent={handleSortByColumn}
 										/>
 									</th>
 									<th>
 										<ColumnHeading
-											label="Title"
-											property="title"
+											label='Title'
+											property='title'
 											current={currentSortColumn}
 											setCurrent={handleSortByColumn}
 										/>
 									</th>
 									<th>
 										<ColumnHeading
-											label="Artist"
-											property="artist"
+											label='Artist'
+											property='artist'
 											current={currentSortColumn}
 											setCurrent={handleSortByColumn}
 										/>
 									</th>
 									<th>
 										<ColumnHeading
-											label="Created"
-											property="year"
+											label='Created'
+											property='year'
 											current={currentSortColumn}
 											setCurrent={handleSortByColumn}
 										/>
@@ -199,7 +215,8 @@ const ArtworksList = () => {
 							<tbody>{artworksJSX}</tbody>
 						</table>
 						<p>
-							Add a <Link to="/admin/artworks/add">new artwork</Link>.
+							Add a{' '}
+							<Link to='/admin/artworks/add'>new artwork</Link>.
 						</p>
 					</>
 				) : (

@@ -12,12 +12,7 @@ import {
 	requestRegistration,
 } from '../../services/authService.js';
 
-const initialUser = {
-	name: '',
-	email: '',
-	password: '',
-	verifyPassword: '',
-};
+const initialUser = { name: '', email: '', password: '', verifyPassword: '' };
 
 const errorMessages = {
 	nameRequired: 'Username is required.',
@@ -70,10 +65,7 @@ const RegisterPage = () => {
 	};
 
 	const handleChange = event => {
-		let updatedUser = {
-			...user,
-			[event.target.id]: event.target.value,
-		};
+		let updatedUser = { ...user, [event.target.id]: event.target.value };
 		setUser(updatedUser);
 	};
 
@@ -94,16 +86,16 @@ const RegisterPage = () => {
 	};
 
 	return (
-		<main className="main-content">
+		<main className='main-content'>
 			<h1>Register New User</h1>
 
 			<form onSubmit={handleSubmit}>
-				<div className="container">
-					<div className="row">
-						<div className="form-item col-4">
+				<div className='container'>
+					<div className='row'>
+						<div className='form-item col-4'>
 							<TextInput
-								id="email"
-								label="Email"
+								id='email'
+								label='Email'
 								value={user.email}
 								handleChange={handleChange}
 							/>
@@ -112,10 +104,10 @@ const RegisterPage = () => {
 								msg={errorMessages['emailRequired']}
 							/>
 						</div>
-						<div className="form-item col-4">
+						<div className='form-item col-4'>
 							<TextInput
-								id="name"
-								label="Full Name"
+								id='name'
+								label='Full Name'
 								value={user.name}
 								handleChange={handleChange}
 							/>
@@ -126,12 +118,12 @@ const RegisterPage = () => {
 						</div>
 					</div>
 				</div>
-				<div className="container">
-					<div className="row">
-						<div className="form-item col-4">
+				<div className='container'>
+					<div className='row'>
+						<div className='form-item col-4'>
 							<PasswordInput
-								id="password"
-								label="Password"
+								id='password'
+								label='Password'
 								value={user.password}
 								handleChange={handleChange}
 							/>
@@ -140,27 +132,30 @@ const RegisterPage = () => {
 								msg={errorMessages['passwordLength']}
 							/>
 						</div>
-						<div className="form-item col-4">
+						<div className='form-item col-4'>
 							<PasswordInput
-								id="verifyPassword"
-								label="Verify Password"
+								id='verifyPassword'
+								label='Verify Password'
 								value={user.verifyPassword}
 								handleChange={handleChange}
 							/>
 							<InputErrorMessage
-								hasError={hasErrors && user.password !== user.verifyPassword}
+								hasError={
+									hasErrors &&
+									user.password !== user.verifyPassword
+								}
 								msg={errorMessages['passwordMismatch']}
 							/>
 						</div>
 					</div>
 				</div>
 
-				<button type="submit" disabled={submitting}>
+				<button type='submit' disabled={submitting}>
 					Register
 				</button>
 			</form>
-			<p className="mt-5">
-				Already have an account? <Link to="/login">Log in here.</Link>
+			<p className='mt-5'>
+				Already have an account? <Link to='/login'>Log in here.</Link>
 			</p>
 		</main>
 	);

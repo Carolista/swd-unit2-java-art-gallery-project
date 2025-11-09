@@ -13,7 +13,7 @@ export {
 	Artwork,
 	ArtworkDTO,
 	Details,
-    DetailsDTO,
+	DetailsDTO,
 	Category,
 	CategoryDTO,
 };

@@ -10,10 +10,11 @@ const CategoriesList = () => {
 	const { isLoading } = use(DataContext);
 
 	if (isLoading) {
-		return <Loading dataName="categories" />;
+		return <Loading dataName='categories' />;
 	} else {
 		const { auth } = use(AuthContext);
-		const { allArtworks, allCategories, fetchCategories } = use(DataContext);
+		const { allArtworks, allCategories, fetchCategories } =
+			use(DataContext);
 
 		const [currentCategories, setCurrentCategories] = useState([
 			...allCategories,
@@ -33,10 +34,10 @@ const CategoriesList = () => {
 				currentSortColumn === 'id' ? sortObjById : sortObjByString;
 			let updatedCategories = sortFunction(
 				[...allCategories],
-				currentSortColumn
+				currentSortColumn,
 			);
 			setCurrentCategories(updatedCategories);
-		}, [currentSortColumn]);
+		}, [currentSortColumn, allCategories]);
 
 		useEffect(() => {
 			setCurrentCategories([...allCategories]);
@@ -48,15 +49,14 @@ const CategoriesList = () => {
 					`http://localhost:8080/api/categories/delete/${id}`,
 					{
 						method: 'DELETE',
-						headers: {
-							Authorization: 'Bearer ' + auth.token,
-						},
-					}
+						headers: { Authorization: 'Bearer ' + auth.token },
+					},
 				);
 				if (!response.ok) {
 					const errorData = await response.json();
 					throw new Error(
-						errorData.message || `ERROR - Status ${response.status}`
+						errorData.message ||
+							`ERROR - Status ${response.status}`,
 					);
 				} else {
 					fetchCategories(); // update state so list will update
@@ -74,8 +74,8 @@ const CategoriesList = () => {
                 Are you sure you want to delete this record?
                 
                 Category: ${
-									currentCategories.find(category => category.id == id).title
-								}
+					currentCategories.find(category => category.id == id).title
+				}
                 `);
 			if (confirmed) {
 				deleteCategory(id);
@@ -85,7 +85,9 @@ const CategoriesList = () => {
 			let numArtworks = getNumberOfArtworksByCategory(category.id);
 			const getViewArtworksJSX = () => {
 				return numArtworks ? (
-					<Link to="/admin/artworks" state={{ currentCategory: category }}>
+					<Link
+						to='/admin/artworks'
+						state={{ currentCategory: category }}>
 						View {numArtworks} artworks
 					</Link>
 				) : (
@@ -97,10 +99,10 @@ const CategoriesList = () => {
 					<td>{category.id}</td>
 					<td>{category.title}</td>
 					<td>{getViewArtworksJSX()}</td>
-					<td className="delete-icon">
+					<td className='delete-icon'>
 						<span onClick={() => handleDelete(category.id)}>
 							<i
-								className="fa-solid fa-trash-can"
+								className='fa-solid fa-trash-can'
 								title={`Delete ${category.title}`}></i>
 						</span>
 					</td>
@@ -109,30 +111,34 @@ const CategoriesList = () => {
 		});
 
 		return (
-			<main className="main-content">
+			<main className='main-content'>
 				<h2>CATEGORIES</h2>
 				{currentCategories.length ? (
 					<>
 						{currentCategories.length > 10 && (
 							<p>
-								Add a <Link to="/admin/categories/add">new category</Link>.
+								Add a{' '}
+								<Link to='/admin/categories/add'>
+									new category
+								</Link>
+								.
 							</p>
 						)}
-						<table className="table table-striped">
+						<table className='table table-striped'>
 							<thead>
 								<tr>
-									<th width="100px">
+									<th width='100px'>
 										<ColumnHeading
-											label="ID"
-											property="id"
+											label='ID'
+											property='id'
 											current={currentSortColumn}
 											setCurrent={setCurrentSortColumn}
 										/>
 									</th>
 									<th>
 										<ColumnHeading
-											label="Title"
-											property="title"
+											label='Title'
+											property='title'
 											current={currentSortColumn}
 											setCurrent={setCurrentSortColumn}
 										/>
@@ -144,7 +150,9 @@ const CategoriesList = () => {
 							<tbody>{categoriesJSX}</tbody>
 						</table>
 						<p>
-							Add a <Link to="/admin/categories/add">new category</Link>.
+							Add a{' '}
+							<Link to='/admin/categories/add'>new category</Link>
+							.
 						</p>
 					</>
 				) : (
