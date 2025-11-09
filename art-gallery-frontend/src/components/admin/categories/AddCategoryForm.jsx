@@ -5,7 +5,6 @@ import { DataContext } from '../../../context/DataContext';
 import { AuthContext } from '../../../context/AuthContext';
 import { CategoryDTO } from '../../../classes/exports.js';
 
-
 const AddCategoryForm = () => {
 	const [title, setTitle] = useState('');
 	const [hasErrors, setHasErrors] = useState(false);
@@ -17,19 +16,22 @@ const AddCategoryForm = () => {
 
 	const saveNewCategory = async newCategoryDTO => {
 		try {
-			const response = await fetch('http://localhost:8080/api/categories/add', {
-				method: 'POST',
-				headers: {
-					'Content-Type': 'application/json',
-					Authorization: 'Bearer ' + auth.token,
+			const response = await fetch(
+				'http://localhost:8080/api/categories/add',
+				{
+					method: 'POST',
+					headers: {
+						'Content-Type': 'application/json',
+						Authorization: 'Bearer ' + auth.token,
+					},
+					body: JSON.stringify(newCategoryDTO),
 				},
-				body: JSON.stringify(newCategoryDTO),
-			});
+			);
 
 			if (!response.ok) {
 				const errorData = await response.json();
 				throw new Error(
-					errorData.message || `ERROR - Status ${response.status}`
+					errorData.message || `ERROR - Status ${response.status}`,
 				);
 			} else {
 				fetchCategories();
@@ -57,22 +59,22 @@ const AddCategoryForm = () => {
 	};
 
 	return (
-		<main className="main-content">
+		<main className='main-content'>
 			<h3>Add Category</h3>
 			<form>
-				<div className="form-item">
+				<div className='form-item'>
 					<TextInput
-						id="title"
-						label="Title"
+						id='title'
+						label='Title'
 						value={title}
 						handleChange={handleChange}
 					/>
 					<InputErrorMessage
 						hasError={hasErrors && title === ''}
-						msg="Category name is required."
+						msg='Category name is required.'
 					/>
 				</div>
-				<button type="submit" onClick={handleSubmit}>
+				<button type='submit' onClick={handleSubmit}>
 					Add Category
 				</button>
 			</form>

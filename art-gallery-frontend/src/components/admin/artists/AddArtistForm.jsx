@@ -5,11 +5,7 @@ import { DataContext } from '../../../context/DataContext.jsx';
 import ArtistDTO from '../../../classes/ArtistDTO.js';
 import { AuthContext } from '../../../context/AuthContext.jsx';
 
-let initialArtistData = {
-	firstName: '',
-	lastName: '',
-	location: '',
-};
+let initialArtistData = { firstName: '', lastName: '', location: '' };
 
 let errorMessages = {
 	firstNameRequired: 'First name is required.',
@@ -27,19 +23,22 @@ const AddArtistForm = () => {
 
 	const saveNewArtist = async newArtistDTO => {
 		try {
-			const response = await fetch('http://localhost:8080/api/artists/add', {
-				method: 'POST',
-				headers: {
-					'Content-Type': 'application/json',
-					Authorization: 'Bearer ' + auth.token,
+			const response = await fetch(
+				'http://localhost:8080/api/artists/add',
+				{
+					method: 'POST',
+					headers: {
+						'Content-Type': 'application/json',
+						Authorization: 'Bearer ' + auth.token,
+					},
+					body: JSON.stringify(newArtistDTO),
 				},
-				body: JSON.stringify(newArtistDTO),
-			});
+			);
 
 			if (!response.ok) {
 				const errorData = await response.json();
 				throw new Error(
-					errorData.message || `ERROR - Status ${response.status}`
+					errorData.message || `ERROR - Status ${response.status}`,
 				);
 			} else {
 				fetchArtists(); // update state before returning to list
@@ -65,7 +64,7 @@ const AddArtistForm = () => {
 		const artistDTO = new ArtistDTO(
 			artistData.firstName,
 			artistData.lastName,
-			artistData.location
+			artistData.location,
 		);
 		if (!artistDTO.isValid()) {
 			setHasErrors(true);
@@ -75,13 +74,13 @@ const AddArtistForm = () => {
 	};
 
 	return (
-		<main className="main-content">
+		<main className='main-content'>
 			<h3>Add Artist</h3>
 			<form>
-				<div className="form-item">
+				<div className='form-item'>
 					<TextInput
-						id="firstName"
-						label="First Name"
+						id='firstName'
+						label='First Name'
 						value={artistData.firstName}
 						handleChange={handleChange}
 					/>
@@ -90,10 +89,10 @@ const AddArtistForm = () => {
 						msg={errorMessages['firstNameRequired']}
 					/>
 				</div>
-				<div className="form-item">
+				<div className='form-item'>
 					<TextInput
-						id="lastName"
-						label="Last Name"
+						id='lastName'
+						label='Last Name'
 						value={artistData.lastName}
 						handleChange={handleChange}
 					/>
@@ -102,15 +101,15 @@ const AddArtistForm = () => {
 						msg={errorMessages['lastNameRequired']}
 					/>
 				</div>
-				<div className="form-item">
+				<div className='form-item'>
 					<TextInput
-						id="location"
-						label="Location"
+						id='location'
+						label='Location'
 						value={artistData.location}
 						handleChange={handleChange}
 					/>
 				</div>
-				<button type="submit" onClick={handleSubmit}>
+				<button type='submit' onClick={handleSubmit}>
 					Add Artist
 				</button>
 			</form>
