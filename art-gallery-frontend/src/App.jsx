@@ -4,6 +4,7 @@ import {
 	ArtworksPage,
 	DetailsPage,
 	Footer,
+	Loading,
 	PublicHeader,
 	PublicHome,
 } from './components/public/exports';
@@ -20,9 +21,11 @@ import {
 import { LoginPage, RegisterPage } from './components/auth/exports.js';
 import './App.css';
 import { AuthContext } from './context/AuthContext.jsx';
+import { DataContext } from './context/DataContext.jsx';
 
 function App() {
 	const { auth } = use(AuthContext);
+	const { isLoading } = use(DataContext);
 
 	return (
 		<BrowserRouter>
@@ -33,10 +36,13 @@ function App() {
 						<Route path='/' element={<PublicHome />} />
 						<Route path='/register' element={<RegisterPage />} />
 						<Route path='/login' element={<LoginPage />} />
-						<Route path='/artworks' element={<ArtworksPage />} />
+						<Route
+							path='/artworks'
+							element={isLoading ? <Loading /> : <ArtworksPage />}
+						/>
 						<Route
 							path='/artworks/details/:id'
-							element={<DetailsPage />}
+							element={isLoading ? <Loading /> : <DetailsPage />}
 						/>
 						<Route path='*' element={<Navigate to='/' />} />
 					</Routes>
@@ -49,15 +55,17 @@ function App() {
 						<Route path='/admin' element={<AdminHome />} />
 						<Route
 							path='/admin/artworks'
-							element={<ArtworksList />}
+							element={isLoading ? <Loading /> : <ArtworksList />}
 						/>
 						<Route
 							path='/admin/artworks/add'
-							element={<AddArtworkForm />}
+							element={
+								isLoading ? <Loading /> : <AddArtworkForm />
+							}
 						/>
 						<Route
 							path='/admin/artists'
-							element={<ArtistsList />}
+							element={isLoading ? <Loading /> : <ArtistsList />}
 						/>
 						<Route
 							path='/admin/artists/add'
@@ -65,7 +73,9 @@ function App() {
 						/>
 						<Route
 							path='/admin/categories'
-							element={<CategoriesList />}
+							element={
+								isLoading ? <Loading /> : <CategoriesList />
+							}
 						/>
 						<Route
 							path='/admin/categories/add'

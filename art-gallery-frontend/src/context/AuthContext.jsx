@@ -34,9 +34,9 @@ export const AuthContextProvider = ({ children }) => {
 		}
 	};
 
-	// Checks once when app loads to see if user is known on the device
 	useEffect(() => {
 		checkAuthStatus();
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 
 	return (
