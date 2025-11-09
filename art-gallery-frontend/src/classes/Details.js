@@ -49,6 +49,6 @@ export default class Details {
 	}
 
 	getImageURL() {
-		return 'https://i.ibb.co/' + this.imageId;
+		return '/images/art/' + this.imageId + '.png';
 	}
 }

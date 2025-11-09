@@ -10,7 +10,11 @@ const PublicHome = () => {
 					celebrated local artists.
 				</p>
 			</div>
-			<img className="big-image" src="/gallery-public.jpeg" width="100%" />
+			<img
+				className="big-image"
+				src="/images/gallery-public.jpeg"
+				width="100%"
+			/>
 		</main>
 	);
 };
