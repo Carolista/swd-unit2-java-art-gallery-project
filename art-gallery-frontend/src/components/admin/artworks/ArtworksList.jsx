@@ -123,7 +123,7 @@ const ArtworksList = () => {
 					<td>{artwork.artist.getFullName()}</td>
 					<td>{artwork.details.yearCreated}</td>
 					<td>
-						<img src={artwork.details.getImageURL()} width="50px" />
+						<img src={artwork.details.getImageURL()} width="50px" alt={artwork.title + " by " + artwork.artist.getFullName()} />
 					</td>
 					<td className="delete-icon">
 						<span onClick={() => handleDelete(artwork.id)}>

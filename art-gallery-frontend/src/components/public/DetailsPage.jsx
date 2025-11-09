@@ -46,6 +46,7 @@ const DetailsPage = () => {
 								<img
 									className="card-image"
 									src={artwork.details.getImageURL()}
+                                    alt={artwork.title + " by " + artwork.artist.getFullName()}
 								/>
 							</div>
 							<div className="col-6">

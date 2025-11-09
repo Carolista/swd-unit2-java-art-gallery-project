@@ -10,7 +10,7 @@ const AdminHome = () => {
 					<Link to="/admin/artworks">collection</Link> of fine art.
 				</p>
 			</div>
-			<img src="/images/gallery-admin.jpeg" width="100%" />
+			<img src="/images/gallery-admin.jpeg" width="100%" alt="Image of gallery room with misc artworks on display" />
 		</main>
 	);
 };

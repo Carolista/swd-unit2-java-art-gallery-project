@@ -14,6 +14,7 @@ const PublicHome = () => {
 				className="big-image"
 				src="/images/gallery-public.jpeg"
 				width="100%"
+                alt="Image of gallery lobby"
 			/>
 		</main>
 	);
