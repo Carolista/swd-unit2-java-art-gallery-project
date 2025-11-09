@@ -1,5 +1,13 @@
 export default class Details {
-	constructor(yearCreated, media, description, height, width, depth, imageId) {
+	constructor(
+		yearCreated,
+		media,
+		description,
+		height,
+		width,
+		depth,
+		imageId,
+	) {
 		this.yearCreated = yearCreated;
 		this.media = media;
 		this.description = description;

@@ -4,6 +4,7 @@ import {
 	ArtworksPage,
 	DetailsPage,
 	Footer,
+	Loading,
 	PublicHeader,
 	PublicHome,
 } from './components/public/exports';
@@ -20,9 +21,11 @@ import {
 import { LoginPage, RegisterPage } from './components/auth/exports.js';
 import './App.css';
 import { AuthContext } from './context/AuthContext.jsx';
+import { DataContext } from './context/DataContext.jsx';
 
 function App() {
 	const { auth } = use(AuthContext);
+	const { isLoading } = use(DataContext);
 
 	return (
 		<BrowserRouter>
@@ -30,27 +33,55 @@ function App() {
 				<>
 					<PublicHeader />
 					<Routes>
-						<Route path="/" element={<PublicHome />} />
-						<Route path="/register" element={<RegisterPage />} />
-						<Route path="/login" element={<LoginPage />} />
-						<Route path="/artworks" element={<ArtworksPage />} />
-						<Route path="/artworks/details/:id" element={<DetailsPage />} />
-						<Route path="*" element={<Navigate to="/" />} />
+						<Route path='/' element={<PublicHome />} />
+						<Route path='/register' element={<RegisterPage />} />
+						<Route path='/login' element={<LoginPage />} />
+						<Route
+							path='/artworks'
+							element={isLoading ? <Loading /> : <ArtworksPage />}
+						/>
+						<Route
+							path='/artworks/details/:id'
+							element={isLoading ? <Loading /> : <DetailsPage />}
+						/>
+						<Route path='*' element={<Navigate to='/' />} />
 					</Routes>
 				</>
 			) : (
 				<>
 					<AdminHeader />
 					<Routes>
-						<Route path="/" element={<Navigate to="/admin" />} />
-						<Route path="/admin" element={<AdminHome />} />
-						<Route path="/admin/artworks" element={<ArtworksList />} />
-						<Route path="/admin/artworks/add" element={<AddArtworkForm />} />
-						<Route path="/admin/artists" element={<ArtistsList />} />
-						<Route path="/admin/artists/add" element={<AddArtistForm />} />
-						<Route path="/admin/categories" element={<CategoriesList />} />
-						<Route path="/admin/categories/add" element={<AddCategoryForm />} />
-						<Route path="*" element={<Navigate to="/" />} />
+						<Route path='/' element={<Navigate to='/admin' />} />
+						<Route path='/admin' element={<AdminHome />} />
+						<Route
+							path='/admin/artworks'
+							element={isLoading ? <Loading /> : <ArtworksList />}
+						/>
+						<Route
+							path='/admin/artworks/add'
+							element={
+								isLoading ? <Loading /> : <AddArtworkForm />
+							}
+						/>
+						<Route
+							path='/admin/artists'
+							element={isLoading ? <Loading /> : <ArtistsList />}
+						/>
+						<Route
+							path='/admin/artists/add'
+							element={<AddArtistForm />}
+						/>
+						<Route
+							path='/admin/categories'
+							element={
+								isLoading ? <Loading /> : <CategoriesList />
+							}
+						/>
+						<Route
+							path='/admin/categories/add'
+							element={<AddCategoryForm />}
+						/>
+						<Route path='*' element={<Navigate to='/' />} />
 					</Routes>
 				</>
 			)}

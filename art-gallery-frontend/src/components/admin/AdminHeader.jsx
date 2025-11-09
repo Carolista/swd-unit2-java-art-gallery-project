@@ -11,11 +11,7 @@ const AdminHeader = () => {
 	const navigate = useNavigate();
 
 	const handleLogOut = () => {
-		setAuth({
-			token: null,
-			email: null,
-			isAuthenticated: false,
-		});
+		setAuth({ token: null, email: null, isAuthenticated: false });
 		removeTokenFromStorage();
 		navigate('/');
 	};
@@ -23,26 +19,26 @@ const AdminHeader = () => {
 	return (
 		<>
 			<header>
-				<div id="mag">
-					<Link className="white-link" to="/">
+				<div id='mag'>
+					<Link className='white-link' to='/'>
 						<b>Midtown</b> Art Gallery
 					</Link>
 				</div>
-				<div className="nav">
-					<Link className="navlink" to="/admin/artists">
+				<div className='nav'>
+					<Link className='navlink' to='/admin/artists'>
 						Artists
 					</Link>
 					<Link
-						className="navlink"
-						to="/admin/artworks"
+						className='navlink'
+						to='/admin/artworks'
 						onClick={() => setCurrentArtworks(allArtworks)}>
 						Artworks
 					</Link>
-					<Link className="navlink" to="/admin/categories">
+					<Link className='navlink' to='/admin/categories'>
 						Categories
 					</Link>
 					|
-					<span className="navlink" onClick={handleLogOut}>
+					<span className='navlink' onClick={handleLogOut}>
 						Log Out
 					</span>
 				</div>

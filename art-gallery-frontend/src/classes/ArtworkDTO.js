@@ -9,7 +9,7 @@ export default class ArtworkDTO {
 		this.details = details; // DetailsDTO object
 	}
 
-    isValid() {
-        return this.title.trim() && this.artistId && this.categoryIds.length;
-    }
+	isValid() {
+		return this.title.trim() && this.artistId && this.categoryIds.length;
+	}
 }

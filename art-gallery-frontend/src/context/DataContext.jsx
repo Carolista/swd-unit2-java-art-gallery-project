@@ -23,7 +23,7 @@ export const DataContextProvider = ({ children }) => {
 			if (!response.ok) {
 				const errorData = await response.json();
 				throw new Error(
-					errorData.message || `ERROR - Status ${response.status}`
+					errorData.message || `ERROR - Status ${response.status}`,
 				);
 			} else {
 				const data = await response.json();
@@ -33,11 +33,13 @@ export const DataContextProvider = ({ children }) => {
 						artwork.artist.id,
 						artwork.artist.firstName,
 						artwork.artist.lastName,
-						artwork.artist.location
+						artwork.artist.location,
 					);
 					let categories = [];
 					artwork.categories.forEach(category => {
-						categories.push(new Category(category.id, category.title));
+						categories.push(
+							new Category(category.id, category.title),
+						);
 					});
 					let details = new Details(
 						artwork.details.id,
@@ -47,14 +49,14 @@ export const DataContextProvider = ({ children }) => {
 						artwork.details.height,
 						artwork.details.width,
 						artwork.details.depth,
-						artwork.details.imageId
+						artwork.details.imageId,
 					);
 					let newArtwork = new Artwork(
 						artwork.id,
 						artwork.title,
 						artist,
 						categories,
-						details
+						details,
 					);
 					artworks.push(newArtwork);
 				});
@@ -63,7 +65,7 @@ export const DataContextProvider = ({ children }) => {
 			console.error(error.message);
 		} finally {
 			setAllArtworks(artworks);
-            setCurrentArtworks(artworks);
+			setCurrentArtworks(artworks);
 		}
 	};
 
@@ -76,7 +78,7 @@ export const DataContextProvider = ({ children }) => {
 			if (!response.ok) {
 				const errorData = await response.json();
 				throw new Error(
-					errorData.message || `ERROR - Status ${response.status}`
+					errorData.message || `ERROR - Status ${response.status}`,
 				);
 			} else {
 				const data = await response.json();
@@ -86,7 +88,7 @@ export const DataContextProvider = ({ children }) => {
 						artist.id,
 						artist.firstName,
 						artist.lastName,
-						artist.location
+						artist.location,
 					);
 					artists.push(newArtist);
 				});
@@ -102,12 +104,14 @@ export const DataContextProvider = ({ children }) => {
 		const categories = [];
 
 		try {
-			const response = await fetch('http://localhost:8080/api/categories');
+			const response = await fetch(
+				'http://localhost:8080/api/categories',
+			);
 
 			if (!response.ok) {
 				const errorData = await response.json();
 				throw new Error(
-					errorData.message || `ERROR - Status ${response.status}`
+					errorData.message || `ERROR - Status ${response.status}`,
 				);
 			} else {
 				const data = await response.json();
@@ -131,7 +135,11 @@ export const DataContextProvider = ({ children }) => {
 	}, []);
 
 	useEffect(() => {
-		if (allArtworks !== null && allArtists !== null && allCategories !== null) {
+		if (
+			allArtworks !== null &&
+			allArtists !== null &&
+			allCategories !== null
+		) {
 			setIsLoading(false);
 		}
 	}, [allArtworks, allArtists, allCategories]);
@@ -143,8 +151,8 @@ export const DataContextProvider = ({ children }) => {
 				allArtworks,
 				allArtists,
 				allCategories,
-                currentArtworks,
-                setCurrentArtworks,
+				currentArtworks,
+				setCurrentArtworks,
 				fetchArtworks,
 				fetchArtists,
 				fetchCategories,

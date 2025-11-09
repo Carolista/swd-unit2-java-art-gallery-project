@@ -3,7 +3,7 @@ export default class CategoryDTO {
 		this.title = title;
 	}
 
-    isValid() {
-        return this.title !== "";
-    }
+	isValid() {
+		return this.title !== '';
+	}
 }

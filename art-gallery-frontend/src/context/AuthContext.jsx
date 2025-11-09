@@ -27,15 +27,16 @@ export const AuthContextProvider = ({ children }) => {
 					isAuthenticated: true,
 				});
 			} catch (error) {
+				console.error(error.message);
 				removeTokenFromStorage();
 				setAuth(initialAuth);
 			}
 		}
 	};
 
-	// Checks once when app loads to see if user is known on the device
 	useEffect(() => {
 		checkAuthStatus();
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 
 	return (
