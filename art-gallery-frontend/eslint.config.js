@@ -2,9 +2,35 @@ import js from '@eslint/js';
 import globals from 'globals';
 import reactHooks from 'eslint-plugin-react-hooks';
 import reactRefresh from 'eslint-plugin-react-refresh';
+import importPlugin from 'eslint-plugin-import';
 
 export default [
 	{ ignores: ['dist'] },
+	{
+		files: ['**/*.{js,jsx}'],
+		plugins: { import: importPlugin },
+		settings: {
+			'import/resolver': {
+				alias: {
+					map: [
+						['@config', './src/config'],
+						['@classes', './src/classes'],
+						['@components', './src/components'],
+						['@context', './src/context'],
+						['@services', './src/services'],
+						['@shared', './src/shared'],
+					],
+					extensions: ['.js', '.jsx', '.ts', '.tsx'],
+				},
+			},
+		},
+		rules: {
+			'import/no-unresolved': [
+				'error',
+				{ commonjs: true, caseSensitive: true },
+			],
+		},
+	},
 	{
 		files: ['**/*.{js,jsx}'],
 		languageOptions: {
@@ -25,7 +51,6 @@ export default [
 				'off',
 				{ allowConstantExport: true },
 			],
-			// "react-hooks/exhaustive-deps": "off",
 		},
 	},
 ];

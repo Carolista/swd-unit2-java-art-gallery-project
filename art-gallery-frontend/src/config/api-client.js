@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { getTokenFromStorage } from '../services/storageService';
+import { getTokenFromStorage } from '@services/storageService';
 
 const apiClient = axios.create({ baseURL: 'http://localhost:8080/api' });
 

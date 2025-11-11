@@ -1,0 +1,140 @@
+import { use, useEffect, useRef, useState } from 'react';
+import { useNavigate } from 'react-router';
+import ArtistDTO from '@classes/ArtistDTO.js';
+import { AuthContext } from '@context/AuthContext.jsx';
+import { DataContext } from '@context/DataContext.jsx';
+import { Form, Main } from '@components/layout/exports';
+import {
+	FormItem,
+	Input,
+	InputErrorMessage,
+} from '@components/form-input/exports.js';
+
+let initialArtistData = { firstName: '', lastName: '', location: '' };
+
+let errorMessages = {
+	firstNameRequired: 'First name is required.',
+	lastNameRequired: 'Last name is required.',
+};
+
+const AddArtistForm = () => {
+	const [artistData, setArtistData] = useState(initialArtistData);
+	const [hasErrors, setHasErrors] = useState(false);
+
+	const navigate = useNavigate();
+
+	const { auth } = use(AuthContext);
+	const { fetchArtists } = use(DataContext);
+
+	const inputRef = useRef(null);
+
+	useEffect(() => {
+		inputRef.current.focus();
+	}, []);
+
+	const saveNewArtist = async newArtistDTO => {
+		try {
+			const response = await fetch(
+				'http://localhost:8080/api/artists/add',
+				{
+					method: 'POST',
+					headers: {
+						'Content-Type': 'application/json',
+						Authorization: 'Bearer ' + auth.token,
+					},
+					body: JSON.stringify(newArtistDTO),
+				},
+			);
+
+			if (!response.ok) {
+				const errorData = await response.json();
+				throw new Error(
+					errorData.message || `ERROR - Status ${response.status}`,
+				);
+			} else {
+				fetchArtists(); // update state before returning to list
+				navigate('/admin/artists');
+			}
+		} catch (error) {
+			console.error(error.message);
+		} finally {
+			// Use toast or banner to notify user of success or failure
+		}
+	};
+
+	const handleChange = event => {
+		let updatedArtistData = {
+			...artistData,
+			[event.target.id]: event.target.value,
+		};
+		setArtistData(updatedArtistData);
+	};
+
+	const handleSubmit = event => {
+		event.preventDefault();
+		const artistDTO = new ArtistDTO(
+			artistData.firstName,
+			artistData.lastName,
+			artistData.location,
+		);
+		if (!artistDTO.isValid()) {
+			setHasErrors(true);
+		} else {
+			saveNewArtist(artistDTO);
+		}
+	};
+
+	const buttonData = [
+		{
+			id: 'add-artist',
+			type: 'submit',
+			label: 'Add Artist',
+			handleClick: { handleSubmit },
+		},
+	];
+
+	return (
+		<Main>
+			<h3>Add Artist</h3>
+			<Form buttonData={buttonData}>
+				<FormItem classes='first-name-item'>
+					<Input
+						id='firstName'
+						label='First Name'
+						value={artistData.firstName}
+						ref={inputRef}
+						required={true}
+						handleChange={handleChange}
+					/>
+					<InputErrorMessage
+						hasError={hasErrors && artistData.firstName === ''}
+						msg={errorMessages['firstNameRequired']}
+					/>
+				</FormItem>
+				<FormItem classes='last-name-item'>
+					<Input
+						id='lastName'
+						label='Last Name'
+						value={artistData.lastName}
+						required={true}
+						handleChange={handleChange}
+					/>
+					<InputErrorMessage
+						hasError={hasErrors && artistData.lastName === ''}
+						msg={errorMessages['lastNameRequired']}
+					/>
+				</FormItem>
+				<FormItem classes='form-item'>
+					<Input
+						id='location'
+						label='Location'
+						value={artistData.location}
+						handleChange={handleChange}
+					/>
+				</FormItem>
+			</Form>
+		</Main>
+	);
+};
+
+export default AddArtistForm;

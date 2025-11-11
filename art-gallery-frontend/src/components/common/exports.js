@@ -1,8 +1,8 @@
-import { default as Checkbox } from './Checkbox';
-import { default as InputErrorMessage } from './InputErrorMsg';
-import { default as Select } from './Select';
+import { default as Card } from './Card';
+import { default as ColumnHeading } from './ColumnHeading';
+import { default as GoBack } from './GoBack';
+import { default as IconWithLabel } from './IconWithLabel';
 import { default as Spinner } from './Spinner';
-import { default as TextArea } from './TextArea';
-import { default as TextInput } from './TextInput';
+import { default as Spacer } from './Spacer';
 
-export { Checkbox, InputErrorMessage, Select, Spinner, TextArea, TextInput };
+export { Card, ColumnHeading, GoBack, IconWithLabel, Spacer, Spinner };

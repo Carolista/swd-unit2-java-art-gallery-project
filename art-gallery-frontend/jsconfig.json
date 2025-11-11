@@ -4,7 +4,6 @@
 		"paths": {
 			"@classes/*": ["./src/classes/*"],
 			"@components/*": ["./src/components/*"],
-			"@form-input/*": ["src/components/form-input/*"],
 			"@config/*": ["./src/config/*"],
 			"@context/*": ["./src/context/*"],
 			"@services/*": ["./src/services/*"],
