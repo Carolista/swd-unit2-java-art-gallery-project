@@ -1,0 +1,11 @@
+:root {
+	--primary-color: #1e323c;
+	--secondary-color: #c66311;
+	--secondary-color-darker: #b95a0a;
+	--danger-color: #b03a2e;
+	--title-font: 'Kodchasan', sans-serif;
+	--regular-font: 'Assistant', sans-serif;
+	--preferred-padding: clamp(20px, 4vw, 30px);
+	--max-padding: 20px;
+	--gap: 10px;
+}

@@ -1,0 +1,45 @@
+/* LAYOUT */
+
+#mag {
+	font-family: var(--title-font);
+	font-size: 1.3rem;
+	font-weight: 200;
+	text-transform: uppercase;
+	margin: 0;
+	padding: 0;
+}
+
+.nav-menu {
+	display: flex;
+	flex-direction: row;
+	align-items: flex-end;
+	gap: 12px;
+}
+
+.link:link,
+.link:visited {
+	color: rgba(255, 255, 255, 0.85);
+	font-size: 0.9rem;
+	font-weight: 400;
+	text-decoration: none;
+}
+
+.link:hover {
+	color: white;
+	text-decoration: underline;
+	cursor: pointer;
+}
+
+.main-content {
+	padding: 10px var(--preferred-padding) var(--max-padding);
+}
+
+.button-group {
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-end;
+	gap: var(--gap);
+	margin-top: 15px;
+}
+
+/* No media queries needed for these elements */

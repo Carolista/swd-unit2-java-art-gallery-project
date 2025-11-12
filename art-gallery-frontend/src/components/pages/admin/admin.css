@@ -1,0 +1,12 @@
+.delete-icon {
+	width: 30px;
+}
+.delete-icon i {
+	color: #333;
+	opacity: 0.4;
+	cursor: pointer;
+}
+.delete-icon i:hover {
+	color: var(--danger-color);
+	opacity: 0.8;
+}
