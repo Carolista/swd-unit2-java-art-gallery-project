@@ -2,6 +2,8 @@ import apiClient from '@config/api-client';
 
 // TODO: Add for all admin requests as well
 
+// TODO: Use DTOs for auth requests and use isValid for login request
+
 export const requestRegistration = userProfile => {
 	return apiClient.post('/user/register', userProfile);
 };

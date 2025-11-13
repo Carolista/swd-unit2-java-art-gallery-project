@@ -23,12 +23,11 @@ import {
 } from '@components/pages/admin/exports';
 
 // FIXME: Admin paths not being matched when url changed in address bar
-// FIXME: Error messages on login form not displaying?
-// FIXME: Error message on artist select on artworks form not displaying? Perhaps not even validating properly?
 
 // TODO: Ensure all forms have responsive layout and check definitions of container classes in Form
 //  (remove all Bootstrap classes previously used)
 // TODO: Ensure ArtworkDetailsPage has responsive layout (side-by-side on larger desktop displays)
+
 // TODO: See if anything else could benefit from CSS variables
 
 function App() {

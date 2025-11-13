@@ -204,7 +204,7 @@ const AddArtworkForm = () => {
 							</Select>
 							<InputErrorMessage
 								hasError={
-									hasErrors && artworkData.artistId === 0
+									hasErrors && !artworkData.artistId
 								}
 								msg={errorMessages['artistRequired']}
 							/>
