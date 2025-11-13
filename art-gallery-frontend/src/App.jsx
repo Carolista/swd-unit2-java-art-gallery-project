@@ -29,8 +29,6 @@ import {
 // TODO: Ensure all forms have responsive layout and check definitions of container classes in Form
 //  (remove all Bootstrap classes previously used)
 // TODO: Ensure ArtworkDetailsPage has responsive layout (side-by-side on larger desktop displays)
-// TODO: Use submitting state variable on all forms and add to buttonData for shouldDisable prop
-// TODO: Check use of 'required' passed as prop on all forms for accessibility
 // TODO: See if anything else could benefit from CSS variables
 
 function App() {

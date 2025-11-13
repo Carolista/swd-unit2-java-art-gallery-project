@@ -45,6 +45,7 @@ const AddArtworkForm = () => {
 	const [detailsData, setDetailsData] = useState(initialDetailsData);
 	const [checkboxes, setCheckboxes] = useState([]);
 	const [hasErrors, setHasErrors] = useState(false);
+    const [submitting, setSubmitting] = useState(false);
 
 	const sortedArtists = sortObjByString([...allArtists], 'lastName');
 	const sortedCategories = sortObjByString([...allCategories], 'title');
@@ -132,8 +133,10 @@ const AddArtworkForm = () => {
 			detailsDTO,
 		);
 		if (!detailsDTO.isValid() || !artworkDTO.isValid()) {
+            setSubmitting(false);
 			setHasErrors(true);
 		} else {
+            setSubmitting(true);
 			saveNewArtwork(artworkDTO);
 		}
 	};
@@ -165,7 +168,7 @@ const AddArtworkForm = () => {
 			type: 'submit',
 			label: 'Add Artwork',
 			handleClick: handleSubmit,
-            // TODO: Add submitting boolean for disabling
+            shouldDisable: submitting,
 		},
 	];
 
@@ -179,6 +182,7 @@ const AddArtworkForm = () => {
 							<Input
 								id='title'
 								label='Title'
+                                type='text'
 								value={artworkData.title}
 								ref={inputRef}
 								required={true}
@@ -189,11 +193,11 @@ const AddArtworkForm = () => {
 								msg={errorMessages['titleRequired']}
 							/>
 						</FormItem>
-						{/* TODO: Add required to other types of input components and update where needed */}
 						<FormItem>
 							<Select
 								id='artistId'
 								label='Artist'
+                                required={true}
 								handleChange={handleArtworkChange}>
 								<option value=''>Select an artist</option>
 								{artistOptionsJSX}
@@ -211,6 +215,7 @@ const AddArtworkForm = () => {
 							<Input
 								id='yearCreated'
 								label='Year Created'
+                                type='text'
 								value={detailsData.yearCreated}
 								required={true}
 								handleChange={handleDetailsChange}
@@ -226,6 +231,7 @@ const AddArtworkForm = () => {
 							<Input
 								id='media'
 								label='Media'
+                                type='text'
 								value={detailsData.media}
 								required={true}
 								handleChange={handleDetailsChange}
@@ -239,6 +245,7 @@ const AddArtworkForm = () => {
 							<Input
 								id='height'
 								label='Height (in.)'
+                                type="number"
 								value={detailsData.height}
 								required={true}
 								handleChange={handleDetailsChange}
@@ -252,6 +259,7 @@ const AddArtworkForm = () => {
 							<Input
 								id='width'
 								label='Width (in.)'
+                                type="number"
 								value={detailsData.width}
 								required={true}
 								handleChange={handleDetailsChange}
@@ -265,8 +273,8 @@ const AddArtworkForm = () => {
 							<Input
 								id='depth'
 								label='Depth (in.)'
+                                type="number"
 								value={detailsData.depth}
-								required={true}
 								handleChange={handleDetailsChange}
 							/>
 						</FormItem>
@@ -293,6 +301,7 @@ const AddArtworkForm = () => {
 									<Input
 										id='imageId'
 										label='Image ID'
+                                        type='text'
 										value={detailsData.imageId}
 										required={true}
 										handleChange={handleDetailsChange}

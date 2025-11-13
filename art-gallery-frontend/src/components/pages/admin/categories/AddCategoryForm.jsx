@@ -1,4 +1,4 @@
-import { use, useState } from 'react';
+import { use, useEffect, useRef, useState } from 'react';
 import { Form, useNavigate } from 'react-router';
 import { CategoryDTO } from '@classes/exports.js';
 import { AuthContext } from '@context/AuthContext';
@@ -13,11 +13,18 @@ import { Main } from '@components/layout/exports';
 const AddCategoryForm = () => {
 	const [title, setTitle] = useState('');
 	const [hasErrors, setHasErrors] = useState(false);
+    const [submitting, setSubmitting] = useState(false);
 
 	const navigate = useNavigate();
 
 	const { auth } = use(AuthContext);
 	const { fetchCategories } = use(DataContext);
+
+	const inputRef = useRef(null);
+
+	useEffect(() => {
+		inputRef.current.focus();
+	}, []);
 
 	const saveNewCategory = async newCategoryDTO => {
 		try {
@@ -57,8 +64,10 @@ const AddCategoryForm = () => {
 		event.preventDefault();
 		const categoryDTO = new CategoryDTO(title);
 		if (!categoryDTO.isValid()) {
+            setSubmitting(false);
 			setHasErrors(true);
 		} else {
+            setSubmitting(true);
 			saveNewCategory(categoryDTO);
 		}
 	};
@@ -69,7 +78,7 @@ const AddCategoryForm = () => {
 			type: 'submit',
 			label: 'Add Category',
 			handleClick: handleSubmit,
-            // TODO: Add submitting boolean for disabling
+			shouldDisable: submitting,
 		},
 	];
 
@@ -81,7 +90,10 @@ const AddCategoryForm = () => {
 					<Input
 						id='title'
 						label='Title'
+                        type='text'
 						value={title}
+                        ref={inputRef}
+                        required={true}
 						handleChange={handleChange}
 					/>
 					<InputErrorMessage

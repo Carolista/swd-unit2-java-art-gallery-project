@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router';
-import { useContext, useState } from 'react';
+import { useContext, useEffect, useRef, useState } from 'react';
 import { AuthContext } from '@context/AuthContext';
 import {
 	FormItem,
@@ -32,6 +32,12 @@ const LoginPage = () => {
 	const [hasErrors, setHasErrors] = useState(false);
 	const [submitting, setSubmitting] = useState(false);
 
+	const inputRef = useRef(null);
+
+	useEffect(() => {
+		inputRef.current.focus();
+	}, []);
+
 	const logInUser = async () => {
 		try {
 			let response = await requestLogin({ email, password });
@@ -58,6 +64,7 @@ const LoginPage = () => {
 
 	const handleSubmit = event => {
 		event.preventDefault();
+        // TODO: Use DTO class with isValid here?
 		if (email === '' || password === '') {
 			setSubmitting(false);
 			setHasErrors(true);
@@ -73,7 +80,7 @@ const LoginPage = () => {
 			type: 'submit',
 			label: 'Log In',
 			handleClick: handleSubmit,
-            shouldDisable: submitting,
+			shouldDisable: submitting,
 		},
 	];
 
@@ -89,8 +96,9 @@ const LoginPage = () => {
 								<Input
 									id='email'
 									label='Email'
+									type='text'
 									value={email}
-									setValue={setEmail}
+									ref={inputRef}
 									required={true}
 									handleChange={handleEmailChange}
 								/>
@@ -105,11 +113,11 @@ const LoginPage = () => {
 						<div className='row'>
 							<FormItem>
 								<Input
-									id='login-password'
+									id='password'
 									label='Password'
-                                    type='password'
+									type='password'
 									value={password}
-                                    required={true}
+									required={true}
 									handleChange={handlePasswordChange}
 								/>
 								<InputErrorMessage

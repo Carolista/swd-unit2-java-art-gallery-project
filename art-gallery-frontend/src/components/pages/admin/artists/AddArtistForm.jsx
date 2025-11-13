@@ -20,6 +20,7 @@ let errorMessages = {
 const AddArtistForm = () => {
 	const [artistData, setArtistData] = useState(initialArtistData);
 	const [hasErrors, setHasErrors] = useState(false);
+    const [submitting, setSubmitting] = useState(false);
 
 	const navigate = useNavigate();
 
@@ -78,8 +79,10 @@ const AddArtistForm = () => {
 			artistData.location,
 		);
 		if (!artistDTO.isValid()) {
+            setSubmitting(false);
 			setHasErrors(true);
 		} else {
+            setSubmitting(true);
 			saveNewArtist(artistDTO);
 		}
 	};
@@ -90,7 +93,7 @@ const AddArtistForm = () => {
 			type: 'submit',
 			label: 'Add Artist',
 			handleClick: { handleSubmit },
-            // TODO: Add submitting boolean for disabling
+            shouldDisable: submitting,
 		},
 	];
 
@@ -102,6 +105,7 @@ const AddArtistForm = () => {
 					<Input
 						id='firstName'
 						label='First Name'
+                        type='text'
 						value={artistData.firstName}
 						ref={inputRef}
 						required={true}
@@ -116,6 +120,7 @@ const AddArtistForm = () => {
 					<Input
 						id='lastName'
 						label='Last Name'
+                        type='text'
 						value={artistData.lastName}
 						required={true}
 						handleChange={handleChange}
@@ -129,6 +134,7 @@ const AddArtistForm = () => {
 					<Input
 						id='location'
 						label='Location'
+                        type='text'
 						value={artistData.location}
 						handleChange={handleChange}
 					/>
