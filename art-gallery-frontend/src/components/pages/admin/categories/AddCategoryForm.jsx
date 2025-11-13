@@ -45,7 +45,7 @@ const AddCategoryForm = () => {
 		} catch (error) {
 			console.error(error.message);
 		} finally {
-			// Use toast or banner to notify user of success or failure
+			// TODO: Use toast or banner to notify user of success or failure
 		}
 	};
 
@@ -69,6 +69,7 @@ const AddCategoryForm = () => {
 			type: 'submit',
 			label: 'Add Category',
 			handleClick: handleSubmit,
+            // TODO: Add submitting boolean for disabling
 		},
 	];
 

@@ -52,13 +52,13 @@ const AddArtistForm = () => {
 					errorData.message || `ERROR - Status ${response.status}`,
 				);
 			} else {
-				fetchArtists(); // update state before returning to list
+				fetchArtists();
 				navigate('/admin/artists');
 			}
 		} catch (error) {
 			console.error(error.message);
 		} finally {
-			// Use toast or banner to notify user of success or failure
+			// TODO: Use toast or banner to notify user of success or failure
 		}
 	};
 
@@ -90,6 +90,7 @@ const AddArtistForm = () => {
 			type: 'submit',
 			label: 'Add Artist',
 			handleClick: { handleSubmit },
+            // TODO: Add submitting boolean for disabling
 		},
 	];
 
@@ -124,7 +125,7 @@ const AddArtistForm = () => {
 						msg={errorMessages['lastNameRequired']}
 					/>
 				</FormItem>
-				<FormItem classes='form-item'>
+				<FormItem>
 					<Input
 						id='location'
 						label='Location'

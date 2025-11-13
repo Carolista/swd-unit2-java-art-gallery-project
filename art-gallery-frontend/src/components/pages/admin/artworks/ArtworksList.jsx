@@ -98,8 +98,7 @@ const ArtworksList = () => {
 		} catch (error) {
 			console.error(error.message);
 		} finally {
-			// Use toast or banner to notify user of success or failure
-			// Could have various specific outcomes depending on type of error
+			// TODO: Use toast or banner to notify user of success or failure
 		}
 	};
 	const handleDelete = id => {
@@ -165,6 +164,9 @@ const ArtworksList = () => {
 							</Link>
 						</p>
 					)}
+                    <p>
+						Add a <Link to='/admin/artworks/add'>new artwork</Link>.
+					</p>
 					<table className='table table-striped'>
 						<thead>
 							<tr>

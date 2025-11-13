@@ -11,6 +11,7 @@ const Form = ({ buttonData, children }) => {
 				label={button.label}
 				type={button.type}
 				handleClick={button.handleClick}
+                shouldDisable={button.shouldDisable}
 			/>
 		);
 	});

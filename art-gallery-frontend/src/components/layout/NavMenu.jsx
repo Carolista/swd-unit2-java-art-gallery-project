@@ -1,3 +1,4 @@
+import Spacer from '@components/common/Spacer';
 import { Link } from 'react-router';
 
 const NavMenu = ({ links, nonLinks }) => {
@@ -25,11 +26,15 @@ const NavMenu = ({ links, nonLinks }) => {
 		);
 	});
 
-	// FIXME: Figure out why nonlinks aren't styled the same
-
 	return (
 		<nav className='nav-menu'>
-			{linksJSX} {nonLinks.length ? <span> | {nonLinksJSX}</span> : ''}
+			{linksJSX}
+			{nonLinks.length && (
+				<>
+					<Spacer character='|' />
+					{nonLinksJSX}
+				</>
+			)}
 		</nav>
 	);
 };

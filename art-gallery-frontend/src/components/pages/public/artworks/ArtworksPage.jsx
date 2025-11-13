@@ -18,7 +18,7 @@ const ArtworksPage = () => {
 		<Main>
 			<h1>Artworks</h1>
 			{allArtworks.length ? (
-				<div className='card-container'>{artworksJSX}</div>
+				<div className='artwork-card-container'>{artworksJSX}</div>
 			) : (
 				<p>
 					<em>

@@ -1,10 +1,10 @@
-import { Link, useNavigate } from 'react-router';
+import { useNavigate } from 'react-router';
 import { useContext, useState } from 'react';
 import { AuthContext } from '@context/AuthContext';
 import {
+	FormItem,
 	Input,
 	InputErrorMessage,
-	PasswordInput,
 } from '@components/form-input/exports';
 import { requestLogin } from '@services/authService';
 import {
@@ -13,7 +13,7 @@ import {
 	setTokenInStorage,
 } from '@services/storageService';
 import { Card } from '@components/common/exports';
-import { Main } from '@components/layout/exports';
+import { Form, Main } from '@components/layout/exports';
 
 const errorMessages = {
 	emailRequired: 'Email is required.',
@@ -44,7 +44,7 @@ const LoginPage = () => {
 			}
 		} catch (error) {
 			console.error(error.message);
-			// Would be better to give user feedback on page here
+			// TODO: Give user feedback on success or failure
 		}
 	};
 
@@ -67,58 +67,60 @@ const LoginPage = () => {
 		}
 	};
 
+	const buttonData = [
+		{
+			id: 'login',
+			type: 'submit',
+			label: 'Log In',
+			handleClick: handleSubmit,
+            shouldDisable: submitting,
+		},
+	];
+
 	return (
 		<Main>
 			<h1>Log In</h1>
-			{/* FIXME: Figure out how to add in space here and also need a different class than card-container for this page */}
-			<div className=''>
-				<Card>
-					<form onSubmit={handleSubmit}>
-						<div className='container'>
-							<div className='row'>
-								<div className='form-item col-4'>
-									<Input
-										id='email'
-										label='Email'
-										value={email}
-										setValue={setEmail}
-										required={true}
-										handleChange={handleEmailChange}
-									/>
-									<InputErrorMessage
-										hasError={hasErrors && email === ''}
-										msg={errorMessages['emailRequired']}
-									/>
-								</div>
-							</div>
+			{/* FIXME: Figure out how to add in space here and also need different classes in some cases */}
+			<Card>
+				<Form buttonData={buttonData}>
+					<div className='container'>
+						<div className='row'>
+							<FormItem>
+								<Input
+									id='email'
+									label='Email'
+									value={email}
+									setValue={setEmail}
+									required={true}
+									handleChange={handleEmailChange}
+								/>
+								<InputErrorMessage
+									hasError={hasErrors && email === ''}
+									msg={errorMessages['emailRequired']}
+								/>
+							</FormItem>
 						</div>
-						<div className='container'>
-							<div className='row'>
-								<div className='form-item col-4'>
-									<PasswordInput
-										id='password'
-										label='Password'
-										value={password}
-										handleChange={handlePasswordChange}
-									/>
-									<InputErrorMessage
-										hasError={hasErrors && password === ''}
-										msg={errorMessages['passwordRequired']}
-									/>
-								</div>
-							</div>
+					</div>
+					<div className='container'>
+						<div className='row'>
+							<FormItem>
+								<Input
+									id='login-password'
+									label='Password'
+                                    type='password'
+									value={password}
+                                    required={true}
+									handleChange={handlePasswordChange}
+								/>
+								<InputErrorMessage
+									hasError={hasErrors && password === ''}
+									msg={errorMessages['passwordRequired']}
+								/>
+							</FormItem>
 						</div>
-
-						<button type='submit' disabled={submitting}>
-							Log In
-						</button>
-					</form>
-					<p className='mt-5'>
-						Don't have an account?{' '}
-						<Link to='/register'>Register here.</Link>
-					</p>
-				</Card>
-			</div>
+					</div>
+				</Form>
+			</Card>
 		</Main>
 	);
 };

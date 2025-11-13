@@ -1,6 +1,5 @@
 import { use } from 'react';
 import { Routes, Route, Navigate } from 'react-router';
-import './App.css';
 import { AuthContext } from '@context/AuthContext.jsx';
 import { DataContext } from '@context/DataContext.jsx';
 import { Footer, Header } from '@components/layout/exports.js';
@@ -22,6 +21,17 @@ import {
 	ArtworksList,
 	CategoriesList,
 } from '@components/pages/admin/exports';
+
+// FIXME: Admin paths not being matched when url changed in address bar
+// FIXME: Error messages on login form not displaying?
+// FIXME: Error message on artist select on artworks form not displaying? Perhaps not even validating properly?
+
+// TODO: Ensure all forms have responsive layout and check definitions of container classes in Form
+//  (remove all Bootstrap classes previously used)
+// TODO: Ensure ArtworkDetailsPage has responsive layout (side-by-side on larger desktop displays)
+// TODO: Use submitting state variable on all forms and add to buttonData for shouldDisable prop
+// TODO: Check use of 'required' passed as prop on all forms for accessibility
+// TODO: See if anything else could benefit from CSS variables
 
 function App() {
 	const { auth } = use(AuthContext);
@@ -50,8 +60,8 @@ function App() {
 				</Routes>
 			) : (
 				<Routes>
-					<Route path='/' element={<Navigate to='/admin' />} />
 					<Route path='/admin' element={<AdminHomePage />} />
+                    <Route path='/' element={<Navigate to='/admin' />} end />
 					<Route
 						path='/admin/artworks'
 						element={isLoading ? <LoadingPage /> : <ArtworksList />}
@@ -59,7 +69,7 @@ function App() {
 					<Route
 						path='/admin/artworks/add'
 						element={
-							isLoading ? <LoadingPage /> : <AddArtworkForm />
+                            isLoading ? <LoadingPage /> : <AddArtworkForm />
 						}
 					/>
 					<Route
@@ -73,7 +83,7 @@ function App() {
 					<Route
 						path='/admin/categories'
 						element={
-							isLoading ? <LoadingPage /> : <CategoriesList />
+                            isLoading ? <LoadingPage /> : <CategoriesList />
 						}
 					/>
 					<Route

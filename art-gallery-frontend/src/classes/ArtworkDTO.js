@@ -1,12 +1,9 @@
-// This makes it easy to form up an object that will match
-// the JSON structure the API is expecting for a POST call
-
 export default class ArtworkDTO {
 	constructor(title, artistId, categoryIds, details) {
 		this.title = title;
-		this.artistId = artistId; // artist's id
-		this.categoryIds = categoryIds; // array of category ids
-		this.details = details; // DetailsDTO object
+		this.artistId = artistId;
+		this.categoryIds = categoryIds;
+		this.details = details;
 	}
 
 	isValid() {

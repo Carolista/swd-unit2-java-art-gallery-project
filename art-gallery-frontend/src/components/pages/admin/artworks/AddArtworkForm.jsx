@@ -79,13 +79,13 @@ const AddArtworkForm = () => {
 					errorData.message || `ERROR - Status ${response.status}`,
 				);
 			} else {
-				fetchArtworks(); // update state before returning to list
+				fetchArtworks();
 				navigate('/admin/artworks');
 			}
 		} catch (error) {
 			console.error(error.message);
 		} finally {
-			// Use toast or banner to notify user of success or failure
+			// TODO: Use toast or banner to notify user of success or failure
 		}
 	};
 
@@ -109,8 +109,6 @@ const AddArtworkForm = () => {
 		let updatedCheckboxes = [...checkboxes];
 		updatedCheckboxes[event.target.value] = event.target.checked;
 		setCheckboxes(updatedCheckboxes);
-		// This is just to keep track of the user's selections before submission
-		// The actual categoryIds array within the artwork object will be filled later
 	};
 
 	const handleSubmit = event => {
@@ -166,17 +164,18 @@ const AddArtworkForm = () => {
 			id: 'add-artwork',
 			type: 'submit',
 			label: 'Add Artwork',
-			handleClick: { handleSubmit },
+			handleClick: handleSubmit,
+            // TODO: Add submitting boolean for disabling
 		},
 	];
 
 	return (
-		<Main buttonData={buttonData}>
+		<Main>
 			<h3>Add Artwork</h3>
-			<Form>
+			<Form buttonData={buttonData}>
 				<div className='container'>
 					<div className='row'>
-						<FormItem classes='form-item'>
+						<FormItem>
 							<Input
 								id='title'
 								label='Title'
@@ -190,8 +189,8 @@ const AddArtworkForm = () => {
 								msg={errorMessages['titleRequired']}
 							/>
 						</FormItem>
-						{/* TODO: Add required to other types of inputs and update where needed */}
-						<FormItem classes='form-item'>
+						{/* TODO: Add required to other types of input components and update where needed */}
+						<FormItem>
 							<Select
 								id='artistId'
 								label='Artist'
@@ -208,7 +207,7 @@ const AddArtworkForm = () => {
 						</FormItem>
 					</div>
 					<div className='row'>
-						<FormItem classes='form-item'>
+						<FormItem>
 							<Input
 								id='yearCreated'
 								label='Year Created'
@@ -223,7 +222,7 @@ const AddArtworkForm = () => {
 								msg={errorMessages['yearCreatedRequired']}
 							/>
 						</FormItem>
-						<FormItem classes='form-item'>
+						<FormItem>
 							<Input
 								id='media'
 								label='Media'
@@ -236,7 +235,7 @@ const AddArtworkForm = () => {
 								msg={errorMessages['mediaRequired']}
 							/>
 						</FormItem>
-						<FormItem classes='form-item'>
+						<FormItem>
 							<Input
 								id='height'
 								label='Height (in.)'
@@ -249,8 +248,8 @@ const AddArtworkForm = () => {
 								msg={errorMessages['heightRequired']}
 							/>
 						</FormItem>
-						<FormItem classes='form-item'>
-							<TextInput
+						<FormItem>
+							<Input
 								id='width'
 								label='Width (in.)'
 								value={detailsData.width}
@@ -262,8 +261,8 @@ const AddArtworkForm = () => {
 								msg={errorMessages['widthRequired']}
 							/>
 						</FormItem>
-						<FormItem classes='form-item'>
-							<TextInput
+						<FormItem>
+							<Input
 								id='depth'
 								label='Depth (in.)'
 								value={detailsData.depth}
@@ -273,7 +272,7 @@ const AddArtworkForm = () => {
 						</FormItem>
 					</div>
 					<div className='row'>
-						<FormItem classes='form-item'>
+						<FormItem>
 							<TextArea
 								id='description'
 								label='Description'
@@ -290,8 +289,8 @@ const AddArtworkForm = () => {
 						</FormItem>
 						<div className='col'>
 							<div className='row'>
-								<FormItem classes='form-item'>
-									<TextInput
+								<FormItem>
+									<Input
 										id='imageId'
 										label='Image ID'
 										value={detailsData.imageId}
@@ -315,7 +314,7 @@ const AddArtworkForm = () => {
 									}
 									msg={errorMessages['categoryRequired']}
 								/>
-								<FormItem classes='form-item'>
+								<FormItem>
 									{categoryChoicesJSX}
 								</FormItem>
 							</div>

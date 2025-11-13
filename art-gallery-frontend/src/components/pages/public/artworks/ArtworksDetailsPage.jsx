@@ -1,8 +1,9 @@
 import { use } from 'react';
-import { Link, useNavigate, useParams } from 'react-router';
+import { useNavigate, useParams } from 'react-router';
 import { DataContext } from '@context/DataContext';
-import ErrorPage from '../../general/ErrorPage';
 import { Main } from '@components/layout/exports';
+import ErrorPage from '@components/pages/general/ErrorPage';
+import { GoBack, Spacer } from '@components/common/exports';
 
 const ArtworkDetailsPage = () => {
 	const { id } = useParams();
@@ -13,35 +14,30 @@ const ArtworkDetailsPage = () => {
 
 	const navigate = useNavigate();
 
-	const handleGoBack = () => {
-		navigate(-1);
-	};
+	const handleGoToArtworksPage = () => {
+        navigate('/artworks');
+    };
 
 	if (!artwork) {
 		return (
 			<ErrorPage>
 				<p>Sorry, that artwork does not exist!</p>
-				<span onClick={handleGoBack}>
-					<i className='fa-solid fa-circle-arrow-left'></i> Go Back
-				</span>
+				<Spacer marginY="20px" />
+                <GoBack text={'View All Artworks'} handleClick={handleGoToArtworksPage} />
 			</ErrorPage>
 		);
 	} else {
+
+        // TODO: Replace all bootstrap classes and use grid instead
 		return (
 			<Main>
-				<p>
-					<Link to='/artworks'>
-						<i className='fa-solid fa-circle-arrow-left'></i>
-					</Link>
-					&nbsp; Back to{' '}
-					<Link to='/artworks'>Artworks Gallery View</Link>
-				</p>
+				<GoBack text={'View All Artworks'} handleClick={handleGoToArtworksPage} />
 				<h2>ARTWORK DETAILS</h2>
-				<div className='container'>
+				<div className='artwork-details-container'>
 					<div className='row'>
 						<div className='col-6'>
 							<img
-								className='card-image'
+								className='artwork-card-image'
 								src={artwork.details.getImageURL()}
 								alt={
 									artwork.title +

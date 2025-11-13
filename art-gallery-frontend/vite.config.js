@@ -6,9 +6,9 @@ import { fileURLToPath } from 'url';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-// https://vite.dev/config/
 export default defineConfig({
 	plugins: [react()],
+    server: { watch: { usePolling: true }, historyApiFallback: true },
 	resolve: {
 		alias: {
 			'@classes': path.resolve(__dirname, './src/classes'),
@@ -19,5 +19,4 @@ export default defineConfig({
 			'@shared': path.resolve(__dirname, './src/shared'),
 		},
 	},
-	server: { watch: { usePolling: true } },
 });

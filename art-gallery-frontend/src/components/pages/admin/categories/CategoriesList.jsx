@@ -52,13 +52,12 @@ const CategoriesList = () => {
 					errorData.message || `ERROR - Status ${response.status}`,
 				);
 			} else {
-				fetchCategories(); // update state so list will update
+				fetchCategories();
 			}
 		} catch (error) {
 			console.error(error.message);
 		} finally {
-			// FUTURE: Use toast or banner to notify user of success or failure
-			// Could have various specific outcomes depending on type of error
+			// TODO: Use toast or banner to notify user of success or failure
 		}
 	};
 

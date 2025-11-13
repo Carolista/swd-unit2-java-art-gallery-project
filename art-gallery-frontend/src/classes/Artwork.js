@@ -2,9 +2,9 @@ export default class Artwork {
 	constructor(id, title, artist, categories, details) {
 		this.id = id;
 		this.title = title;
-		this.artist = artist; // Artist object
-		this.categories = categories; // array of Category objects
-		this.details = details; // Details object
+		this.artist = artist; 
+		this.categories = categories; 
+		this.details = details;
 	}
 
 	getFormattedCategories() {
