@@ -2,6 +2,7 @@ import { use, useEffect, useState } from 'react';
 import { Link } from 'react-router';
 import { AuthContext } from '@context/AuthContext.jsx';
 import { DataContext } from '@context/DataContext';
+import useScreenWidth from '@hooks/useScreenWidth';
 import { sortObjById, sortObjByString } from '@shared/utils.js';
 import {
 	ColumnHeading,
@@ -12,6 +13,8 @@ import { Main } from '@components/layout/exports';
 const CategoriesList = () => {
 	const { auth } = use(AuthContext);
 	const { allArtworks, allCategories, fetchCategories } = use(DataContext);
+
+    const screenWidth = useScreenWidth();
 
 	const [currentCategories, setCurrentCategories] = useState([
 		...allCategories,
@@ -108,7 +111,9 @@ const CategoriesList = () => {
 	return (
 		<Main>
 			<h2>CATEGORIES</h2>
-			{currentCategories.length ? (
+			{screenWidth < 768 ? (
+				<p>Please view this page at a larger screen width.</p>
+			) : currentCategories.length ? (
 				<>
 					{currentCategories.length > 10 && (
 						<p>

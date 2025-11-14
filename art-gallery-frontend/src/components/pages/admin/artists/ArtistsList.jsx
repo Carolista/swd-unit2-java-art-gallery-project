@@ -2,6 +2,7 @@ import { use, useEffect, useState } from 'react';
 import { Link } from 'react-router';
 import { AuthContext } from '@context/AuthContext';
 import { DataContext } from '@context/DataContext';
+import useScreenWidth from '@hooks/useScreenWidth';
 import { sortObjById, sortObjByString } from '@shared/utils.js';
 import {
 	ColumnHeading,
@@ -12,6 +13,8 @@ import { Main } from '@components/layout/exports';
 const ArtistsList = () => {
 	const { auth } = use(AuthContext);
 	const { allArtworks, allArtists, fetchArtists } = use(DataContext);
+
+	const screenWidth = useScreenWidth();
 
 	const [currentArtists, setCurrentArtists] = useState([...allArtists]);
 	const [currentSortColumn, setCurrentSortColumn] = useState('id');
@@ -102,7 +105,9 @@ const ArtistsList = () => {
 	return (
 		<Main>
 			<h2>ARTISTS</h2>
-			{currentArtists.length ? (
+			{screenWidth < 768 ? (
+				<p>Please view this page at a larger screen width.</p>
+			) : currentArtists.length ? (
 				<>
 					{currentArtists.length > 10 && (
 						<p>

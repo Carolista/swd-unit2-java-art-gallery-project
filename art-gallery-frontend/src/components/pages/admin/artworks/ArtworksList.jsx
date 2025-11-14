@@ -2,6 +2,7 @@ import { use, useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router';
 import { AuthContext } from '@context/AuthContext.jsx';
 import { DataContext } from '@context/DataContext';
+import useScreenWidth from '@hooks/useScreenWidth';
 import { sortObjById, sortObjByString } from '@shared/utils.js';
 import {
 	ColumnHeading,
@@ -13,6 +14,8 @@ const ArtworksList = () => {
 	const { auth } = use(AuthContext);
 	const { allArtworks, currentArtworks, setCurrentArtworks, fetchArtworks } =
 		use(DataContext);
+
+	const screenWidth = useScreenWidth();
 
 	const location = useLocation();
 	const { currentArtist, currentCategory } = location.state || {};
@@ -152,7 +155,9 @@ const ArtworksList = () => {
 				{currentArtist &&
 					` (${currentArtist.firstName[0]}. ${currentArtist.lastName})`}
 			</h2>
-			{currentArtworks.length ? (
+			{screenWidth < 768 ? (
+				<p>Please view this page at a larger screen width.</p>
+			) : currentArtworks.length ? (
 				<>
 					{currentArtworks.length < allArtworks.length && (
 						<p>
