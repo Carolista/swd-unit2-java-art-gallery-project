@@ -7,6 +7,7 @@ import { sortObjByString } from '@shared/utils.js';
 import { Form, Main } from '@components/layout/exports';
 import {
 	Checkbox,
+    FormGroup,
 	FormItem,
 	Input,
 	InputErrorMessage,
@@ -199,7 +200,7 @@ const AddArtworkForm = () => {
 								label='Artist'
                                 required={true}
 								handleChange={handleArtworkChange}>
-								<option value=''>Select an artist</option>
+								<option value=''>Select an artist...</option>
 								{artistOptionsJSX}
 							</Select>
 							<InputErrorMessage
@@ -323,9 +324,10 @@ const AddArtworkForm = () => {
 									}
 									msg={errorMessages['categoryRequired']}
 								/>
-								<FormItem>
+                                {/* TODO: Add columns for checkboxes at larger widths */}
+								<FormGroup>
 									{categoryChoicesJSX}
-								</FormItem>
+								</FormGroup>
 							</div>
 						</div>
 					</div>
