@@ -26,7 +26,7 @@
 }
 
 .link:hover {
-	color: white;
+	color: var(--standard-neutral);
 	text-decoration: underline;
 	cursor: pointer;
 }
@@ -44,3 +44,5 @@
 }
 
 /* No media queries needed for these elements */
+
+/* FIXME: Nav menu at 344px... maybe hamburger? */

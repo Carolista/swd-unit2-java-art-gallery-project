@@ -26,7 +26,6 @@ import {
 
 // TODO: Ensure all forms have responsive layout and check definitions of container classes in Form
 //  (remove all Bootstrap classes previously used)
-// TODO: Ensure ArtworkDetailsPage has responsive layout (side-by-side on larger desktop displays)
 
 // TODO: See if anything else could benefit from CSS variables
 

@@ -1,15 +1,30 @@
 :root {
+	--primary-color-pale: #b3bbcc;
 	--primary-color: #1e323c;
+	--primary-drop-shadow: rgba(30, 50, 60, 0.3);
+	--primary-drop-shadow-darker: rgba(30, 50, 60, 0.5);
+	--secondary-color-pale: #f7e5d7;
+	--secondary-color-lighter: #d57424;
 	--secondary-color: #c66311;
-	--secondary-color-darker: #b95a0a;
+	--secondary-color-darker: #b35507;
+	--secondary-color-dark: #883f04;
 	--danger-color: #b03a2e;
+	--standard-neutral: var(--standard-neutral);
+	--contrast-neutral: var(--primary-color);
+
 	--title-font: 'Kodchasan', sans-serif;
 	--regular-font: 'Assistant', sans-serif;
+
 	--preferred-padding: clamp(20px, 4vw, 30px);
 	--max-padding: 20px;
 	--gap: 10px;
-	--table-bkg-even: #ffffff;
+
+	--table-bkg-even: var(--standard-neutral);
 	--table-bkg-odd: #f5f5f5;
 	--table-bkg-hover: #e5e5e5;
 	--table-border: #dddddd;
+
+	--form-padding-y: 0.375rem;
+	--form-padding-x: 0.75rem;
+	--form-border-radius: 0.25rem;
 }

@@ -11,7 +11,7 @@ html {
 }
 
 body {
-	background-color: white;
+	background-color: var(--standard-neutral);
 	color: var(--primary-color);
 	font-family: var(--regular-font);
 	min-height: 100vh;
@@ -40,8 +40,8 @@ footer {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	background-color: #1e323c;
-	color: white;
+	background-color: var(--primary-color);
+	color: var(--standard-neutral);
 	width: 100%;
 	padding: 15px var(--preferred-padding) var(--max-padding);
 }
@@ -73,7 +73,7 @@ h3,
 h4,
 h5,
 h6 {
-	margin: 12px 0 0;
+	margin: 12px 0;
 }
 
 h1 {
@@ -83,7 +83,7 @@ h1 {
 }
 
 h2 {
-	color: white;
+	color: var(--standard-neutral);
 	background-color: var(--secondary-color);
 	font-size: 1.1rem;
 	font-weight: 200;
@@ -95,7 +95,7 @@ h2 {
 }
 
 h3 {
-	color: #1e323c;
+	color: var(--primary-color);
 	font-size: 1.1rem;
 	font-weight: 700;
 }
@@ -112,7 +112,7 @@ h5 {
 }
 
 h6 {
-	color: #1e323c;
+	color: var(--primary-color);
 	font-weight: 600;
 	font-size: 1rem;
 }
@@ -138,11 +138,11 @@ iframe {
 	height: 450px;
 	width: calc(100% - 4px);
 	margin: 20px 0;
-	border: 2px solid #1e323c;
+	border: 2px solid var(--primary-color);
 }
 
 table {
-    font-size: 0.9rem;
+	font-size: 0.9rem;
 	width: 100%;
 	margin-bottom: 20px;
 	border-collapse: collapse;
@@ -156,12 +156,14 @@ td {
 	border: 1px solid var(--table-border);
 }
 
-.align-center, .align-center {
-    text-align: center;
+.align-center,
+.align-center {
+	text-align: center;
 }
 
-.align-right, .align-right {
-    text-align: right;
+.align-right,
+.align-right {
+	text-align: right;
 }
 
 tr {
