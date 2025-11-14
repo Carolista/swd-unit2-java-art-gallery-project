@@ -118,6 +118,7 @@ const ArtworksList = () => {
 		}
 	};
 
+    // TODO: Add filter icon (or filter-circle-xmark icon) to artists' names and make clickable
 	let artworksJSX = currentArtworks.map(artwork => {
 		return (
 			<tr key={artwork.id}>
@@ -172,9 +173,13 @@ const ArtworksList = () => {
 							</Link>
 						</p>
 					)}
-					<p>
-						Add a <Link to='/admin/artworks/add'>new artwork</Link>.
-					</p>
+					{currentArtworks.length > 10 && (
+						<p>
+							Add a{' '}
+							<Link to='/admin/artworks/add'>new artwork</Link>
+							.
+						</p>
+					)}
 					<table className='table table-striped'>
 						<thead>
 							<tr>
