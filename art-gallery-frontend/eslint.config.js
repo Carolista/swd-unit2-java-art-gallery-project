@@ -17,6 +17,7 @@ export default [
 						['@classes', './src/classes'],
 						['@components', './src/components'],
 						['@context', './src/context'],
+						['@hooks', './src/hooks'],
 						['@services', './src/services'],
 						['@shared', './src/shared'],
 					],
