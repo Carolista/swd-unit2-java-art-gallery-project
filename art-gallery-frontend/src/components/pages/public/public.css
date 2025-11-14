@@ -10,12 +10,25 @@
 .artwork-details-container {
 	display: flex;
 	flex-direction: column;
-	align-items: center;
+    justify-content: center;
+
+}
+
+.artwork-details-image-container {
+	width: 100%;
+	max-width: 600px;
+    max-height: fit-content;
+}
+
+.artwork-details-text-container {
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+	max-width: fit-content;
 }
 
 .artwork-card-image {
 	width: 100%;
-	max-width: 700px;
 	margin-bottom: 8px;
 }
 
@@ -109,6 +122,17 @@
 
 /* 1200-1365 */
 @media screen and (min-width: 1200px) {
+    .artwork-details-container {
+        flex-direction: row;
+        gap: 40px;
+    }
+    .artwork-details-image-container {
+        width: 50%;
+    }
+    
+    .artwork-details-text-container {
+        width: 50%;
+    }
 	#contact-icons {
 		grid-template-rows: auto;
 		grid-template-columns: repeat(6, auto) 1fr;
