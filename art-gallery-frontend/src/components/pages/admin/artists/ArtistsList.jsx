@@ -3,7 +3,10 @@ import { Link } from 'react-router';
 import { AuthContext } from '@context/AuthContext';
 import { DataContext } from '@context/DataContext';
 import { sortObjById, sortObjByString } from '@shared/utils.js';
-import { ColumnHeading } from '@components/common/exports.js';
+import {
+	ColumnHeading,
+	SortableColumnHeading,
+} from '@components/common/exports.js';
 import { Main } from '@components/layout/exports';
 
 const ArtistsList = () => {
@@ -80,8 +83,8 @@ const ArtistsList = () => {
 		};
 		return (
 			<tr key={artist.id}>
-				<td>{artist.id}</td>
-				<td>{artist.firstName}</td>
+				<td className='align-right'>{artist.id}</td>
+				<td className='align-right'>{artist.firstName}</td>
 				<td>{artist.lastName}</td>
 				<td>{artist.location}</td>
 				<td>{getViewArtworksJSX()}</td>
@@ -110,40 +113,45 @@ const ArtistsList = () => {
 					<table className='table table-striped'>
 						<thead>
 							<tr>
-								<th width='100px'>
-									<ColumnHeading
-										label='ID'
-										property='id'
-										current={currentSortColumn}
-										setCurrent={setCurrentSortColumn}
-									/>
-								</th>
-								<th>
-									<ColumnHeading
-										label='First Name'
-										property='firstName'
-										current={currentSortColumn}
-										setCurrent={setCurrentSortColumn}
-									/>
-								</th>
-								<th>
-									<ColumnHeading
-										label='Last Name'
-										property='lastName'
-										current={currentSortColumn}
-										setCurrent={setCurrentSortColumn}
-									/>
-								</th>
-								<th>
-									<ColumnHeading
-										label='Location'
-										property='location'
-										current={currentSortColumn}
-										setCurrent={setCurrentSortColumn}
-									/>
-								</th>
-								<th>Artworks</th>
-								<th></th>
+								<SortableColumnHeading
+									id='ID'
+									classes='align-right'
+									property='id'
+									current={currentSortColumn}
+									setCurrent={setCurrentSortColumn}>
+									ID
+								</SortableColumnHeading>
+								<SortableColumnHeading
+									id='firstName'
+									classes='align-right'
+									property='firstName'
+									current={currentSortColumn}
+									setCurrent={setCurrentSortColumn}>
+									First Name
+								</SortableColumnHeading>
+								<SortableColumnHeading
+									id='lastName'
+									property='lastName'
+									current={currentSortColumn}
+									setCurrent={setCurrentSortColumn}>
+									Last Name
+								</SortableColumnHeading>
+								<SortableColumnHeading
+									id='location'
+									label='Location'
+									property='location'
+									current={currentSortColumn}
+									setCurrent={setCurrentSortColumn}>
+									Location
+								</SortableColumnHeading>
+								<ColumnHeading id='artworks'>
+									Artworks
+								</ColumnHeading>
+								<ColumnHeading id='delete'>
+									<i
+										className='fa-solid fa-trash-can'
+										title='Delete'></i>
+								</ColumnHeading>
 							</tr>
 						</thead>
 						<tbody>{artistRowsJSX}</tbody>

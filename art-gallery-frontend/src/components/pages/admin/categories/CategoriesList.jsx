@@ -3,7 +3,10 @@ import { Link } from 'react-router';
 import { AuthContext } from '@context/AuthContext.jsx';
 import { DataContext } from '@context/DataContext';
 import { sortObjById, sortObjByString } from '@shared/utils.js';
-import { ColumnHeading } from '@components/common/exports.js';
+import {
+	ColumnHeading,
+	SortableColumnHeading,
+} from '@components/common/exports.js';
 import { Main } from '@components/layout/exports';
 
 const CategoriesList = () => {
@@ -88,7 +91,7 @@ const CategoriesList = () => {
 		};
 		return (
 			<tr key={category.id}>
-				<td>{category.id}</td>
+				<td className='align-right'>{category.id}</td>
 				<td>{category.title}</td>
 				<td>{getViewArtworksJSX()}</td>
 				<td className='delete-icon'>
@@ -117,24 +120,29 @@ const CategoriesList = () => {
 					<table className='table table-striped'>
 						<thead>
 							<tr>
-								<th width='100px'>
-									<ColumnHeading
-										label='ID'
-										property='id'
-										current={currentSortColumn}
-										setCurrent={setCurrentSortColumn}
-									/>
-								</th>
-								<th>
-									<ColumnHeading
-										label='Title'
-										property='title'
-										current={currentSortColumn}
-										setCurrent={setCurrentSortColumn}
-									/>
-								</th>
-								<th>Artworks</th>
-								<th></th>
+								<SortableColumnHeading
+									id='id'
+									classes='align-right'
+									property='id'
+									current={currentSortColumn}
+									setCurrent={setCurrentSortColumn}>
+									ID
+								</SortableColumnHeading>
+								<SortableColumnHeading
+									id='title'
+									property='title'
+									current={currentSortColumn}
+									setCurrent={setCurrentSortColumn}>
+									Title
+								</SortableColumnHeading>
+								<ColumnHeading id='artworks'>
+									Artworks
+								</ColumnHeading>
+								<ColumnHeading id='delete'>
+									<i
+										className='fa-solid fa-trash-can'
+										title='Delete'></i>
+								</ColumnHeading>
 							</tr>
 						</thead>
 						<tbody>{categoriesJSX}</tbody>

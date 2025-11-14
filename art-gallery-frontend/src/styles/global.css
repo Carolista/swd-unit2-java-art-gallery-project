@@ -141,6 +141,52 @@ iframe {
 	border: 2px solid #1e323c;
 }
 
+table {
+	width: 100%;
+	margin-bottom: 20px;
+	border-collapse: collapse;
+}
+
+th,
+td {
+	text-align: left;
+	vertical-align: middle;
+	padding: 4px 8px;
+	border: 1px solid var(--table-border);
+}
+
+.align-center, .align-center {
+    text-align: center;
+}
+
+.align-right, .align-right {
+    text-align: right;
+}
+
+tr {
+	height: 2rem;
+}
+
+thead tr {
+	position: sticky;
+	top: 0;
+	background-color: var(--table-bkg-even);
+	font-weight: 600;
+	z-index: 10;
+}
+
+tbody tr:nth-child(odd) {
+	background-color: var(--table-bkg-odd);
+}
+
+tbody tr:nth-child(even) {
+	background-color: var(--table-bkg-even);
+}
+
+tbody tr:hover {
+	background-color: var(--table-bkg-hover);
+}
+
 /* 380-479 */
 @media screen and (min-width: 380px) {
 	/* No changes needed in this range */

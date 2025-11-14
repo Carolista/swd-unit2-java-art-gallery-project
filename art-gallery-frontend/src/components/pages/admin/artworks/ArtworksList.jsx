@@ -3,7 +3,10 @@ import { Link, useLocation } from 'react-router';
 import { AuthContext } from '@context/AuthContext.jsx';
 import { DataContext } from '@context/DataContext';
 import { sortObjById, sortObjByString } from '@shared/utils.js';
-import { ColumnHeading } from '@components/common/exports.js';
+import {
+	ColumnHeading,
+	SortableColumnHeading,
+} from '@components/common/exports.js';
 import { Main } from '@components/layout/exports';
 
 const ArtworksList = () => {
@@ -115,7 +118,7 @@ const ArtworksList = () => {
 	let artworksJSX = currentArtworks.map(artwork => {
 		return (
 			<tr key={artwork.id}>
-				<td>{artwork.id}</td>
+				<td className='align-right'>{artwork.id}</td>
 				<td>{artwork.title}</td>
 				<td>{artwork.artist.getFullName()}</td>
 				<td>{artwork.details.yearCreated}</td>
@@ -164,46 +167,47 @@ const ArtworksList = () => {
 							</Link>
 						</p>
 					)}
-                    <p>
+					<p>
 						Add a <Link to='/admin/artworks/add'>new artwork</Link>.
 					</p>
 					<table className='table table-striped'>
 						<thead>
 							<tr>
-								<th width='100px'>
-									<ColumnHeading
-										label='ID'
-										property='id'
-										current={currentSortColumn}
-										setCurrent={handleSortByColumn}
-									/>
-								</th>
-								<th>
-									<ColumnHeading
-										label='Title'
-										property='title'
-										current={currentSortColumn}
-										setCurrent={handleSortByColumn}
-									/>
-								</th>
-								<th>
-									<ColumnHeading
-										label='Artist'
-										property='artist'
-										current={currentSortColumn}
-										setCurrent={handleSortByColumn}
-									/>
-								</th>
-								<th>
-									<ColumnHeading
-										label='Created'
-										property='year'
-										current={currentSortColumn}
-										setCurrent={handleSortByColumn}
-									/>
-								</th>
-								<th>Image</th>
-								<th></th>
+								<SortableColumnHeading
+									id='ID'
+									classes='align-right'
+									property='id'
+									current={currentSortColumn}
+									setCurrent={handleSortByColumn}>
+									ID
+								</SortableColumnHeading>
+								<SortableColumnHeading
+									id='title'
+									property='title'
+									current={currentSortColumn}
+									setCurrent={handleSortByColumn}>
+									Title
+								</SortableColumnHeading>
+								<SortableColumnHeading
+									id='artist'
+									property='artist'
+									current={currentSortColumn}
+									setCurrent={handleSortByColumn}>
+									Artist
+								</SortableColumnHeading>
+								<SortableColumnHeading
+									id='year'
+									property='year'
+									current={currentSortColumn}
+									setCurrent={handleSortByColumn}>
+									Created
+								</SortableColumnHeading>
+								<ColumnHeading id='image'>Image</ColumnHeading>
+								<ColumnHeading id='delete'>
+									<i
+										className='fa-solid fa-trash-can'
+										title='Delete'></i>
+								</ColumnHeading>
 							</tr>
 						</thead>
 						<tbody>{artworksJSX}</tbody>

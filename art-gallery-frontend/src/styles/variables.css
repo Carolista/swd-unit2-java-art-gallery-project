@@ -8,4 +8,8 @@
 	--preferred-padding: clamp(20px, 4vw, 30px);
 	--max-padding: 20px;
 	--gap: 10px;
+	--table-bkg-even: #ffffff;
+	--table-bkg-odd: #f5f5f5;
+	--table-bkg-hover: #e5e5e5;
+	--table-border: #dddddd;
 }

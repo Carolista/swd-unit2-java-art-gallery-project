@@ -1,13 +1,8 @@
-const ColumnHeading = ({ label, property, current, setCurrent }) => {
+const ColumnHeading = ({ id, classes, children, handleClick }) => {
 	return (
-		<span
-			className={current === property ? 'sorted-by' : 'sortable'}
-			onClick={() => setCurrent(property)}>
-			{label}{' '}
-			{current !== property && (
-				<i className='fa-solid fa-arrow-down-a-z fa-lg'></i>
-			)}
-		</span>
+		<th id={`${id}-column`} className={classes} onClick={handleClick}>
+			{children}
+		</th>
 	);
 };
 
