@@ -9,7 +9,7 @@
 	--secondary-color-darker: #b35507;
 	--secondary-color-dark: #883f04;
 	--danger-color: #b03a2e;
-	--standard-neutral: var(--standard-neutral);
+	--standard-neutral: white;
 	--contrast-neutral: var(--primary-color);
 
 	--title-font: 'Kodchasan', sans-serif;
