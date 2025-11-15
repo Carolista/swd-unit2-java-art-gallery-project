@@ -100,10 +100,10 @@ const AddArtistForm = () => {
 	return (
 		<Main>
 			<h3>Add Artist</h3>
-			<FormWithButtons buttonData={buttonData}>
-				<FormItem classes='first-name-item'>
+			<FormWithButtons id="add-artist" buttonData={buttonData}>
+				<FormItem id='add-artist-first-name'>
 					<Input
-						id='firstName'
+						id='first-name'
 						label='First Name'
 						type='text'
 						value={artistData.firstName}
@@ -116,9 +116,9 @@ const AddArtistForm = () => {
 						msg={errorMessages['firstNameRequired']}
 					/>
 				</FormItem>
-				<FormItem classes='last-name-item'>
+				<FormItem id='add-artist-last-name'>
 					<Input
-						id='lastName'
+						id='last-name'
 						label='Last Name'
 						type='text'
 						value={artistData.lastName}
@@ -130,7 +130,7 @@ const AddArtistForm = () => {
 						msg={errorMessages['lastNameRequired']}
 					/>
 				</FormItem>
-				<FormItem>
+				<FormItem id='add-artist-location'>
 					<Input
 						id='location'
 						label='Location'

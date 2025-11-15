@@ -1,16 +1,56 @@
-#add-category-form {
-	width: 100%;
-	max-width: 500px;
+
+#add-artist-form {
+    max-width: 800px;
 }
 
-#add-category-form-inputs {
-	display: flex;
-	flex-direction: column;
-	gap: 0px;
+#add-category-form {
+    max-width: 400px;
+}
+
+#add-artist-form,
+#add-category-form {
+    width: 100%;
+}
+
+
+#add-artist-first-name-form-item,
+#add-artist-last-name-form-item,
+#add-artist-location-form-item,
+#add-category-title-form-item {
+	width: 100%;
+}
+
+#add-artist-first-name-form-item {
+    grid-area: artist-first-name;
+}
+
+#add-artist-last-name-form-item {
+    grid-area: artist-last-name
+}
+
+#add-artist-location-form-item {
+    grid-area: artist-location
 }
 
 #add-category-title-form-item {
-	width: 100%;
+    grid-area: category-title
+}
+
+#add-artist-form-inputs {
+    display: grid;
+    justify-items: left;
+    grid-template-rows: auto;
+    grid-template-columns: auto;
+    grid-template-areas:
+        'artist-first-name'
+        'artist-last-name'
+        'artist-location';
+}
+
+#add-category-form-inputs {
+    display: flex;
+    flex-direction: column;
+    gap: 0px;
 }
 
 .delete-icon {
@@ -40,8 +80,14 @@
 
 /* 768-1024 */
 @media screen and (min-width: 768px) {
-
-
+	#add-artist-form-inputs {
+        grid-template-rows: repeat(2, auto);
+        grid-template-columns: repeat(2, auto);
+        grid-template-areas:
+            'artist-first-name artist-last-name'
+            'artist-location .';
+        column-gap: 15px;
+    }
 
 }
 

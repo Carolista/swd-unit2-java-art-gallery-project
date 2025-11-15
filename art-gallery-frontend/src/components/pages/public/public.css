@@ -10,14 +10,13 @@
 .artwork-details-container {
 	display: flex;
 	flex-direction: column;
-    justify-content: center;
-
+	justify-content: center;
 }
 
 .artwork-details-image-container {
 	width: 100%;
 	max-width: 600px;
-    max-height: fit-content;
+	max-height: fit-content;
 }
 
 .artwork-details-text-container {
@@ -49,18 +48,19 @@
 /* LOGIN */
 
 #login-form {
-    width: 100%;
-    max-width: 1000px;
+	width: 100%;
+	max-width: 800px;
 }
 
 #login-form-inputs {
-    display: flex;
-        flex-direction: column;
-        gap: 0px;
-    }
+	display: flex;
+	flex-direction: column;
+	gap: 0px;
+}
 
-#login-email-form-item, #login-password-form-item {
-    width: 100%;
+#login-email-form-item,
+#login-password-form-item {
+	width: 100%;
 }
 
 /* LOCATION */
@@ -121,13 +121,14 @@
 	.artwork-card-container {
 		columns: 2;
 	}
-    #login-form-inputs {
-        flex-direction: row;
-        gap: 20px;
-    }
-    #login-email-form-item, #login-password-form-item {
-    width: 50%;
-}
+	#login-form-inputs {
+		flex-direction: row;
+		gap: 20px;
+	}
+	#login-email-form-item,
+	#login-password-form-item {
+		width: 50%;
+	}
 	#contact-icons {
 		grid-template-rows: auto;
 		grid-template-columns: repeat(3, auto) 1fr;
@@ -146,17 +147,17 @@
 
 /* 1200-1365 */
 @media screen and (min-width: 1200px) {
-    .artwork-details-container {
-        flex-direction: row;
-        gap: 40px;
-    }
-    .artwork-details-image-container {
-        width: 50%;
-    }
-    
-    .artwork-details-text-container {
-        width: 50%;
-    }
+	.artwork-details-container {
+		flex-direction: row;
+		gap: 40px;
+	}
+	.artwork-details-image-container {
+		width: 50%;
+	}
+
+	.artwork-details-text-container {
+		width: 50%;
+	}
 	#contact-icons {
 		grid-template-rows: auto;
 		grid-template-columns: repeat(6, auto) 1fr;

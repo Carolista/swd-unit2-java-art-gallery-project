@@ -176,7 +176,7 @@ const AddArtworkForm = () => {
 	return (
 		<Main>
 			<h3>Add Artwork</h3>
-			<FormWithButtons buttonData={buttonData}>
+			<FormWithButtons id="add-artwork" buttonData={buttonData}>
 				<FormItem>
 					<Input
 						id='title'
@@ -194,7 +194,7 @@ const AddArtworkForm = () => {
 				</FormItem>
 				<FormItem>
 					<Select
-						id='artistId'
+						id='artist-id'
 						label='Artist'
 						required={true}
 						handleChange={handleArtworkChange}>
@@ -209,7 +209,7 @@ const AddArtworkForm = () => {
 
 				<FormItem>
 					<Input
-						id='yearCreated'
+						id='year-created'
 						label='Year Created'
 						type='text'
 						value={detailsData.yearCreated}
@@ -289,7 +289,7 @@ const AddArtworkForm = () => {
 
 				<FormItem>
 					<Input
-						id='imageId'
+						id='image-id'
 						label='Image ID'
 						type='text'
 						value={detailsData.imageId}

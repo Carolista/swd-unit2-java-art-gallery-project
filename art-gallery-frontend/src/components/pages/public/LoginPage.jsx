@@ -87,7 +87,7 @@ const LoginPage = () => {
 		<Main>
 			<h1>Log In</h1>
 			<FormWithButtons id='login' buttonData={buttonData}>
-				<FormItem id='login-email-form-item'>
+				<FormItem id='login-email'>
 					<Input
 						id='email'
 						label='Email'
@@ -103,7 +103,7 @@ const LoginPage = () => {
 					/>
 				</FormItem>
 
-				<FormItem id='login-password-form-item'>
+				<FormItem id='login-password'>
 					<Input
 						id='password'
 						label='Password'
