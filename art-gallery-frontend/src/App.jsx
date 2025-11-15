@@ -24,9 +24,6 @@ import {
 
 // FIXME: Admin paths not being matched when url changed in address bar
 
-// TODO: Ensure all forms have responsive layout and check definitions of container classes in Form
-//  (remove all Bootstrap classes previously used)
-
 // TODO: See if anything else could benefit from CSS variables
 
 function App() {

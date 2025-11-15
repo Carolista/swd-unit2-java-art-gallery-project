@@ -19,8 +19,6 @@ const errorMessages = {
 	passwordRequired: 'Password is required.',
 };
 
-// TODO: Put form in a center/center box that resembles a modal (maybe a drop shadow, using Card?)
-
 const LoginPage = () => {
 	const { setAuth } = useContext(AuthContext);
 
