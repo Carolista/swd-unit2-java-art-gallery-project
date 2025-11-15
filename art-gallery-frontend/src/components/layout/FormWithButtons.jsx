@@ -2,7 +2,7 @@ import { Button } from '@components/form-input/exports';
 
 // TODO: Define input-fields and button-group CSS classes and test across all forms using this component
 
-const Form = ({ id, buttonData, children }) => {
+const FormWithButtons = ({ id, buttonData, children }) => {
 	const buttonsJSX = buttonData.map(button => {
 		return (
 			<Button
@@ -16,11 +16,11 @@ const Form = ({ id, buttonData, children }) => {
 		);
 	});
 	return (
-		<form id={id}>
-			<div className='input-fields'>{children}</div>
+		<form id={`${id}-form`}>
+			<div id={`${id}-form-inputs`}>{children}</div>
 			<div className='button-group'>{buttonsJSX}</div>
 		</form>
 	);
 };
 
-export default Form;
+export default FormWithButtons;

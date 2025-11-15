@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router';
 import ArtistDTO from '@classes/ArtistDTO.js';
 import { AuthContext } from '@context/AuthContext.jsx';
 import { DataContext } from '@context/DataContext.jsx';
-import { Form, Main } from '@components/layout/exports';
+import { FormWithButtons, Main } from '@components/layout/exports';
 import {
 	FormItem,
 	Input,
@@ -20,7 +20,7 @@ let errorMessages = {
 const AddArtistForm = () => {
 	const [artistData, setArtistData] = useState(initialArtistData);
 	const [hasErrors, setHasErrors] = useState(false);
-    const [submitting, setSubmitting] = useState(false);
+	const [submitting, setSubmitting] = useState(false);
 
 	const navigate = useNavigate();
 
@@ -79,10 +79,10 @@ const AddArtistForm = () => {
 			artistData.location,
 		);
 		if (!artistDTO.isValid()) {
-            setSubmitting(false);
+			setSubmitting(false);
 			setHasErrors(true);
 		} else {
-            setSubmitting(true);
+			setSubmitting(true);
 			saveNewArtist(artistDTO);
 		}
 	};
@@ -92,20 +92,20 @@ const AddArtistForm = () => {
 			id: 'add-artist',
 			type: 'submit',
 			label: 'Add Artist',
-			handleClick: { handleSubmit },
-            shouldDisable: submitting,
+			handleClick: handleSubmit,
+			shouldDisable: submitting,
 		},
 	];
 
 	return (
 		<Main>
 			<h3>Add Artist</h3>
-			<Form buttonData={buttonData}>
+			<FormWithButtons buttonData={buttonData}>
 				<FormItem classes='first-name-item'>
 					<Input
 						id='firstName'
 						label='First Name'
-                        type='text'
+						type='text'
 						value={artistData.firstName}
 						ref={inputRef}
 						required={true}
@@ -120,7 +120,7 @@ const AddArtistForm = () => {
 					<Input
 						id='lastName'
 						label='Last Name'
-                        type='text'
+						type='text'
 						value={artistData.lastName}
 						required={true}
 						handleChange={handleChange}
@@ -134,12 +134,12 @@ const AddArtistForm = () => {
 					<Input
 						id='location'
 						label='Location'
-                        type='text'
+						type='text'
 						value={artistData.location}
 						handleChange={handleChange}
 					/>
 				</FormItem>
-			</Form>
+			</FormWithButtons>
 		</Main>
 	);
 };

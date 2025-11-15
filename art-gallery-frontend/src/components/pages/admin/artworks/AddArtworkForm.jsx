@@ -4,10 +4,10 @@ import { ArtworkDTO, DetailsDTO } from '@classes/exports.js';
 import { AuthContext } from '@context/AuthContext.jsx';
 import { DataContext } from '@context/DataContext.jsx';
 import { sortObjByString } from '@shared/utils.js';
-import { Form, Main } from '@components/layout/exports';
+import { FormWithButtons, Main } from '@components/layout/exports';
 import {
 	Checkbox,
-    FormGroup,
+	FormGroup,
 	FormItem,
 	Input,
 	InputErrorMessage,
@@ -40,13 +40,13 @@ let errorMessages = {
 };
 
 const AddArtworkForm = () => {
-	const { allArtists, allCategories, fetchArtworks } = use(DataContext);
-
 	const [artworkData, setArtworkData] = useState(initialArtworkData);
 	const [detailsData, setDetailsData] = useState(initialDetailsData);
 	const [checkboxes, setCheckboxes] = useState([]);
 	const [hasErrors, setHasErrors] = useState(false);
-    const [submitting, setSubmitting] = useState(false);
+	const [submitting, setSubmitting] = useState(false);
+
+	const { allArtists, allCategories, fetchArtworks } = use(DataContext);
 
 	const sortedArtists = sortObjByString([...allArtists], 'lastName');
 	const sortedCategories = sortObjByString([...allCategories], 'title');
@@ -134,10 +134,10 @@ const AddArtworkForm = () => {
 			detailsDTO,
 		);
 		if (!detailsDTO.isValid() || !artworkDTO.isValid()) {
-            setSubmitting(false);
+			setSubmitting(false);
 			setHasErrors(true);
 		} else {
-            setSubmitting(true);
+			setSubmitting(true);
 			saveNewArtwork(artworkDTO);
 		}
 	};
@@ -169,170 +169,147 @@ const AddArtworkForm = () => {
 			type: 'submit',
 			label: 'Add Artwork',
 			handleClick: handleSubmit,
-            shouldDisable: submitting,
+			shouldDisable: submitting,
 		},
 	];
 
 	return (
 		<Main>
 			<h3>Add Artwork</h3>
-			<Form buttonData={buttonData}>
-				<div className='container'>
-					<div className='row'>
-						<FormItem>
-							<Input
-								id='title'
-								label='Title'
-                                type='text'
-								value={artworkData.title}
-								ref={inputRef}
-								required={true}
-								handleChange={handleArtworkChange}
-							/>
-							<InputErrorMessage
-								hasError={hasErrors && artworkData.title === ''}
-								msg={errorMessages['titleRequired']}
-							/>
-						</FormItem>
-						<FormItem>
-							<Select
-								id='artistId'
-								label='Artist'
-                                required={true}
-								handleChange={handleArtworkChange}>
-								<option value=''>Select an artist...</option>
-								{artistOptionsJSX}
-							</Select>
-							<InputErrorMessage
-								hasError={
-									hasErrors && !artworkData.artistId
-								}
-								msg={errorMessages['artistRequired']}
-							/>
-						</FormItem>
-					</div>
-					<div className='row'>
-						<FormItem>
-							<Input
-								id='yearCreated'
-								label='Year Created'
-                                type='text'
-								value={detailsData.yearCreated}
-								required={true}
-								handleChange={handleDetailsChange}
-							/>
-							<InputErrorMessage
-								hasError={
-									hasErrors && detailsData.yearCreated === ''
-								}
-								msg={errorMessages['yearCreatedRequired']}
-							/>
-						</FormItem>
-						<FormItem>
-							<Input
-								id='media'
-								label='Media'
-                                type='text'
-								value={detailsData.media}
-								required={true}
-								handleChange={handleDetailsChange}
-							/>
-							<InputErrorMessage
-								hasError={hasErrors && detailsData.media === ''}
-								msg={errorMessages['mediaRequired']}
-							/>
-						</FormItem>
-						<FormItem>
-							<Input
-								id='height'
-								label='Height (in.)'
-                                type="number"
-								value={detailsData.height}
-								required={true}
-								handleChange={handleDetailsChange}
-							/>
-							<InputErrorMessage
-								hasError={hasErrors && detailsData.height === 0}
-								msg={errorMessages['heightRequired']}
-							/>
-						</FormItem>
-						<FormItem>
-							<Input
-								id='width'
-								label='Width (in.)'
-                                type="number"
-								value={detailsData.width}
-								required={true}
-								handleChange={handleDetailsChange}
-							/>
-							<InputErrorMessage
-								hasError={hasErrors && detailsData.width === 0}
-								msg={errorMessages['widthRequired']}
-							/>
-						</FormItem>
-						<FormItem>
-							<Input
-								id='depth'
-								label='Depth (in.)'
-                                type="number"
-								value={detailsData.depth}
-								handleChange={handleDetailsChange}
-							/>
-						</FormItem>
-					</div>
-					<div className='row'>
-						<FormItem>
-							<TextArea
-								id='description'
-								label='Description'
-								value={detailsData.description}
-								required={true}
-								handleChange={handleDetailsChange}
-							/>
-							<InputErrorMessage
-								hasError={
-									hasErrors && detailsData.description === ''
-								}
-								msg={errorMessages['descriptionRequired']}
-							/>
-						</FormItem>
-						<div className='col'>
-							<div className='row'>
-								<FormItem>
-									<Input
-										id='imageId'
-										label='Image ID'
-                                        type='text'
-										value={detailsData.imageId}
-										required={true}
-										handleChange={handleDetailsChange}
-									/>
-									<InputErrorMessage
-										hasError={
-											hasErrors &&
-											detailsData.imageId === ''
-										}
-										msg={errorMessages['imageIdRequired']}
-									/>
-								</FormItem>
-							</div>
-							<div className='row'>
-								<h3>Categories</h3>
-								<InputErrorMessage
-									hasError={
-										hasErrors && checkboxes.length === 0
-									}
-									msg={errorMessages['categoryRequired']}
-								/>
-                                {/* TODO: Add columns for checkboxes at larger widths */}
-								<FormGroup>
-									{categoryChoicesJSX}
-								</FormGroup>
-							</div>
-						</div>
-					</div>
-				</div>
-			</Form>
+			<FormWithButtons buttonData={buttonData}>
+				<FormItem>
+					<Input
+						id='title'
+						label='Title'
+						type='text'
+						value={artworkData.title}
+						ref={inputRef}
+						required={true}
+						handleChange={handleArtworkChange}
+					/>
+					<InputErrorMessage
+						hasError={hasErrors && artworkData.title === ''}
+						msg={errorMessages['titleRequired']}
+					/>
+				</FormItem>
+				<FormItem>
+					<Select
+						id='artistId'
+						label='Artist'
+						required={true}
+						handleChange={handleArtworkChange}>
+						<option value=''>Select an artist...</option>
+						{artistOptionsJSX}
+					</Select>
+					<InputErrorMessage
+						hasError={hasErrors && !artworkData.artistId}
+						msg={errorMessages['artistRequired']}
+					/>
+				</FormItem>
+
+				<FormItem>
+					<Input
+						id='yearCreated'
+						label='Year Created'
+						type='text'
+						value={detailsData.yearCreated}
+						required={true}
+						handleChange={handleDetailsChange}
+					/>
+					<InputErrorMessage
+						hasError={hasErrors && detailsData.yearCreated === ''}
+						msg={errorMessages['yearCreatedRequired']}
+					/>
+				</FormItem>
+				<FormItem>
+					<Input
+						id='media'
+						label='Media'
+						type='text'
+						value={detailsData.media}
+						required={true}
+						handleChange={handleDetailsChange}
+					/>
+					<InputErrorMessage
+						hasError={hasErrors && detailsData.media === ''}
+						msg={errorMessages['mediaRequired']}
+					/>
+				</FormItem>
+				<FormItem>
+					<Input
+						id='height'
+						label='Height (in.)'
+						type='number'
+						value={detailsData.height}
+						required={true}
+						handleChange={handleDetailsChange}
+					/>
+					<InputErrorMessage
+						hasError={hasErrors && detailsData.height === 0}
+						msg={errorMessages['heightRequired']}
+					/>
+				</FormItem>
+				<FormItem>
+					<Input
+						id='width'
+						label='Width (in.)'
+						type='number'
+						value={detailsData.width}
+						required={true}
+						handleChange={handleDetailsChange}
+					/>
+					<InputErrorMessage
+						hasError={hasErrors && detailsData.width === 0}
+						msg={errorMessages['widthRequired']}
+					/>
+				</FormItem>
+				<FormItem>
+					<Input
+						id='depth'
+						label='Depth (in.)'
+						type='number'
+						value={detailsData.depth}
+						handleChange={handleDetailsChange}
+					/>
+				</FormItem>
+
+				<FormItem>
+					<TextArea
+						id='description'
+						label='Description'
+						value={detailsData.description}
+						required={true}
+						handleChange={handleDetailsChange}
+					/>
+					<InputErrorMessage
+						hasError={hasErrors && detailsData.description === ''}
+						msg={errorMessages['descriptionRequired']}
+					/>
+				</FormItem>
+
+				<FormItem>
+					<Input
+						id='imageId'
+						label='Image ID'
+						type='text'
+						value={detailsData.imageId}
+						required={true}
+						handleChange={handleDetailsChange}
+					/>
+					<InputErrorMessage
+						hasError={hasErrors && detailsData.imageId === ''}
+						msg={errorMessages['imageIdRequired']}
+					/>
+				</FormItem>
+
+				<h3>Categories</h3>
+				<InputErrorMessage
+					hasError={hasErrors && checkboxes.length === 0}
+					msg={errorMessages['categoryRequired']}
+				/>
+				{/* TODO: Add columns for checkboxes at larger widths */}
+				<FormGroup>{categoryChoicesJSX}</FormGroup>
+			</FormWithButtons>
 		</Main>
 	);
 };

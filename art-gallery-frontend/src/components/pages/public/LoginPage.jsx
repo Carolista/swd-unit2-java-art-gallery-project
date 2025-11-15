@@ -12,8 +12,7 @@ import {
 	setEmailInStorage,
 	setTokenInStorage,
 } from '@services/storageService';
-import { Card } from '@components/common/exports';
-import { Form, Main } from '@components/layout/exports';
+import { FormWithButtons, Main } from '@components/layout/exports';
 
 const errorMessages = {
 	emailRequired: 'Email is required.',
@@ -87,41 +86,38 @@ const LoginPage = () => {
 	return (
 		<Main>
 			<h1>Log In</h1>
-			<Form id="login-form" buttonData={buttonData}>
-                <div id="login-form-inputs">
-                    <FormItem id="login-email-form-item">
-                        <Input
-                            id='email'
-                            label='Email'
-                            type='text'
-                            value={email}
-                            ref={inputRef}
-                            required={true}
-                            handleChange={handleEmailChange}
-                        />
-                        <InputErrorMessage
-                            hasError={hasErrors && email === ''}
-                            msg={errorMessages['emailRequired']}
-                        />
-                    </FormItem>
+			<FormWithButtons id='login' buttonData={buttonData}>
+				<FormItem id='login-email-form-item'>
+					<Input
+						id='email'
+						label='Email'
+						type='text'
+						value={email}
+						ref={inputRef}
+						required={true}
+						handleChange={handleEmailChange}
+					/>
+					<InputErrorMessage
+						hasError={hasErrors && email === ''}
+						msg={errorMessages['emailRequired']}
+					/>
+				</FormItem>
 
-                    <FormItem id="login-password-form-item">
-                        <Input
-                            id='password'
-                            label='Password'
-                            type='password'
-                            value={password}
-                            required={true}
-                            handleChange={handlePasswordChange}
-                        />
-                        <InputErrorMessage
-                            hasError={hasErrors && password === ''}
-                            msg={errorMessages['passwordRequired']}
-                        />
-                    </FormItem>
-
-                </div>
-			</Form>
+				<FormItem id='login-password-form-item'>
+					<Input
+						id='password'
+						label='Password'
+						type='password'
+						value={password}
+						required={true}
+						handleChange={handlePasswordChange}
+					/>
+					<InputErrorMessage
+						hasError={hasErrors && password === ''}
+						msg={errorMessages['passwordRequired']}
+					/>
+				</FormItem>
+			</FormWithButtons>
 		</Main>
 	);
 };

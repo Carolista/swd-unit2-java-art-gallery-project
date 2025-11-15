@@ -1,5 +1,5 @@
 import { use, useEffect, useRef, useState } from 'react';
-import { Form, useNavigate } from 'react-router';
+import { useNavigate } from 'react-router';
 import { CategoryDTO } from '@classes/exports.js';
 import { AuthContext } from '@context/AuthContext';
 import { DataContext } from '@context/DataContext';
@@ -8,12 +8,12 @@ import {
 	Input,
 	InputErrorMessage,
 } from '@components/form-input/exports';
-import { Main } from '@components/layout/exports';
+import { Main, FormWithButtons } from '@components/layout/exports';
 
 const AddCategoryForm = () => {
 	const [title, setTitle] = useState('');
 	const [hasErrors, setHasErrors] = useState(false);
-    const [submitting, setSubmitting] = useState(false);
+	const [submitting, setSubmitting] = useState(false);
 
 	const navigate = useNavigate();
 
@@ -64,10 +64,10 @@ const AddCategoryForm = () => {
 		event.preventDefault();
 		const categoryDTO = new CategoryDTO(title);
 		if (!categoryDTO.isValid()) {
-            setSubmitting(false);
+			setSubmitting(false);
 			setHasErrors(true);
 		} else {
-            setSubmitting(true);
+			setSubmitting(true);
 			saveNewCategory(categoryDTO);
 		}
 	};
@@ -85,15 +85,15 @@ const AddCategoryForm = () => {
 	return (
 		<Main>
 			<h3>Add Category</h3>
-			<Form buttonData={buttonData}>
+			<FormWithButtons buttonData={buttonData}>
 				<FormItem>
 					<Input
 						id='title'
 						label='Title'
-                        type='text'
+						type='text'
 						value={title}
-                        ref={inputRef}
-                        required={true}
+						ref={inputRef}
+						required={true}
 						handleChange={handleChange}
 					/>
 					<InputErrorMessage
@@ -101,7 +101,7 @@ const AddCategoryForm = () => {
 						msg='Category name is required.'
 					/>
 				</FormItem>
-			</Form>
+			</FormWithButtons>
 		</Main>
 	);
 };
