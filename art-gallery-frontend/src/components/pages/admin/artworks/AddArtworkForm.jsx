@@ -176,8 +176,8 @@ const AddArtworkForm = () => {
 	return (
 		<Main>
 			<h3>Add Artwork</h3>
-			<FormWithButtons id="add-artwork" buttonData={buttonData}>
-				<FormItem>
+			<FormWithButtons id='add-artwork' buttonData={buttonData}>
+				<FormItem id='add-artwork-title'>
 					<Input
 						id='title'
 						label='Title'
@@ -192,7 +192,7 @@ const AddArtworkForm = () => {
 						msg={errorMessages['titleRequired']}
 					/>
 				</FormItem>
-				<FormItem>
+				<FormItem id='add-artwork-artist-id'>
 					<Select
 						id='artist-id'
 						label='Artist'
@@ -207,7 +207,7 @@ const AddArtworkForm = () => {
 					/>
 				</FormItem>
 
-				<FormItem>
+				<FormItem id='add-artwork-year-created'>
 					<Input
 						id='year-created'
 						label='Year Created'
@@ -221,7 +221,7 @@ const AddArtworkForm = () => {
 						msg={errorMessages['yearCreatedRequired']}
 					/>
 				</FormItem>
-				<FormItem>
+				<FormItem id='add-artwork-media'>
 					<Input
 						id='media'
 						label='Media'
@@ -235,7 +235,7 @@ const AddArtworkForm = () => {
 						msg={errorMessages['mediaRequired']}
 					/>
 				</FormItem>
-				<FormItem>
+				<FormItem id='add-artwork-height'>
 					<Input
 						id='height'
 						label='Height (in.)'
@@ -249,7 +249,7 @@ const AddArtworkForm = () => {
 						msg={errorMessages['heightRequired']}
 					/>
 				</FormItem>
-				<FormItem>
+				<FormItem id='add-artwork-width'>
 					<Input
 						id='width'
 						label='Width (in.)'
@@ -263,7 +263,7 @@ const AddArtworkForm = () => {
 						msg={errorMessages['widthRequired']}
 					/>
 				</FormItem>
-				<FormItem>
+				<FormItem id='add-artwork-depth'>
 					<Input
 						id='depth'
 						label='Depth (in.)'
@@ -273,7 +273,7 @@ const AddArtworkForm = () => {
 					/>
 				</FormItem>
 
-				<FormItem>
+				<FormItem id='add-artwork-description'>
 					<TextArea
 						id='description'
 						label='Description'
@@ -287,7 +287,7 @@ const AddArtworkForm = () => {
 					/>
 				</FormItem>
 
-				<FormItem>
+				<FormItem id='add-artwork-image-id'>
 					<Input
 						id='image-id'
 						label='Image ID'
@@ -302,13 +302,14 @@ const AddArtworkForm = () => {
 					/>
 				</FormItem>
 
-				<h3>Categories</h3>
+				<h3 id='add-artwork-categories-subtitle'>Categories</h3>
 				<InputErrorMessage
 					hasError={hasErrors && checkboxes.length === 0}
 					msg={errorMessages['categoryRequired']}
 				/>
-				{/* TODO: Add columns for checkboxes at larger widths */}
-				<FormGroup>{categoryChoicesJSX}</FormGroup>
+				<FormGroup id='add-artwork-categories'>
+					{categoryChoicesJSX}
+				</FormGroup>
 			</FormWithButtons>
 		</Main>
 	);

@@ -1,18 +1,31 @@
+#add-artwork-form {
+	max-width: 1000px;
+}
 
 #add-artist-form {
-    max-width: 800px;
+	max-width: 800px;
 }
 
 #add-category-form {
-    max-width: 400px;
+	max-width: 400px;
 }
 
+#add-artwork-form,
 #add-artist-form,
 #add-category-form {
-    width: 100%;
+	width: 100%;
 }
 
-
+#add-artwork-title-form-item,
+#add-artwork-artist-id-form-item,
+#add-artwork-year-created-form-item,
+#add-artwork-media-form-item,
+#add-artwork-height-form-item,
+#add-artwork-width-form-item,
+#add-artwork-depth-form-item,
+#add-artwork-description-form-item,
+#add-artwork-image-id-form-item,
+#add-artwork-categories-form-group,
 #add-artist-first-name-form-item,
 #add-artist-last-name-form-item,
 #add-artist-location-form-item,
@@ -20,37 +33,89 @@
 	width: 100%;
 }
 
+#add-artwork-title-form-item {
+	grid-area: artwork-title;
+}
+#add-artwork-artist-id-form-item {
+	grid-area: artwork-artist-id;
+}
+#add-artwork-year-created-form-item {
+	grid-area: artwork-year-created;
+}
+#add-artwork-media-form-item {
+	grid-area: artwork-media;
+}
+#add-artwork-height-form-item {
+	grid-area: artwork-height;
+}
+#add-artwork-width-form-item {
+	grid-area: artwork-width;
+}
+#add-artwork-depth-form-item {
+	grid-area: artwork-depth;
+}
+#add-artwork-description-form-item {
+	grid-area: artwork-description;
+}
+#add-artwork-image-id-form-item {
+	grid-area: artwork-image-id;
+}
+#add-artwork-categories-subtitle {
+	grid-area: artwork-categories-subtitle;
+}
+#add-artwork-categories-form-group {
+	grid-area: artwork-categories;
+	display: block;
+	columns: 1;
+}
+
 #add-artist-first-name-form-item {
-    grid-area: artist-first-name;
+	grid-area: artist-first-name;
 }
-
 #add-artist-last-name-form-item {
-    grid-area: artist-last-name
+	grid-area: artist-last-name;
 }
-
 #add-artist-location-form-item {
-    grid-area: artist-location
+	grid-area: artist-location;
 }
 
 #add-category-title-form-item {
-    grid-area: category-title
+	grid-area: category-title;
+}
+
+#add-artwork-form-inputs {
+	display: grid;
+	justify-items: left;
+	grid-template-rows: auto;
+	grid-template-columns: repeat(3, 1fr);
+	column-gap: 10px;
+	grid-template-areas:
+		'artwork-title artwork-title artwork-title'
+		'artwork-artist-id artwork-artist-id artwork-artist-id'
+		'artwork-year-created artwork-year-created artwork-year-created'
+		'artwork-media artwork-media artwork-media'
+		'artwork-height artwork-width artwork-depth'
+		'artwork-description artwork-description artwork-description'
+		'artwork-image-id artwork-image-id artwork-image-id'
+		'artwork-categories-subtitle artwork-categories-subtitle artwork-categories-subtitle'
+		'artwork-categories artwork-categories artwork-categories';
 }
 
 #add-artist-form-inputs {
-    display: grid;
-    justify-items: left;
-    grid-template-rows: auto;
-    grid-template-columns: auto;
-    grid-template-areas:
-        'artist-first-name'
-        'artist-last-name'
-        'artist-location';
+	display: grid;
+	justify-items: left;
+	grid-template-rows: auto;
+	grid-template-columns: auto;
+	grid-template-areas:
+		'artist-first-name'
+		'artist-last-name'
+		'artist-location';
 }
 
 #add-category-form-inputs {
-    display: flex;
-    flex-direction: column;
-    gap: 0px;
+	display: flex;
+	flex-direction: column;
+	gap: 0px;
 }
 
 .delete-icon {
@@ -70,25 +135,45 @@
 
 /* 380-479 */
 @media screen and (min-width: 380px) {
-	/* No changes needed in this range */
+	#add-artwork-categories-form-group {
+		columns: 2;
+	}
 }
 
 /* 480-767 */
 @media screen and (min-width: 480px) {
-	/* No changes needed in this range */
+	#add-artwork-categories-form-group {
+		columns: 3;
+	}
 }
 
 /* 768-1024 */
 @media screen and (min-width: 768px) {
+	#add-artwork-form-inputs {
+		grid-template-rows: auto;
+		grid-template-columns: repeat(3, 1fr);
+		column-gap: 10px;
+		grid-template-areas:
+			'artwork-title artwork-title artwork-title'
+			'artwork-artist-id artwork-artist-id artwork-height'
+			'artwork-year-created artwork-year-created artwork-width'
+			'artwork-media artwork-media artwork-depth'
+			'artwork-description artwork-description artwork-description'
+			'artwork-image-id artwork-image-id artwork-image-id'
+			'artwork-categories-subtitle artwork-categories-subtitle artwork-categories-subtitle'
+			'artwork-categories artwork-categories artwork-categories';
+	}
+	#add-artwork-categories-form-group {
+		columns: 4;
+	}
 	#add-artist-form-inputs {
-        grid-template-rows: repeat(2, auto);
-        grid-template-columns: repeat(2, auto);
-        grid-template-areas:
-            'artist-first-name artist-last-name'
-            'artist-location .';
-        column-gap: 15px;
-    }
-
+		grid-template-rows: auto;
+		grid-template-columns: repeat(2, auto);
+		grid-template-areas:
+			'artist-first-name artist-last-name'
+			'artist-location .';
+		column-gap: 15px;
+	}
 }
 
 /* 1024-1199 */
