@@ -105,16 +105,13 @@ const ArtistsList = () => {
 	return (
 		<Main>
 			<h2>ARTISTS</h2>
+			<p>
+				Add a <Link to='/admin/artists/add'>new artist</Link>.
+			</p>
 			{screenWidth < 768 ? (
-				<p>Please view this page at a larger screen width.</p>
+				<p>Please increase screen width to view the table.</p>
 			) : currentArtists.length ? (
 				<>
-					{currentArtists.length > 10 && (
-						<p>
-							Add a{' '}
-							<Link to='/admin/artists/add'>new artist</Link>.
-						</p>
-					)}
 					<table className='table table-striped'>
 						<thead>
 							<tr>
@@ -161,9 +158,13 @@ const ArtistsList = () => {
 						</thead>
 						<tbody>{artistRowsJSX}</tbody>
 					</table>
-					<p>
-						Add a <Link to='/admin/artists/add'>new artist</Link>.
-					</p>
+
+					{currentArtists.length > 10 && (
+						<p>
+							Add a{' '}
+							<Link to='/admin/artists/add'>new artist</Link>.
+						</p>
+					)}
 				</>
 			) : (
 				<p>

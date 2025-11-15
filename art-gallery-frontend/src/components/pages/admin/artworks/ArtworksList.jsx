@@ -118,7 +118,7 @@ const ArtworksList = () => {
 		}
 	};
 
-    // TODO: Add filter icon (or filter-circle-xmark icon) to artists' names and make clickable
+	// TODO: Add filter icon (or filter-circle-xmark icon) to artists' names and make clickable
 	let artworksJSX = currentArtworks.map(artwork => {
 		return (
 			<tr key={artwork.id}>
@@ -156,8 +156,11 @@ const ArtworksList = () => {
 				{currentArtist &&
 					` (${currentArtist.firstName[0]}. ${currentArtist.lastName})`}
 			</h2>
+			<p>
+				Add a <Link to='/admin/artworks/add'>new artwork</Link>.
+			</p>
 			{screenWidth < 768 ? (
-				<p>Please view this page at a larger screen width.</p>
+				<p>Please increase screen width to view the table.</p>
 			) : currentArtworks.length ? (
 				<>
 					{currentArtworks.length < allArtworks.length && (
@@ -171,13 +174,6 @@ const ArtworksList = () => {
 								onClick={handleResetArtworks}>
 								View All
 							</Link>
-						</p>
-					)}
-					{currentArtworks.length > 10 && (
-						<p>
-							Add a{' '}
-							<Link to='/admin/artworks/add'>new artwork</Link>
-							.
 						</p>
 					)}
 					<table className='table table-striped'>
@@ -222,9 +218,12 @@ const ArtworksList = () => {
 						</thead>
 						<tbody>{artworksJSX}</tbody>
 					</table>
-					<p>
-						Add a <Link to='/admin/artworks/add'>new artwork</Link>.
-					</p>
+					{currentArtworks.length > 10 && (
+						<p>
+							Add a{' '}
+							<Link to='/admin/artworks/add'>new artwork</Link>.
+						</p>
+					)}
 				</>
 			) : (
 				<p>

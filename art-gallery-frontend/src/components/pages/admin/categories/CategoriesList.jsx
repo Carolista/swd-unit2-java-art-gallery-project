@@ -111,17 +111,15 @@ const CategoriesList = () => {
 	return (
 		<Main>
 			<h2>CATEGORIES</h2>
+            <p>
+						Add a{' '}
+						<Link to='/admin/categories/add'>new category</Link>.
+					</p>
 			{screenWidth < 768 ? (
-				<p>Please view this page at a larger screen width.</p>
+				<p>Please increase screen width to view the table.</p>
 			) : currentCategories.length ? (
 				<>
-					{currentCategories.length > 10 && (
-						<p>
-							Add a{' '}
-							<Link to='/admin/categories/add'>new category</Link>
-							.
-						</p>
-					)}
+					
 					<table className='table table-striped'>
 						<thead>
 							<tr>
@@ -152,10 +150,14 @@ const CategoriesList = () => {
 						</thead>
 						<tbody>{categoriesJSX}</tbody>
 					</table>
-					<p>
-						Add a{' '}
-						<Link to='/admin/categories/add'>new category</Link>.
-					</p>
+                    {currentCategories.length > 10 && (
+						<p>
+							Add a{' '}
+							<Link to='/admin/categories/add'>new category</Link>
+							.
+						</p>
+					)}
+					
 				</>
 			) : (
 				<p>
