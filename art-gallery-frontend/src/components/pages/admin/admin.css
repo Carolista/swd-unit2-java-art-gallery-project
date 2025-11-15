@@ -1,3 +1,18 @@
+#add-category-form {
+	width: 100%;
+	max-width: 500px;
+}
+
+#add-category-form-inputs {
+	display: flex;
+	flex-direction: column;
+	gap: 0px;
+}
+
+#add-category-title-form-item {
+	width: 100%;
+}
+
 .delete-icon {
 	width: 30px;
 }
@@ -9,4 +24,43 @@
 .delete-icon i:hover {
 	color: var(--danger-color);
 	opacity: 0.8;
+}
+
+/* MEDIA QUERIES */
+
+/* 380-479 */
+@media screen and (min-width: 380px) {
+	/* No changes needed in this range */
+}
+
+/* 480-767 */
+@media screen and (min-width: 480px) {
+	/* No changes needed in this range */
+}
+
+/* 768-1024 */
+@media screen and (min-width: 768px) {
+
+
+
+}
+
+/* 1024-1199 */
+@media screen and (min-width: 1024px) {
+	/* No changes needed in this range */
+}
+
+/* 1200-1365 */
+@media screen and (min-width: 1200px) {
+	/* No changes needed in this range */
+}
+
+/* 1366-1599 */
+@media screen and (min-width: 1366px) {
+	/* No changes needed in this range */
+}
+
+/* 1600+ */
+@media screen and (min-width: 1600px) {
+	/* No changes needed in this range */
 }

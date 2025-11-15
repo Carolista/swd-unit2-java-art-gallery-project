@@ -85,7 +85,7 @@ const AddCategoryForm = () => {
 	return (
 		<Main>
 			<h3>Add Category</h3>
-			<FormWithButtons buttonData={buttonData}>
+			<FormWithButtons id="add-category" buttonData={buttonData}>
 				<FormItem>
 					<Input
 						id='title'
