@@ -1,7 +1,7 @@
 const Main = ({ imageData, children }) => {
 	if (imageData) {
 		return (
-			<main>
+			<main id='main' tabIndex="-1">
 				<div className='main-content'>{children}</div>
 				<img src={imageData.src} alt={imageData.alt} width='100%' />
 			</main>

@@ -1,5 +1,18 @@
 /* LAYOUT */
 
+.skip-link {
+  position: absolute;
+  top: -100px;
+  left: 0;
+  background: #eee;
+  padding: 8px;
+  z-index: 100;
+}
+
+.skip-link:focus {
+  top: 0;
+}
+
 header,
 footer {
 	display: flex;

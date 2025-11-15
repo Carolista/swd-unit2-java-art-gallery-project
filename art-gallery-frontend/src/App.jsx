@@ -2,7 +2,7 @@ import { use } from 'react';
 import { Routes, Route, Navigate } from 'react-router';
 import { AuthContext } from '@context/AuthContext.jsx';
 import { DataContext } from '@context/DataContext.jsx';
-import { Footer, Header } from '@components/layout/exports.js';
+import { Footer, Header, SkipLink } from '@components/layout/exports.js';
 import {
 	AboutPage,
 	ArtworkDetailsPage,
@@ -35,6 +35,7 @@ function App() {
 
 	return (
 		<div id='body-container'>
+            <SkipLink />
 			<Header />
 			{!auth.isAuthenticated ? (
 				<Routes>
