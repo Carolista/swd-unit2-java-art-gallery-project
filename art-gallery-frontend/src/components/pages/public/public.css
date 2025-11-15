@@ -46,6 +46,23 @@
 	margin-top: 0;
 }
 
+/* LOGIN */
+
+#login-form {
+    width: 100%;
+    max-width: 1000px;
+}
+
+#login-form-inputs {
+    display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
+
+#login-email-form-item, #login-password-form-item {
+    width: 100%;
+}
+
 /* LOCATION */
 
 #phone-icon-container {
@@ -104,6 +121,13 @@
 	.artwork-card-container {
 		columns: 2;
 	}
+    #login-form-inputs {
+        flex-direction: row;
+        gap: 20px;
+    }
+    #login-email-form-item, #login-password-form-item {
+    width: 50%;
+}
 	#contact-icons {
 		grid-template-rows: auto;
 		grid-template-columns: repeat(3, auto) 1fr;

@@ -64,7 +64,7 @@ const LoginPage = () => {
 
 	const handleSubmit = event => {
 		event.preventDefault();
-        // TODO: Use DTO class with isValid here?
+		// TODO: Use DTO class with isValid here?
 		if (email === '' || password === '') {
 			setSubmitting(false);
 			setHasErrors(true);
@@ -87,48 +87,41 @@ const LoginPage = () => {
 	return (
 		<Main>
 			<h1>Log In</h1>
-			{/* FIXME: Figure out how to add in space here and also need different classes in some cases */}
-			<Card>
-				<Form buttonData={buttonData}>
-					<div className='container'>
-						<div className='row'>
-							<FormItem>
-								<Input
-									id='email'
-									label='Email'
-									type='text'
-									value={email}
-									ref={inputRef}
-									required={true}
-									handleChange={handleEmailChange}
-								/>
-								<InputErrorMessage
-									hasError={hasErrors && email === ''}
-									msg={errorMessages['emailRequired']}
-								/>
-							</FormItem>
-						</div>
-					</div>
-					<div className='container'>
-						<div className='row'>
-							<FormItem>
-								<Input
-									id='password'
-									label='Password'
-									type='password'
-									value={password}
-									required={true}
-									handleChange={handlePasswordChange}
-								/>
-								<InputErrorMessage
-									hasError={hasErrors && password === ''}
-									msg={errorMessages['passwordRequired']}
-								/>
-							</FormItem>
-						</div>
-					</div>
-				</Form>
-			</Card>
+			<Form id="login-form" buttonData={buttonData}>
+                <div id="login-form-inputs">
+                    <FormItem id="login-email-form-item">
+                        <Input
+                            id='email'
+                            label='Email'
+                            type='text'
+                            value={email}
+                            ref={inputRef}
+                            required={true}
+                            handleChange={handleEmailChange}
+                        />
+                        <InputErrorMessage
+                            hasError={hasErrors && email === ''}
+                            msg={errorMessages['emailRequired']}
+                        />
+                    </FormItem>
+
+                    <FormItem id="login-password-form-item">
+                        <Input
+                            id='password'
+                            label='Password'
+                            type='password'
+                            value={password}
+                            required={true}
+                            handleChange={handlePasswordChange}
+                        />
+                        <InputErrorMessage
+                            hasError={hasErrors && password === ''}
+                            msg={errorMessages['passwordRequired']}
+                        />
+                    </FormItem>
+
+                </div>
+			</Form>
 		</Main>
 	);
 };

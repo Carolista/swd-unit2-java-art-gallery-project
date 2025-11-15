@@ -1,5 +1,22 @@
 /* LAYOUT */
 
+header,
+footer {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	background-color: var(--primary-color);
+	color: var(--standard-neutral);
+	width: 100%;
+	padding: 15px var(--preferred-padding) var(--max-padding);
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+	flex: 1;
+}
+
 #mag {
 	font-family: var(--title-font);
 	font-size: 1.3rem;
@@ -15,6 +32,8 @@
 	align-items: flex-end;
 	gap: 12px;
 }
+
+/* TODO: add navlink and active definitions here for DynamicNavLink */
 
 .link,
 .link:link,

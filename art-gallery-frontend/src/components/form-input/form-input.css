@@ -7,14 +7,14 @@
 	margin-bottom: 0.8rem;
 }
 
+.form-item:focus-within label {
+    color: var(--secondary-color-darker);
+}
+
 .checkbox-with-label {
 	display: flex;
 	flex-direction: row;
 	gap: 8px;
-}
-
-.form-item:focus-within label {
-	color: var(--secondary-color-darker);
 }
 
 input,
@@ -140,8 +140,8 @@ button.cancel {
 
 .input-with-icon i {
 	position: absolute;
-	top: 8px;
-	right: 6px;
+	top: 12px;
+	right: 10px;
 }
 
 .fa-eye {
