@@ -150,12 +150,13 @@ const ArtworksList = () => {
 
 	return (
 		<Main>
-			<h2>
-				ARTWORKS
+			<h1>
+				Artworks
 				{currentCategory && ` (${currentCategory.title})`}
 				{currentArtist &&
 					` (${currentArtist.firstName[0]}. ${currentArtist.lastName})`}
-			</h2>
+			</h1>
+            {/* Add subnav for CRUD links */}
 			<p>
 				Add a <Link to='/admin/artworks/add'>new artwork</Link>.
 			</p>

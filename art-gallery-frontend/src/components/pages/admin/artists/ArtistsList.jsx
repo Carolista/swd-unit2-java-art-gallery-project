@@ -104,7 +104,8 @@ const ArtistsList = () => {
 
 	return (
 		<Main>
-			<h2>ARTISTS</h2>
+			<h1>Artists</h1>
+            {/* Add subnav for CRUD links */}
 			<p>
 				Add a <Link to='/admin/artists/add'>new artist</Link>.
 			</p>

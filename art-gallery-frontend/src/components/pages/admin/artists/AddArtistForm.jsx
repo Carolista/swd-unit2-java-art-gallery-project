@@ -99,7 +99,7 @@ const AddArtistForm = () => {
 
 	return (
 		<Main>
-			<h3>Add Artist</h3>
+			<h1>Add Artist</h1>
 			<FormWithButtons id="add-artist" buttonData={buttonData}>
 				<FormItem id='add-artist-first-name'>
 					<Input

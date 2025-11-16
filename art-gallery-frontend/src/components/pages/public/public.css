@@ -1,7 +1,6 @@
 /* ARTWORKS */
 
 .artwork-card-container {
-	/* masonry layout */
 	columns: 1;
 	column-gap: 15px;
 	margin-top: 20px;
@@ -10,7 +9,6 @@
 .artwork-details-container {
 	display: flex;
 	flex-direction: column;
-	justify-content: center;
 }
 
 .artwork-details-image-container {
@@ -26,6 +24,12 @@
 	max-width: fit-content;
 }
 
+.artwork-details-subheading {
+    color: var(--secondary-color);
+    font-weight: 600;
+    margin: 10px 0 0;
+}
+
 .artwork-card-image {
 	width: 100%;
 	margin-bottom: 8px;
@@ -35,14 +39,6 @@
 	display: flex;
 	flex-direction: column;
 	text-align: center;
-}
-
-.artwork-card-text > h5 {
-	margin-bottom: 4px;
-}
-
-.artwork-card-text > h6 {
-	margin-top: 0;
 }
 
 /* LOGIN */

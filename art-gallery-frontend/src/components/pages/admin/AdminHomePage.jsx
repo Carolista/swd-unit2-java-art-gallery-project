@@ -8,10 +8,9 @@ const AdminHomePage = () => {
 	};
 	return (
 		<Main imageData={imageData}>
-			<h1>Welcome, Admin Users!</h1>
+			<h1>Admin Portal</h1>
 			<p>
-				This portal will allow you to help manage our{' '}
-				<Link to='/admin/artworks'>collection</Link> of fine art.
+				Use this portal to manage records for <Link to='/admin/artists'>artists</Link>, <Link to='/admin/artworks'>artworks</Link>, and <Link to='/admin/categories'>categories</Link>.
 			</p>
 		</Main>
 	);

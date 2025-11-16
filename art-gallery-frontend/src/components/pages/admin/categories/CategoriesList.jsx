@@ -110,7 +110,8 @@ const CategoriesList = () => {
 
 	return (
 		<Main>
-			<h2>CATEGORIES</h2>
+			<h1>Categories</h1>
+            {/* Add subnav for CRUD links */}
             <p>
 						Add a{' '}
 						<Link to='/admin/categories/add'>new category</Link>.

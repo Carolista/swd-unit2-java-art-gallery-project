@@ -175,7 +175,7 @@ const AddArtworkForm = () => {
 
 	return (
 		<Main>
-			<h3>Add Artwork</h3>
+			<h1>Add Artwork</h1>
 			<FormWithButtons id='add-artwork' buttonData={buttonData}>
 				<FormItem id='add-artwork-title'>
 					<Input
@@ -302,7 +302,7 @@ const AddArtworkForm = () => {
 					/>
 				</FormItem>
 
-				<h3 id='add-artwork-categories-subtitle'>Categories</h3>
+				<h2 id='add-artwork-categories-subtitle'>Categories</h2>
 				<InputErrorMessage
 					hasError={hasErrors && checkboxes.length === 0}
 					msg={errorMessages['categoryRequired']}
