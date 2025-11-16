@@ -126,6 +126,10 @@ button {
 	cursor: pointer;
 }
 
+button:focus {
+    border: 2px solid var(--secondary-color);
+}
+
 button.cancel {
 	color: var(--secondary-color);
 	background-color: var(--standard-neutral);
