@@ -5,10 +5,11 @@ import { AuthContext } from '@context/AuthContext';
 import { DataContext } from '@context/DataContext';
 import {
 	FormItem,
+	FormWithButtons,
 	Input,
 	InputErrorMessage,
-} from '@components/form-input/exports';
-import { Main, FormWithButtons } from '@components/layout/exports';
+} from '@components/input/exports';
+import { Main } from '@components/layout/exports';
 
 const AddCategoryForm = () => {
 	const [title, setTitle] = useState('');
@@ -85,7 +86,7 @@ const AddCategoryForm = () => {
 	return (
 		<Main>
 			<h1>Add Category</h1>
-			<FormWithButtons id="add-category" buttonData={buttonData}>
+			<FormWithButtons id='add-category' buttonData={buttonData}>
 				<FormItem>
 					<Input
 						id='title'

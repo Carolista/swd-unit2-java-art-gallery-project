@@ -32,7 +32,7 @@ function App() {
 
 	return (
 		<div id='body-container'>
-            <SkipLink />
+			<SkipLink />
 			<Header />
 			{!auth.isAuthenticated ? (
 				<Routes>
@@ -54,8 +54,7 @@ function App() {
 				</Routes>
 			) : (
 				<Routes>
-					<Route path='/admin' element={<AdminHomePage />} />
-                    <Route path='/' element={<Navigate to='/admin' />} end />
+					<Route path='/' element={<AdminHomePage />} />
 					<Route
 						path='/admin/artworks'
 						element={isLoading ? <LoadingPage /> : <ArtworksList />}
@@ -63,7 +62,7 @@ function App() {
 					<Route
 						path='/admin/artworks/add'
 						element={
-                            isLoading ? <LoadingPage /> : <AddArtworkForm />
+							isLoading ? <LoadingPage /> : <AddArtworkForm />
 						}
 					/>
 					<Route
@@ -77,7 +76,7 @@ function App() {
 					<Route
 						path='/admin/categories'
 						element={
-                            isLoading ? <LoadingPage /> : <CategoriesList />
+							isLoading ? <LoadingPage /> : <CategoriesList />
 						}
 					/>
 					<Route

@@ -3,12 +3,13 @@ import { useNavigate } from 'react-router';
 import ArtistDTO from '@classes/ArtistDTO.js';
 import { AuthContext } from '@context/AuthContext.jsx';
 import { DataContext } from '@context/DataContext.jsx';
-import { FormWithButtons, Main } from '@components/layout/exports';
+import { Main } from '@components/layout/exports';
 import {
 	FormItem,
+	FormWithButtons,
 	Input,
 	InputErrorMessage,
-} from '@components/form-input/exports.js';
+} from '@components/input/exports.js';
 
 let initialArtistData = { firstName: '', lastName: '', location: '' };
 
@@ -100,7 +101,7 @@ const AddArtistForm = () => {
 	return (
 		<Main>
 			<h1>Add Artist</h1>
-			<FormWithButtons id="add-artist" buttonData={buttonData}>
+			<FormWithButtons id='add-artist' buttonData={buttonData}>
 				<FormItem id='add-artist-first-name'>
 					<Input
 						id='first-name'

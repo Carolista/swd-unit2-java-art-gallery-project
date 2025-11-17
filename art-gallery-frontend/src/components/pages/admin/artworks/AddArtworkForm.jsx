@@ -4,16 +4,17 @@ import { ArtworkDTO, DetailsDTO } from '@classes/exports.js';
 import { AuthContext } from '@context/AuthContext.jsx';
 import { DataContext } from '@context/DataContext.jsx';
 import { sortObjByString } from '@shared/utils.js';
-import { FormWithButtons, Main } from '@components/layout/exports';
+import { Main } from '@components/layout/exports';
 import {
 	Checkbox,
 	FormGroup,
 	FormItem,
+	FormWithButtons,
 	Input,
 	InputErrorMessage,
 	Select,
 	TextArea,
-} from '@components/form-input/exports.js';
+} from '@components/input/exports.js';
 
 let initialArtworkData = { title: '', artistId: '', categoryIds: [] };
 

@@ -113,10 +113,18 @@ input[type='radio']:checked + label {
 	font-weight: bold;
 }
 
+.button-group {
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-end;
+	gap: var(--gap);
+	margin-top: 15px;
+}
+
 button {
 	color: var(--standard-neutral);
 	background-color: var(--primary-color);
-	font-family: 'Assistant', sans-serif;
+	font-family: var(--regular-font);
 	font-size: 0.9rem;
 	font-weight: 500;
 	padding: 5px;

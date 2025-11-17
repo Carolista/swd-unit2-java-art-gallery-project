@@ -1,5 +1,5 @@
 html {
-	font-size: clamp(18px, 2vw, 20px);
+	font-size: var(--default-font-size);
 	height: 100vh;
 	box-sizing: border-box;
 }
@@ -35,8 +35,6 @@ body::before {
 	z-index: -1;
 }
 
-
-
 #body-container {
 	display: flex;
 	flex-direction: column;
@@ -64,7 +62,7 @@ h6 {
 }
 
 h1 {
-    color: var(--secondary-color);
+	color: var(--secondary-color);
 	font-size: 1.4rem;
 	font-weight: 700;
 }
@@ -96,6 +94,7 @@ p {
 	margin: 6px 0;
 }
 
+/* TODO: reconcile this with stylings brought over for modal and nav-link */
 a,
 .link-like {
 	color: var(--secondary-color);
@@ -106,7 +105,7 @@ a,
 
 a:hover,
 a:active {
-	color: var(--secondary-color-darker);
+	color: var(--secondary-color-lighter);
 }
 
 iframe {
@@ -177,11 +176,7 @@ tbody tr:hover {
 
 /* 768-1024 */
 @media screen and (min-width: 768px) {
-	header {
-		flex-direction: row;
-		justify-content: space-between;
-		padding: 15px clamp(20px, 4vw, 30px);
-	}
+	/* No changes needed in this range */
 }
 
 /* 1024-1365 */

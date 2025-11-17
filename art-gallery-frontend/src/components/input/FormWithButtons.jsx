@@ -1,4 +1,4 @@
-import { Button } from '@components/form-input/exports';
+import { Button } from '@components/input/exports';
 
 // TODO: Define input-fields and button-group CSS classes and test across all forms using this component
 
@@ -11,7 +11,7 @@ const FormWithButtons = ({ id, buttonData, children }) => {
 				label={button.label}
 				type={button.type}
 				handleClick={button.handleClick}
-                shouldDisable={button.shouldDisable}
+				shouldDisable={button.shouldDisable}
 			/>
 		);
 	});

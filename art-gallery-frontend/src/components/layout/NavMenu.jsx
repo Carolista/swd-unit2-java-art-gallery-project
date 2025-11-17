@@ -1,41 +1,70 @@
-import Spacer from '@components/common/Spacer';
-import { Link } from 'react-router';
+import { use, useEffect } from 'react';
+import { useLocation } from 'react-router';
+import useScreenWidth from '@hooks/useScreenWidth';
+import { ModalContext } from '@context/ModalContext';
+import { DynamicNavLink, Modal } from './exports';
+import { IconButton } from '@components/input/exports';
 
 const NavMenu = ({ links, nonLinks }) => {
 	nonLinks = nonLinks || [];
 
+	const { isOpen, handleOpenModal, handleCloseModal } = use(ModalContext);
+
+	const screenWidth = useScreenWidth();
+
+	const location = useLocation();
+
+	useEffect(() => {
+		if (isOpen) handleCloseModal();
+	}, [location.pathname]);
+
 	const linksJSX = links.map(link => {
 		return (
-			<Link
+			<DynamicNavLink
 				key={link.id}
-				className='link'
 				to={link.to}
-				onClick={link.handleClick}>
+				handleClick={link.handleClick}>
 				{link.label}
-			</Link>
+			</DynamicNavLink>
 		);
 	});
 	const nonLinksJSX = nonLinks.map(nonLink => {
 		return (
 			<span
 				key={nonLink.id}
-				className='link'
+				className='nav-link'
 				onClick={nonLink.handleClick}>
 				{nonLink.label}
 			</span>
 		);
 	});
 
+	const Menu = () => {
+		return (
+			<nav>
+				{linksJSX}
+				{nonLinks.length ? nonLinksJSX : ''}
+			</nav>
+		);
+	};
+
 	return (
-		<nav className='nav-menu'>
-			{linksJSX}
-			{nonLinks.length && (
+		<>
+			{screenWidth < 768 ? (
 				<>
-					<Spacer character='|' />
-					{nonLinksJSX}
+					<IconButton
+						handleClick={handleOpenModal}
+						ariaLabel='Open Nav Menu'>
+						<i className='fa-solid fa-bars open-nav-menu-icon'></i>
+					</IconButton>
+					<Modal>
+						<Menu />
+					</Modal>
 				</>
+			) : (
+				<Menu />
 			)}
-		</nav>
+		</>
 	);
 };
 

@@ -3,16 +3,17 @@ import { useContext, useEffect, useRef, useState } from 'react';
 import { AuthContext } from '@context/AuthContext';
 import {
 	FormItem,
+	FormWithButtons,
 	Input,
 	InputErrorMessage,
-} from '@components/form-input/exports';
+} from '@components/input/exports';
 import { requestLogin } from '@services/authService';
 import {
 	getEmailFromStorage,
 	setEmailInStorage,
 	setTokenInStorage,
 } from '@services/storageService';
-import { FormWithButtons, Main } from '@components/layout/exports';
+import { Main } from '@components/layout/exports';
 
 const errorMessages = {
 	emailRequired: 'Email is required.',

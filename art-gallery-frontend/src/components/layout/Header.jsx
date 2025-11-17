@@ -1,19 +1,18 @@
 import { use } from 'react';
 import { useNavigate } from 'react-router';
+import useScreenWidth from '@hooks/useScreenWidth';
+import { removeTokenFromStorage } from '@services/storageService';
 import { AuthContext } from '@context/AuthContext';
 import { DataContext } from '@context/DataContext';
-import { removeTokenFromStorage } from '@services/storageService';
 import NavMenu from './NavMenu';
 
 const Header = () => {
 	const { auth, setAuth } = use(AuthContext);
 	const { allArtworks, setCurrentArtworks } = use(DataContext);
 
-	const navigate = useNavigate();
+	const screenWidth = useScreenWidth();
 
-	const handleGoToLogIn = () => {
-		navigate('/login');
-	};
+	const navigate = useNavigate();
 
 	const handleLogOut = () => {
 		setAuth({ token: null, email: null, isAuthenticated: false });
@@ -21,27 +20,24 @@ const Header = () => {
 		navigate('/');
 	};
 
-	const commonLinkData = [
-		{ id: 'home', label: 'Home', to: '/home', handleClick: null },
-	];
-
 	const adminLinkData = [
+		{ id: 'admin', to: '/', label: 'Admin Home', handleClick: null },
 		{
 			id: 'artists',
-			label: 'Artists',
 			to: '/admin/artists',
+			label: 'Artists',
 			handleClick: null,
 		},
 		{
 			id: 'artworks',
-			label: 'Artworks',
 			to: '/admin/artworks',
+			label: 'Artworks',
 			handleClick: () => setCurrentArtworks(allArtworks),
 		},
 		{
 			id: 'categories',
-			label: 'Categories',
 			to: '/admin/categories',
+			label: 'Categories',
 			handleClick: null,
 		},
 	];
@@ -51,40 +47,45 @@ const Header = () => {
 	];
 
 	const publicLinkData = [
-		{ id: 'about', label: 'About', to: '/about', handleClick: null },
+		{ id: 'home', to: '/', label: 'Home', handleClick: null },
+		{ id: 'about', to: '/about', label: 'About', handleClick: null },
 		{
 			id: 'artworks',
-			label: 'Artworks',
 			to: '/artworks',
+			label: 'Artworks',
 			handleClick: null,
 		},
 		{
 			id: 'location',
-			label: 'Location',
 			to: '/location',
+			label: 'Location',
 			handleClick: null,
 		},
-	];
-
-	const publicNonLinkData = [
-		{ id: 'logIn', label: 'Log In', handleClick: handleGoToLogIn },
+		{
+			id: 'login',
+			to: '/login',
+			label: 'Log In',
+			handleClick: null,
+		},
 	];
 
 	return (
 		<header>
 			<div id='mag'>
-				<strong>Midtown</strong> Art Gallery
+				{screenWidth < 480 ? (
+					<>
+						<strong>M</strong>AG
+					</>
+				) : (
+					<>
+						<strong>Midtown</strong> Art Gallery
+					</>
+				)}
 			</div>
 			{auth.isAuthenticated ? (
-				<NavMenu
-					links={[...commonLinkData, ...adminLinkData]}
-					nonLinks={adminNonLinkData}
-				/>
+				<NavMenu links={adminLinkData} nonLinks={adminNonLinkData} />
 			) : (
-				<NavMenu
-					links={[...commonLinkData, ...publicLinkData]}
-					nonLinks={publicNonLinkData}
-				/>
+				<NavMenu links={publicLinkData} />
 			)}
 		</header>
 	);
