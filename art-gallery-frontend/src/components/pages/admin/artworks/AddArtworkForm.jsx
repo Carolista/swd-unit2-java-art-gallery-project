@@ -199,11 +199,10 @@ const AddArtworkForm = () => {
 						label='Artist'
 						required={true}
 						handleChange={handleArtworkChange}>
-						<option value=''>Select an artist...</option>
 						{artistOptionsJSX}
 					</Select>
 					<InputErrorMessage
-						hasError={hasErrors && !artworkData.artistId}
+						hasError={hasErrors && artworkData.artistId === ''}
 						msg={errorMessages['artistRequired']}
 					/>
 				</FormItem>
@@ -242,11 +241,16 @@ const AddArtworkForm = () => {
 						label='Height (in.)'
 						type='number'
 						value={detailsData.height}
+						min='0'
 						required={true}
 						handleChange={handleDetailsChange}
 					/>
 					<InputErrorMessage
-						hasError={hasErrors && detailsData.height === 0}
+						hasError={
+							hasErrors &&
+							(detailsData.height === 0 ||
+								detailsData.height === '')
+						}
 						msg={errorMessages['heightRequired']}
 					/>
 				</FormItem>
@@ -256,11 +260,16 @@ const AddArtworkForm = () => {
 						label='Width (in.)'
 						type='number'
 						value={detailsData.width}
+						min='0'
 						required={true}
 						handleChange={handleDetailsChange}
 					/>
 					<InputErrorMessage
-						hasError={hasErrors && detailsData.width === 0}
+						hasError={
+							hasErrors &&
+							(detailsData.width === 0 ||
+								detailsData.width === '')
+						}
 						msg={errorMessages['widthRequired']}
 					/>
 				</FormItem>
@@ -270,6 +279,7 @@ const AddArtworkForm = () => {
 						label='Depth (in.)'
 						type='number'
 						value={detailsData.depth}
+						min='0'
 						handleChange={handleDetailsChange}
 					/>
 				</FormItem>

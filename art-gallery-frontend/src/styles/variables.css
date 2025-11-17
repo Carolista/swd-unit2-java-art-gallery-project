@@ -11,6 +11,7 @@
 	--danger-color: #b03a2e;
 	--standard-neutral: white;
 	--contrast-neutral: var(--primary-color);
+    --input-text-color: #555555;
 
 	--title-font: 'Kodchasan', sans-serif;
 	--regular-font: 'Assistant', sans-serif;

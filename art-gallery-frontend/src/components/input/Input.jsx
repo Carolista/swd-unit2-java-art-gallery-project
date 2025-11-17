@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-const Input = ({ id, label, type, value, ref, required, handleChange }) => {
+const Input = ({ id, label, type, value, ref, min, max, required, handleChange }) => {
 	const [showInput, setShowInput] = useState(false);
 
 	const toggleShowPassword = () => {
@@ -40,6 +40,8 @@ const Input = ({ id, label, type, value, ref, required, handleChange }) => {
 					type={type || 'text'}
 					value={value}
 					ref={ref}
+                    min={min}
+                    max={max}
 					onChange={handleChange}
 				/>
 			)}

@@ -20,8 +20,8 @@
 input,
 select,
 textarea {
-	color: #555;
-	font-family: inherit;
+	color: var(--input-text-color);
+	font-family: var(--regular-font);
 	font-size: 1rem;
 	line-height: 1.5;
 	margin: 0;
@@ -54,8 +54,7 @@ textarea:focus,
 select:focus {
 	color: var(--primary-color);
 	background-color: var(--standard-neutral);
-	outline: 0;
-	box-shadow: 0 0 0 0.15rem var(--form-focus-shadow);
+	outline: none;
 	border-color: var(--secondary-color);
 }
 
