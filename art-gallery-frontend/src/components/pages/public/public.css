@@ -1,3 +1,13 @@
+/* HOME */
+
+#public-home-image {
+    background-image: url('../../../assets/images/gallery-public.jpeg');
+}
+
+#about-image {
+    background-image: url('../../../assets/images/gallery-about.png');
+}
+
 /* ARTWORKS */
 
 .artwork-card-container {

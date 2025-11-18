@@ -1,12 +1,8 @@
 import Main from '@components/layout/Main';
 
 const AboutPage = () => {
-	const imageData = {
-		src: '/images/gallery-about.png',
-		alt: 'Upper Gallery of Midtown Art Gallery',
-	};
 	return (
-		<Main imageData={imageData}>
+		<Main imageId='about-image'>
 			<h1>About Us</h1>
 			<p>
 				<strong>Midtown Art Gallery</strong> stands as a dedicated

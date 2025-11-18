@@ -1,9 +1,11 @@
-const Main = ({ imageData, children }) => {
-	if (imageData) {
+import { FlexImage } from "./exports";
+
+const Main = ({ imageId, children }) => {
+	if (imageId) {
 		return (
 			<main id='main' tabIndex="-1">
 				<div className='main-content'>{children}</div>
-				<img src={imageData.src} alt={imageData.alt} width='100%' />
+				<FlexImage id={imageId} />
 			</main>
 		);
 	} else {

@@ -115,6 +115,10 @@
 	flex-direction: column;
 }
 
+#admin-home-image {
+    background-image: url('../../../assets/images/gallery-admin.jpeg');
+}
+
 .delete-icon {
 	width: 30px;
 }

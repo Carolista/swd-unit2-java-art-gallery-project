@@ -40,6 +40,12 @@ main {
 	padding: var(--padding-md) var(--variable-padding) var(--max-padding);
 }
 
+.flex-image {
+    flex: 1;
+    background-size: cover;
+    background-position: center center;
+}
+
 #mag {
 	font-family: var(--title-font);
 	font-size: 1.3rem;
