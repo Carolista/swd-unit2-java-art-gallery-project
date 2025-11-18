@@ -10,20 +10,26 @@
 <br />
 
 <div align="center">
-  <img src="https://img.shields.io/badge/React-61DBFB?style=for-the-badge&logo=react&logoColor=20232A" alt="React" />
-  <img src="https://img.shields.io/badge/JavaScript-F0DB4F?style=for-the-badge&logo=javascript&logoColor=323330" alt="JavaScript" />
+  <img src="https://img.shields.io/badge/React-61DBFB?style=for-the-badge&logo=react&logoColor=333333" alt="React" />
+  <img src="https://img.shields.io/badge/JavaScript-F0DB4F?style=for-the-badge&logo=javascript&logoColor=333333" alt="JavaScript" />
   <img src="https://img.shields.io/badge/Vite-646CFF?style=for-the-badge&logo=vite&logoColor=white" alt="Vite" />
+  <img src="https://img.shields.io/badge/React_Router-CA4245?style=for-the-badge&logo=reactrouter&logoColor=white" alt="React Router" />
+  <img src="https://img.shields.io/badge/Axios-5A29E4?style=for-the-badge&logo=vite&logoColor=white" alt="Axios" />
+</div>
+
+<div align="center">
+  <img src="https://img.shields.io/badge/CSS-rebeccapurple?style=for-the-badge&logo=css&logoColor=white" alt="CSS" />
+  <img src="https://img.shields.io/badge/FontAwesome-0A6EB4?style=for-the-badge&logo=fontawesome&logoColor=white" alt="FontAwesome" />
+  <img src="https://img.shields.io/badge/Google_Fonts-EA4335?style=for-the-badge&logo=googlefonts&logoColor=white" alt="Google Fonts" />
+  <img src="https://img.shields.io/badge/ESLint-4B32C3?style=for-the-badge&logo=eslint&logoColor=white" alt="ESLint" />
+  <img src="https://img.shields.io/badge/Prettier-F7B93E?style=for-the-badge&logo=prettier&logoColor=333333" alt="Prettier" />
+</div>
+
+<div align="center">
   <img src="https://img.shields.io/badge/Spring_Boot-6DB33F?style=for-the-badge&logo=springboot&logoColor=white" alt="Spring Boot" />
   <img src="https://img.shields.io/badge/Maven-C71A36?style=for-the-badge&logo=apachemaven&logoColor=white" alt="Maven" />
   <img src="https://img.shields.io/badge/Java-ED8B00?style=for-the-badge" alt="Java" />
   <img src="https://img.shields.io/badge/MySQL-00758F?style=for-the-badge" alt="MySQL" />
-</div>
-
-<div align="center">
-  <img src="https://img.shields.io/badge/React_Router-CA4245?style=for-the-badge&logo=reactrouter&logoColor=white" alt="React Router" />
-  <img src="https://img.shields.io/badge/CSS-rebeccapurple?style=for-the-badge&logo=css&logoColor=white" alt="CSS" />
-  <img src="https://img.shields.io/badge/FontAwesome-0A6EB4?style=for-the-badge&logo=fontawesome&logoColor=white" alt="FontAwesome" />
-  <img src="https://img.shields.io/badge/Google_Fonts-EA4335?style=for-the-badge&logo=googlefonts&logoColor=white" alt="Google Fonts" />
   <img src="https://img.shields.io/badge/Hibernate-59666C?style=for-the-badge&logo=hibernate&logoColor=white" alt="Hibernate" />
   <img src="https://img.shields.io/badge/Spring_Security-6DB33F?style=for-the-badge&logo=springsecurity&logoColor=white" alt="Spring Security" />
 </div>
@@ -132,6 +138,8 @@ This full-stack project leverages a modern, decoupled MVC architecture with mult
 | ![CSS](https://img.shields.io/badge/CSS-rebeccapurple?style=for-the-badge&logo=css&logoColor=white) | Styling, layout, responsiveness, and accessibility improvements |
 | ![Google Fonts](https://img.shields.io/badge/Google_Fonts-EA4335?style=for-the-badge&logo=googlefonts&logoColor=white) | A vast library of open-source fonts, making high-quality typography easily accessible across the web |
 | ![Font Awesome](https://img.shields.io/badge/Font_Awesome-0A6EB4?style=for-the-badge&logo=fontawesome&logoColor=white) | Scalable vector icons that can be customized with CSS |
+| ![Prettier](https://img.shields.io/badge/Prettier-F7B93E?style=for-the-badge&logo=prettier&logoColor=333333) | Consistent, opinionated code formatting for readability and a unified codebase |
+| ![ESLint](https://img.shields.io/badge/ESLint-4B32C3?style=for-the-badge&logo=eslint&logoColor=white) | Higher code quality and maintainability due to identification of potential errors & anti-patterns |
 
 ### Back End & Database
 | Technology | Description |
@@ -205,7 +213,7 @@ This full-stack project leverages a modern, decoupled MVC architecture with mult
     # yarn dev
     ```
 
-🟢 The frontend application will start, typically at `http://localhost:5173`, which is where you will find the application in the browser.
+🟢 The frontend application will start and can be found in a browser, typically at `http://localhost:5173`.
 
 ---
 
@@ -258,11 +266,11 @@ The following RESTful endpoints manage data access and authentication. **Note:**
 ### Authentication 🔐
 | HTTP Method | Endpoint | Description | Access |
 | :--- | :--- | :--- | :--- |
-| 🟡 `POST` | `/api/user/register` | Register a new user (for initial setup/testing) | 🌎 Public |
 | 🟡 `POST` | `/api/user/login` | Authenticate and receive a JWT | 🌎 Public |
 | 🟡 `POST` | `/api/user/logout` | Invalidate the current session token (tracked server-side) | 🌎 Public |
 | 🟡 `POST` | `/api/user/validate-token` | Check if a token is currently valid | 🌎 Public |
 
+<!-- | 🟡 `POST` | `/api/user/register` | Register a new user (for initial setup/testing) | 🌎 Public | -->
 ---
 
 <a name="future"></a>
