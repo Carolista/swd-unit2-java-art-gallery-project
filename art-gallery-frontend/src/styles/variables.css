@@ -1,5 +1,6 @@
 :root {
 	--primary-color-pale: #b3bbcc;
+	--primary-color-lighter: #244e62;
 	--primary-color: #1e323c;
 	--primary-drop-shadow: rgba(30, 50, 60, 0.3);
 	--primary-drop-shadow-darker: rgba(30, 50, 60, 0.5);
@@ -8,28 +9,59 @@
 	--secondary-color: #c66311;
 	--secondary-color-darker: #b35507;
 	--secondary-color-dark: #883f04;
+	--icon-color: #333333;
 	--danger-color: #b03a2e;
 	--standard-neutral: white;
 	--contrast-neutral: var(--primary-color);
-    --input-text-color: #555555;
+	--input-text-color: #555555;
+	--pale-gray: #eeeeee;
 
 	--title-font: 'Kodchasan', sans-serif;
 	--regular-font: 'Assistant', sans-serif;
-    --default-font-size: clamp(18px, 2vw, 20px);
-
-	--preferred-padding: clamp(20px, 4vw, 30px);
-	--max-padding: 20px;
-	--gap: 10px;
+	--default-font-size: clamp(18px, 2vw, 20px);
+	--light-font-weight: 200;
+	--normal-font-weight: 400;
+	--bold-font-weight: 600;
 
 	--table-bkg-even: var(--standard-neutral);
 	--table-bkg-odd: #f5f5f5;
 	--table-bkg-hover: #e5e5e5;
 	--table-border: #dddddd;
 
-	--form-padding-y: 0.375rem;
-	--form-padding-x: 0.75rem;
-	--form-border-radius: 0.25rem;
+	--gap-xs: 8px;
+	--gap-sm: 10px;
+	--gap-md: 16px;
+	--gap-lg: 20px;
+	--gap-xl: 30px;
+	--gap-xxl: 40px;
+	--form-input-gap: var(--gap-md);
+	--masonry-gap: var(--gap-md);
 
-    --dialog-box-shadow-color: rgba(0, 0, 0, 0.2);
-    --dialog-backdrop-color: rgba(0, 0, 0, 0.4);
+	--margin-xxs: 4px;
+	--margin-xs: 6px;
+	--margin-sm: 8px;
+	--margin-md: 10px;
+	--margin-lg: 12px;
+	--margin-xl: 16px;
+	--margin-xxl: 20px;
+	--max-margin: 30px;
+	--variable-margin: clamp(20px, 4vw, 30px);
+
+	--padding-xxs: 4px;
+	--padding-xs: 6px;
+	--padding-sm: 8px;
+	--padding-md: 10px;
+	--padding-lg: 12px;
+	--padding-xl: 16px;
+	--padding-xxl: 20px;
+	--max-padding: 30px;
+	--variable-padding: clamp(20px, 4vw, 30px);
+	--form-padding-y: 4px;
+	--form-padding-x: 8px;
+
+	--border-radius-sm: 6px;
+
+	--dialog-box-shadow-color: rgba(0, 0, 0, 0.2);
+	--dialog-backdrop-color: rgba(0, 0, 0, 0.4);
+	--border-radius-lg: 0.5rem;
 }

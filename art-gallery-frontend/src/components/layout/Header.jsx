@@ -21,7 +21,7 @@ const Header = () => {
 	};
 
 	const adminLinkData = [
-		{ id: 'admin', to: '/', label: 'Admin Home', handleClick: null },
+		{ id: 'admin', to: '/', label: 'Home', handleClick: null },
 		{
 			id: 'artists',
 			to: '/admin/artists',

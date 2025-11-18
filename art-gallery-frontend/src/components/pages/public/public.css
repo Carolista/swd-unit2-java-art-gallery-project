@@ -2,8 +2,8 @@
 
 .artwork-card-container {
 	columns: 1;
-	column-gap: 15px;
-	margin-top: 20px;
+	column-gap: var(--masonry-gap);
+	margin-top: var(--margin-xxl);
 }
 
 .artwork-details-container {
@@ -26,19 +26,34 @@
 
 .artwork-details-subheading {
     color: var(--secondary-color);
-    font-weight: 600;
-    margin: 10px 0 0;
+    font-weight: var(--bold-font-weight);
+    margin: var(--margin-xxl) 0 0;
 }
 
 .artwork-card-image {
 	width: 100%;
-	margin-bottom: 8px;
+	margin-bottom: var(--margin-sm);
 }
 
 .artwork-card-text {
-	display: flex;
+    display: flex;
 	flex-direction: column;
 	text-align: center;
+}
+
+.artwork-card-title {
+    color: var(--secondary-color);
+}
+
+.artwork-card-artist {
+    font-size: 0.9rem;
+    font-weight: var(--normal-font-weight);
+}
+
+.image-not-found {
+    width: 100%;
+    max-width: 500px;
+    filter: grayscale(0.8);
 }
 
 /* LOGIN */
@@ -92,7 +107,7 @@
 		'instagram'
 		'bluesky'
 		'twitterX';
-	column-gap: 30px;
+	column-gap: var(--gap-xl);
 }
 
 /* 380-479 */
@@ -119,7 +134,7 @@
 	}
 	#login-form-inputs {
 		flex-direction: row;
-		gap: 20px;
+		gap: var(--form-input-gap);
 	}
 	#login-email-form-item,
 	#login-password-form-item {
@@ -145,7 +160,7 @@
 @media screen and (min-width: 1200px) {
 	.artwork-details-container {
 		flex-direction: row;
-		gap: 40px;
+		gap: var(--gap-xxl);
 	}
 	.artwork-details-image-container {
 		width: 50%;
@@ -161,14 +176,9 @@
 	}
 }
 
-/* 1366-1599 */
+/* 1366+ */
 @media screen and (min-width: 1366px) {
 	.artwork-card-container {
 		columns: 4;
 	}
-}
-
-/* 1600+ */
-@media screen and (min-width: 1600px) {
-	/* No changes needed in this range */
 }

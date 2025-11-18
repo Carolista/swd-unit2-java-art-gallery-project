@@ -40,6 +40,8 @@ let errorMessages = {
 	categoryRequired: 'At least one category must be selected.',
 };
 
+// FIXME: Year Created and Image ID fields are not updating when attempting to type
+
 const AddArtworkForm = () => {
 	const [artworkData, setArtworkData] = useState(initialArtworkData);
 	const [detailsData, setDetailsData] = useState(initialDetailsData);

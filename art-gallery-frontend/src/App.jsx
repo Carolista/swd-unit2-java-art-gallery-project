@@ -22,9 +22,7 @@ import {
 	CategoriesList,
 } from '@components/pages/admin/exports';
 
-// FIXME: Admin paths not being matched when url changed in address bar
-
-// TODO: See if anything else could benefit from CSS variables
+// FIXME: Admin paths not being matched when url changed manually in address bar
 
 function App() {
 	const { auth } = use(AuthContext);

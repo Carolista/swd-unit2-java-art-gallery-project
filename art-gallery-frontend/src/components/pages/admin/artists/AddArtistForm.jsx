@@ -18,6 +18,8 @@ let errorMessages = {
 	lastNameRequired: 'Last name is required.',
 };
 
+// FIXME: First Name and Last Name fields are not updating when attempting to type
+
 const AddArtistForm = () => {
 	const [artistData, setArtistData] = useState(initialArtistData);
 	const [hasErrors, setHasErrors] = useState(false);

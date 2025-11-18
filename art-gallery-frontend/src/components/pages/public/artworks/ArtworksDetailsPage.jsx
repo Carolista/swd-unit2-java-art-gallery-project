@@ -21,7 +21,9 @@ const ArtworkDetailsPage = () => {
 	if (!artwork) {
 		return (
 			<ErrorPage>
+                {/* Photo by Angela Roma : https://www.pexels.com/photo/empty-frame-on-wooden-shelf-7319277/ */}
 				<p>Sorry, that artwork does not exist!</p>
+                <img className='image-not-found' src='/images/image-not-found.png' alt='Empty picture frame' />
 				<Spacer marginY='20px' />
 				<GoBack
 					text={'View All Artworks'}
@@ -32,6 +34,7 @@ const ArtworkDetailsPage = () => {
 	} else {
 		return (
 			<Main>
+                <Spacer marginY='10px' />
 				<GoBack
 					text={'View All Artworks'}
 					handleClick={handleGoToArtworksPage}

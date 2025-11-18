@@ -86,9 +86,8 @@
 #add-artwork-form-inputs {
 	display: grid;
 	justify-items: left;
-	grid-template-rows: auto;
 	grid-template-columns: repeat(3, 1fr);
-	column-gap: 10px;
+	column-gap: var(--form-input-gap);
 	grid-template-areas:
 		'artwork-title artwork-title artwork-title'
 		'artwork-artist-id artwork-artist-id artwork-artist-id'
@@ -104,7 +103,6 @@
 #add-artist-form-inputs {
 	display: grid;
 	justify-items: left;
-	grid-template-rows: auto;
 	grid-template-columns: auto;
 	grid-template-areas:
 		'artist-first-name'
@@ -115,14 +113,13 @@
 #add-category-form-inputs {
 	display: flex;
 	flex-direction: column;
-	gap: 0px;
 }
 
 .delete-icon {
 	width: 30px;
 }
 .delete-icon i {
-	color: #333;
+	color: var(--icon-color);
 	opacity: 0.4;
 	cursor: pointer;
 }
@@ -150,9 +147,7 @@
 /* 768-1024 */
 @media screen and (min-width: 768px) {
 	#add-artwork-form-inputs {
-		grid-template-rows: auto;
 		grid-template-columns: repeat(3, 1fr);
-		column-gap: 10px;
 		grid-template-areas:
 			'artwork-title artwork-title artwork-title'
 			'artwork-artist-id artwork-artist-id artwork-height'
@@ -167,12 +162,11 @@
 		columns: 4;
 	}
 	#add-artist-form-inputs {
-		grid-template-rows: auto;
 		grid-template-columns: repeat(2, auto);
 		grid-template-areas:
 			'artist-first-name artist-last-name'
 			'artist-location .';
-		column-gap: 15px;
+		column-gap: var(--form-input-gap);
 	}
 }
 
@@ -186,12 +180,7 @@
 	/* No changes needed in this range */
 }
 
-/* 1366-1599 */
+/* 1366+ */
 @media screen and (min-width: 1366px) {
-	/* No changes needed in this range */
-}
-
-/* 1600+ */
-@media screen and (min-width: 1600px) {
 	/* No changes needed in this range */
 }
