@@ -113,6 +113,7 @@ const AddArtworkForm = () => {
 	const handleCategoryChange = event => {
 		let updatedCheckboxes = [...checkboxes];
 		updatedCheckboxes[event.target.value] = event.target.checked;
+        console.log(updatedCheckboxes);
 		setCheckboxes(updatedCheckboxes);
 	};
 
@@ -197,7 +198,7 @@ const AddArtworkForm = () => {
 				</FormItem>
 				<FormItem id='add-artwork-artist-id'>
 					<Select
-						id='artist-id'
+						id='artistId'
 						label='Artist'
 						required={true}
 						handleChange={handleArtworkChange}>
@@ -211,7 +212,7 @@ const AddArtworkForm = () => {
 
 				<FormItem id='add-artwork-year-created'>
 					<Input
-						id='year-created'
+						id='yearCreated'
 						label='Year Created'
 						type='text'
 						value={detailsData.yearCreated}
@@ -302,7 +303,7 @@ const AddArtworkForm = () => {
 
 				<FormItem id='add-artwork-image-id'>
 					<Input
-						id='image-id'
+						id='imageId'
 						label='Image ID'
 						type='text'
 						value={detailsData.imageId}
@@ -316,13 +317,13 @@ const AddArtworkForm = () => {
 				</FormItem>
 
 				<h2 id='add-artwork-categories-subtitle'>Categories</h2>
-				<InputErrorMessage
-					hasError={hasErrors && checkboxes.length === 0}
-					msg={errorMessages['categoryRequired']}
-				/>
 				<FormGroup id='add-artwork-categories'>
 					{categoryChoicesJSX}
 				</FormGroup>
+				<InputErrorMessage
+					hasError={hasErrors && !checkboxes.includes(true)}
+					msg={errorMessages['categoryRequired']}
+                    />
 			</FormWithButtons>
 		</Main>
 	);

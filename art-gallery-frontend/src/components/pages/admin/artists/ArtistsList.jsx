@@ -105,8 +105,8 @@ const ArtistsList = () => {
 	return (
 		<Main>
 			<h1>Artists</h1>
-            {/* Add subnav for CRUD links */}
-			<p>
+            {/* TODO: Add subnav for CRUD links */}
+			<p className="above-table">
 				Add a <Link to='/admin/artists/add'>new artist</Link>.
 			</p>
 			{screenWidth < 768 ? (

@@ -156,8 +156,8 @@ const ArtworksList = () => {
 				{currentArtist &&
 					` (${currentArtist.firstName[0]}. ${currentArtist.lastName})`}
 			</h1>
-            {/* Add subnav for CRUD links */}
-			<p>
+            {/* TODO: Add subnav for CRUD links */}
+			<p className="above-table">
 				Add a <Link to='/admin/artworks/add'>new artwork</Link>.
 			</p>
 			{screenWidth < 768 ? (
@@ -165,7 +165,7 @@ const ArtworksList = () => {
 			) : currentArtworks.length ? (
 				<>
 					{currentArtworks.length < allArtworks.length && (
-						<p>
+						<p className="above-table">
 							<em>
 								Displaying {currentArtworks.length} of{' '}
 								{allArtworks.length} artworks.

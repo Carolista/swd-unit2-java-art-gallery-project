@@ -106,7 +106,7 @@ const AddArtistForm = () => {
 			<FormWithButtons id='add-artist' buttonData={buttonData}>
 				<FormItem id='add-artist-first-name'>
 					<Input
-						id='first-name'
+						id='firstName'
 						label='First Name'
 						type='text'
 						value={artistData.firstName}
@@ -121,7 +121,7 @@ const AddArtistForm = () => {
 				</FormItem>
 				<FormItem id='add-artist-last-name'>
 					<Input
-						id='last-name'
+						id='lastName'
 						label='Last Name'
 						type='text'
 						value={artistData.lastName}

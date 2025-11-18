@@ -111,8 +111,8 @@ const CategoriesList = () => {
 	return (
 		<Main>
 			<h1>Categories</h1>
-            {/* Add subnav for CRUD links */}
-            <p>
+            {/* TODO: Add subnav for CRUD links */}
+            <p className="above-table">
 						Add a{' '}
 						<Link to='/admin/categories/add'>new category</Link>.
 					</p>
