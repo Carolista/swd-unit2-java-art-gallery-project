@@ -3,8 +3,8 @@ import {
 	getEmailFromStorage,
 	getTokenFromStorage,
 	removeTokenFromStorage,
-} from '../services/storageService';
-import { validateToken } from '../services/authService';
+} from '@services/storageService';
+import { validateToken } from '@services/authService';
 
 const initialAuth = {
 	token: getTokenFromStorage() || null,

@@ -1,7 +1,8 @@
-import apiClient from '../config/api-client';
+import apiClient from '@config/api-client';
 
-// These functions handle making the requests for each endpoint for auth using axios
-// They each return an HTTP response object
+// TODO: Add for all admin requests as well
+
+// TODO: Use DTOs for auth requests and use isValid for login request
 
 export const requestRegistration = userProfile => {
 	return apiClient.post('/user/register', userProfile);

@@ -1,5 +1,5 @@
 {
-	"name": "art-gallery-react-front-end",
+	"name": "art-gallery-frontend",
 	"private": true,
 	"version": "0.0.0",
 	"type": "module",
@@ -12,6 +12,7 @@
 	},
 	"dependencies": {
 		"axios": "^1.12.2",
+		"eslint-import-resolver-alias": "^1.1.2",
 		"node": "^24.2.0",
 		"react": "^19.1.0",
 		"react-dom": "^19.1.0",

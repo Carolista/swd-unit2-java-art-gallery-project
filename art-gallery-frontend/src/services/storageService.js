@@ -1,5 +1,3 @@
-// Reusable functions to manage localStorage
-
 export const getTokenFromStorage = () => {
 	return localStorage.getItem('token');
 };

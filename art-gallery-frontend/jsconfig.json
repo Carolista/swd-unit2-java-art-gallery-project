@@ -1,0 +1,14 @@
+{
+	"compilerOptions": {
+		"baseUrl": ".",
+		"paths": {
+			"@classes/*": ["./src/classes/*"],
+			"@components/*": ["./src/components/*"],
+			"@config/*": ["./src/config/*"],
+			"@context/*": ["./src/context/*"],
+			"@hooks/*": ["./src/hooks/*"],
+			"@services/*": ["./src/services/*"],
+			"@shared/*": ["./src/shared/*"]
+		}
+	}
+}

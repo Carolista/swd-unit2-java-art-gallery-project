@@ -1,8 +1,5 @@
 import { createContext, useEffect, useState } from 'react';
-import Artist from '../classes/Artist';
-import Category from '../classes/Category';
-import Details from '../classes/Details';
-import Artwork from '../classes/Artwork';
+import { Artist, Artwork, Category, Details } from '@classes/exports.js';
 
 export const DataContext = createContext();
 

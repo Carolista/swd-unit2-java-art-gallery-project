@@ -1,0 +1,194 @@
+/* HOME */
+
+#public-home-image {
+	background-image: url('../../../assets/images/gallery-public.jpeg');
+}
+
+#about-image {
+	background-image: url('../../../assets/images/gallery-about.png');
+}
+
+/* ARTWORKS */
+
+.artwork-card-container {
+	columns: 1;
+	column-gap: var(--masonry-gap);
+	margin-top: var(--margin-xxl);
+}
+
+.artwork-details-container {
+	display: flex;
+	flex-direction: column;
+}
+
+.artwork-details-image-container {
+	width: 100%;
+	max-width: 600px;
+	max-height: fit-content;
+}
+
+.artwork-details-text-container {
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+	max-width: fit-content;
+}
+
+.artwork-details-subheading {
+	color: var(--secondary-color);
+	font-weight: var(--bold-font-weight);
+	margin: var(--margin-xxl) 0 0;
+}
+
+.artwork-card-image {
+	width: 100%;
+	margin-bottom: var(--margin-sm);
+}
+
+.artwork-card-text {
+	display: flex;
+	flex-direction: column;
+	text-align: center;
+}
+
+.artwork-card-title {
+	color: var(--secondary-color);
+}
+
+.artwork-card-artist {
+	font-size: 0.9rem;
+	font-weight: var(--normal-font-weight);
+}
+
+.image-not-found {
+	width: 100%;
+	max-width: 500px;
+	filter: grayscale(0.8);
+}
+
+/* LOGIN */
+
+#login-form {
+	width: 100%;
+	max-width: 800px;
+}
+
+#login-form-inputs {
+	display: flex;
+	flex-direction: column;
+	gap: 0px;
+}
+
+#login-email-form-item,
+#login-password-form-item {
+	width: 100%;
+}
+
+/* LOCATION */
+
+#phone-icon-container {
+	grid-area: phone;
+}
+#email-icon-container {
+	grid-area: email;
+}
+#facebook-icon-container {
+	grid-area: facebook;
+}
+#twitter-x-icon-container {
+	grid-area: twitterX;
+}
+#bluesky-icon-container {
+	grid-area: bluesky;
+}
+#instagram-icon-container {
+	grid-area: instagram;
+}
+
+#contact-icons {
+	display: grid;
+	justify-items: left;
+	grid-template-rows: auto;
+	grid-template-columns: auto;
+	grid-template-areas:
+		'phone'
+		'email'
+		'facebook'
+		'instagram'
+		'bluesky'
+		'twitterX';
+	column-gap: var(--gap-xl);
+}
+
+/* 380-479 */
+@media screen and (min-width: 380px) {
+	/* No changes needed in this range */
+}
+
+/* 480-767 */
+@media screen and (min-width: 480px) {
+	#contact-icons {
+		grid-template-rows: auto;
+		grid-template-columns: repeat(2, auto) 1fr;
+		grid-template-areas:
+			'phone facebook .'
+			'email instagram .'
+			'bluesky twitterX .';
+	}
+}
+
+/* 768-1024 */
+@media screen and (min-width: 768px) {
+	.artwork-card-container {
+		columns: 2;
+	}
+	#login-form-inputs {
+		flex-direction: row;
+		gap: var(--form-input-gap);
+	}
+	#login-email-form-item,
+	#login-password-form-item {
+		width: 50%;
+	}
+	#contact-icons {
+		grid-template-rows: auto;
+		grid-template-columns: repeat(3, auto) 1fr;
+		grid-template-areas:
+			'phone facebook bluesky .'
+			'email instagram twitterX .';
+	}
+}
+
+/* 1024-1199 */
+@media screen and (min-width: 1024px) {
+	.artwork-card-container {
+		columns: 3;
+	}
+}
+
+/* 1200-1365 */
+@media screen and (min-width: 1200px) {
+	.artwork-details-container {
+		flex-direction: row;
+		gap: var(--gap-xxl);
+	}
+	.artwork-details-image-container {
+		width: 50%;
+	}
+
+	.artwork-details-text-container {
+		width: 50%;
+	}
+	#contact-icons {
+		grid-template-rows: auto;
+		grid-template-columns: repeat(6, auto) 1fr;
+		grid-template-areas: 'phone email facebook instagram bluesky twitterX .';
+	}
+}
+
+/* 1366+ */
+@media screen and (min-width: 1366px) {
+	.artwork-card-container {
+		columns: 4;
+	}
+}

@@ -1,0 +1,74 @@
+/* COMMON */
+
+.card {
+	display: inline-block;
+	vertical-align: top;
+	color: var(--primary-color);
+	background-color: var(--standard-neutral);
+	width: 100%;
+	margin-bottom: var(--masonry-gap);
+	padding: var(--padding-lg);
+	border: none;
+	border-radius: 6px;
+	filter: drop-shadow(0px 2px 2px var(--primary-drop-shadow));
+}
+
+.clickable-card {
+	transition: filter 0.3s ease-in-out;
+}
+
+.clickable-card:hover {
+	filter: drop-shadow(0px 5px 5px var(--primary-drop-shadow-darker));
+	cursor: pointer;
+}
+
+.go-back {
+	color: var(--primary-color);
+	font-weight: var(--bold-font-weight);
+	cursor: pointer;
+}
+
+.icon {
+	margin-top: var(--margin-xxs);
+}
+
+.icon-with-label {
+	display: flex;
+	flex-direction: row;
+	align-items: flex-start;
+	gap: var(--gap-sm);
+}
+
+.sortable {
+	cursor: pointer;
+}
+.sortable:hover {
+	color: var(--secondary-color-lighter);
+}
+
+.sortable i {
+	visibility: hidden;
+}
+.sortable:hover i {
+	visibility: visible;
+}
+
+.sorted-by {
+	color: var(--secondary-color-darker);
+}
+
+#spinner-container {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 100%;
+	height: 40vh;
+}
+
+#spinner-icon {
+	display: block;
+	color: var(--secondary-color);
+	margin: 0;
+}
+
+/* No media queries needed for these elements */
