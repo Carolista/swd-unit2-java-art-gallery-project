@@ -9,7 +9,7 @@ import { default as SkipLink } from './SkipLink';
 
 export {
 	DynamicNavLink,
-    FlexImage,
+	FlexImage,
 	Footer,
 	Header,
 	Main,

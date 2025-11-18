@@ -5,7 +5,7 @@ const Button = ({ id, type, label, classes, handleClick, shouldDisable }) => {
 			type={type}
 			onClick={handleClick}
 			className={classes}
-            disabled={shouldDisable || false}>
+			disabled={shouldDisable || false}>
 			{label}
 		</button>
 	);

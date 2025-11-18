@@ -116,7 +116,7 @@
 }
 
 #admin-home-image {
-    background-image: url('../../../assets/images/gallery-admin.jpeg');
+	background-image: url('../../../assets/images/gallery-admin.jpeg');
 }
 
 .delete-icon {
@@ -133,7 +133,7 @@
 }
 
 .above-table {
-    margin-bottom: var(--margin-md);
+	margin-bottom: var(--margin-md);
 }
 
 /* MEDIA QUERIES */

@@ -14,7 +14,7 @@ body {
 	background-color: var(--standard-neutral);
 	color: var(--primary-color);
 	font-family: var(--regular-font);
-    font-weight: var(--normal-font-weight);
+	font-weight: var(--normal-font-weight);
 	min-height: 100vh;
 	margin: 0;
 	padding: 0;
@@ -53,16 +53,16 @@ h2 {
 }
 
 h1 {
-    color: var(--secondary-color);
+	color: var(--secondary-color);
 	font-size: 1.4rem;
 	font-weight: var(--bold-font-weight);
 }
 
 h2 {
-    color: var(--primary-color);
+	color: var(--primary-color);
 	font-size: 1.1rem;
 	font-weight: var(--bold-font-weight);
-    margin: var(--margin-lg) 0;
+	margin: var(--margin-lg) 0;
 }
 
 p {

@@ -113,7 +113,7 @@ const AddArtworkForm = () => {
 	const handleCategoryChange = event => {
 		let updatedCheckboxes = [...checkboxes];
 		updatedCheckboxes[event.target.value] = event.target.checked;
-        console.log(updatedCheckboxes);
+		console.log(updatedCheckboxes);
 		setCheckboxes(updatedCheckboxes);
 	};
 
@@ -323,7 +323,7 @@ const AddArtworkForm = () => {
 				<InputErrorMessage
 					hasError={hasErrors && !checkboxes.includes(true)}
 					msg={errorMessages['categoryRequired']}
-                    />
+				/>
 			</FormWithButtons>
 		</Main>
 	);

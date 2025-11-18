@@ -61,12 +61,7 @@ const Header = () => {
 			label: 'Location',
 			handleClick: null,
 		},
-		{
-			id: 'login',
-			to: '/login',
-			label: 'Log In',
-			handleClick: null,
-		},
+		{ id: 'login', to: '/login', label: 'Log In', handleClick: null },
 	];
 
 	return (

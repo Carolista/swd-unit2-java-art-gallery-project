@@ -14,7 +14,7 @@ const CategoriesList = () => {
 	const { auth } = use(AuthContext);
 	const { allArtworks, allCategories, fetchCategories } = use(DataContext);
 
-    const screenWidth = useScreenWidth();
+	const screenWidth = useScreenWidth();
 
 	const [currentCategories, setCurrentCategories] = useState([
 		...allCategories,
@@ -111,16 +111,14 @@ const CategoriesList = () => {
 	return (
 		<Main>
 			<h1>Categories</h1>
-            {/* TODO: Add subnav for CRUD links */}
-            <p className="above-table">
-						Add a{' '}
-						<Link to='/admin/categories/add'>new category</Link>.
-					</p>
+			{/* TODO: Add subnav for CRUD links */}
+			<p className='above-table'>
+				Add a <Link to='/admin/categories/add'>new category</Link>.
+			</p>
 			{screenWidth < 768 ? (
 				<p>Please increase screen width to view the table.</p>
 			) : currentCategories.length ? (
 				<>
-					
 					<table className='table table-striped'>
 						<thead>
 							<tr>
@@ -151,14 +149,13 @@ const CategoriesList = () => {
 						</thead>
 						<tbody>{categoriesJSX}</tbody>
 					</table>
-                    {currentCategories.length > 10 && (
+					{currentCategories.length > 10 && (
 						<p>
 							Add a{' '}
 							<Link to='/admin/categories/add'>new category</Link>
 							.
 						</p>
 					)}
-					
 				</>
 			) : (
 				<p>

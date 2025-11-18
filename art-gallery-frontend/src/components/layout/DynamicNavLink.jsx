@@ -4,8 +4,10 @@ const DynamicNavLink = ({ to, handleClick, children }) => {
 	return (
 		<NavLink
 			to={to}
-            onClick={handleClick}
-			className={({ isActive }) => (isActive ? 'active-link' : 'nav-link')}>
+			onClick={handleClick}
+			className={({ isActive }) =>
+				isActive ? 'active-link' : 'nav-link'
+			}>
 			{children}
 		</NavLink>
 	);

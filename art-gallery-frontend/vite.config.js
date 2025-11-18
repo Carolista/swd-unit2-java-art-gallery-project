@@ -8,7 +8,7 @@ const __dirname = path.dirname(__filename);
 
 export default defineConfig({
 	plugins: [react()],
-    server: { watch: { usePolling: true }, historyApiFallback: true },
+	server: { watch: { usePolling: true }, historyApiFallback: true },
 	resolve: {
 		alias: {
 			'@classes': path.resolve(__dirname, './src/classes'),

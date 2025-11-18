@@ -1,11 +1,11 @@
 /* HOME */
 
 #public-home-image {
-    background-image: url('../../../assets/images/gallery-public.jpeg');
+	background-image: url('../../../assets/images/gallery-public.jpeg');
 }
 
 #about-image {
-    background-image: url('../../../assets/images/gallery-about.png');
+	background-image: url('../../../assets/images/gallery-about.png');
 }
 
 /* ARTWORKS */
@@ -35,9 +35,9 @@
 }
 
 .artwork-details-subheading {
-    color: var(--secondary-color);
-    font-weight: var(--bold-font-weight);
-    margin: var(--margin-xxl) 0 0;
+	color: var(--secondary-color);
+	font-weight: var(--bold-font-weight);
+	margin: var(--margin-xxl) 0 0;
 }
 
 .artwork-card-image {
@@ -46,24 +46,24 @@
 }
 
 .artwork-card-text {
-    display: flex;
+	display: flex;
 	flex-direction: column;
 	text-align: center;
 }
 
 .artwork-card-title {
-    color: var(--secondary-color);
+	color: var(--secondary-color);
 }
 
 .artwork-card-artist {
-    font-size: 0.9rem;
-    font-weight: var(--normal-font-weight);
+	font-size: 0.9rem;
+	font-weight: var(--normal-font-weight);
 }
 
 .image-not-found {
-    width: 100%;
-    max-width: 500px;
-    filter: grayscale(0.8);
+	width: 100%;
+	max-width: 500px;
+	filter: grayscale(0.8);
 }
 
 /* LOGIN */

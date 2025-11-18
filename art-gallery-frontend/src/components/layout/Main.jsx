@@ -1,9 +1,9 @@
-import { FlexImage } from "./exports";
+import { FlexImage } from './exports';
 
 const Main = ({ imageId, children }) => {
 	if (imageId) {
 		return (
-			<main id='main' tabIndex="-1">
+			<main id='main' tabIndex='-1'>
 				<div className='main-content'>{children}</div>
 				<FlexImage id={imageId} />
 			</main>

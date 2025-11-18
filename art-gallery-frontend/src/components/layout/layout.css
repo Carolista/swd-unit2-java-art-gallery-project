@@ -41,9 +41,9 @@ main {
 }
 
 .flex-image {
-    flex: 1;
-    background-size: cover;
-    background-position: center center;
+	flex: 1;
+	background-size: cover;
+	background-position: center center;
 }
 
 #mag {

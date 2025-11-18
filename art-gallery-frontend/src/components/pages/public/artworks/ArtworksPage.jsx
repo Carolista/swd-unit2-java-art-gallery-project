@@ -22,7 +22,8 @@ const ArtworksPage = () => {
 			) : (
 				<p>
 					<em>
-						We're sorry, there are no artworks to display at this time.
+						We're sorry, there are no artworks to display at this
+						time.
 					</em>
 				</p>
 			)}
