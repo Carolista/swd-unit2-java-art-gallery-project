@@ -70,7 +70,7 @@ The `main` branch contains a more advanced version of the project that I am buil
 - **Responsive Design:** Fully functional across multiple breakpoints for desktop, tablet, and mobile devices
 - **Accessibility:** UI elements adhere to basic accessibility standards (semantic HTML, image alt text, etc.)
 
-### Admin-Only Portal (Secure)
+### Admin Portal (Secure)
 - **Authentication:** Secure login/logout using token-based Spring Security
 - **Authorization:** Admin has access to entire website
 - **CRUD Operations:** Admin can view, add, and delete database records (artworks, artists, and categories)
@@ -91,30 +91,44 @@ The `main` branch contains a more advanced version of the project that I am buil
 
 > Click on any of the items below to expand or collapse them.
 
+#### PUBLIC SITE
+
 <details open>
-  <summary>Public & Admin Home Pages</summary>
-    <img src="preview/public-home-page.png" alt="Screenshot of Public Home Page view" width="48%" />
-    <img src="preview/admin-home-page.png" alt="Screenshot of Admin Home Page view" width="48%" />
+    <summary>Home & Login Pages</summary>
+    <img src="preview/public-home-page.png" alt="Screenshot of Public Home Page view" height="500px" />
+    <img src="preview/login-page.png" alt="Screenshot of Login Page view" height="500px" />
 </details>
 
 <details>
-  <summary>Artwork Gallery & Details Pages</summary>
-    <img src="preview/artwork-gallery.png" alt="Screenshot of Artwork Gallery view" width="48%" />
-    <img src="preview/artwork-details-03.png" alt="Screenshot of Public Home Page view" width="48%" />
+    <summary>About & Location Pages</summary>
+    <img src="preview/about-page.png" alt="Screenshot of About Page view" height="500px" />
+    <img src="preview/location-page.png" alt="Screenshot of Location Page" height="500px" />
 </details>
 
 <details>
-  <summary>Admin Tables</summary>
-    <img src="preview/artists-table.png" alt="Screenshot of Artists Table view" width="48%" />
-    <img src="preview/categories-table.png" alt="Screenshot of Categories Table view" width="48%" />
-    <img src="preview/artworks-by-category.png" alt="Screenshot of Artworks by Category view" width="48%" />
-    <img src="preview/artworks-by-artist.png" alt="Screenshot of Artworks by Artist view" width="48%" />
+    <summary>Artwork Gallery & Details Pages</summary>
+    <img src="preview/artwork-gallery.png" alt="Screenshot of Artwork Gallery view" width="700px" />
+    <img src="preview/artwork-details.png" alt="Screenshot of Artwork Details Page view" width="700px" />
+</details>
+
+#### ADMIN PORTAL
+
+<details>
+    <summary>Admin Home</summary>
+    <img src="preview/admin-home-page.png" alt="Screenshot of Admin Home Page view" height="500px" />
+</details>
+<details>
+    <summary>Admin Tables</summary>
+    <img src="preview/artworks-table.png" alt="Screenshot of Artworks Table view" height="500px" />
+    <img src="preview/artists-table.png" alt="Screenshot of Artists Table view" height="500px" />
+    <img src="preview/categories-table.png" alt="Screenshot of Categories Table view" height="500px" />
 </details>
 
 <details>
-  <summary>Admin Forms</summary>
-    <img src="preview/add-artist-form.png" alt="Screenshot of Add Artist Form view" width="48%" />
-    <img src="preview/add-artwork-form.png" alt="Screenshot of Add Artwork Form view" width="48%" />
+    <summary>Admin Forms</summary>
+    <img src="preview/add-artwork-form.png" alt="Screenshot of Add Artwork Form view" width="700px" />
+    <img src="preview/add-artist-form.png" alt="Screenshot of Add Artist Form view" width="700px" />
+    <img src="preview/add-category-form.png" alt="Screenshot of Add Category Form view" width="700px" />
 </details>
 
 <!-- TODO: Add add'l images as UI grows -->
