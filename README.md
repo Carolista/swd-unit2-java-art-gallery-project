@@ -3,7 +3,7 @@
 
 <div align="center">
   <h1>Midtown Art Gallery: Full-Stack Web Application</h1>
-    <a href="http://www.codewithcarrie.com"><img src="https://img.shields.io/badge/by-CodeWithCarrie.com-32A5A9?style=for-the-badge" alt="badge linking to CodeWithCarrie's website" /></a>
+    <a href="http://www.codewithcarrie.com"><img src="https://img.shields.io/badge/by-CodeWithCarrie.com-437E1C?style=for-the-badge" alt="badge linking to CodeWithCarrie's website" /></a>
     <a href="https://www.launchcode.org"><img src="https://img.shields.io/badge/for-LaunchCode_St._Louis-5C93CE?style=for-the-badge" alt="badge linking to LaunchCode's website" /></a>
 </div>
 
