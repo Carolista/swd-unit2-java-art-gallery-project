@@ -62,7 +62,7 @@ const LoginPage = () => {
 
 	const handleSubmit = event => {
 		event.preventDefault();
-		// TODO: Use DTO class with isValid here?
+		// TODO: Use DTO class with isValid here
 		if (email === '' || password === '') {
 			setSubmitting(false);
 			setHasErrors(true);

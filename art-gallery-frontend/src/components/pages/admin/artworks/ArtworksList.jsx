@@ -118,7 +118,8 @@ const ArtworksList = () => {
 		}
 	};
 
-	// TODO: Add filter icon (or filter-circle-xmark icon) to artists' names and make clickable
+	// TODO: Add filter icon (or filter-circle-xmark icon) to artists' names and make clickable for filtering
+	// TODO: Replace Year Created column with Categories Column and make clickable for filtering
 	let artworksJSX = currentArtworks.map(artwork => {
 		return (
 			<tr key={artwork.id}>

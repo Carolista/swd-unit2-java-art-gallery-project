@@ -16,7 +16,7 @@ const NavMenu = ({ links, nonLinks }) => {
 
 	useEffect(() => {
 		if (isOpen) handleCloseModal();
-        // eslint-disable-next-line react-hooks/exhaustive-deps
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [location.pathname]);
 
 	const linksJSX = links.map(link => {
