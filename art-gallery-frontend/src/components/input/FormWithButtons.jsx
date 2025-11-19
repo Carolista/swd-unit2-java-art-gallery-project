@@ -1,7 +1,5 @@
 import { Button } from '@components/input/exports';
 
-// TODO: Define input-fields and button-group CSS classes and test across all forms using this component
-
 const FormWithButtons = ({ id, buttonData, children }) => {
 	const buttonsJSX = buttonData.map(button => {
 		return (

@@ -3,10 +3,8 @@ import { getTokenFromStorage } from '@services/storageService';
 
 const apiClient = axios.create({ baseURL: 'http://localhost:8080/api' });
 
-// Ensures existing token is sent along with requests other than /login and /register
-// But currently this doesn't matter because my POST and DELETE requests for artists,
-// artworks, and categories don't use axios and I'm manually including the header instead.
-// TODO: Use Axios consistently throughout app.
+// TODO: Remove /register from exclusion once auth roles implemented
+// TODO: Use Axios consistently throughout app
 apiClient.interceptors.request.use(
 	config => {
 		if (
