@@ -187,19 +187,40 @@ This full-stack project leverages a modern, decoupled MVC architecture with mult
     cd swd-unit2-java-art-gallery-project/art-gallery-backend
     ```
 
-2.  **Configure database:** Create a new MySQL database named `gallery_db`, then update the `src/main/resources/application.properties` file with your specific MySQL credentials: 
+1.  **Configure secrets for database and JWTs:** Create a new MySQL database named `gallery_db`, then create an `.env` file at the project root directory (`art-gallery-backend`): 
     ```properties
-    spring.datasource.url=jdbc:mysql://localhost:3306/gallery_db
-    spring.datasource.username=root
-    spring.datasource.password=[your-password]
+    # Location of your local database server
+    DB_HOST=localhost
+    DB_PORT=3306
+    
+    # Database name
+    DB_NAME_PART_6=gallery_db
+    
+    # Credentials
+    DB_USER=root
+    DB_PASS=[your_password]
+    
+    # Auth
+    JWT_SECRET=artgallery
     ```
 
-3.  **Run the Java/Spring Boot application:** If you do not have the application loaded in an IDE such as IntelliJ, go to the terminal and navigate to the root directory of the backend project. Then execute the following command to build and run the application (Hibernate will automatically create the tables): 
+1.  **Seed database with data:** Import [these CSV files](https://github.com/Carolista/swd-unit2-java-art-gallery-project/tree/main/test-data/part5-and-part6-data) into the database, in the following order: `artists.csv`, `categories.csv`, `details.csv`, `artworks.csv`, `artwork_categories.csv`
+
+1.  **Run the Java/Spring Boot application:** If you do not have the application loaded in an IDE such as IntelliJ, go to the terminal and navigate to the root directory of the backend project. Then execute the following command to build and run the application (Hibernate will automatically create the tables): 
     ```shell
     mvn spring-boot:run
     ```
+    
+    🟢 The API should now be running on `http://localhost:8080`.
 
-🟢 The API should now be running on `http://localhost:8080`.
+1.  **Register an admin user:** Using a tool such as Postman, make a `POST` request to `http://localhost:8080/api/user/register` with a JSON body structured as follows:
+    ```json
+    {
+        "name": "John Smith",
+        "email": "john@smith.com",
+        "password": "abcd1234"
+    }
+    ```
 
 > [!WARNING]
 > If you get an `UnsupportedClassVersionError`, you may need to set your `JAVA_HOME` environment variable to point to a Java 21 JDK installation. If you are running the application from an IDE (like IntelliJ or VS Code), you will also need to ensure the project's SDK and language level settings within the IDE are configured to use a Java 21 JDK.
@@ -213,21 +234,21 @@ This full-stack project leverages a modern, decoupled MVC architecture with mult
     cd ../art-gallery-frontend
     ```
 
-2.  **Install dependencies:** 
+1.  **Install dependencies:** 
     ```shell
     npm install
     # or 
     # yarn install
     ```
 
-3.  **Run the React/Vite application:** 
+1.  **Run the React/Vite application:** 
     ```shell
     npm run dev
     # or
     # yarn dev
     ```
-
-🟢 The frontend application will start and can be found in a browser, typically at `http://localhost:5173`.
+    
+    🟢 The frontend application will start and can be found in a browser, typically at `http://localhost:5173`.
 
 ---
 
@@ -292,14 +313,13 @@ The following RESTful endpoints manage data access and authentication. **Note:**
 
 Several features have been scoped out for future development to expand the application's functionality.
 
-### Improve CRUD
-* Enable Admin to delete categories
-* Enable Admin to edit categories, artists, and artworks
+### Improve Fetching
+- Refactor React app to utilize `use()` in conjunction with `<Suspense />` to simplify promise handling & loading state
+- Use Axios for all HTTP requests, not just auth
 
-### About & Location Pages
-- Basic introduction to the (fictitious) art gallery
-- Location with mock address and mock contact information
-- Embedded interactive Google Map on Location page
+### Improve CRUD
+- Enable Admin to delete categories
+- Enable Admin to edit categories, artists, and artworks
 
 ### Gallery Events
 - Implement dedicated **Events** entity and full CRUD functionality for events
@@ -308,9 +328,9 @@ Several features have been scoped out for future development to expand the appli
 - Provide for event data management in the admin portal
 
 ### Advanced Search, Sort & Filtering
-* Implement dynamic filtering and sorting on the public gallery page (by Category, Artist name, or Artwork title)
-* Implement dynamic sorting on the public events page (by date, title, type, or host)
-* Add a full-text search bar on both artworks and events pages
+- Implement dynamic filtering and sorting on the public gallery page (by Category, Artist name, or Artwork title)
+- Implement dynamic sorting on the public events page (by date, title, type, or host)
+- Add a full-text search bar on both artworks and events pages
 
 ---
 
