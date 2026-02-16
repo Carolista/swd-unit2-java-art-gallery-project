@@ -17,12 +17,12 @@ const ArtistsList = () => {
 					`http://localhost:8080/api/artists/delete/${id}`,
 					{
 						method: 'DELETE',
-					}
+					},
 				);
 				if (!response.ok) {
 					const errorData = await response.json();
 					throw new Error(
-						errorData.message || `ERROR - Status ${response.status}`
+						errorData.message || `ERROR - Status ${response.status}`,
 					);
 				} else {
 					fetchArtists(); // update state so list will re-render
@@ -88,15 +88,15 @@ const ArtistsList = () => {
 							</thead>
 							<tbody>{artistRowsJSX}</tbody>
 						</table>
-						<p>
-							Add a <Link to="/admin/artists/add">new artist</Link>.
-						</p>
 					</>
 				) : (
 					<p>
 						<em>No artists to display.</em>
 					</p>
 				)}
+				<p>
+					Add a <Link to="/admin/artists/add">new artist</Link>.
+				</p>
 			</main>
 		);
 	}

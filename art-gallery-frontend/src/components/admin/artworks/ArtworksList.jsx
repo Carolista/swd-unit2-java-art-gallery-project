@@ -2,6 +2,7 @@ import { use } from 'react';
 import { Link } from 'react-router';
 import { DataContext } from '../../../context/DataContext';
 import { Loading } from '../../public/exports.js';
+import { sortObjByString } from '../../../shared/utils.js';
 
 const ArtworksList = () => {
 	const { isLoading } = use(DataContext);
@@ -10,6 +11,7 @@ const ArtworksList = () => {
 		return <Loading dataName="artworks" />;
 	} else {
 		const { allArtworks, fetchArtworks } = use(DataContext);
+        const sortedArtworks = sortObjByString(allArtworks, "title");
 
 		const deleteArtwork = async id => {
 			try {
@@ -17,12 +19,12 @@ const ArtworksList = () => {
 					`http://localhost:8080/api/artworks/delete/${id}`,
 					{
 						method: 'DELETE',
-					}
+					},
 				);
 				if (!response.ok) {
 					const errorData = await response.json();
 					throw new Error(
-						errorData.message || `ERROR - Status ${response.status}`
+						errorData.message || `ERROR - Status ${response.status}`,
 					);
 				} else {
 					fetchArtworks(); // update state so list will update
@@ -45,7 +47,7 @@ const ArtworksList = () => {
 			}
 		};
 
-		let artworksJSX = allArtworks.map(artwork => {
+		let artworksJSX = sortedArtworks.map(artwork => {
 			return (
 				<tr key={artwork.id}>
 					<td>{artwork.id}</td>
@@ -89,15 +91,15 @@ const ArtworksList = () => {
 							</thead>
 							<tbody>{artworksJSX}</tbody>
 						</table>
-						<p>
-							Add a <Link to="/admin/artworks/add">new artwork</Link>.
-						</p>
 					</>
 				) : (
 					<p>
 						<em>No artworks to display.</em>
 					</p>
 				)}
+				<p>
+					Add a <Link to="/admin/artworks/add">new artwork</Link>.
+				</p>
 			</main>
 		);
 	}

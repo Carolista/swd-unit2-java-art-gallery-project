@@ -17,12 +17,12 @@ const CategoriesList = () => {
 					`http://localhost:8080/api/categories/delete/${id}`,
 					{
 						method: 'DELETE',
-					}
+					},
 				);
 				if (!response.ok) {
 					const errorData = await response.json();
 					throw new Error(
-						errorData.message || `ERROR - Status ${response.status}`
+						errorData.message || `ERROR - Status ${response.status}`,
 					);
 				} else {
 					fetchCategories(); // update state so list will update
@@ -31,8 +31,8 @@ const CategoriesList = () => {
 				console.error(error.message);
 			} finally {
 				// Use toast or banner to notify user of success or failure
-                // Could have various specific outcomes depending on type of error
-            }
+				// Could have various specific outcomes depending on type of error
+			}
 		};
 
 		const handleDelete = id => {
@@ -48,11 +48,11 @@ const CategoriesList = () => {
 			}
 		};
 		let categoriesJSX = allCategories.map(category => {
-            return (
-                <tr key={category.id}>
+			return (
+				<tr key={category.id}>
 					<td>{category.id}</td>
 					<td>{category.title}</td>
-                    <td className="delete-icon">
+					<td className="delete-icon">
 						<span onClick={() => handleDelete(category.id)}>
 							<i
 								className="fa-solid fa-trash-can"
@@ -83,15 +83,15 @@ const CategoriesList = () => {
 							</thead>
 							<tbody>{categoriesJSX}</tbody>
 						</table>
-						<p>
-							Add a <Link to="/admin/categories/add">new category</Link>.
-						</p>
 					</>
 				) : (
 					<p>
 						<em>No categories to display.</em>
 					</p>
 				)}
+				<p>
+					Add a <Link to="/admin/categories/add">new category</Link>.
+				</p>
 			</main>
 		);
 	}
