@@ -18,7 +18,7 @@ const PublicHeader = ({ setLoggedIn }) => {
 					<Link className="navlink" to="/artworks">
 						Artworks
 					</Link>
-					<span className="non-link">Exhibitions</span>
+					<span className="non-link">Events</span>
 					<span className="non-link">Contact Us</span>
                     |
 					<span className="navlink" onClick={handleLogIn}>
