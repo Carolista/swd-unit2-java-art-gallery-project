@@ -10,18 +10,18 @@ const CategoriesList = () => {
 		return <Loading dataName="categories" />;
 	} else {
         
-		// TODO: Access fetchCategories function from context
+		// TODO #4a: Access fetchCategories function from context
 		const { allCategories } = use(DataContext);
 
 		/*
-            TODO: Write a function to handle the fetch request for deleting a category
+            TODO #4b: Write a function to handle the fetch request for deleting a category
             Handle errors
             After a successful DELETE, update allCategories in context
         */
 
 		const handleDelete = id => {
 			/*
-                TODO: Use browser's confirm popup to ask if user is sure they want to delete
+                TODO #4c: Use browser's confirm popup to ask if user is sure they want to delete
                 // Include category title in message
                 // If confirmed, call function to delete category and pass the id
             */

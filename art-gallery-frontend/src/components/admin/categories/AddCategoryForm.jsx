@@ -5,12 +5,11 @@ const AddCategoryForm = () => {
 	const [title, setTitle] = useState('');
 	const [hasErrors, setHasErrors] = useState(false);
 
-	// TODO: Access the fetchCategories function from context
-	// TODO: Access the useNavigate() hook
+	// TODO #1a: Access the fetchCategories function from context
+	// TODO #1b: Access the useNavigate() hook
 
     /*
-        TODO: 
-        Write a function to handle the fetch request for posting a new category
+        TODO #1c: Write a function to handle the fetch request for posting a new category
         Handle errors
         After a successful POST, update allCategories in context and navigate back to CategoriesList
     */
@@ -22,8 +21,7 @@ const AddCategoryForm = () => {
 	const handleSubmit = event => {
 		event.preventDefault();
 		/* 
-            TODO: 
-            Create instance of CategoryDTO using title
+            TODO #1d: Create instance of CategoryDTO using title
             Run isValid() from DTO class to determine if errors should be activated
             If valid, pass CategoryDTO object to the function that makes the POST call
         */

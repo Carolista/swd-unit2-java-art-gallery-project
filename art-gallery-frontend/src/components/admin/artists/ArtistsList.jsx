@@ -10,18 +10,18 @@ const ArtistsList = () => {
 		return <Loading dataName="artists" />;
 	} else {
         
-		// TODO: Access fetchArtists function from context
+		// TODO #5a: Access fetchArtists function from context
 		const { allArtists } = use(DataContext);
 
 		/*
-            TODO: Write a function to handle the fetch request for deleting an artist
+            TODO #5b: Write a function to handle the fetch request for deleting an artist
             Handle errors
             After a successful DELETE, update allArtists in context
         */
 
 		const handleDelete = id => {
 			/*
-                TODO: Use browser's confirm popup to ask if user is sure they want to delete
+                TODO #5c: Use browser's confirm popup to ask if user is sure they want to delete
                 // Include full name of artist in message
                 // If confirmed, call function to delete artist and pass the id
             */

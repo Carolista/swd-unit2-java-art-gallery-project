@@ -16,11 +16,11 @@ const AddArtistForm = () => {
 	const [artistData, setArtistData] = useState(initialArtistData);
 	const [hasErrors, setHasErrors] = useState(false);
 
-	// TODO: Access the fetchArtists function from context
-	// TODO: Access the useNavigate() hook
+	// TODO #2a: Access the fetchArtists function from context
+	// TODO #2b: Access the useNavigate() hook
 
 	/*
-        TODO: Write a function to handle the fetch request for posting a new artist
+        TODO #2c: Write a function to handle the fetch request for posting a new artist
         Handle errors
         After a successful POST, update allArtists in context and navigate back to ArtistsList
     */
@@ -36,8 +36,7 @@ const AddArtistForm = () => {
 	const handleSubmit = event => {
 		event.preventDefault();
 		/* 
-            TODO: 
-            Create instance of ArtistDTO using artistData
+            TODO #2d: Create instance of ArtistDTO using artistData
             Run isValid() from DTO class to determine if errors should be activated
             If valid, pass ArtistDTO object to the function that makes the POST call
         */

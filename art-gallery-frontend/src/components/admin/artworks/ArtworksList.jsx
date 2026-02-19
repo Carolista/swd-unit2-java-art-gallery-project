@@ -10,18 +10,18 @@ const ArtworksList = () => {
 		return <Loading dataName="artworks" />;
 	} else {
         
-		// TODO: Access fetchArtworks function from context
+		// TODO #6a: Access fetchArtworks function from context
 		const { allArtworks } = use(DataContext);
 
 		/*
-            TODO: Write a function to handle the fetch request for deleting an artwork
+            TODO #6b: Write a function to handle the fetch request for deleting an artwork
             Handle errors
             After a successful DELETE, update allArtworks in context
         */
 
 		const handleDelete = id => {
 			/*
-                TODO: Use browser's confirm popup to ask if user is sure they want to delete
+                TODO #6c: Use browser's confirm popup to ask if user is sure they want to delete
                 // Include artwork title in message
                 // If confirmed, call function to delete artwork and pass the id
             */

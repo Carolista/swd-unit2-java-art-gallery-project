@@ -46,7 +46,7 @@ const AddArtworkForm = () => {
 		return <Loading dataName="artists and categories" />;
 	} else {
 
-		// TODO: Access the fetchArtists function from context
+		// TODO #3a: Access the fetchArtists function from context
 		const { allArtists, allCategories } = use(DataContext);
 
 		const [artworkData, setArtworkData] = useState(initialArtworkData);
@@ -57,10 +57,10 @@ const AddArtworkForm = () => {
 		const sortedArtists = sortObjByString([...allArtists], 'lastName');
 		const sortedCategories = sortObjByString([...allCategories], 'title');
 
-		// TODO: Access the useNavigate() hook
+		// TODO#3b: Access the useNavigate() hook
 
         /*
-            TODO: Write a function to handle the fetch request for posting a new artwork
+            TODO #3c: Write a function to handle the fetch request for posting a new artwork
             Handle errors
             After a successful POST, update allArtworks in context and navigate back to ArtworksList
         */
@@ -92,8 +92,7 @@ const AddArtworkForm = () => {
 		const handleSubmit = event => {
 			event.preventDefault();
             /* 
-                TODO: 
-                Loop over the checkboxes array and add the index to artworkData.categoryIds for any checked boxes
+                TODO #3d: Loop over the checkboxes array and add the index to artworkData.categoryIds for any checked boxes
                 Create an instance of DetailsDTO using detailsData
                 Create instance of ArtistDTO using artistData
                 Run isValid() from both DTO classes to determine if errors should be activated
