@@ -11,7 +11,7 @@ const ArtworksList = () => {
 		return <Loading dataName="artworks" />;
 	} else {
 		const { allArtworks, fetchArtworks } = use(DataContext);
-        const sortedArtworks = sortObjByString(allArtworks, "title");
+        const sortedArtworks = sortObjByString([...allArtworks], "title");
 
 		const deleteArtwork = async id => {
 			try {
