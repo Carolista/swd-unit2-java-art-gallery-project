@@ -78,6 +78,8 @@ const AddArtworkForm = () => {
 						errorData.message || `ERROR - Status ${response.status}`
 					);
 				} else {
+                    setArtworkData(initialArtworkData);
+                    setDetailsData(initialDetailsData);
 					fetchArtworks(); // update state before returning to list
 					navigate('/admin/artworks');
 				}
